@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Indicator from "./Indicator";
-import tempLeftButton from "@/public/tempLeftButton.svg";
+import MoveButtonsUI from "./MoveButtonsUI";
 
 interface Carousel {
   imageArray: string[];
@@ -17,7 +17,7 @@ interface Carousel {
 const Carousel = ({
   className,
   imageArray,
-  moveButtonImage = tempLeftButton,
+  moveButtonImage,
   isMoveButton = true,
   isIndicator = true,
   changeDelay,
@@ -42,35 +42,6 @@ const Carousel = ({
     };
   }, []);
 
-  const MoveButtonsUI = () => {
-    return (
-      <div className="w-full absolute bottom-1/2 flex justify-between">
-        <button
-          onClick={() =>
-            setSelectedScene((selectedNum) =>
-              selectedNum ? selectedNum - 1 : selectedNum
-            )
-          }
-        >
-          <Image src={moveButtonImage} alt="leftButton" />
-        </button>
-        <button
-          onClick={() =>
-            setSelectedScene((selectedNum) =>
-              selectedNum !== imageNum - 1 ? selectedNum + 1 : selectedNum
-            )
-          }
-        >
-          <Image
-            className="rotate-180"
-            src={moveButtonImage}
-            alt="rightButton"
-          />
-        </button>
-      </div>
-    );
-  };
-
   return (
     <div className={`relative ${className}`}>
       {imageArray.length && (
@@ -82,7 +53,13 @@ const Carousel = ({
           height={0}
         />
       )}
-      {isMoveButton && <MoveButtonsUI />}
+      {isMoveButton && (
+        <MoveButtonsUI
+          moveButtonImage={moveButtonImage}
+          setSelectedScene={setSelectedScene}
+          imageNum={imageNum}
+        />
+      )}
       {isIndicator && (
         <Indicator
           imageNum={imageNum}
