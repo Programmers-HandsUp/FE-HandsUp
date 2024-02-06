@@ -18,4 +18,12 @@ export type IconName =
   | "settings"
   | "settings_fill"
   | "fire-fill"
-  | "local-fire";
+  | "local-fire"
+  | "gavel"
+  | "chat"
+  | "more-horiz"
+  | "chat-comment"
+  | "time"
+  | "home"
+  | "check"
+  | "warning";
