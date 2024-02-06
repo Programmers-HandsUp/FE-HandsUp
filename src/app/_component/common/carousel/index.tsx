@@ -73,7 +73,7 @@ const Carousel = ({
   const Indicator = () => {
     return (
       <div className="absolute left-1/2 -translate-x-1/2 bottom-1 flex gap-2">
-        {imageArray.map((_, index) => (
+        {Array.from(Array(imageNum), (_, index) => (
           <button
             key={index}
             onClick={() => setSelectedScene(index)}
