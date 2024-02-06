@@ -41,7 +41,7 @@ const Carousel = ({
     };
   }, []);
 
-  const MoveButtons = () => {
+  const MoveButtonsUI = () => {
     return (
       <div className="w-full absolute bottom-1/2 flex justify-between">
         <button
@@ -95,8 +95,8 @@ const Carousel = ({
           height={0}
         />
       )}
-      {isMoveButton && MoveButtons()}
-      {isIndicator && Indicator()}
+      {isMoveButton && <MoveButtonsUI />}
+      {isIndicator && <Indicator />}
     </div>
   );
 };
