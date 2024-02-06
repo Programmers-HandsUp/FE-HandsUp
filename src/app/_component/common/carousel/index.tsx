@@ -6,8 +6,8 @@ import tempLeftButton from "@/public/tempLeftButton.svg";
 
 interface Carousel {
   imageArray: string[];
-  className: string;
-  moveButton?: string;
+  className?: string;
+  moveButtonImage?: string;
   isMoveButton?: boolean;
   isIndicator?: boolean;
   changeDelay?: number;
@@ -16,7 +16,7 @@ interface Carousel {
 const Carousel = ({
   className,
   imageArray,
-  moveButton = tempLeftButton,
+  moveButtonImage = tempLeftButton,
   isMoveButton = true,
   isIndicator = true,
   changeDelay,
@@ -51,7 +51,7 @@ const Carousel = ({
             )
           }
         >
-          <Image src={moveButton} alt="leftButton" />
+          <Image src={moveButtonImage} alt="leftButton" />
         </button>
         <button
           onClick={() =>
@@ -60,7 +60,11 @@ const Carousel = ({
             )
           }
         >
-          <Image className="rotate-180" src={moveButton} alt="rightButton" />
+          <Image
+            className="rotate-180"
+            src={moveButtonImage}
+            alt="rightButton"
+          />
         </button>
       </div>
     );
