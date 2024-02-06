@@ -25,7 +25,7 @@ const Carousel = ({
   const imageNum = imageArray.length;
 
   useEffect(() => {
-    if (!changeDelay) {
+    if (changeDelay === undefined) {
       return;
     }
     const intervalRef = setInterval(
