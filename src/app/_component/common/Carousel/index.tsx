@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Indicator from "./Indicator";
 import tempLeftButton from "@/public/tempLeftButton.svg";
 
 interface Carousel {
@@ -70,20 +71,6 @@ const Carousel = ({
     );
   };
 
-  const Indicator = () => {
-    return (
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-1 flex gap-2">
-        {Array.from(Array(imageNum), (_, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedScene(index)}
-            className={`w-[0.8rem] h-[0.8rem] ${index === selectedScene ? "bg-white" : " bg-gray-400"} rounded-full`}
-          />
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className={`relative ${className}`}>
       {imageArray.length && (
@@ -96,7 +83,15 @@ const Carousel = ({
         />
       )}
       {isMoveButton && <MoveButtonsUI />}
-      {isIndicator && <Indicator />}
+      {isIndicator && (
+        <Indicator
+          imageNum={imageNum}
+          selectedScene={selectedScene}
+          onClickIndicatorIcon={(selectedIndex: number) =>
+            setSelectedScene(selectedIndex)
+          }
+        />
+      )}
     </div>
   );
 };
