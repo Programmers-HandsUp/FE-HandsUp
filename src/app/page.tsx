@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <main className="">
       <Carousel
+        changeDelay={3000}
         imageArray={[tempImage.src, tempImage2.src, tempImage.src]}
         className="w-[12rem] h-[12rem]"
       />

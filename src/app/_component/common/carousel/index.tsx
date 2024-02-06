@@ -1,8 +1,7 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import tempLeftButton from "@/public/tempLeftButton.svg";
 
 interface Carousel {
@@ -11,6 +10,7 @@ interface Carousel {
   moveButton?: string;
   isMoveButton?: boolean;
   isIndicator?: boolean;
+  changeDelay?: number;
 }
 
 const Carousel = ({
@@ -19,12 +19,31 @@ const Carousel = ({
   moveButton = tempLeftButton,
   isMoveButton = true,
   isIndicator = true,
+  changeDelay,
 }: Carousel) => {
   const [selectedScene, setSelectedScene] = useState(0);
+  const imageNum = imageArray.length;
+
+  useEffect(() => {
+    if (!changeDelay) {
+      return;
+    }
+    const intervalRef = setInterval(
+      () =>
+        setSelectedScene((selectedNum) =>
+          selectedNum === imageNum - 1 ? 0 : selectedNum + 1
+        ),
+      changeDelay
+    );
+
+    return () => {
+      clearInterval(intervalRef);
+    };
+  }, []);
 
   const MoveButtons = () => {
     return (
-      <div className=" w-full absolute bottom-1/2 flex justify-between">
+      <div className="w-full absolute bottom-1/2 flex justify-between">
         <button
           onClick={() =>
             setSelectedScene((selectedNum) =>
@@ -37,9 +56,7 @@ const Carousel = ({
         <button
           onClick={() =>
             setSelectedScene((selectedNum) =>
-              selectedNum !== imageArray.length - 1
-                ? selectedNum + 1
-                : selectedNum
+              selectedNum !== imageNum - 1 ? selectedNum + 1 : selectedNum
             )
           }
         >
