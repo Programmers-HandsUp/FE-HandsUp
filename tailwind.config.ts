@@ -14,6 +14,11 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        progress: "progress linear forwards 0.4s",
+        rightMove: "rightMove ease forwards 0.4s ",
+        leftMove: "leftMove ease forwards 0.4s ",
+      },
     },
   },
   plugins: [],
