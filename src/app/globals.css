@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --header-height: 60px;
+    --bottom-height: 56px;
+  }
+
+  body {
+    height: 100dvh;
+  }
+
+  main > section {
+    height: calc(100dvh - var(--header-height) - var(--bottom-height));
+  }
+}
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
