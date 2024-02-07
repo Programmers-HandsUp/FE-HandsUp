@@ -1,20 +1,16 @@
 import { cn } from "@/utils/cn";
 import { VariantProps, cva } from "class-variance-authority";
 
-interface Props extends VariantProps<typeof BadgeVariants> {
+interface BadgeProps extends VariantProps<typeof BadgeVariants> {
   children: React.ReactElement;
   content?: React.ReactElement;
   maxCount?: number;
 }
 
-function Badge({
-  children,
-  badgeType,
-  content,
+const Badge = ({
   position,
   size,
-  maxCount
-}: Props) {
+}: BadgeProps) => {
   return (
     <div className="relative inline-block">
       {children}
