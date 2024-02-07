@@ -3,8 +3,7 @@
 import { createRoot } from "react-dom/client";
 
 import ToastManager from "./ToastManager";
-import { ToastCreate } from "./type";
-import { ReactElement } from "react";
+import { ToastCreate, ToastIconId } from "./type";
 
 class Toast {
   portal: HTMLElement | null = null;
@@ -34,9 +33,9 @@ class Toast {
     }
   }
 
-  show(message: string, icon: ReactElement, duration = 2000) {
+  show(message: string, iconId: ToastIconId, duration = 2000) {
     if (!this.createToast) throw new Error("ToastManager 초기화 오류");
-    this.createToast(message, icon, duration);
+    this.createToast(message, iconId, duration);
   }
 }
 const toastInstance = new Toast();

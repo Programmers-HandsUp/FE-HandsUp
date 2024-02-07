@@ -27,4 +27,6 @@ export type IconName =
   | "home"
   | "check"
   | "warning"
-  | "info-i";
+  | "info-solid"
+  | "check-solid"
+  | "warn-solid";
