@@ -19,6 +19,9 @@ const config: Config = {
         rightMove: "rightMove ease forwards 0.4s ",
         leftMove: "leftMove ease forwards 0.4s ",
       },
+      fontFamily: {
+        sans: ["Yeongdeok"],
+      },
     },
   },
   plugins: [],
