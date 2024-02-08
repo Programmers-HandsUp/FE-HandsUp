@@ -14,6 +14,7 @@ interface TooltipProps extends VariantProps<typeof MainPositionVariants> {
   eventType: EventType;
   showArrow?: boolean;
   content: React.ReactNode;
+  className?: string;
 }
 
 const Tooltip = ({
@@ -22,6 +23,7 @@ const Tooltip = ({
   showArrow = true,
   content,
   children,
+  className,
   ...props
 }: PropsWithChildren<TooltipProps>) => {
   const { ref, isInteracted } = useInteraction(eventType);
