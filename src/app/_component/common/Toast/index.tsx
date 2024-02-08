@@ -4,39 +4,38 @@ import { createRoot } from "react-dom/client";
 
 import ToastManager from "./ToastManager";
 import { ToastCreate, ToastIconId } from "./type";
+import { useEffect, useState } from "react";
 
-class Toast {
-  portal: HTMLElement | null = null;
-  createToast: ToastCreate | undefined;
+const Toast = () => {
+  const portalId = "toast-portal";
+  const [createToast, setCreateToast] = useState<ToastCreate>();
 
-  constructor() {
+  useEffect(() => {
     if (typeof window !== "undefined") {
-      const portalId = "toast-portal";
       const portalElement = document.getElementById(portalId);
-
-      if (portalElement) {
-        this.portal = portalElement;
+      if (portalElement === undefined) {
         return;
       }
+      const newPortalElement = document.createElement("div");
+      newPortalElement.id = portalId;
+      document.body.appendChild(newPortalElement);
 
-      this.portal = document.createElement("div");
-      this.portal.id = portalId;
-      document.body.appendChild(this.portal);
-
-      createRoot(this.portal).render(
+      createRoot(newPortalElement).render(
         <ToastManager
-          bind={(createToast: ToastCreate) => {
-            this.createToast = createToast;
+          bind={(createToast) => {
+            setCreateToast(() => createToast);
           }}
         />
       );
     }
-  }
+  }, []);
 
-  show(message: string, iconId: ToastIconId, duration = 2000) {
-    if (!this.createToast) throw new Error("ToastManager 초기화 오류");
-    this.createToast(message, iconId, duration);
-  }
-}
-const toastInstance = new Toast();
-export default toastInstance;
+  const show = (message: string, iconId: ToastIconId, duration = 2000) => {
+    if (!createToast) throw new Error("ToastManager 초기화 오류");
+    createToast(message, iconId, duration);
+  };
+
+  return { show };
+};
+
+export default Toast;

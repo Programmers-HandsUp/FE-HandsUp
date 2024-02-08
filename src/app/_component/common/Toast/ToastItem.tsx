@@ -32,7 +32,7 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
   return (
     <div
       className={cn(
-        "duration-400 relative mx mb-2 flex h-16 w-layout items-center min-w-[150px]",
+        "duration-400 relative mx mb-2 flex h-16 w-layout items-center w-[200px] md:w-[400px]",
         "overflow-hidden rounded bg-white p-4 shadow-md shadow-gray-700 ease-out",
         show ? "animate-rightMove" : "animate-leftMove"
       )}

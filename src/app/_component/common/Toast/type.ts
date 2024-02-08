@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
 export type ToastCreate = (
   message: string,
   iconId: ToastIconId,

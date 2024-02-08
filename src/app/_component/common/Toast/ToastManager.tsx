@@ -1,26 +1,26 @@
 "use client";
 
-import { ReactElement, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 import ToastItem from "./ToastItem";
 import { Toast, ToastCreate, ToastIconId } from "./type";
 
-interface ToastManagerProps {
+export interface ToastManagerProps {
   bind: (createToast: ToastCreate) => void;
 }
 
 const ToastManager = ({ bind }: ToastManagerProps) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const createToast = useCallback(
-    (message: string, iconId: ToastIconId, duration: number) => {
-      const newToast = { id: v4(), message, iconId, duration };
-
-      setToasts((prev) => [...prev, newToast]);
-    },
-    []
-  );
+  const createToast = (
+    message: string,
+    iconId: ToastIconId,
+    duration: number
+  ) => {
+    const newToast = { id: v4(), message, iconId, duration };
+    setToasts((prev) => [...prev, newToast]);
+  };
 
   const removeToast = useCallback((id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
@@ -28,7 +28,7 @@ const ToastManager = ({ bind }: ToastManagerProps) => {
 
   useEffect(() => {
     bind(createToast);
-  }, [bind, createToast]);
+  }, [bind]);
 
   return (
     <div className="fixed bottom-4 z-20 translate-x-[20%]">
