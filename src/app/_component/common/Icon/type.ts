@@ -29,4 +29,6 @@ export type IconName =
   | "warning"
   | "info-solid"
   | "check-solid"
-  | "warn-solid";
+  | "warn-solid"
+  | "dark"
+  | "light";
