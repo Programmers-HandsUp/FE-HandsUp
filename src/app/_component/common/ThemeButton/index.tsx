@@ -1,16 +1,23 @@
 "use client";
 
-import { ComponentProps, ReactElement } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import useDarkMode from "./useDarkMode";
 import { cn } from "@/utils/cn";
+import Icon from "../Icon";
 
-interface ThemeButtonProps extends ComponentProps<"button"> {
-  darkIcon: ReactElement;
-  lightIcon: ReactElement;
-}
+interface ThemeButtonProps extends ComponentProps<"button"> {}
 
-const ThemeButton = ({ className, darkIcon, lightIcon }: ThemeButtonProps) => {
+const ThemeButton = ({ className }: ThemeButtonProps) => {
   const { dark, toggleDarkMode } = useDarkMode();
+  const [isMount, setMount] = useState(false);
+
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
+  if (!isMount) {
+    return null;
+  }
 
   return (
     <button
@@ -20,7 +27,11 @@ const ThemeButton = ({ className, darkIcon, lightIcon }: ThemeButtonProps) => {
       )}
       onClick={toggleDarkMode}
     >
-      {dark ? darkIcon : lightIcon}
+      {dark ? (
+        <Icon id="dark" className="text-yellow-300" />
+      ) : (
+        <Icon id="light" className="text-red-400 fill-red-400" />
+      )}
     </button>
   );
 };

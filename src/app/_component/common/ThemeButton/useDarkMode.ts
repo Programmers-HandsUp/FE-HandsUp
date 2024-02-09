@@ -3,21 +3,20 @@
 import { useEffect, useState } from "react";
 
 const useDarkMode = () => {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState<boolean | undefined>(() => {
+    if (typeof window !== "undefined") {
+      const savedDarkMode = window.localStorage.getItem("darkMode");
+      const prefersDarkMode = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
 
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem("darkMode");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const initialDarkMode =
-      savedDarkMode === null
-        ? prefersDarkMode
-        : JSON.parse(savedDarkMode) === "dark";
-
-    setDark(initialDarkMode);
-  }, []);
+      const initialDarkMode =
+        savedDarkMode === null
+          ? prefersDarkMode
+          : JSON.parse(savedDarkMode) === "dark";
+      return initialDarkMode;
+    }
+  });
 
   const toggleDarkMode = () => {
     setDark((state) => {
@@ -31,10 +30,12 @@ const useDarkMode = () => {
   };
 
   useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+    if (dark !== undefined) {
+      if (dark) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }, [dark]);
 

@@ -15,6 +15,9 @@
 
   body {
     height: 100dvh;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+    @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
   }
 
   * {
@@ -24,31 +27,6 @@
   main > section {
     height: calc(100dvh - var(--header-height) - var(--bottom-height));
   }
-}
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  fill: rgb(var(--foreground-rgb));
-  stroke: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
