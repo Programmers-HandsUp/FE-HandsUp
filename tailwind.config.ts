@@ -15,6 +15,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
+        beat: "beat linear 0.5s forwards",
+        blink: "blink ease-in-out 0.5s forwards",
         progress: "progress linear forwards 0.4s",
         rightMove: "rightMove ease forwards 0.4s ",
         leftMove: "leftMove ease forwards 0.4s ",
