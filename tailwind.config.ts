@@ -17,6 +17,12 @@ const config: Config = {
       animation: {
         beat: "beat linear 0.5s forwards",
         blink: "blink ease-in-out 0.5s forwards",
+        progress: "progress linear forwards 0.4s",
+        rightMove: "rightMove ease forwards 0.4s ",
+        leftMove: "leftMove ease forwards 0.4s ",
+      },
+      fontFamily: {
+        sans: ["Yeongdeok"],
       },
     },
   },

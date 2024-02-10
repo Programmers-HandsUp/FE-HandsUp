@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Yeongdeok";
+  src: url("../../public/assets/font/YeongdeokSea.ttf");
+}
+
 @layer base {
   :root {
     --header-height: 60px;
@@ -10,6 +15,10 @@
 
   body {
     height: 100dvh;
+  }
+
+  * {
+    @apply m-0 p-0 font-sans outline-none;
   }
 
   main > section {
@@ -59,6 +68,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  fill: rgb(var(--foreground-rgb));
+  stroke: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
@@ -70,5 +81,40 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer base {
+  @keyframes progress {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes rightMove {
+    0% {
+      transform: translateX(-70%);
+    }
+    70% {
+      transform: translateX(40%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes leftMove {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(40%);
+    }
+    100% {
+      transform: translateX(-200%);
+    }
   }
 }
