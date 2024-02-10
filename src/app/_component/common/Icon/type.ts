@@ -29,3 +29,6 @@ export type IconName =
   | "warning"
   | "bell-fill"
   | "bell";
+  | "info-solid"
+  | "check-solid"
+  | "warn-solid";
