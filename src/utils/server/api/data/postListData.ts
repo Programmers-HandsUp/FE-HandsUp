@@ -1,36 +1,14 @@
-interface PostType {
-  id: number;
-  authorId: string;
-  authorName: string;
-  postName: string;
-  titleImage?: string;
-  startPrice: number;
-  nowPrice: number;
-  postDetail: string;
-  bidRecord?: bidRecordType[];
-  comments: CommentType[];
-}
+import { PostType } from "../types";
 
-interface CommentType {
-  authorName: string;
-  authorId: string;
-  detail: string;
-  id: string;
-}
-
-interface bidRecordType {
-  bidderName: string;
-  bidderId: string;
-  biddingPrice: number;
-  id: string;
-}
 export const postListData: PostType[] = [
   {
     id: 1,
     authorId: "id1",
     authorName: "경매왕",
     postName: "아주 많이 비싼 옷",
+    endtime: "2024.03.04",
     startPrice: 300,
+    tradePlace: "서울 어딘가",
     nowPrice: 400,
     postDetail: "아주 비싸고 많이 비싸고 좋고 몰라 그냥 좋고 사지마 그냥아아아",
     comments: [
@@ -47,6 +25,8 @@ export const postListData: PostType[] = [
     postName: "싸구려 장난감",
     startPrice: 5000,
     nowPrice: 14400,
+    endtime: "2024.03.04",
+    tradePlace: "서울 어딘가",
     postDetail: "아주 비싸고 많이 비싸고 좋고 몰라 그냥 좋고 사지마 그냥아아아",
     comments: [
       {
