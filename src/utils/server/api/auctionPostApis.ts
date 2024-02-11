@@ -18,10 +18,10 @@ function isPostType(data: any): data is PostType {
 }
 
 const handlers = [
-  http.get("/api/getpostlist", () => {
+  http.get("/api/auctionpostlist", () => {
     return HttpResponse.json(postListData);
   }),
-  http.post("/api/addpostlist", async ({ request }) => {
+  http.post("/api/createauctionpost", async ({ request }) => {
     try {
       const postData = (await request.json()) as any;
       if (isPostType(postListData)) {
