@@ -18,17 +18,16 @@ function isPostType(data: any): data is PostType {
 }
 
 const handlers = [
-  http.get("/members", () => {
+  http.get("/api/getpostlist", () => {
     return HttpResponse.json(postListData);
   }),
-  http.post("/setmembers", async ({ request }) => {
+  http.post("/api/addpostlist", async ({ request }) => {
     try {
       const postData = (await request.json()) as any;
       if (isPostType(postListData)) {
         throw new Error("postType이 아님.");
       }
       postListData.push(postData);
-      console.log(postListData);
       return HttpResponse.json(postData.body);
     } catch (error) {
       throw new Error(`${error}`);
