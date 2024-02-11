@@ -26,3 +26,8 @@ export interface bidRecordType {
   biddingPrice: number;
   id: string;
 }
+
+export interface authDataType {
+  id: string;
+  passWord: string;
+}

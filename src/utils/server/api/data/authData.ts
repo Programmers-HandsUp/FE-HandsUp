@@ -1,9 +1,6 @@
-interface LoginFormType {
-  id: string;
-  passWord: string;
-}
+import { authDataType } from "../types";
 
-export const userAuthData: LoginFormType[] = [
+export const userAuthData: authDataType[] = [
   {
     id: "abcd1234",
     passWord: "*abcd1234",
