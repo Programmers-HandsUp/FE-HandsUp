@@ -1,4 +1,4 @@
-import { HttpResponse, http } from "msw";
+import { HttpResponse, handleRequest, http } from "msw";
 
 import { authDataType } from "./types";
 import { userAuthData } from "./data/authData";
@@ -7,7 +7,7 @@ const isAuthData = (data: any): data is authDataType => {
   return typeof data.email === "number" && typeof data.password === "string";
 };
 
-export const handler = [
+const handler = [
   http.post("/api/signup", async ({ request }) => {
     try {
       const authData = (await request.json()) as any;
@@ -43,3 +43,5 @@ export const handler = [
     }
   }),
 ];
+
+export default handler;

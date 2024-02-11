@@ -1,3 +1,4 @@
-import searchResultHandler from "./api/searchPostListResult";
+import postApiHandler from "./api/postApis";
+import authApiHandler from "./api/authApis";
 
-export const handlers = [...searchResultHandler];
+export const handlers = [...postApiHandler, ...authApiHandler];
