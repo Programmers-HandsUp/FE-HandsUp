@@ -1,5 +1,5 @@
 import { cn } from "@/utils/cn";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { VariantProps } from "class-variance-authority";
 import { InputVariants } from "./Input.variants";
 

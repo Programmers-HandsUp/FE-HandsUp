@@ -1,3 +1,4 @@
+import React from "react";
 import Input from "./_component/common/Input";
 
 export default function Home() {
