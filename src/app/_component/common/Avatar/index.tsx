@@ -9,10 +9,10 @@ interface Props extends VariantProps<typeof AvatarVariants>, Omit<ImgHTMLAttribu
 
 function Avatar({ size, rounded, src, ...props }: Props) {
   return (
-    <div className={cn(AvatarVariants({ size, rounded }))}>
+    <div className={cn(AvatarVariants({ size, rounded }), rounded ? "rounded-full" : "rounded-md")}>
       <Image
         alt={props.alt || ""}
-        src="/images1.webp"
+        src={src}
         width={100}
         height={100}
         className="w-full h-full object-cover"
@@ -40,7 +40,7 @@ export const AvatarVariants = cva(
     },
     defaultVariants: {
       size: "medium",
-      rounded: "full",
+      rounded: "none",
     }
   }
 );
