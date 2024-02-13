@@ -1,18 +1,25 @@
 import Link from "next/link";
-import { MouseEvent, ReactNode } from "react";
+import { MouseEvent, ReactNode, TouchEvent } from "react";
+import Toast from "../Toast";
 
-interface NavigationProps {
+interface LoginLinkProps {
   userId: string | undefined;
   href: string;
   children: ReactNode;
-  toastShow?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const LoginLink = ({ userId, href, children, toastShow }: NavigationProps) => {
+const LoginLink = ({ userId, href, children }: LoginLinkProps) => {
+  const { show } = Toast();
+
+  const handleLinkClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (!userId) show("로그인이 필요한 서비스입니다.", "warn-solid");
+  };
+
   return userId ? (
     <Link href={href}>{children}</Link>
   ) : (
-    <button onClick={toastShow}>{children}</button>
+    <button onClick={handleLinkClick}>{children}</button>
   );
 };
 export default LoginLink;
