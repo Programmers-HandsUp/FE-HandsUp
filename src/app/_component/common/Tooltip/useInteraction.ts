@@ -10,26 +10,27 @@ interface InteractionEvent {
 const INTERACTION_EVENTS: Record<EventType, InteractionEvent> = {
   hover: {
     startEvent: "mouseover",
-    endEvent: "mouseout"
+    endEvent: "mouseout",
   },
   focus: {
     startEvent: "focusin",
-    endEvent: "focusout"
+    endEvent: "focusout",
   },
   click: {
     startEvent: "click",
-    endEvent: "mouseleave"
-  }
+    endEvent: "mouseleave",
+  },
 };
 
 const useInteraction = (eventType: EventType) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isInteracted, setIsInteracted] = useState(false);
 
-  const handleEvent = useCallback(() => setIsInteracted(true), []);
-  const removeEvent = useCallback(() => setIsInteracted(false), []);
-
   const currentInteraction = INTERACTION_EVENTS[eventType];
+
+  const handleEvent = () => setIsInteracted(true);
+
+  const removeEvent = () => setIsInteracted(false);
 
   useEffect(() => {
     const element = ref.current;
@@ -45,7 +46,7 @@ const useInteraction = (eventType: EventType) => {
       element.removeEventListener(startEvent, handleEvent);
       element.removeEventListener(endEvent, removeEvent);
     };
-  }, [ref, eventType, handleEvent, removeEvent, currentInteraction]);
+  }, [ref, eventType, currentInteraction]);
 
   return { ref, isInteracted };
 };
