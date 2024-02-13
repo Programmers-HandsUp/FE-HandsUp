@@ -36,8 +36,8 @@ export const ButtonVariants = cva(
       },
       color: {
         primary: "bg-[#96E4FF] text-black hover:bg-[#96E4FF]-dark",
-        gray: "bg-[#D9D9D9] text-white hover:bg-[#D9D9D9]-dark",
-        yellow: "bg-[#FFE604] text-white hover:bg-[#D9D9D9]-dark",
+        gray: "bg-[#D9D9D9] text-black hover:bg-[#D9D9D9]-dark",
+        yellow: "bg-[#FFE604] text-black hover:bg-[#D9D9D9]-dark",
       }
     },
     defaultVariants: {
