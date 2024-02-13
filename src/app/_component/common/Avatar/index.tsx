@@ -8,7 +8,7 @@ interface Props extends VariantProps<typeof AvatarVariants>, Omit<ImgHTMLAttribu
   src: string;
 }
 
-function Avatar({ size, rounded, src, ...props }: Props) {
+const Avatar = ({ size, rounded, src, ...props }: Props) => {
   return (
     <div className={cn(AvatarVariants({ size, rounded }))}>
       <Image
@@ -21,6 +21,6 @@ function Avatar({ size, rounded, src, ...props }: Props) {
       />
     </div>
   );
-}
+};
 
 export default Avatar;
