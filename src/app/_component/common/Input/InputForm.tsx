@@ -10,6 +10,8 @@ interface InputFormProps extends VariantProps<typeof InputVariants> {
   wrapperStyle?: React.CSSProperties;
   placeHolder?: string;
   type?: string;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   className: string;
 }
 
@@ -19,16 +21,20 @@ const InputForm = ({
   required = false,
   disabled = false,
   type,
-  verticalAlign = "center",
+  verticalAlign = "right",
   fontSize,
-  placeHolder = "가나다라마바사",
+  placeHolder,
   wrapperStyle,
+  value,
+  onChange,
   className,
   ...props
 }: InputFormProps) => {
   return (
     <div style={wrapperStyle}>
       <input
+        value={value}
+        onChange={onChange}
         className={cn(InputVariants({ verticalAlign }), className)}
         type={type}
         placeholder={placeHolder}

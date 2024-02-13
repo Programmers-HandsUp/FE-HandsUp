@@ -1,5 +1,3 @@
-import React from "react";
-
 import Label from "./Label";
 import InputInnerBox from "./InputInnerBox";
 import SubmitButton from "./SubmitButton";
@@ -11,6 +9,7 @@ interface InputWrapperProps {
 
 const InputWrapper = ({
   className,
+  children,
 }: React.PropsWithChildren<InputWrapperProps>) => {
   return <div className={`${className} flex`}>{children}</div>;
 };

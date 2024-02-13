@@ -6,9 +6,11 @@ export default function Home() {
     <main className="">
       <Input>
         <Input.Label>라벨</Input.Label>
-        <Input.InputBox>
-          <Input.InputArea className="w-24" />
-        </Input.InputBox>
+        <Input.InputInnerBox>
+          <Input.Label>라벨</Input.Label>
+          <Input.InputForm className="w-24" />
+          <Input.Label>원</Input.Label>
+        </Input.InputInnerBox>
       </Input>
     </main>
   );
