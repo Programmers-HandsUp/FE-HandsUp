@@ -1,7 +1,8 @@
 import { cn } from "@/utils/cn";
-import { VariantProps, cva } from "class-variance-authority";
+import { VariantProps } from "class-variance-authority";
 import Image from "next/image";
 import { ImgHTMLAttributes } from "react";
+import { AvatarVariants } from "./Avatar.variants";
 
 interface Props extends VariantProps<typeof AvatarVariants>, Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "width" | "height"> {
   src: string;
@@ -9,7 +10,7 @@ interface Props extends VariantProps<typeof AvatarVariants>, Omit<ImgHTMLAttribu
 
 function Avatar({ size, rounded, src, ...props }: Props) {
   return (
-    <div className={cn(AvatarVariants({ size, rounded }), rounded ? "rounded-full" : "rounded-md")}>
+    <div className={cn(AvatarVariants({ size, rounded }))}>
       <Image
         alt={props.alt || ""}
         src={src}
@@ -23,24 +24,3 @@ function Avatar({ size, rounded, src, ...props }: Props) {
 }
 
 export default Avatar;
-
-export const AvatarVariants = cva(
-  "relative overflow-hidden",
-  {
-    variants: {
-      size: {
-        small: "w-8 h-8",
-        medium: "w-12 h-12",
-        large: "w-24 h-24",
-      },
-      rounded: {
-        none: "rounded-md",
-        full: "rounded-full",
-      },
-    },
-    defaultVariants: {
-      size: "medium",
-      rounded: "none",
-    }
-  }
-);
