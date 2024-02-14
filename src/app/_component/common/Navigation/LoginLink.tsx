@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { MouseEvent, ReactNode, TouchEvent } from "react";
+import { MouseEvent, ReactNode } from "react";
 import Toast from "../Toast";
+import { useRouter } from "next/navigation";
 
 interface LoginLinkProps {
   userId: string | undefined;
@@ -10,16 +13,20 @@ interface LoginLinkProps {
 
 const LoginLink = ({ userId, href, children }: LoginLinkProps) => {
   const { show } = Toast();
+  const router = useRouter();
 
-  const handleLinkClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (!userId) show("로그인이 필요한 서비스입니다.", "warn-solid");
+  const handleLinkClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!userId) {
+      e.preventDefault();
+      show("로그인이 필요한 서비스입니다.", "warn-solid");
+      router.push("/login");
+    }
   };
 
-  return userId ? (
-    <Link href={href}>{children}</Link>
-  ) : (
-    <button onClick={handleLinkClick}>{children}</button>
+  return (
+    <Link href={href} onClick={handleLinkClick}>
+      {children}
+    </Link>
   );
 };
 export default LoginLink;
