@@ -32,4 +32,7 @@ export type IconName =
   | "info-solid"
   | "check-solid"
   | "warn-solid"
+  | "dark"
+  | "light"
   | "box-add";
+

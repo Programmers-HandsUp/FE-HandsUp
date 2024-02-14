@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ThemeScript from "./_component/ThemeScript";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Hands Up",
-  description: "중고물품을 실제 경매장처럼 사고 팔 수 있다?!",
+  description: "Used goods traded at auction",
 };
 
 export default function RootLayout({
@@ -15,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className}>
+        <ThemeScript />
         <main className="relative mx-auto h-[100dvh] max-w-[360px] overscroll-y-none px">
           {children}
         </main>
