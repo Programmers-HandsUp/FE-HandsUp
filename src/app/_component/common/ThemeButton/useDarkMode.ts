@@ -30,13 +30,8 @@ const useDarkMode = () => {
   };
 
   useEffect(() => {
-    if (dark !== undefined) {
-      if (dark) {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    }
+    if (dark === undefined) return;
+    document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
   return { dark, toggleDarkMode };
