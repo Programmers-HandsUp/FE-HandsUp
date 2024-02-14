@@ -32,8 +32,8 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
   return (
     <div
       className={cn(
-        "duration-400 relative mx mb-2 flex h-16 w-layout items-center w-[200px] md:w-[400px]",
-        "overflow-hidden rounded bg-white p-4 shadow-md shadow-gray-700 ease-out",
+        "relative mx mb-2 flex h-16 items-center w-[220px] md:w-[400px]",
+        "overflow-hidden rounded bg-white p-4 shadow-md shadow-gray-700",
         show ? "animate-rightMove" : "animate-leftMove"
       )}
     >
@@ -48,9 +48,9 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
       <div className={`${iconColor[iconId]} rounded-full`}>
         <Icon id={iconId} />
       </div>
-      <div className="pl-2">
+      <div className="pl-2 pt-2">
         <h2 className="text-black font-bold">{iconHeader[iconId]}</h2>
-        <p className="text-black text-sm">{message}</p>
+        <p className="text-black text-sm text-ellipsis">{message}</p>
       </div>
     </div>
   );
