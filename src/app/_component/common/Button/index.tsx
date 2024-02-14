@@ -11,13 +11,13 @@ interface Props extends VariantProps<typeof ButtonVariants>, Omit<ButtonHTMLAttr
   text: string;
 }
 
-function Button({ size, rounded, icon, color, text, ...props }: Props) {
+const Button = ({ size, rounded, icon, color, text, ...props }: Props) => {
   return (
     <button className={cn(ButtonVariants({ size, rounded, color }))} {...props}>
       {icon && <Icon id={icon} size={24} className="mr-2" />}
       {text}
     </button>
   );
-}
+};
 
 export default Button;
