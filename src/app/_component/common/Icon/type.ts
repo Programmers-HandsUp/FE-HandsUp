@@ -33,6 +33,6 @@ export type IconName =
   | "check-solid"
   | "warn-solid"
   | "dark"
-  | "light";
+  | "light"
   | "box-add";
 
