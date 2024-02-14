@@ -7,7 +7,7 @@ import { VariantProps } from "class-variance-authority";
 
 interface Props extends VariantProps<typeof ButtonVariants>, Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type"> {
   icon?: IconName;
-  color: "primary" | "gray" | "yellow";
+  color: "primary" | "gray" | "darkGray" | "yellow";
   text: string;
 }
 
