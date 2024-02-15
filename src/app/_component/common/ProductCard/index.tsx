@@ -1,4 +1,5 @@
 import Image from "next/image";
+import getPastTime from "@/utils/getPastTime";
 
 interface ProductCard {
   titleImage: File;
@@ -19,6 +20,7 @@ const ProductCard = ({
       <Image src={URL.createObjectURL(titleImage)} alt="titleImage" />
       <div>
         <p>{productName}</p>
+        <p>{getPastTime(createDate)}</p>
         <p>{price}</p>
       </div>
     </div>
