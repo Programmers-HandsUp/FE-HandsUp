@@ -1,13 +1,43 @@
+import { PropsWithChildren } from "react";
 import Avatar from "../Avatar";
-import temp from "../../../../../public/logoIcon.png";
 
+interface UserCardProps {
+  className?: string;
+  onClickUserCard?: () => void;
+}
 
-const Usercard = () => {
+interface ContentAreaProps {
+  className?: string;
+  onClickContentArea?: () => void;
+}
+
+const UserCardWrapper = ({
+  className,
+  children,
+  onClickUserCard,
+}: PropsWithChildren<UserCardProps>) => {
   return (
-    <div className="flex">
-      <Avatar src={temp.src} />
+    <div onClick={onClickUserCard} className={`flex ${className}`}>
+      {children}
     </div>
   );
 };
 
-export default Usercard;
+const ContentArea = ({
+  className,
+  children,
+  onClickContentArea,
+}: PropsWithChildren<ContentAreaProps>) => {
+  return (
+    <div onClick={onClickContentArea} className={className}>
+      {children}
+    </div>
+  );
+};
+
+const UserCard = Object.assign(UserCardWrapper, {
+  Avatar,
+  ContentArea,
+});
+
+export default UserCard;
