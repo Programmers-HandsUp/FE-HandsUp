@@ -1,35 +1,19 @@
 import { PropsWithChildren } from "react";
 import Avatar from "../Avatar";
+import { UserCardContentArea as ContentArea } from "./UserCardContentArea";
 
-interface UserCardProps {
+interface UserCardWrapperProps {
   className?: string;
   onClickUserCard?: () => void;
-}
-
-interface ContentAreaProps {
-  className?: string;
-  onClickContentArea?: () => void;
 }
 
 const UserCardWrapper = ({
   className,
   children,
   onClickUserCard,
-}: PropsWithChildren<UserCardProps>) => {
+}: PropsWithChildren<UserCardWrapperProps>) => {
   return (
     <div onClick={onClickUserCard} className={`flex ${className}`}>
-      {children}
-    </div>
-  );
-};
-
-const ContentArea = ({
-  className,
-  children,
-  onClickContentArea,
-}: PropsWithChildren<ContentAreaProps>) => {
-  return (
-    <div onClick={onClickContentArea} className={className}>
       {children}
     </div>
   );
