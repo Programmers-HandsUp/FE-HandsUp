@@ -11,7 +11,7 @@ function getPastTime(standardTime: string | Date) {
 
   const createTime = new Date(standardTime);
   const nowTime = new Date();
-
+  
   const compareTime = Math.floor(
     (nowTime.getTime() - createTime.getTime()) / 1000
   );
