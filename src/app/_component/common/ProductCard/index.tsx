@@ -6,14 +6,13 @@ import { ProductStateVariants } from "./ProductState.variatns";
 import setMoneyUnitString from "@/utils/setMoneyUnitString";
 import getPastTime from "@/utils/getPastTime";
 
-interface ProductCard {
+interface ProductCardProps {
   id?: string;
-  width?: string;
   titleImage: StaticImageData;
   productName: string;
   createDate: Date;
   price: number;
-  tradeState?: "취소됨" | "거래완료" | "거래중" | "입찰실패" | undefined;
+  tradeState?: "취소됨" | "거래완료" | "거래중" | "입찰실패";
   className?: string;
   isShowStateTag?: boolean;
   onClickProductCard?: () => void;
@@ -21,7 +20,6 @@ interface ProductCard {
 
 const ProductCard = ({
   id,
-  width = "18rem",
   onClickProductCard,
   titleImage,
   productName,
@@ -30,7 +28,7 @@ const ProductCard = ({
   isShowStateTag = true,
   tradeState,
   className,
-}: ProductCard) => {
+}: ProductCardProps) => {
   https: return (
     <button onClick={onClickProductCard} className={`flex gap-6 ${className}`}>
       <Image
