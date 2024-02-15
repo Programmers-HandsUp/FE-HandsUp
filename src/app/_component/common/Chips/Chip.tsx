@@ -1,23 +1,47 @@
-interface ChipProps {
-  id: string;
+import { VariantProps } from "class-variance-authority";
+import { ReactNode } from "react";
+import { cn } from "@/utils/cn";
+import { chipVariants } from "./Chip.variants";
+
+interface ChipProps extends VariantProps<typeof chipVariants> {
   value: string;
-  isSelected: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  type: "checkbox" | "radio";
+  isSelected?: boolean;
+  onChange?: () => void;
+  type?: string;
+  children: ReactNode;
+  size?: number;
 }
 
-const Chip = ({ id, value, isSelected, onChange, type }: ChipProps) => (
-  <>
-    <input
-      id={id}
-      type={type}
-      value={value}
-      checked={isSelected}
-      onChange={onChange}
-    />
-    <label htmlFor={id}></label>
-    <span>{value}</span>
-  </>
-);
-
-export default Chip;
+export const Chip = ({
+  value,
+  isSelected,
+  onChange,
+  type,
+  rounded,
+  size,
+  children,
+  ...props
+}: ChipProps) => {
+  return (
+    <div style={{ width: size ? `${size}px` : "auto" }}>
+      <input
+        id={value}
+        type={type}
+        value={value}
+        checked={isSelected}
+        onChange={onChange}
+        className={cn("hidden")}
+      />
+      <label
+        htmlFor={value}
+        className={cn(
+          chipVariants({ rounded }),
+          isSelected ? "bg-[#96E4FF]" : ""
+        )}
+        {...props}
+      >
+        {children}
+      </label>
+    </div>
+  );
+};
