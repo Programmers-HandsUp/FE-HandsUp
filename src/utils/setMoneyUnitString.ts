@@ -1,4 +1,4 @@
-const setMoneyUnityString = (price: string | number) => {
+const setMoneyUnitString = (price: string | number) => {
   if (typeof price === "number") {
     price = price.toString();
   }
@@ -6,4 +6,4 @@ const setMoneyUnityString = (price: string | number) => {
   return returnString;
 };
 
-export default setMoneyUnityString;
+export default setMoneyUnitString;

@@ -3,7 +3,7 @@ import { StaticImageData } from "next/image";
 
 import { cn } from "@/utils/cn";
 import { ProductStateVariants } from "./ProductState.variatns";
-import setMoneyUnityString from "@/utils/setMoneyUnityString";
+import setMoneyUnitString from "@/utils/setMoneyUnitString";
 import getPastTime from "@/utils/getPastTime";
 
 interface ProductCard {
@@ -43,7 +43,7 @@ const ProductCard = ({
           {productName}
         </p>
         <p className="text-[8px] text-left">
-          낙찰가 : {setMoneyUnityString(price)}원
+          낙찰가 : {setMoneyUnitString(price)}원
         </p>
         <div className="flex justify-between my-1">
           {isShowStateTag && (
