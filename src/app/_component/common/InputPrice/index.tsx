@@ -5,7 +5,8 @@ import {
   UseFormReset,
   UseFormSetValue
 } from "react-hook-form";
-import { formatPrice, formatPriceWithUnits } from "./utils";
+import { formatPrice, formatPriceWithUnits } from "./utils/formatPrice";
+import PriceButton from "./_component/PriceButton";
 
 export type Unit = 10000 | 50000 | 100000 | 500000;
 
@@ -83,20 +84,13 @@ function InputPrice({
 
           <div className="flex justify-center gap-2 mt-4">
             {units.map((unit, index) => (
-              <button
+              <PriceButton
                 key={index}
-                type="button"
-                className="border w-16 h-9 rounded-full border-[#96E4FF] bg-[#FAFAFA]"
-                onClick={() => handleAddPrice(unit, field.onChange)}>
+                handleClickEvent={() => handleAddPrice(unit, field.onChange)}>
                 +{Math.floor(unit / 10000)}만
-              </button>
+              </PriceButton>
             ))}
-            <button
-              type="button"
-              className="border w-16 h-9 rounded-full border-[#96E4FF] bg-[#FAFAFA]"
-              onClick={() => reset()}>
-              초기화
-            </button>
+            <PriceButton handleClickEvent={() => reset()}>초기화</PriceButton>
           </div>
         </>
       )}
