@@ -1,8 +1,7 @@
-import axios from "axios";
 import { AddrType } from "../types/address";
 
 const searchAddr = async (addr: string): Promise<AddrType> => {
-  const { data } = await axios.get(
+  const response = await fetch(
     `https://dapi.kakao.com/v2/local/search/address?query=${addr}`,
     {
       headers: {
@@ -10,7 +9,12 @@ const searchAddr = async (addr: string): Promise<AddrType> => {
       }
     }
   );
-  return data;
+
+  if (!response.ok) {
+    throw new Error("에러가 발생했습니다.");
+  }
+
+  return response.json();
 };
 
 export default searchAddr;
