@@ -5,6 +5,7 @@ import {
   UseFormReset,
   UseFormSetValue
 } from "react-hook-form";
+import { formatPrice, formatPriceWithUnits } from "./utils";
 
 export type Unit = 10000 | 50000 | 100000 | 500000;
 
@@ -32,37 +33,6 @@ function InputPrice({
   setValue
 }: InputPriceProps) {
   const units: Unit[] = [10000, 50000, 100000, 500000];
-
-  //** 3자리 콤마 제거 */
-  const formatPrice = (value: number | string) => {
-    if (typeof value === "string") {
-      return Number(value.replaceAll(",", ""));
-    }
-    return value;
-  };
-
-  const formattedPrice = (value: string | number) => {
-    const money = formatPrice(value);
-    let price = "";
-
-    const tenThousand = Math.floor(money / 10000);
-    const thousand = Math.floor((money % 10000) / 1000);
-    const remainder = Math.floor(money % 1000);
-
-    if (tenThousand > 0) {
-      price += `${tenThousand}만`;
-    }
-
-    if (thousand > 0) {
-      price += `${thousand}천`;
-    }
-
-    if (remainder > 0) {
-      price += `${remainder}`;
-    }
-
-    return price;
-  };
 
   /** 버튼을 이용해 값을 더하는 함수 */
   const handleAddPrice = (unit: Unit, onChange: OnChangeType) => {
@@ -105,7 +75,7 @@ function InputPrice({
                 />
                 <span className="text-lg">원</span>
                 <span className="flex justify-end text-sm text-left text-gray-400">
-                  {price ? `${formattedPrice(price)}원` : ""}
+                  {price ? `${formatPriceWithUnits(price)}원` : ""}
                 </span>
               </div>
             </div>
