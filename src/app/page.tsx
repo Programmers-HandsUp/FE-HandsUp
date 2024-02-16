@@ -11,6 +11,7 @@ export default function Home() {
           <Input.InputForm className="w-24" />
           <Input.Label>원</Input.Label>
         </Input.InputInnerBox>
+        <Input.SubmitButton onClick={()=>(console.log(""))}
       </Input>
     </main>
   );

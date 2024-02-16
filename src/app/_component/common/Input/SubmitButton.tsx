@@ -1,21 +1,22 @@
-interface SubmitButtonProps {
+import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+
+interface SubmitButtonProps extends ComponentPropsWithoutRef<"button"> {
   className?: string;
   buttonText?: string;
-  onClickSubmitButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const SubmitButton = ({
   className,
   children,
-  onClickSubmitButton,
   buttonText,
-}: React.PropsWithChildren<SubmitButtonProps>) => {
+  ...props
+}: PropsWithChildren<SubmitButtonProps>) => {
   return children ? (
-    <button onClick={onClickSubmitButton} className={className}>
+    <button {...props} className={className}>
       {children}
     </button>
   ) : (
-    <button onClick={onClickSubmitButton} className={className}>
+    <button {...props} className={className}>
       {buttonText ? buttonText : "확인"}
     </button>
   );
