@@ -2,11 +2,22 @@
 import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { carouselVariants } from "./Carousel.variants";
+import { cn } from "../../../../utils/cn";
 import Indicator from "./Indicator";
 import MoveButtonsUI from "./MoveButtonsUI";
 
 interface Carousel {
   imageArray: string[];
+  size?:
+    | "xxxsmall"
+    | "xxsmall"
+    | "xsmall"
+    | "small"
+    | "medium"
+    | "large"
+    | "xlarge"
+    | "xxlarge";
   className?: string;
   moveButtonImage?: string;
   isMoveButton?: boolean;
@@ -17,6 +28,7 @@ interface Carousel {
 const Carousel = ({
   className,
   imageArray,
+  size,
   moveButtonImage,
   isMoveButton = true,
   isIndicator = true,
@@ -43,7 +55,7 @@ const Carousel = ({
   }, []);
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={cn(carouselVariants({ size }), className)}>
       {imageArray.length && (
         <Image
           className="w-full h-full"
