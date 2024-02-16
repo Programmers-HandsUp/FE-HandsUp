@@ -4,15 +4,15 @@ interface AddrListProps {
 }
 
 function AddrList({ handleClickAddr, address }: AddrListProps) {
-  const [si, gu, dong] = address.split(" ");
+  const [depth_1, depth_2, depth_3] = address.split(" ");
 
   return (
     <button
       className="flex gap-1 border-b w-full border-gray-400 py-4"
       onClick={() => handleClickAddr(`${address}`)}>
-      <span>{si}</span>
-      <span>{gu}</span>
-      <span className="text-[#96E4FF]">{dong}</span>
+      <span>{depth_1}</span>
+      <span>{depth_2}</span>
+      <span className="text-[#96E4FF]">{depth_3}</span>
     </button>
   );
 }
