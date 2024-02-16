@@ -34,5 +34,5 @@ export type IconName =
   | "warn-solid"
   | "dark"
   | "light"
-  | "box-add";
-
+  | "box-add"
+  | "clock";
