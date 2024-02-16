@@ -41,12 +41,34 @@ function InputPrice({
     return value;
   };
 
+  const formattedPrice = (value: string | number) => {
+    const money = formatPrice(value);
+    let price = "";
+
+    const tenThousand = Math.floor(money / 10000);
+    const thousand = Math.floor((money % 10000) / 1000);
+    const remainder = Math.floor(money % 1000);
+
+    if (tenThousand > 0) {
+      price += `${tenThousand}만`;
+    }
+
+    if (thousand > 0) {
+      price += `${thousand}천`;
+    }
+
+    if (remainder > 0) {
+      price += `${remainder}`;
+    }
+
+    return price;
+  };
+
   /** 버튼을 이용해 값을 더하는 함수 */
   const handleAddPrice = (unit: Unit, onChange: OnChangeType) => {
     const currentPrice = price !== undefined ? formatPrice(price) : 0;
     const newPrice = (currentPrice + unit).toLocaleString();
-
-    setValue("price", newPrice);
+    const money = setValue("price", newPrice);
     onChange(newPrice);
   };
 
@@ -73,16 +95,22 @@ function InputPrice({
           <div className="flex justify-between items-center">
             <span>{title}</span>
             <div className="flex justify-end items-center">
-              <input
-                {...field}
-                type="text"
-                className="h-11 text-right text-lg font-bold px-2"
-                placeholder={`${title} 입력`}
-                onChange={(e) => handleInputChange(e, field.onChange)}
-              />
-              <span className="text-lg">원</span>
+              <div>
+                <input
+                  {...field}
+                  type="text"
+                  className="h-7 text-right text-lg font-bold px-2"
+                  placeholder={`${title} 입력`}
+                  onChange={(e) => handleInputChange(e, field.onChange)}
+                />
+                <span className="text-lg">원</span>
+                <span className="flex justify-end text-sm text-left text-gray-400">
+                  {price ? `${formattedPrice(price)}원` : ""}
+                </span>
+              </div>
             </div>
           </div>
+
           <div className="flex justify-center gap-2 mt-4">
             {units.map((unit, index) => (
               <button
