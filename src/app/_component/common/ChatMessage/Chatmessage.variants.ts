@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const ChatMessageVariants = cva(
-  "items-start justify-start px-4 py-2 m-1 max-w-56",
+  "px-4 py-2 my-1 max-w-56 whitespace-pre-line",
   {
     variants: {
       sender: {
