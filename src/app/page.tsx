@@ -1,17 +1,22 @@
+"use client";
+
 import React from "react";
 import Input from "./_component/common/Input";
+import { useState } from "react";
 
 export default function Home() {
+  const [a, setA] = useState("a");
+
   return (
     <main className="">
-      <Input>
-        <Input.Label>라벨</Input.Label>
-        <Input.InputInnerBox>
-          <Input.Label>라벨</Input.Label>
-          <Input.InputForm className="w-24" />
-          <Input.Label>원</Input.Label>
+      <Input className="gap-2">
+        <Input.Label className="mx-1">라벨</Input.Label>
+        <Input.InputInnerBox className="gap-2">
+          <label> 얼마</label>
+          <Input.InputForm onChange={() => setA(a)} className="w-24" />
+          <label> 원</label>
         </Input.InputInnerBox>
-        <Input.SubmitButton onClick={()=>(console.log(""))}
+        <Input.SubmitButton />
       </Input>
     </main>
   );

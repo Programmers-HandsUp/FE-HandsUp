@@ -18,5 +18,6 @@ export const InputVariants = cva("focus:outline-none", {
   },
   defaultVariants: {
     verticalAlign: "left",
+    fontSize: "lg",
   },
 });
