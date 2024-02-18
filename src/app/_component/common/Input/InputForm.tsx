@@ -5,22 +5,26 @@ import { ComponentPropsWithoutRef } from "react";
 
 interface InputFormProps
   extends VariantProps<typeof InputVariants>,
-    ComponentPropsWithoutRef<"input"> {
+    Omit<ComponentPropsWithoutRef<"input">, "size"> {
   wrapperStyle?: React.CSSProperties;
-  className: string;
+  className?: string;
 }
 
 const InputForm = ({
-  verticalAlign = "right",
+  verticalAlign,
   fontSize,
   wrapperStyle,
+  size,
   className,
   ...props
 }: InputFormProps) => {
   return (
     <div style={wrapperStyle}>
       <input
-        className={cn(InputVariants({ fontSize, verticalAlign }), className)}
+        className={cn(
+          InputVariants({ size, fontSize, verticalAlign }),
+          className
+        )}
         {...props}
       />
     </div>

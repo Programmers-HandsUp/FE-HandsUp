@@ -1,4 +1,3 @@
-import Label from "./Label";
 import InputInnerBox from "./InputInnerBox";
 import SubmitButton from "./SubmitButton";
 import InputForm from "./InputForm";
@@ -6,7 +5,6 @@ import InputForm from "./InputForm";
 interface InputWrapperProps {
   className?: string;
 }
-
 const InputWrapper = ({
   className,
   children,
@@ -15,7 +13,6 @@ const InputWrapper = ({
 };
 
 const Input = Object.assign(InputWrapper, {
-  Label,
   InputInnerBox,
   SubmitButton,
   InputForm,

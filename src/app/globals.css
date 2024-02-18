@@ -2,32 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Yeongdeok";
+  src: url("../../public/assets/font/YeongdeokSea.ttf");
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --header-height: 60px;
+    --bottom-height: 56px;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  body {
+    height: 100dvh;
+    transition: color 0.3s;
+    transition: background-color 0.3s;
+    @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
+  }
+
+  * {
+    @apply m-0 p-0 font-sans outline-none;
+  }
+
+  main > section {
+    height: calc(100dvh - var(--header-height) - var(--bottom-height));
+  }
+
+  @keyframes beat {
+    0% {
+      transform: scale(0.7);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes blink {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+      opacity: 0.5;
+    }
+    80% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer base {
+  @keyframes progress {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  @keyframes rightMove {
+    0% {
+      transform: translateX(-70%);
+    }
+    70% {
+      transform: translateX(40%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes leftMove {
+    0% {
+      transform: translateX(0);
+    }
+    30% {
+      transform: translateX(40%);
+    }
+    100% {
+      transform: translateX(-200%);
+    }
   }
 }
