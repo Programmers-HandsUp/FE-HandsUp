@@ -1,7 +1,7 @@
 "use client";
 
 if (process.env.NODE_ENV === "development") {
-  import("@/utils/server");
+  import("@/utils/mockServer");
 }
 
 export default function Home() {
