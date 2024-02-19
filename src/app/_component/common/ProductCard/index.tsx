@@ -29,8 +29,11 @@ const ProductCard = ({
   tradeState,
   className,
 }: ProductCardProps) => {
-  https: return (
-    <button onClick={onClickProductCard} className={`flex gap-6 ${className}`}>
+  return (
+    <button
+      onClick={onClickProductCard}
+      className={cn("flex gap-6", className)}
+    >
       <Image
         className="w-[85px] h-[75px] bg-slate-100"
         src={titleImage}
