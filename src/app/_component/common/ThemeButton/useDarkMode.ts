@@ -1,19 +1,18 @@
 "use client";
 
+import { getCookie, setCookie } from "@/utils/cookie";
 import { useEffect, useState } from "react";
 
 const useDarkMode = () => {
   const [dark, setDark] = useState<boolean | undefined>(() => {
     if (typeof window !== "undefined") {
-      const savedDarkMode = window.localStorage.getItem("darkMode");
+      const savedDarkMode = getCookie({ name: "theme" });
       const prefersDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
 
       const initialDarkMode =
-        savedDarkMode === null
-          ? prefersDarkMode
-          : JSON.parse(savedDarkMode) === "dark";
+        savedDarkMode === null ? prefersDarkMode : savedDarkMode === "dark";
       return initialDarkMode;
     }
   });
@@ -21,10 +20,7 @@ const useDarkMode = () => {
   const toggleDarkMode = () => {
     setDark((state) => {
       const update = !state;
-      localStorage.setItem(
-        "darkMode",
-        JSON.stringify(update ? "dark" : "light")
-      );
+      setCookie({ name: "theme", value: update ? "dark" : "light" });
       return update;
     });
   };
