@@ -28,6 +28,11 @@ export interface bidRecordType {
 }
 
 export interface authDataType {
-  id: string;
-  passWord: string;
+  email: string;
+  password: string;
+}
+
+export interface tokenType {
+  accessToken: string;
+  refreshToken: string;
 }

@@ -2,9 +2,10 @@ import { HttpResponse, handleRequest, http } from "msw";
 
 import { authDataType } from "./types";
 import { userAuthData } from "./data/authData";
+import { mockTokens } from "./data/token";
 
 const isAuthData = (data: any): data is authDataType => {
-  return typeof data.email === "number" && typeof data.password === "string";
+  return typeof data.email === "string" && typeof data.password === "string";
 };
 
 const handler = [
@@ -29,15 +30,15 @@ const handler = [
       }
       for (const member of userAuthData) {
         if (
-          authData.id === member.id &&
-          authData.passWord === member.passWord
+          authData.email === member.email &&
+          authData.password === member.password
         ) {
-          return new HttpResponse(null, {
+          return new HttpResponse(JSON.stringify(mockTokens), {
             status: 200,
           });
         }
       }
-      return new HttpResponse(null, { status: 404 });
+      return new HttpResponse(null, { status: 401 });
     } catch (error) {
       throw new Error(`${error}`);
     }
