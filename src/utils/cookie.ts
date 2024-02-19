@@ -15,25 +15,25 @@ interface CookieOptions {
 
 export const getCookie = ({ name }: getCookieParams) => {
   const cookies = document.cookie.split(";");
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-    if (cookie.startsWith(name + "=")) {
-      return cookie.substring(name.length + 1);
-    }
-  }
-  return null;
+
+  const cookie = cookies.find((cookieString) => {
+    const trimmedCookie = cookieString.trim();
+    return trimmedCookie.startsWith(name + "=");
+  });
+
+  return cookie ? cookie.substring(name.length + 1) : null;
 };
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
-  options = options || {};
+  const { expires, maxAge, path } = options || {};
   let cookieString = `${name}=${value}`;
-  if (options.expires) {
-    cookieString += `; expires=${options.expires.toUTCString()}`;
+  if (expires) {
+    cookieString += `; expires=${expires.toUTCString()}`;
   }
-  if (options.maxAge) {
-    cookieString += `; max-age=${options.maxAge}`;
+  if (maxAge) {
+    cookieString += `; max-age=${maxAge}`;
   }
-  if (options.path) {
-    cookieString += `; path=${options.path}`;
+  if (path) {
+    cookieString += `; path=${path}`;
   }
   document.cookie = cookieString;
 };
