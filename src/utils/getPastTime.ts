@@ -1,4 +1,4 @@
-function getPastTime(standardTime: string | Date) {
+const getPastTime = (standardTime: string | Date) => {
   if (standardTime instanceof Date) {
     standardTime = standardTime.toString();
   }
@@ -11,7 +11,7 @@ function getPastTime(standardTime: string | Date) {
 
   const createTime = new Date(standardTime);
   const nowTime = new Date();
-  
+
   const compareTime = Math.floor(
     (nowTime.getTime() - createTime.getTime()) / 1000
   );
@@ -28,6 +28,6 @@ function getPastTime(standardTime: string | Date) {
   } else {
     return `${Math.floor(compareTime / YEAR)}년 전`;
   }
-}
+};
 
 export default getPastTime;
