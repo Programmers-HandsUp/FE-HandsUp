@@ -1,6 +1,6 @@
-import { authDataType } from "../types";
+import { userAuthType } from "../types";
 
-export const userAuthData: authDataType[] = [
+export const userAuthData: userAuthType[] = [
   {
     email: "a@a.com",
     password: "abcd",

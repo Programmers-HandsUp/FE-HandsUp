@@ -1,10 +1,11 @@
-import { HttpResponse, handleRequest, http } from "msw";
+import { HttpResponse, http } from "msw";
 
-import { authDataType } from "./types";
+import { userData } from "./data/userData";
+import { userAuthType } from "./types";
 import { userAuthData } from "./data/authData";
 import { mockTokens } from "./data/token";
 
-const isAuthData = (data: any): data is authDataType => {
+const isAuthData = (data: any): data is userAuthType => {
   return typeof data.email === "string" && typeof data.password === "string";
 };
 
@@ -39,6 +40,22 @@ const handler = [
         }
       }
       return new HttpResponse(null, { status: 401 });
+    } catch (error) {
+      throw new Error(`${error}`);
+    }
+  }),
+  http.get("/api/userinfo", async ({ request }) => {
+    try {
+      const authHeader = request.headers.get("Authorization");
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        throw new Error("토큰이 없거나 형식이 잘못되었습니다");
+      }
+      const token = authHeader.slice(7);
+
+      if (!userData[token]) {
+        throw new Error("토큰이 유효하지 않습니다");
+      }
+      return new HttpResponse(JSON.stringify(userData[token]), { status: 200 });
     } catch (error) {
       throw new Error(`${error}`);
     }
