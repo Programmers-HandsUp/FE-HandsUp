@@ -26,4 +26,13 @@ export type IconName =
   | "time"
   | "home"
   | "check"
-  | "warning";
+  | "warning"
+  | "bell-fill"
+  | "bell"
+  | "info-solid"
+  | "check-solid"
+  | "warn-solid"
+  | "dark"
+  | "light"
+  | "box-add";
+
