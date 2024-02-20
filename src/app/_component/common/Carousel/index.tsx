@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactElement } from "react";
 import { carouselVariants } from "./Carousel.variants";
 import { cn } from "../../../../utils/cn";
 import Indicator from "./Indicator";
 import MoveButtonsUI from "./MoveButtonsUI";
 
 interface Carousel {
-  imageArray: string[];
+  itemList: string[] | ReactElement[];
   size?:
     | "xxxsmall"
     | "xxsmall"
@@ -27,7 +27,7 @@ interface Carousel {
 
 const Carousel = ({
   className,
-  imageArray,
+  itemList,
   size,
   moveButtonImage,
   isMoveButton = true,
@@ -35,7 +35,7 @@ const Carousel = ({
   changeDelay,
 }: Carousel) => {
   const [selectedScene, setSelectedScene] = useState(0);
-  const imageNum = imageArray.length;
+  const imageNum = itemList.length;
 
   useEffect(() => {
     if (changeDelay === undefined) {
@@ -56,15 +56,18 @@ const Carousel = ({
 
   return (
     <div className={cn(carouselVariants({ size }), className)}>
-      {imageArray.length && (
-        <Image
-          className="w-full h-full"
-          src={imageArray[selectedScene]}
-          alt="highlightedImage"
-          width={0}
-          height={0}
-        />
-      )}
+      {itemList.length &&
+        (typeof itemList[selectedScene] === "string" ? (
+          <Image
+            className="w-full h-full"
+            src={itemList[selectedScene] as string}
+            alt="highlightedImage"
+            width={0}
+            height={0}
+          />
+        ) : (
+          React.cloneElement(itemList[selectedScene] as React.ReactElement)
+        ))}
       {isMoveButton && (
         <MoveButtonsUI
           moveButtonImage={moveButtonImage}
