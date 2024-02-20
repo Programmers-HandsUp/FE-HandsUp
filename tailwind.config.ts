@@ -20,6 +20,7 @@ const config: Config = {
         progress: "progress linear forwards 0.4s",
         rightMove: "rightMove ease forwards 0.4s ",
         leftMove: "leftMove ease forwards 0.4s ",
+        grow: "grow 0.4s ease",
         fill: "fill 1s linear forwards"
       },
       fontFamily: {
