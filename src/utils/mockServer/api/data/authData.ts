@@ -1,12 +1,12 @@
-import { authDataType } from "../types";
+import { userAuthType } from "../types";
 
-export const userAuthData: authDataType[] = [
+export const userAuthData: userAuthType[] = [
   {
-    id: "abcd1234",
-    passWord: "*abcd1234",
+    email: "a@a.com",
+    password: "abcd",
   },
   {
-    id: "abab1234",
-    passWord: "*abab1234",
+    email: "abab1234",
+    password: "*abab1234",
   },
 ];

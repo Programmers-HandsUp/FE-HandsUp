@@ -54,6 +54,14 @@
       opacity: 0;
     }
   }
+  @keyframes fill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
 }
 
 @layer utilities {

@@ -27,7 +27,20 @@ export interface bidRecordType {
   id: string;
 }
 
-export interface authDataType {
-  id: string;
-  passWord: string;
+export interface userAuthType {
+  email: string;
+  password: string;
+}
+
+export interface tokenType {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface userDataType {
+  role: "admin" | "user";
+  nickName: string;
+  residence: string;
+  profileImag?: string | null;
+  interetedcategory: string[];
 }

@@ -25,12 +25,11 @@ const Badge = ({
       : content;
 
   return (
-    <div
-      className="relative inline-block"
-      {...props}>
+    <div className="relative inline-block" {...props}>
       {children}
       <span
-        className={cn(BadgeVariants({ position, size, badgeType }), className)}>
+        className={cn(BadgeVariants({ position, size, badgeType }), className)}
+      >
         {badgeContent}
       </span>
     </div>
