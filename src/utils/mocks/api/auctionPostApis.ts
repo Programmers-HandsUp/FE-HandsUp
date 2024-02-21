@@ -3,6 +3,11 @@ import { http, HttpResponse } from "msw";
 import { PostType } from "./types";
 import { postListData } from "./data/postListData";
 
+const delay = (ms: number) =>
+  new Promise((res) => {
+    setTimeout(res, ms);
+  });
+
 function isPostType(data: any): data is PostType {
   return (
     typeof data.id === "number" &&
@@ -18,8 +23,17 @@ function isPostType(data: any): data is PostType {
 }
 
 const handlers = [
-  http.get("/api/auctionpostlist", () => {
-    return HttpResponse.json(postListData);
+  http.get("/api/auctionpostlist", async () => {
+    await delay(1000);
+    return HttpResponse.json([
+      {
+        postId: 1,
+        User: "sdasdadsa",
+        content: "Z.com is so marvelous. I'm gonna buy that.",
+        Images: "dgsdsgdgsgds",
+        createdAt: "asffsasf"
+      }
+    ]);
   }),
   http.post("/api/createauctionpost", async ({ request }) => {
     try {
@@ -32,7 +46,7 @@ const handlers = [
     } catch (error) {
       throw new Error(`${error}`);
     }
-  }),
+  })
 ];
 
 export default handlers;
