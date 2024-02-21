@@ -10,9 +10,15 @@ interface TimerProps {
   deadline: Date;
   createdAt: Date;
   className?: string;
+  noneIcon?: boolean;
 }
 
-const Timer = ({ createdAt, deadline, className }: TimerProps) => {
+const Timer = ({
+  createdAt,
+  deadline,
+  noneIcon = true,
+  className,
+}: TimerProps) => {
   const timeRemaining = useTimer(deadline);
   const formatNumber = (num: number) => (num < 10 ? `0${num}` : `${num}`);
 
@@ -30,31 +36,30 @@ const Timer = ({ createdAt, deadline, className }: TimerProps) => {
   return (
     <div
       className={cn(
-        "inline-flex justify-center items-center",
-        `${isUnderOneHour ? "text-[#FF0000]" : "text-[#6874FF]"}`,
+        `${isUnderOneHour ? "text-[#FF0000]" : "text-[#6874FF] dark:text-[#96E4FF]"}`,
         className
       )}
     >
       <div className="flex relative">
-        <Clock
-          rotation={currentAngle <= 360 ? currentAngle : 0}
-          className={cn(
-            `${isUnderOneHour && !isTimerFinished && "animate-watch"}`
-          )}
-        />
-        <div className={cn("w-[100px] flex justify-center dark:border-white")}>
-          <p
-            className={`${isUnderOneHour && !isTimerFinished && "animate-tiltAndScale"}`}
-          >
+        {noneIcon && (
+          <Clock
+            rotation={currentAngle <= 360 ? currentAngle : 0}
+            className={cn(
+              `${isUnderOneHour && !isTimerFinished && "animate-watch"}`
+            )}
+          />
+        )}
+        <div className={cn("w-[90px] pt-[1px] pr-[2px] dark:border-white")}>
+          <span aria-label="타이머">
             {formatNumber(days)}:{formatNumber(hours)}:{formatNumber(minutes)}:
             {formatNumber(seconds)}
-          </p>
+          </span>
           {isTimerFinished && (
-            <div className="absolute -bottom-3 w-[70px]">
+            <div className="absolute -bottom-2 left-8 w-[70px]">
               <Image
                 src={deadlineImage}
                 alt="deadline"
-                className="w-full h-auto dark:hue-rotate-180"
+                className="w-full h-auto dark:saturate-200"
                 priority
               />
             </div>
