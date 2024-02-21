@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-import { PostType } from "./types";
+import { Auction } from "./types";
 import { postListData } from "./data/postListData";
 
 const delay = (ms: number) =>
@@ -35,13 +35,13 @@ const handlers = [
       }
     ]);
   }),
-  http.post("/api/createauctionpost", async ({ request }) => {
+  http.post("/api/createAuction", async ({ request }) => {
     try {
       const postData = (await request.json()) as any;
       if (isPostType(postListData)) {
         throw new Error("postType이 아님.");
       }
-      postListData.push(postData);
+
       return HttpResponse.json(postData.body);
     } catch (error) {
       throw new Error(`${error}`);
