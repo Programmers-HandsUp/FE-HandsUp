@@ -8,7 +8,7 @@ const delay = (ms: number) =>
     setTimeout(res, ms);
   });
 
-function isPostType(data: any): data is PostType {
+function isPostType(data: any): data is Auction {
   return (
     typeof data.id === "number" &&
     typeof data.authorId === "string" &&
