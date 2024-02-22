@@ -97,7 +97,9 @@ const useModal = ({
         />
         <ModalContent>{children}</ModalContent>
       </>,
-      document.getElementById(elementId)!
+      modalType === "fullScreen"
+        ? document.getElementById("global-modal")!
+        : document.getElementById(elementId)!
     );
   };
 
