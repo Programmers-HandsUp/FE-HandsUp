@@ -35,7 +35,10 @@ const handler = [
           authData.password === member.password
         ) {
           return new HttpResponse(JSON.stringify(mockTokens), {
-            status: 200,
+            headers: {
+              "Set-Cookie": `token=${mockTokens.accessToken}`
+            },
+            status: 200
           });
         }
       }
@@ -44,9 +47,13 @@ const handler = [
       throw new Error(`${error}`);
     }
   }),
-  http.get("/api/userinfo", async ({ request }) => {
+  http.get("/api/userinfo", async ({ cookies, request }) => {
     try {
       const authHeader = request.headers.get("Authorization");
+
+      if (!cookies.token) {
+        return new HttpResponse(null, { status: 403 });
+      }
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
         throw new Error("토큰이 없거나 형식이 잘못되었습니다");
       }
@@ -59,7 +66,7 @@ const handler = [
     } catch (error) {
       throw new Error(`${error}`);
     }
-  }),
+  })
 ];
 
 export default handler;
