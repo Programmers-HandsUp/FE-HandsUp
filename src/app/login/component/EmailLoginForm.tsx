@@ -23,7 +23,6 @@ const EmailLoginForm = () => {
   };
 
   const onSubmit = async (data: LoginFormValues) => {
-    console.log(data);
     const req = await fetch("http://localhost:9090/api/login", {
       method: "POST",
       headers: {
@@ -41,7 +40,7 @@ const EmailLoginForm = () => {
         <Input>
           <Input.InputInnerBox className="w-[10rem] text-black">
             <label> 이메일 </label>
-            <Input.InputForm {...register("email", { required: true })} />
+            <Input.InputForm />
             {errors.email && <p>이메일은 필수 입니다.</p>}
           </Input.InputInnerBox>
         </Input>
