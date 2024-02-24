@@ -35,4 +35,5 @@ export type IconName =
   | "dark"
   | "light"
   | "box-add"
-  | "clock";
+  | "clock"
+  | "arrow-dropdown";
