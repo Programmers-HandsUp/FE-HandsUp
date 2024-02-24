@@ -15,6 +15,8 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
       },
       animation: {
+        tiltAndScale: "tiltAndScale linear 1.2s infinite",
+        watch: "watch linear 0.8s infinite both",
         beat: "beat linear 0.5s forwards",
         blink: "blink ease-in-out 0.5s forwards",
         progress: "progress linear forwards 0.4s",
