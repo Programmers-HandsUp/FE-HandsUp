@@ -8,6 +8,13 @@ import SelectRange from "./SelectRange";
 import SelectReview from "./SelectReview";
 
 const index = () => {
+  const mock = {
+    image: tempImage,
+    name: "상품 이름",
+    date: 1708476794082,
+    price: 10000,
+  };
+
   return (
     <div style={{ padding: "10%", display: "flex", flexDirection: "column", gap: "20px" }}>
       <Icon id="arrow-back" />
@@ -19,10 +26,10 @@ const index = () => {
       </div>
       <hr style={{ width: "30%", margin: "0 auto" }} />
       <ProductCard
-        titleImage={tempImage}
-        productName="상품 이름~~"
-        createDate={1708476794082}
-        price={10000}
+        titleImage={mock.image}
+        productName={mock.name}
+        createDate={mock.date}
+        price={mock.price}
       />
       <SelectRange />
       <SelectReview />
@@ -45,7 +52,7 @@ const index = () => {
       <Button
         color="primary"
         rounded="full"
-        size="wide">
+        size="large">
         후기 작성 완료하기
       </Button>
     </div>
