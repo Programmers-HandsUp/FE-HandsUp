@@ -28,7 +28,9 @@ export default async function RootLayout({
       className={initialDarkMode}>
       <body className={inter.className}>
         <MSWComponent />
-        <main className="relative mx-auto h-[100dvh] max-w-[360px] overscroll-y-none px">
+        <main
+          id="global-modal"
+          className="relative mx-auto h-[100dvh] max-w-[360px] overscroll-y-none px">
           <Providers>{children}</Providers>
         </main>
       </body>
