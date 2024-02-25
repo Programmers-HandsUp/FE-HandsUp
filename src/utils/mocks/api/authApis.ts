@@ -1,9 +1,9 @@
-import { HttpResponse, http } from "msw";
+import { http, HttpResponse } from "msw";
 
-import { userData } from "./data/userData";
-import { userAuthType } from "./types";
 import { userAuthData } from "./data/authData";
 import { mockTokens } from "./data/token";
+import { userData } from "./data/userData";
+import { userAuthType } from "./types";
 
 const isAuthData = (data: any): data is userAuthType => {
   return typeof data.email === "string" && typeof data.password === "string";
@@ -47,7 +47,6 @@ const handler = [
     } catch (error) {
       return new HttpResponse(null, { status: 401 });
     }
-    return new HttpResponse("에러", { status: 401 });
   }),
   http.post("http://localhost:9090/api/login", async ({ request }) => {
     const authData = (await request.json()) as any;
