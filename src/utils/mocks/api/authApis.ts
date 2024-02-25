@@ -35,7 +35,7 @@ const handler = [
           authData.password === member.password
         ) {
           return new HttpResponse(JSON.stringify(mockTokens), {
-            status: 200,
+            status: 200
           });
         }
       }
@@ -59,7 +59,7 @@ const handler = [
     } catch (error) {
       throw new Error(`${error}`);
     }
-  }),
+  })
 ];
 
 export default handler;
