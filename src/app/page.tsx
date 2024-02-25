@@ -1,14 +1,17 @@
-
 "use client";
 
 import React from "react";
+import ProgressBar from "./_component/common/ProgressBar";
 
-if (process.env.NODE_ENV === "development") {
-  import("@/utils/mockServer");
-}
 export default function Home() {
   return (
-    <main className="">
+    <main className="w-[10rem] h-[4rem]">
+      <ProgressBar
+        width={300}
+        height={30}
+        round={"full"}
+        percent={50}
+      />
     </main>
   );
 }
