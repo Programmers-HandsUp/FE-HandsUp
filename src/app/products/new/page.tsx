@@ -42,7 +42,7 @@ const RegisterSchema = z.object({
       startDate: z.string(),
       endDate: z.string()
     })
-    .refine((data) => data.startDate === "" && data.endDate === "", {
+    .refine((data) => data.startDate !== "" && data.endDate !== "", {
       message: "경매 마감일을 선택해주세요."
     }),
   description: z.string().min(10, { message: "상세 설명은 10자 이상 1000자 이하로 입력해주세요" }).max(1000, { message: "상세 설명은 10자 이상 1000자 이하로 입력해주세요" })
