@@ -1,15 +1,33 @@
 "use client";
 
+import Icon from "@/app/_component/common/Icon";
+
 interface SignupHeaderProps {
-  nowNavigate: "Residence" | "Category" | "Profile";
+  nowPage: number;
+  nowNavigate?: "Residence" | "Category" | "Profile";
+  onClickLeftButton: () => void;
+  onClickRightButton: () => void;
 }
 
-const SignupHeader = ({ nowNavigate }: SignupHeaderProps) => {
+const SignupHeader = ({
+  nowPage,
+  onClickLeftButton,
+  onClickRightButton
+}: SignupHeaderProps) => {
   return (
-    <header className="flex justify-between">
-      <button>왼쪽</button>
-      <span className="w-3/5 h-[2rem] bg-blue-200"></span>
-      <button>오른쪽</button>
+    <header className="w-full h-[4rem]">
+      <div className="w-3/4 h-[1rem] mx-auto bg-blue-200" />
+      <div className="flex justify-between">
+        <button onClick={onClickLeftButton}>
+          <Icon id="arrow-back" />
+        </button>
+        <button onClick={onClickRightButton}>
+          <Icon
+            id="arrow-back"
+            className="rotate-180"
+          />
+        </button>
+      </div>
     </header>
   );
 };

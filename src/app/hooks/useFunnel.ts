@@ -1,70 +1,57 @@
-import { useState } from "react";
-import { ReactNode } from "react";
+"use client";
+import { ReactNode, useState } from "react";
 
 type FunnelType = ReactNode | null;
 
 interface FunnelStateType {
-  funnelLength: number;
+  nowFunnelNum: number;
   topComponent?: FunnelType;
-  funnelArray: number[];
 }
 
-export default function useFunnel(
-  startFunnel: number = 0,
-  funnelDictionary: ReactNode[]
-) {
+export default function useFunnel(funnelList: ReactNode[]) {
   const [funnelState, setFunnelState] = useState<FunnelStateType>({
-    funnelLength: 0,
-    topComponent: null,
-    funnelArray: []
+    nowFunnelNum: 0,
+    topComponent: funnelList[0]
   });
 
   const setFunnelArray = (newFunnelArray: number[] | null) => {
     if (newFunnelArray === null || newFunnelArray.length < 2) {
       setFunnelState({
-        funnelLength: 1,
-        topComponent: funnelDictionary[startFunnel],
-        funnelArray: [startFunnel]
+        nowFunnelNum: 0,
+        topComponent: funnelList[0]
       });
     } else {
       setFunnelState({
-        funnelLength: newFunnelArray.length,
-        topComponent:
-          funnelDictionary[newFunnelArray[newFunnelArray.length - 1]],
-        funnelArray: [...newFunnelArray]
+        nowFunnelNum: 0,
+        topComponent: funnelList[newFunnelArray[newFunnelArray.length - 1]]
       });
     }
   };
 
-  const pushFunnel = (funnelNum: number) => {
-    setFunnelState(({ funnelArray, funnelLength }) => {
-      const newArray = [...funnelArray, funnelNum];
+  const pushFunnel = () => {
+    setFunnelState(({ nowFunnelNum }) => {
       return {
-        funnelLength: funnelLength + 1,
-        topComponent: funnelDictionary[funnelNum],
-        funnelArray: newArray
+        nowFunnelNum: nowFunnelNum + 1,
+        topComponent: funnelList[nowFunnelNum + 1]
       };
     });
   };
 
   const popFunnel = () => {
-    setFunnelState(({ funnelArray, funnelLength }) => {
-      if (funnelLength === 0) {
+    setFunnelState(({ nowFunnelNum }) => {
+      if (nowFunnelNum === 0) {
         throw new Error("Funnel array가 비었음");
       }
-      const newArray = [...funnelArray];
-      newArray.pop();
       return {
-        funnelLength: funnelLength - 1,
-        topComponent: funnelDictionary[newArray[newArray.length - 1]] || null,
-        funnelArray: newArray
+        nowFunnelNum: nowFunnelNum - 1,
+        topComponent: funnelList[nowFunnelNum - 1]
       };
     });
   };
 
   return {
-    funnelLength: funnelDictionary.length,
-    nowFunnelPage: funnelState.funnelArray.length,
+    funnelLength: funnelList.length,
+    topFunnelPage: funnelState.nowFunnelNum,
     topComponent: funnelState.topComponent,
     pushFunnel,
     popFunnel,
