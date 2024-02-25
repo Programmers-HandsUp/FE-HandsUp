@@ -69,6 +69,19 @@ function RegisterProduct() {
     console.log(data);
   };
 
+  /** 새로고침 감지 */
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <main>
       <FormProvider {...methods}>
