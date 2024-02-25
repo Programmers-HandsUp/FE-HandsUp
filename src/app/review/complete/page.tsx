@@ -41,7 +41,7 @@ function ReviewComplete() {
       <div className="animate-slideDown">
         <div
           ref={divRef}
-          className="py-3 px-2 border w-72 h-[500px] bg-gray-100 drop-shadow-xl rounded-b-md">
+          className="py-3 px-2 border w-72 h-[500px] bg-gray-100 drop-shadow-xl rounded-b-md dark:text-black">
           <p className="py-2 text-center text-lg font-bold">RECEIPT</p>
           <p className="text-sm py-3">{formattedDate}</p>
           <div className="border-dashed border-y border-gray-800 py-2">
@@ -49,7 +49,9 @@ function ReviewComplete() {
             <p className="mt-9">💰 낙찰 가격 : 30000원</p>
             <p className="pb-3">👣 거래 방식: 직거래 - 한남동</p>
           </div>
-          <div className="border-dashed border-b border-gray-800 text-center pt-6 pb-7">HandsUp에서 좋은 거래하세요 :)</div>
+          <div className="border-dashed border-b border-gray-800 text-center pt-6 pb-7">
+            HandsUp에서 좋은 거래하세요 :)
+          </div>
           <div className="flex flex-col items-center py-3 gap-5 bottom-0 left-0 right-0 absolute text-center">
             <Image
               src="/assets/barcode.png"
