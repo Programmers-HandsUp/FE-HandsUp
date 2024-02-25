@@ -2,6 +2,7 @@ import InputLabel from "../InputLabel";
 import { RegisterProduct } from "../../page";
 import { Controller, useFormContext } from "react-hook-form";
 import InputPrice from "@/app/_component/common/InputPrice";
+import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Tooltip from "@/app/_component/common/Tooltip";
 import Datepicker from "react-tailwindcss-datepicker";
@@ -14,6 +15,7 @@ function AuctionInfo() {
     register,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
+
   let maxDate = new Date();
   maxDate.setDate(maxDate.getDate() + 7);
 
@@ -68,6 +70,24 @@ function AuctionInfo() {
               value={field.value}
               onChange={field.onChange}
             />
+          )}
+        />
+      </InputLabel>
+      <InputLabel
+        title="거래 방식"
+        name="tradeMethod"
+        errors={errors}>
+        <Controller
+          control={control}
+          name="tradeMethod"
+          render={({ field }) => (
+            <Chips
+              Items={field.value}
+              setItems={field.onChange}
+              size={90}>
+              <Chip value="직거래">직거래</Chip>
+              <Chip value="택배">택배</Chip>
+            </Chips>
           )}
         />
       </InputLabel>
