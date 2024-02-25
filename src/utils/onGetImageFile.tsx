@@ -4,6 +4,7 @@ const onGetImageFile = (onChangeFile: (newImage?: File) => void) => {
   fileInput.accept = "image/gif, image/jpeg,image/png,image/jpg";
 
   fileInput.onchange = (e: Event) => {
+    e.preventDefault();
     if (!e.target) return;
     const target = e.target as HTMLInputElement;
     if (!target.files || !target.files[0]) return;
