@@ -6,6 +6,7 @@ import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Tooltip from "@/app/_component/common/Tooltip";
 import Datepicker from "react-tailwindcss-datepicker";
+import SearchAddressBtn from "../SearchAddressBtn";
 
 function AuctionInfo() {
   const {
@@ -20,6 +21,7 @@ function AuctionInfo() {
   maxDate.setDate(maxDate.getDate() + 7);
 
   const inputCount = watch("description") ? watch("description").length : 0;
+  const isDirect = watch("tradeMethod") === "직거래";
 
   return (
     <div className="m-2">
@@ -91,6 +93,19 @@ function AuctionInfo() {
           )}
         />
       </InputLabel>
+      {isDirect && (
+        <InputLabel
+          title="거래 희망 장소"
+          name="address"
+          errors={errors}>
+          <Controller
+            control={control}
+            name="address"
+            render={({ field }) => <SearchAddressBtn field={field} />}
+          />
+        </InputLabel>
+      )}
+
       <InputLabel
         name="description"
         errors={errors}>
