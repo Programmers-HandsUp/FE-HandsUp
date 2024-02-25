@@ -3,7 +3,7 @@ interface AddrListProps {
   address: string;
 }
 
-function AddrList({ handleClickAddr, address }: AddrListProps) {
+export function AddrList({ handleClickAddr, address }: AddrListProps) {
   const [depth_1, depth_2, depth_3] = address.split(" ");
 
   return (
