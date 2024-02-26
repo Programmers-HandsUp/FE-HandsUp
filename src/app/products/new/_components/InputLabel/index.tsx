@@ -10,15 +10,23 @@ interface InputLabelProps {
   className?: string;
 }
 
-function InputLabel({ title, errors, name, children, className }: PropsWithChildren<InputLabelProps>) {
+function InputLabel({
+  title,
+  errors,
+  name,
+  children,
+  className
+}: PropsWithChildren<InputLabelProps>) {
   return (
     <div className="my-3">
-      <p className={`${title} ? my-2 : ""`}>{title}</p>
+      <span className={`${title} ? my-2 : ""`}>{title}</span>
       {children}
       <ErrorMessage
         errors={errors}
         name={name}
-        render={({ message }) => <p className={`text-red-600 mt-2 ${className}`}>{message}</p>}
+        render={({ message }) => (
+          <p className={`text-red-600 mt-2 ${className}`}>{message}</p>
+        )}
       />
     </div>
   );
