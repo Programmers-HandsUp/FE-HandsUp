@@ -7,7 +7,11 @@ import { ControllerRenderProps } from "react-hook-form";
 import { RegisterProduct } from "../../page";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 
-function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProduct, "address"> }) {
+function SearchAddressBtn({
+  field
+}: {
+  field: ControllerRenderProps<RegisterProduct, "address">;
+}) {
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
     animate: "slide"
@@ -29,14 +33,17 @@ function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProd
   };
 
   return (
-    <main className="flex flex-col">
+    <main className="flex flex-col dark:text-black">
       {depth_3 ? (
         <button
           type="button"
           className="p-2 rounded-lg bg-gray-100">
           <div className="flex w-full justify-between items-center">
             <div className="flex gap-2">
-              <Icon id="pin-fill" />
+              <Icon
+                id="pin-fill"
+                stroke="black"
+              />
               <p>{depth_3}</p>
             </div>
             <button onClick={handleClose}>
@@ -55,7 +62,10 @@ function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProd
             className="p-2 rounded-lg bg-gray-100"
             color="gray">
             <div className="flex w-full items-center gap-2">
-              <Icon id="pin-fill" />
+              <Icon
+                id="pin-fill"
+                stroke="black"
+              />
               <p className="">위치 추가</p>
             </div>
           </button>
