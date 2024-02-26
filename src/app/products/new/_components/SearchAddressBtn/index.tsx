@@ -7,14 +7,11 @@ import { ControllerRenderProps } from "react-hook-form";
 import { RegisterProduct } from "../../page";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 
-function SearchAddressBtn({
-  field
-}: {
-  field: ControllerRenderProps<RegisterProduct, "address">;
-}) {
+function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProduct, "address"> }) {
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
-    animate: "slide"
+    animate: "slide",
+    className: "dark:bg-black"
   });
   const [depth_3, setDepth_3] = useState("");
   const { value: address, onChange } = field;
