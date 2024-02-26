@@ -5,7 +5,7 @@ import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
 
 interface SearchAddressProps {
-  close: () => void;
+  close?: () => void;
   onChange: (address: string) => void;
 }
 
@@ -15,14 +15,15 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
   const { data } = useSearchAddrQuery(watch("search"));
 
   const handleClickAddr = (address: string) => {
-    close();
+    close && close();
     onChange(address);
   };
 
   return (
     <div className="p-2">
       <div className="flex justify-between items-center">
-        <label className="flex items-center border h-9 rounded-md px-1 w-72">
+        <label
+          className={`flex items-center border h-9 rounded-md px-1 bg-white ${close ? "w-72" : "w-80"}`}>
           <Icon
             id="search"
             fill="none"
@@ -34,12 +35,14 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
             className="w-full px-4"
           />
         </label>
+        {close && (
         <button
           type="button"
           className="ml-4"
           onClick={close}>
           취소
         </button>
+        )}
       </div>
 
       {!data ? (
