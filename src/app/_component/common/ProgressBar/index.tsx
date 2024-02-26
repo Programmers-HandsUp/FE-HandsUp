@@ -27,7 +27,7 @@ const ProgressBar = ({
       className={cn(ProgressBarVariants({ round, bgColor }), className)}>
       <div
         style={{ width: `${percent}%`, height: height }}
-        className={cn(BarVariants({ round, barColor }))}
+        className={cn(BarVariants({ barColor }))}
       />
     </div>
   );

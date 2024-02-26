@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-export const ProgressBarVariants = cva("", {
+export const ProgressBarVariants = cva("overflow-hidden", {
   variants: {
     bgColor: {
       red: "bg-red-600",
@@ -14,7 +14,8 @@ export const ProgressBarVariants = cva("", {
       white: "bg-white",
       black: "bg-black",
       gray: "bg-gray-600",
-      slate: "bg-slate-400"
+      slate: "bg-slate-400",
+      primary: "bg-[#96E4FF]"
     },
     round: {
       full: "rounded-full",
@@ -44,18 +45,11 @@ export const BarVariants = cva("transition-all duration-500 ease-in-out", {
       white: "bg-white",
       black: "bg-black",
       gray: "bg-gray-600",
-      slate: "bg-slate-400"
-    },
-    round: {
-      full: "rounded-full",
-      little: "rounded",
-      normal: "rounded-md",
-      large: "rounded-lg",
-      none: ""
+      slate: "bg-slate-400",
+      primary: "bg-[#96E4FF]"
     }
   },
   defaultVariants: {
-    barColor: "lightblue",
-    round: "none"
+    barColor: "lightblue"
   }
 });
