@@ -33,7 +33,7 @@ function AuctionInfo() {
           control={control}
           name="price"
           render={({ field }) => (
-            <InputPrice
+            <InputPrice<RegisterProduct>
               title="입찰 시작가"
               price={watch("price")}
               field={field}

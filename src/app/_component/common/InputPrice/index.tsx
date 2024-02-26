@@ -1,21 +1,24 @@
 import { ChangeEvent } from "react";
 import { formatPrice, formatPriceWithUnits } from "./formatPrice";
 import PriceButton from "./PriceButton";
-import { ControllerRenderProps } from "react-hook-form";
-import { RegisterProduct } from "@/app/products/new/page";
+import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 
-export type OnChangeType = (value: string | number | React.ChangeEvent<HTMLInputElement>) => void;
-interface InputPriceProps {
+interface InputPriceProps<T extends FieldValues> {
   title: "입찰 시작가" | "제안가";
   price: number;
-  field: ControllerRenderProps<RegisterProduct, "price">;
+  field: ControllerRenderProps<T, Extract<Path<T>, "price">>;
   handleReset: () => void;
 }
 
 const PRICE_UNIT = [10000, 50000, 100000, 500000] as const;
 type Unit = (typeof PRICE_UNIT)[number];
 
-function InputPrice({ title, price, field, handleReset }: InputPriceProps) {
+function InputPrice<T extends FieldValues>({
+  title,
+  price,
+  field,
+  setValue
+}: InputPriceProps<T>) {
   /** 버튼을 이용해 값을 더하는 함수 */
   const handleAddPrice = (unit: Unit, onChange: OnChangeType) => {
     const currentPrice = price !== undefined ? formatPrice(price) : 0;
