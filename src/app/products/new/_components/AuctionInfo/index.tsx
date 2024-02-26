@@ -12,7 +12,7 @@ function AuctionInfo() {
   const {
     control,
     watch,
-    reset,
+    setValue,
     register,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
@@ -37,7 +37,7 @@ function AuctionInfo() {
               title="입찰 시작가"
               price={watch("price")}
               field={field}
-              handleReset={() => reset()}
+              setValue={() => setValue("price", "0")}
             />
           )}
         />

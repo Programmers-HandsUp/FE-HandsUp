@@ -7,7 +7,7 @@ interface InputPriceProps<T extends FieldValues> {
   title: "입찰 시작가" | "제안가";
   price: number;
   field: ControllerRenderProps<T, Extract<Path<T>, "price">>;
-  handleReset: () => void;
+  setValue: () => void;
 }
 
 const PRICE_UNIT = [10000, 50000, 100000, 500000] as const;
@@ -63,7 +63,7 @@ function InputPrice<T extends FieldValues>({
             +{Math.floor(unit / 10000)}만
           </PriceButton>
         ))}
-        <PriceButton handleClickEvent={handleReset}>초기화</PriceButton>
+        <PriceButton handleClickEvent={setValue}>초기화</PriceButton>
       </div>
     </>
   );
