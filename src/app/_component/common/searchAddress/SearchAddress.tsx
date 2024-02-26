@@ -6,7 +6,7 @@ import AddrList from "./AddrList";
 
 interface SearchAddressProps {
   close: () => void;
-  onChange: (...event: any[]) => void;
+  onChange: (address: string) => void;
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
