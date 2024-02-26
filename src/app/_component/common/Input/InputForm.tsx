@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { InputVariants } from "./Input.variants";
 import { VariantProps } from "class-variance-authority";
-import { ComponentPropsWithoutRef } from "react";
+import { ComponentPropsWithoutRef, forwardRef } from "react";
 
 interface InputFormProps
   extends VariantProps<typeof InputVariants>,
@@ -10,25 +10,26 @@ interface InputFormProps
   className?: string;
 }
 
-const InputForm = ({
-  verticalAlign,
-  fontSize,
-  wrapperStyle,
-  size,
-  className,
-  ...props
-}: InputFormProps) => {
-  return (
-    <div style={wrapperStyle}>
-      <input
-        className={cn(
-          InputVariants({ size, fontSize, verticalAlign }),
-          className
-        )}
-        {...props}
-      />
-    </div>
-  );
-};
+const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
+  (
+    { verticalAlign, fontSize, wrapperStyle, size, className, ...props },
+    ref
+  ) => {
+    return (
+      <div style={wrapperStyle}>
+        <input
+          ref={ref}
+          className={cn(
+            InputVariants({ size, fontSize, verticalAlign }),
+            className
+          )}
+          {...props}
+        />
+      </div>
+    );
+  }
+);
+
+InputForm.displayName = "InputForm";
 
 export default InputForm;
