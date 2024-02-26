@@ -15,7 +15,6 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
   const { data } = useSearchAddrQuery(watch("search"));
 
   const handleClickAddr = (address: string) => {
-    console.log(address);
     close();
     onChange(address);
   };
