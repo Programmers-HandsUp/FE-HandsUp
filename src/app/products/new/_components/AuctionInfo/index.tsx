@@ -25,7 +25,7 @@ function AuctionInfo() {
 
   return (
     <div className="m-2">
-      <p className="text-xl mb-4">| 경매정보</p>
+      <span className="text-xl mb-4">| 경매정보</span>
       <InputLabel
         name="price"
         errors={errors}>
@@ -113,7 +113,9 @@ function AuctionInfo() {
           {...register("description")}
           style={{ resize: "none" }}
           className="mt-4 p-4 border border-gray-200 w-full h-48 rounded-lg"
-          placeholder={"상품 및 경매 관련해서 추가적인 정보를 입력해주세요. \n안전하고 건전한 거래환경을 만들어가요 🙌🏻"}></textarea>
+          placeholder={
+            "상품 및 경매 관련해서 추가적인 정보를 입력해주세요. \n안전하고 건전한 거래환경을 만들어가요 🙌🏻"
+          }></textarea>
         <div className="flex justify-end">{inputCount}/1000</div>
       </InputLabel>
     </div>

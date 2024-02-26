@@ -10,6 +10,8 @@ interface InputPriceProps<T extends FieldValues> {
   setValue: () => void;
 }
 
+type onChangeType = (price: string) => void;
+
 const PRICE_UNIT = [10000, 50000, 100000, 500000] as const;
 type Unit = (typeof PRICE_UNIT)[number];
 
@@ -20,14 +22,18 @@ function InputPrice<T extends FieldValues>({
   setValue
 }: InputPriceProps<T>) {
   /** 버튼을 이용해 값을 더하는 함수 */
-  const handleAddPrice = (unit: Unit, onChange: OnChangeType) => {
+  const handleAddPrice = (unit: Unit, onChange: onChangeType) => {
     const currentPrice = price !== undefined ? formatPrice(price) : 0;
     const newPrice = (currentPrice + unit).toLocaleString();
+
     onChange(newPrice);
   };
 
   /** 숫자가아닌 값이 입력되면 삭제 + 3자리 콤마 추가 */
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>, onChange: OnChangeType) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    onChange: onChangeType
+  ) => {
     const formattedValue = e.target.value
       .replace(/\D/g, "")
       .toLocaleString()
@@ -39,7 +45,7 @@ function InputPrice<T extends FieldValues>({
   return (
     <>
       <div className="flex justify-between items-center">
-        <span>{title}</span>
+        <p>{title}</p>
         <div className="flex justify-end items-center">
           <div>
             <input
@@ -50,7 +56,9 @@ function InputPrice<T extends FieldValues>({
               onChange={(e) => handleInputChange(e, field.onChange)}
             />
             <span className="text-lg">원</span>
-            <span className="flex justify-end text-sm text-left text-gray-400">{price ? `${formatPriceWithUnits(price)}원` : ""}</span>
+            <span className="flex justify-end text-sm text-left text-gray-400">
+              {price ? `${formatPriceWithUnits(price)}원` : ""}
+            </span>
           </div>
         </div>
       </div>
