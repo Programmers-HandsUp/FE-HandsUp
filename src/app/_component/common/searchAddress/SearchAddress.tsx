@@ -10,7 +10,7 @@ interface SearchAddressProps {
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
-  const { register, watch, setValue } = useForm<{ search: string }>();
+  const { register, watch } = useForm<{ search: string }>();
 
   const { data } = useSearchAddrQuery(watch("search"));
 
