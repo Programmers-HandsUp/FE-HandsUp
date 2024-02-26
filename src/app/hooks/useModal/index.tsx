@@ -6,6 +6,7 @@ import { cn } from "@/utils/cn";
 import useClickAway from "../useClickAway";
 import { modalTypeVariants } from "./ModalType.variants";
 import { VariantProps } from "class-variance-authority";
+import { ModalContentProps, UseModalResult } from "./type";
 
 interface useModalParams extends VariantProps<typeof modalTypeVariants> {
   initialValue?: boolean;
@@ -14,14 +15,6 @@ interface useModalParams extends VariantProps<typeof modalTypeVariants> {
   elementId?: string;
   modalType?: "default" | "dropBox" | "fullScreen";
   animate?: "grow" | "slide";
-  className?: string;
-}
-
-export interface UseModalResult {
-  Modal: ({ children }: { children: ReactNode }) => JSX.Element;
-  open: () => void;
-  close: () => void;
-  isOpen: boolean;
 }
 
 const animateIn = {
@@ -39,8 +32,7 @@ const useModal = ({
   height = 100,
   modalType = "default",
   elementId = "global-modal",
-  animate = "grow",
-  className
+  animate = "grow"
 }: useModalParams): UseModalResult => {
   const [isOpen, setOpen] = useState<boolean>(initialValue);
   const [isUnmount, setIsUnmount] = useState(false);
@@ -60,7 +52,7 @@ const useModal = ({
     }, 300);
   }, [setOpen]);
 
-  const Modal = ({ children }: { children: ReactNode }) => {
+  const Modal = ({ children, className }: ModalContentProps) => {
     const ModalContent = ({ children }: { children: ReactNode }) => {
       const ref = useClickAway<HTMLDivElement>(() => {
         close();

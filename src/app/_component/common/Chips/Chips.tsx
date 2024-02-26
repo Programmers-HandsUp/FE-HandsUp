@@ -6,7 +6,7 @@ import {
   ReactNode,
   SetStateAction,
   cloneElement,
-  isValidElement,
+  isValidElement
 } from "react";
 import { chipsVariants } from "./Chips.variants";
 import { cn } from "@/utils/cn";
@@ -18,6 +18,7 @@ interface ChipsProps<T extends string | string[]>
   setItems: Dispatch<SetStateAction<T>>;
   multiple?: boolean;
   size?: number;
+  className?: string;
 }
 
 export const Chips = <T extends string | string[]>({
@@ -28,7 +29,7 @@ export const Chips = <T extends string | string[]>({
   Items,
   setItems,
   multiple,
-  ...props
+  className
 }: ChipsProps<T>) => {
   const handleCheckboxChange = (value: string) => {
     if (multiple && Array.isArray(Items)) {
@@ -52,7 +53,7 @@ export const Chips = <T extends string | string[]>({
           size,
           isSelected: Items.includes(child.props.value),
           onChange: () => handleCheckboxChange(child.props.value),
-          type: multiple ? "checkbox" : "radio",
+          type: multiple ? "checkbox" : "radio"
         });
       }
       return null;
@@ -60,7 +61,7 @@ export const Chips = <T extends string | string[]>({
   );
 
   return (
-    <div className={cn(chipsVariants({ spacing }))} {...props}>
+    <div className={cn(chipsVariants({ spacing }), className)}>
       {renderChips}
     </div>
   );

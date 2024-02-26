@@ -38,4 +38,5 @@ export type IconName =
   | "clock"
   | "camera"
   | "drop-down"
-  | "arrow-right";
+  | "arrow-right"
+  | "arrow-dropdown";
