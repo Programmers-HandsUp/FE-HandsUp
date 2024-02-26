@@ -33,7 +33,8 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
           <input
             {...register("search", { required: true })}
             placeholder="지역(읍, 면, 동)을 검색해 주세요."
-            className="w-full px-4"
+            autoComplete="off"
+            className="w-full px-4 "
           />
         </label>
         {close && (
