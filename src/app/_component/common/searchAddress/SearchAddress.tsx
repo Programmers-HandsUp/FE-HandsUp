@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import useSearchAddrQuery from "@/app/hooks/queries/useSearchAddrQuery";
 import Icon from "../Icon";
+import useDebounce from "@/app/hooks/useDebounce";
 import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
 
@@ -11,8 +12,8 @@ interface SearchAddressProps {
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
   const { register, watch } = useForm<{ search: string }>();
-
-  const { data } = useSearchAddrQuery(watch("search"));
+  const address = useDebounce(watch("search"));
+  const { data } = useSearchAddrQuery(address);
 
   const handleClickAddr = (address: string) => {
     close && close();
