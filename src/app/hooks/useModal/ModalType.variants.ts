@@ -7,7 +7,7 @@ export const modalTypeVariants = cva(
       modalType: {
         default: "fixed top-0 bottom-0 left-0 right-0 m-auto rounded-lg",
         dropBox: "absolute rounded-lg",
-        fullScreen: "absolute top-0 bottom-0 left-0 right-0 "
+        fullScreen: "fixed top-0 bottom-0 left-0 right-0 max-w-[360px]"
       }
     },
     defaultVariants: {

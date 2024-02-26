@@ -163,19 +163,19 @@
 
   @keyframes slideIn {
     0% {
-      transform: translateX(100%);
+      transform: translateX(100vw);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(calc(100vw - 360px));
     }
   }
 
   @keyframes slideOut {
     0% {
-      transform: translateX(0);
+      transform: translateX(calc(100vw - 360px));
     }
     100% {
-      transform: translateX(100%);
+      transform: translateX(100vw);
     }
   }
 }
