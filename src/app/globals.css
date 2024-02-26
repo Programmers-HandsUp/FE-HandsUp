@@ -28,6 +28,45 @@
     height: calc(100dvh - var(--header-height) - var(--bottom-height));
   }
 
+  @keyframes watch {
+    0% {
+      transform: translate(0);
+    }
+    10% {
+      transform: translate(-2px, 2px);
+    }
+    20% {
+      transform: translate(-2px, -2px);
+    }
+    30% {
+      transform: translate(2px, 2px);
+    }
+    40% {
+      transform: translate(0);
+    }
+    50% {
+      transform: translate(2px, -2px);
+    }
+    60% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes tiltAndScale {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    20% {
+      transform: scale(1.05) rotate(-3deg);
+    }
+    40% {
+      transform: scale(1.1) rotate(2deg);
+    }
+    60% {
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
   @keyframes beat {
     0% {
       transform: scale(0.7);
@@ -104,12 +143,39 @@
     }
   }
 
-  @keyframes grow {
+  @keyframes growIn {
     0% {
       transform: scale(0.2);
     }
     100% {
       transform: scale(1);
+    }
+  }
+
+  @keyframes growOut {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(calc(100vw - 360px));
+    }
+  }
+
+  @keyframes slideOut {
+    0% {
+      transform: translateX(calc(100vw - 360px));
+    }
+    100% {
+      transform: translateX(100vw);
     }
   }
 }

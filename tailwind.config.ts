@@ -15,19 +15,24 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
       },
       animation: {
+        tiltAndScale: "tiltAndScale linear 1.2s infinite",
+        watch: "watch linear 0.8s infinite both",
         beat: "beat linear 0.5s forwards",
         blink: "blink ease-in-out 0.5s forwards",
         progress: "progress linear forwards 0.4s",
         rightMove: "rightMove ease forwards 0.4s ",
         leftMove: "leftMove ease forwards 0.4s ",
-        grow: "grow 0.4s ease",
-        fill: "fill 1s linear forwards"
+        growIn: "growIn ease 0.3s forwards",
+        growOut: "growOut ease 0.3s forwards",
+        fill: "fill 1s linear forwards",
+        slideIn: "slideIn ease 0.3s forwards",
+        slideOut: "slideOut ease 0.3s forwards"
       },
       fontFamily: {
         sans: ["Yeongdeok"]
       }
     }
   },
-  plugins: []
+  plugins: [require("tailwind-scrollbar-hide")]
 };
 export default config;
