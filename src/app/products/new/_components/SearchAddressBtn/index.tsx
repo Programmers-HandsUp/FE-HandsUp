@@ -7,31 +7,35 @@ import { ControllerRenderProps } from "react-hook-form";
 import { RegisterProduct } from "../../page";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 
-function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProduct, "address"> }) {
+function SearchAddressBtn({
+  field
+}: {
+  field: ControllerRenderProps<RegisterProduct, "address">;
+}) {
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
     animate: "slide",
     className: "dark:bg-black"
   });
-  const [depth_3, setDepth_3] = useState("");
+  const [dong, setDong] = useState("");
   const { value: address, onChange } = field;
 
   useEffect(() => {
     if (address) {
-      const [, , depth_3] = address.split(" ");
-      setDepth_3(depth_3);
+      const [, , dong] = address.split(" ");
+      setDong(dong);
     }
   }, [address]);
 
   const handleClose = () => {
     close();
-    setDepth_3("");
+    setDong("");
     onChange("");
   };
 
   return (
     <main className="flex flex-col dark:text-black">
-      {depth_3 ? (
+      {dong ? (
         <button
           type="button"
           className="p-2 rounded-lg bg-gray-100">
@@ -41,7 +45,7 @@ function SearchAddressBtn({ field }: { field: ControllerRenderProps<RegisterProd
                 id="pin-fill"
                 stroke="black"
               />
-              <p>{depth_3}</p>
+              <p>{dong}</p>
             </div>
             <button onClick={handleClose}>
               <Icon
