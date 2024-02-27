@@ -41,7 +41,7 @@ function AuctionInfo() {
               title="입찰 시작가"
               price={price}
               field={field}
-              setValue={() => setValue("price", "0")}
+              setValue={() => setValue("price", 0)}
             />
           )}
         />

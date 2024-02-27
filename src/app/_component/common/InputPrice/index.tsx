@@ -10,7 +10,7 @@ interface InputPriceProps<T extends FieldValues> {
   setValue: () => void;
 }
 
-type onChangeType = (price: string) => void;
+type onChangeType = (price: number) => void;
 
 const PRICE_UNIT = [10000, 50000, 100000, 500000] as const;
 type Unit = (typeof PRICE_UNIT)[number];
@@ -23,21 +23,20 @@ function InputPrice<T extends FieldValues>({
 }: InputPriceProps<T>) {
   /** 버튼을 이용해 값을 더하는 함수 */
   const handleAddPrice = (unit: Unit, onChange: onChangeType) => {
-    const currentPrice = price !== undefined ? formatPrice(price) : 0;
-    const newPrice = (currentPrice + unit).toLocaleString();
-
+    const newPrice = price !== undefined ? price + unit : unit;
     onChange(newPrice);
   };
 
-  /** 숫자가아닌 값이 입력되면 삭제 + 3자리 콤마 추가 */
+  /** 숫자가아닌 값이 입력되면 삭제 */
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
     onChange: onChangeType
   ) => {
-    const formattedValue = e.target.value
-      .replace(/\D/g, "")
-      .toLocaleString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let formattedValue = parseInt(e.target.value.replace(/\D/g, ""), 10);
+
+    if (isNaN(formattedValue)) {
+      formattedValue = 0;
+    }
 
     onChange(formattedValue);
   };
@@ -53,6 +52,7 @@ function InputPrice<T extends FieldValues>({
               autoComplete="off"
               className="h-7 text-right text-lg font-bold px-2 bg-transparent"
               placeholder={`${title} 입력`}
+              value={price ? price.toLocaleString() : ""}
               onChange={(e) => handleInputChange(e, field.onChange)}
             />
             <span className="text-lg">원</span>
