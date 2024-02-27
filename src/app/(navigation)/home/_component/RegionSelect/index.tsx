@@ -7,7 +7,8 @@ import { MouseEvent } from "react";
 
 const RegionSelect = () => {
   const { Modal, open, close, isOpen } = useModal({
-    modalType: "default",
+    elementId: "modal-select",
+    modalType: "dropBox",
     animate: "grow"
   });
 
@@ -22,7 +23,9 @@ const RegionSelect = () => {
       className="relative">
       <div className="flex items-center">
         <div>현재 지역</div>
-        <button onClick={open}>
+        <button
+          onClick={open}
+          disabled={isOpen}>
           <Icon
             id="arrow-dropdown"
             size={24}
