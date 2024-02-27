@@ -28,7 +28,7 @@ export function ImageUploader({ onAppend, imageFile }: ImageUploaderProps) {
       file
     }));
 
-    onAppend([...(imageFile || []), ...newFiles]);
+    onAppend([...imageFile, ...newFiles]);
   };
 
   return (
