@@ -9,7 +9,7 @@ interface ImageUploaderProps {
 }
 
 export function ImageUploader({ onAppend, imageFile }: ImageUploaderProps) {
-  const { register } = useFormContext();
+  const { register } = useFormContext<RegisterProduct>();
   const imageLength = imageFile && imageFile.length > 0 ? imageFile.length : 0;
   const { show } = Toast();
 
