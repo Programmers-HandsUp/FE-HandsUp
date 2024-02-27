@@ -19,6 +19,7 @@
     "@tanstack/react-query-next-experimental": "^5.18.1",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
+    "dayjs": "^1.11.10",
     "install": "^0.13.0",
     "msw": "^2.2.1",
     "next": "14.1.0",
