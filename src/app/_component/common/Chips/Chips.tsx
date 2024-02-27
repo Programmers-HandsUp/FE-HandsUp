@@ -1,12 +1,10 @@
 import { VariantProps } from "class-variance-authority";
 import {
   Children,
-  Dispatch,
   ReactElement,
   ReactNode,
-  SetStateAction,
   cloneElement,
-  isValidElement,
+  isValidElement
 } from "react";
 import { chipsVariants } from "./Chips.variants";
 import { cn } from "@/utils/cn";
@@ -15,7 +13,7 @@ interface ChipsProps<T extends string | string[]>
   extends VariantProps<typeof chipsVariants> {
   children: React.ReactNode;
   Items: T;
-  setItems: Dispatch<SetStateAction<T>>;
+  setItems: React.Dispatch<React.SetStateAction<T>> | ((items: T) => void);
   multiple?: boolean;
   size?: number;
 }
@@ -52,7 +50,7 @@ export const Chips = <T extends string | string[]>({
           size,
           isSelected: Items.includes(child.props.value),
           onChange: () => handleCheckboxChange(child.props.value),
-          type: multiple ? "checkbox" : "radio",
+          type: multiple ? "checkbox" : "radio"
         });
       }
       return null;
@@ -60,7 +58,9 @@ export const Chips = <T extends string | string[]>({
   );
 
   return (
-    <div className={cn(chipsVariants({ spacing }))} {...props}>
+    <div
+      className={cn(chipsVariants({ spacing }))}
+      {...props}>
       {renderChips}
     </div>
   );

@@ -3,11 +3,11 @@
 import { useState } from "react";
 import SearchAddress from "@/app/_component/common/searchAddress";
 
-interface UserProfileSettingProps {
+interface SelectResidenceProps {
   setAddress: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SelectResidence = ({ setAddress }: UserProfileSettingProps) => {
+const SelectResidence = ({ setAddress }: SelectResidenceProps) => {
   const [isOpenSearchAdressModal, setIsOpenSearchAdressModalsetAddress] =
     useState(false);
   return (

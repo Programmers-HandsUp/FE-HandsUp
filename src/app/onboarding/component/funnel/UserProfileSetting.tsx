@@ -1,19 +1,18 @@
 "use client";
 
-import onGetImageFile from "@/utils/onGetImageFile";
 import Image from "next/image";
+import useOnboardingStore from "../store/store";
+
+import onGetImageFile from "@/utils/onGetImageFile";
 
 interface UserProfileSettingProps {
-  profileImage: File | undefined;
-  setProfileImage: React.Dispatch<React.SetStateAction<File | undefined>>;
   setNickName: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const UserProfileSetting = ({
-  profileImage,
-  setProfileImage,
-  setNickName
-}: UserProfileSettingProps) => {
+const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
+  const profileImage = useOnboardingStore((state) => state.profileImage);
+  const setProfileImage = useOnboardingStore((state) => state.setProfileImage);
+  
   return (
     <div>
       <form className="w-[300px] mx-auto flex flex-col">
@@ -38,7 +37,7 @@ const UserProfileSetting = ({
 
         <label className="mt-8 text-xl">닉네임</label>
         <input
-          className="border-b-2 border-black mt-4 h-10"
+          className="border-b-2 border-black mt-4 h-10 px-2"
           onChange={(event) => setNickName(event.target.value)}
         />
       </form>

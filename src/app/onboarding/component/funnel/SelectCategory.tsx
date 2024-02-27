@@ -1,15 +1,14 @@
 "use client";
-import { useState } from "react";
+
+import useOnboardingStore from "../store/store";
 
 import { Chips } from "@/app/_component/common/Chips";
 import { Chip } from "@/app/_component/common/Chips";
 
-interface SelectCategoryProps {
-  category: string[];
-  setCategory: React.Dispatch<React.SetStateAction<string[]>>;
-}
+const SelectCategory = () => {
+  const category = useOnboardingStore((state) => state.category);
+  const setCategory = useOnboardingStore((state) => state.setCategory);
 
-const SelectCategory = ({ category, setCategory }: SelectCategoryProps) => {
   return (
     <main className="w-[300px] mx-auto mt-5">
       <h1 className="text-xl">선호 카테고리 선택</h1>

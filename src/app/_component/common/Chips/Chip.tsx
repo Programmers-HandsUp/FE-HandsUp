@@ -38,8 +38,7 @@ export const Chip = ({
           chipVariants({ rounded }),
           isSelected ? "bg-[#96E4FF]" : ""
         )}
-        {...props}
-      >
+        {...props}>
         {children}
       </label>
     </div>
