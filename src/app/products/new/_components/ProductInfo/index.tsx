@@ -83,12 +83,12 @@ function ProductInfo() {
           render={({ field }) => (
             <Chips
               Items={field.value}
-              setItems={field.onChange}
-              size={90}>
+              setItems={field.onChange}>
               {STATE_LIST.map((value) => (
                 <Chip
                   key={value}
-                  value={value}>
+                  value={value}
+                  className="w-24">
                   {value}
                 </Chip>
               ))}
@@ -108,7 +108,7 @@ function ProductInfo() {
             <Chips
               Items={field.value}
               setItems={field.onChange}
-              size={90}>
+              className="grid grid-cols-3">
               {PURCHASE_TIME_LIST.map((value) => (
                 <Chip
                   key={value}

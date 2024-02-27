@@ -8,6 +8,8 @@ import Tooltip from "@/app/_component/common/Tooltip";
 import Datepicker from "react-tailwindcss-datepicker";
 import SearchAddressBtn from "../SearchAddressBtn";
 
+const TRADEMETHOD_LIST = ["직거래", "택배"] as const;
+
 function AuctionInfo() {
   const {
     control,
@@ -88,9 +90,15 @@ function AuctionInfo() {
             <Chips
               Items={field.value}
               setItems={field.onChange}
-              size={90}>
-              <Chip value="직거래">직거래</Chip>
-              <Chip value="택배">택배</Chip>
+              className="pt-2">
+              {TRADEMETHOD_LIST.map((method) => (
+                <Chip
+                  key={method}
+                  value={method}
+                  className="w-24">
+                  {method}
+                </Chip>
+              ))}
             </Chips>
           )}
         />
