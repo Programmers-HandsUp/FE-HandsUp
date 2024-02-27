@@ -1,28 +1,30 @@
 import { useForm } from "react-hook-form";
 import useSearchAddrQuery from "@/app/hooks/queries/useSearchAddrQuery";
 import Icon from "../Icon";
+import useDebounce from "@/app/hooks/useDebounce";
 import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
 
 interface SearchAddressProps {
-  close: () => void;
+  close?: () => void;
   onChange: (address: string) => void;
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
   const { register, watch } = useForm<{ search: string }>();
-
-  const { data } = useSearchAddrQuery(watch("search"));
+  const address = useDebounce(watch("search"));
+  const { data } = useSearchAddrQuery(address);
 
   const handleClickAddr = (address: string) => {
-    close();
+    close && close();
     onChange(address);
   };
 
   return (
     <div className="p-2">
       <div className="flex justify-between items-center">
-        <label className="flex items-center border h-9 rounded-md px-1 w-72">
+        <label
+          className={`flex items-center border h-9 rounded-md px-1 bg-white ${close ? "w-72" : "w-80"}`}>
           <Icon
             id="search"
             fill="none"
@@ -31,15 +33,18 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
           <input
             {...register("search", { required: true })}
             placeholder="지역(읍, 면, 동)을 검색해 주세요."
-            className="w-full px-4"
+            autoComplete="off"
+            className="w-full px-4 "
           />
         </label>
+        {close && (
         <button
           type="button"
           className="ml-4"
           onClick={close}>
           취소
         </button>
+        )}
       </div>
 
       {!data ? (
