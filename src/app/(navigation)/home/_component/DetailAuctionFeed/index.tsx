@@ -1,5 +1,6 @@
 "use client";
 
+import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
@@ -47,35 +48,37 @@ const DetailAuctionFeed = () => {
     staleTime: 60 * 1000,
     gcTime: 300 * 1000
   });
-  console.log(data);
+
   if (isPending) return <div>Loading...</div>;
   return (
-    <>
+    <SlideCarousel
+      childSize={200}
+      groupGap={15}
+      className="py-5"
+      height={200}
+      useNav>
       {data?.map((auction) => (
-        <div
-          className="w-[200px] h-[200px]"
-          key={auction.product_id}>
-          <div className="relative w-[200px] h-[200px] border rounded-lg overflow-hidden">
+        <div key={auction.product_id}>
+          <div className="relative w-full h-full border rounded-lg overflow-hidden">
             <Image
               src={auction.product.product_image.image_url}
-              width={100}
-              height={100}
+              width={0}
+              height={0}
               alt="상품 이미지"
-              className="w-full h-full"
-              style={{ objectFit: "cover" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
             <div className="absolute flex justify-center bottom-0 w-full h-[30px] bg-gradient-to-t from-[rgba(0,0,0,0.7)]">
               00:12:32
             </div>
           </div>
-          <div className="text-xs text-end">
+          <div className="text-xs text-center">
             <span>
               🔥{auction.bidding_user_count}명이 치열하게 참여하고있어요!
             </span>
           </div>
         </div>
       ))}
-    </>
+    </SlideCarousel>
   );
 };
 

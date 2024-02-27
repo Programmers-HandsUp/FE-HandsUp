@@ -56,7 +56,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-a90z6F77.png",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Llgnpo2RNnmQW0Kdp4vx6mFWftEUiDwH_xiEiL4r9TAYgZWCSCbm5rUwqeceJfjinNU&usqp=CAU",
         product_id: 2141242141
       }
     }
@@ -86,7 +86,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-a90z6F77.png",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStS-YvPvLzMr2ao-FtFQSLdyLovYcPtX0mlpeEkqUZRysbjx_ahLmSr-TCPxIk7DQoohI&usqp=CAU",
         product_id: 2141242142
       }
     }
@@ -116,7 +116,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-a90z6F77.png",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSh8aN8-9rsn3H-geOi_r5QucMD7vhD5QGPg&usqp=CAU",
         product_id: 2141242143
       }
     }
@@ -146,7 +146,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/1c0c434c-9802-4556-89c7-a8600b2828d8/%EC%97%90%EC%96%B4-%EC%A1%B0%EB%8D%98-1-%EB%A1%9C%EC%9A%B0-%EB%82%A8%EC%84%B1-%EC%8B%A0%EB%B0%9C-a90z6F77.png",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFNanTb2m1UTgZQ7CPHmP4nG_Ry5rfn3OJ1scSjY7oC0QMRjU-rE2pXqhCxnMHCjBFEeA&usqp=CAU",
         product_id: 2141242144
       }
     }
