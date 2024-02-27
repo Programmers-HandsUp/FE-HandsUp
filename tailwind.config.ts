@@ -21,7 +21,8 @@ const config: Config = {
         rightMove: "rightMove ease forwards 0.4s ",
         leftMove: "leftMove ease forwards 0.4s ",
         grow: "grow 0.4s ease",
-        fill: "fill 1s linear forwards"
+        fill: "fill 1s linear forwards",
+        slideInFromRight: "slideInFromRight 0.7s ease forwards"
       },
       fontFamily: {
         sans: ["Yeongdeok"]

@@ -33,7 +33,13 @@ const OnBoarding = () => {
       key="2"
     />,
     <SelectCategory key="3" />,
-    <FinishFunnel key="4" />
+    <FinishFunnel
+      profileImage={profileImage}
+      category={category}
+      nickName={nickName}
+      address={address}
+      key="4"
+    />
   ]);
 
   const onClickNextButton = () => {
@@ -70,7 +76,7 @@ const OnBoarding = () => {
         nowPage={topFunnelPage}
         onClickRightButton={onClickNextButton}
       />
-      <FinishFunnel />
+      {topComponent}
     </div>
   );
 };

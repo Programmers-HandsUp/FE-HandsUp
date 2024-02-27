@@ -10,7 +10,7 @@ const SelectCategory = () => {
   const setCategory = useOnboardingStore((state) => state.setCategory);
 
   return (
-    <main className="w-[300px] mx-auto mt-5">
+    <main className="w-[300px] mx-auto mt-5 animate-slideInFromRight">
       <h1 className="text-xl">선호 카테고리 선택</h1>
       <h2 className="text-md text-gray-300 mb-4">최대 5가지 선택 가능</h2>
       <Chips

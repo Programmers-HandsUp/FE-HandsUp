@@ -11,7 +11,7 @@ const SelectResidence = ({ setAddress }: SelectResidenceProps) => {
   const [isOpenSearchAdressModal, setIsOpenSearchAdressModalsetAddress] =
     useState(false);
   return (
-    <div>
+    <div className="animate-slideInFromRight">
       <main className="w-[300px] mx-auto">
         <h1 className="text-xl my-1">거주지 선택</h1>
         <SearchAddress
