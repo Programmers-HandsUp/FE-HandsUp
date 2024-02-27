@@ -1,4 +1,9 @@
-import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  useFieldArray,
+  useFormContext,
+  useWatch
+} from "react-hook-form";
 import InputLabel from "../InputLabel";
 import CategoryList from "./CategoryList";
 import { Chip, Chips } from "@/app/_component/common/Chips";
@@ -6,12 +11,18 @@ import { RegisterProduct } from "@/app/products/new/page";
 import { ImagePreviewer, ImageUploader } from "./ImageUploader";
 
 const STATE_LIST = ["미개봉", "깨끗해요", "사용감"] as const;
-const PURCHASE_TIME_LIST = ["1개월이하", "3개월이하", "6개월이하", "1년이하", "1년이상", "모름"] as const;
+const PURCHASE_TIME_LIST = [
+  "1개월이하",
+  "3개월이하",
+  "6개월이하",
+  "1년이하",
+  "1년이상",
+  "모름"
+] as const;
 
 function ProductInfo() {
   const {
     control,
-    watch,
     register,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
@@ -22,7 +33,7 @@ function ProductInfo() {
     control
   });
 
-  const imageFile = watch("images");
+  const imageFile = useWatch({ control, name: "images" });
 
   return (
     <div className="m-2 pb-4">

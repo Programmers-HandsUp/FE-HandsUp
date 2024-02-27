@@ -1,6 +1,6 @@
 import InputLabel from "../InputLabel";
 import { RegisterProduct } from "../../page";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
@@ -11,7 +11,6 @@ import SearchAddressBtn from "../SearchAddressBtn";
 function AuctionInfo() {
   const {
     control,
-    watch,
     setValue,
     register,
     formState: { errors }
@@ -20,8 +19,11 @@ function AuctionInfo() {
   let maxDate = new Date();
   maxDate.setDate(maxDate.getDate() + 7);
 
-  const inputCount = watch("description") ? watch("description").length : 0;
-  const isDirect = watch("tradeMethod") === "직거래";
+  const description = useWatch({ control, name: "description" });
+  const inputCount = description ? description.length : 0;
+
+  const isDirect = useWatch({ control, name: "tradeMethod" }) === "직거래";
+  const price = useWatch({ control, name: "price" });
 
   return (
     <div className="m-2">
@@ -35,7 +37,7 @@ function AuctionInfo() {
           render={({ field }) => (
             <InputPrice<RegisterProduct>
               title="입찰 시작가"
-              price={watch("price")}
+              price={price}
               field={field}
               setValue={() => setValue("price", "0")}
             />
