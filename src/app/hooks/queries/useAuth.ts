@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { setLogin } from "@/app/api/auth";
 import Toast from "@/app/_component/common/Toast";
+import { useRouter } from "next/navigation";
 
 type LoginFormValues = {
   email: string;
@@ -8,11 +9,12 @@ type LoginFormValues = {
 };
 export function useSignUp() {
   const { show } = Toast();
-
+  const router = useRouter();
   return useMutation({
     mutationFn: async (authForm: LoginFormValues) => await setLogin(authForm),
     onSuccess: (data) => {
       localStorage.setItem("AccessToken", data.accessToken);
+      router.push("/");
     },
     onError: (error: Error) => {
       switch (Number(error.message)) {
