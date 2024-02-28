@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { Chip, Chips } from "../_component/common/Chips";
 
-const SelectReview = ({ onSelected }) => {
+interface SelectedReviewProps {
+  onSelected: (value: string[]) => void;
+}
+
+const SelectReview = ({ onSelected }: SelectedReviewProps) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
     onSelected(selectedItems);
-  }, [selectedItems]);
+  }, [selectedItems, onSelected]);
 
   return (
     <Chips

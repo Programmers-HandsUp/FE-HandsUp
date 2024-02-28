@@ -53,14 +53,8 @@ const ReviewForm = () => {
         createDate={mock.date}
         price={mock.price}
       />
-      <SelectRange
-        onSelected={handleRangeSelected}
-        name="range22"
-      />
-      <SelectReview
-        onSelected={handleReviewSelected}
-        name="review22"
-      />
+      <SelectRange onSelected={handleRangeSelected} />
+      <SelectReview onSelected={handleReviewSelected} />
       <div>
         <p>남기고 싶은 후기가 있다면 적어주세요</p>
         <textarea

@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { Chip, Chips } from "../_component/common/Chips";
 import Image from "next/image";
 
-const SelectRange = ({ onSelected }) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+interface SelectRangeProps {
+  onSelected: (value: string) => void;
+}
+
+const SelectRange = ({ onSelected }: SelectRangeProps) => {
+  const [selectedItems, setSelectedItems] = useState<string>("");
 
   useEffect(() => {
     onSelected(selectedItems);
-  }, [selectedItems]);
+  }, [selectedItems, onSelected]);
 
   return (
     <Chips
