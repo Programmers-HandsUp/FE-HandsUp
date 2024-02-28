@@ -14,7 +14,7 @@
   }
 
   body {
-    height: 100dvh;
+    min-height: 100dvh;
     transition: color 0.3s;
     transition: background-color 0.3s;
     @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
@@ -26,7 +26,7 @@
   }
 
   main > section {
-    height: calc(100dvh - var(--header-height) - var(--bottom-height));
+    hheight: calc(100% - var(--header-height) - var(--bottom-height));
   }
 
   @keyframes watch {

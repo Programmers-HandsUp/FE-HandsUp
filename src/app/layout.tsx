@@ -30,7 +30,7 @@ export default async function RootLayout({
         <MSWComponent />
         <main
           id="global-modal"
-          className="relative mx-auto h-[100dvh] max-w-[360px] overscroll-y-none px">
+          className="relative mx-auto max-w-[360px] overscroll-y-none px">
           <Providers>{children}</Providers>
         </main>
       </body>
