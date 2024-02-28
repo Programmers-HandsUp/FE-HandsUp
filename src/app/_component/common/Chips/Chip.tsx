@@ -10,6 +10,8 @@ interface ChipProps extends VariantProps<typeof chipVariants> {
   type?: string;
   children: ReactNode;
   size?: number;
+  selectedStyle?: string;
+  className?: string;
 }
 
 export const Chip = ({
@@ -20,10 +22,15 @@ export const Chip = ({
   rounded,
   size,
   children,
-  ...props
+  selectedStyle = "bg-[#96E4FF]",
+  className
 }: ChipProps) => {
   return (
-    <div style={{ width: size ? `${size}px` : "auto" }}>
+    <div
+      style={{
+        width: size ? `${size}px` : "auto",
+        height: size ? `${size}px` : "auto"
+      }}>
       <input
         id={value}
         type={type}
@@ -36,10 +43,9 @@ export const Chip = ({
         htmlFor={value}
         className={cn(
           chipVariants({ rounded }),
-          isSelected ? "bg-[#96E4FF]" : ""
-        )}
-        {...props}
-      >
+          className,
+          isSelected ? `${selectedStyle}` : ""
+        )}>
         {children}
       </label>
     </div>
