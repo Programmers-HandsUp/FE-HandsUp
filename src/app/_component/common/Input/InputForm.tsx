@@ -31,6 +31,5 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
     );
   }
 );
-
 InputForm.displayName = "InputForm";
 export default InputForm;
