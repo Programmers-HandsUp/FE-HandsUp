@@ -60,6 +60,7 @@ const SlideCarousel = ({
     handleMouseMove,
     handleMouseUp,
     handleTouchDown,
+    isDragging,
     handleClickIndicator,
     currentElement
   } = useDragScroll({
@@ -91,9 +92,17 @@ const SlideCarousel = ({
           onTouchEnd={handleMouseUp}
           onMouseLeave={handleMouseUp}>
           <div
-            style={{ gap: `${groupGap}px` }}
-            className="flex items-center justify-center flex-nowrap">
-            {child}
+            style={{
+              cursor: isDragging ? "grab" : "auto"
+            }}>
+            <div
+              style={{
+                gap: `${groupGap}px`,
+                pointerEvents: isDragging ? "none" : "auto"
+              }}
+              className="flex items-center justify-center flex-nowrap">
+              {child}
+            </div>
           </div>
           <div style={{ marginRight: `${childSize / 2}px` }}></div>
         </div>

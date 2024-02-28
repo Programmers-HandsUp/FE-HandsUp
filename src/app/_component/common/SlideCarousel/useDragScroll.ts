@@ -15,6 +15,7 @@ interface UseDragScrollResult {
   isLeftButtonActive: boolean;
   isRightButtonActive: boolean;
   currentElement: number;
+  isDragging: boolean;
   handleClickIndicator: (index: number) => void;
 }
 interface ScrollButtonState {
@@ -27,6 +28,7 @@ const useDragScroll = ({
   childSize
 }: UseDragScrollParams): UseDragScrollResult => {
   const [isDragging, setIsDragging] = useState(false);
+  const [isClick, setIsClick] = useState(false);
   const [startX, setStartX] = useState(0);
   const [currentScrollLeft, setCurrentScrollLeft] = useState(0);
   const [buttonState, setButtonState] = useState<ScrollButtonState>({
@@ -43,7 +45,7 @@ const useDragScroll = ({
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const { scrollLeft } = containerRef.current;
 
-    setIsDragging(true);
+    setIsClick(true);
     setStartX(clientX);
     setCurrentScrollLeft(scrollLeft || 0);
   };
@@ -55,14 +57,15 @@ const useDragScroll = ({
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
     const { scrollLeft } = containerRef.current;
 
-    setIsDragging(true);
+    setIsClick(true);
     setStartX(clientX);
     setCurrentScrollLeft(scrollLeft || 0);
   };
 
   const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isDragging || !containerRef.current) return;
-
+    if (!containerRef.current) return;
+    if (!isClick) return;
+    setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
     const currentX = clientX;
@@ -86,6 +89,7 @@ const useDragScroll = ({
     const nearestElementIndex = Math.round(scrollLeft / childSize);
     handleClickIndicator(nearestElementIndex);
     setIsDragging(false);
+    setIsClick(false);
   };
 
   const buttonScrollLeft = () => {
@@ -135,6 +139,7 @@ const useDragScroll = ({
     handleMouseMove,
     handleMouseUp,
     handleTouchDown,
+    isDragging,
     handleClickIndicator,
     currentElement
   };

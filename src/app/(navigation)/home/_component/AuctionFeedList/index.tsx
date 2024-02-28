@@ -6,7 +6,6 @@ import ProductCard from "@/app/_component/common/ProductCard";
 import { Auction } from "@/utils/mocks/api/types";
 import { divideArray } from "@/utils/arrayDivider";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
-import { useState } from "react";
 
 const AuctionFeedList = () => {
   const { data, isPending } = useQuery<Auction[]>({
@@ -15,6 +14,7 @@ const AuctionFeedList = () => {
     staleTime: 60 * 1000,
     gcTime: 300 * 1000
   });
+
   if (data === undefined || isPending) return <div>Loading...</div>;
 
   const fourColumns = divideArray(data, 4);
