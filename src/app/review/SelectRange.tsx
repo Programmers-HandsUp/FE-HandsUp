@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Chip, Chips } from "../_component/common/Chips";
-import Avatar from "../_component/common/Avatar";
 import Image from "next/image";
 
-const SelectRange = () => {
+const SelectRange = ({ onSelected }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    onSelected(selectedItems);
+  }, [selectedItems]);
 
   return (
     <Chips
@@ -12,9 +15,7 @@ const SelectRange = () => {
       setItems={setSelectedItems}
       multiple={false}
       size={48}>
-      <Chip
-        value="worst"
-        rounded="medium">
+      <Chip value="worst">
         <div>
           <Image
             src="https://www.emojiall.com/images/60/apple/1f635.png"
@@ -25,9 +26,7 @@ const SelectRange = () => {
         </div>
         최악
       </Chip>
-      <Chip
-        value="bad"
-        rounded="medium">
+      <Chip value="bad">
         <div>
           <Image
             src="https://www.emojiall.com/images/60/apple/1f61e.png"
@@ -38,9 +37,7 @@ const SelectRange = () => {
         </div>
         불만
       </Chip>
-      <Chip
-        value="average"
-        rounded="medium">
+      <Chip value="average">
         <div>
           <Image
             src="https://www.emojiall.com/images/60/apple/1f610.png"
@@ -51,9 +48,7 @@ const SelectRange = () => {
         </div>
         보통
       </Chip>
-      <Chip
-        value="good"
-        rounded="medium">
+      <Chip value="good">
         <div>
           <Image
             src="https://www.emojiall.com/images/60/apple/1f642.png"
@@ -64,9 +59,7 @@ const SelectRange = () => {
         </div>
         만족
       </Chip>
-      <Chip
-        value="best"
-        rounded="medium">
+      <Chip value="best">
         <div>
           <Image
             src="https://www.emojiall.com/images/60/apple/1f604.png"
