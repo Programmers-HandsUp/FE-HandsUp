@@ -5,11 +5,12 @@ import {
 } from "@tanstack/react-query";
 import DetailAuctionFeed from "./_component/DetailAuctionFeed";
 import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
+import AuctionFeedList from "./_component/AuctionFeedList";
 
 const MainPage = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ["auction", "hot"],
+    queryKey: ["auction"],
     queryFn: getHotAuctionRecommends
   });
   const dehydratedState = dehydrate(queryClient);
@@ -17,7 +18,10 @@ const MainPage = async () => {
   return (
     <section className="">
       <HydrationBoundary state={dehydratedState}>
-        <DetailAuctionFeed />
+        <div className="flex flex-col gap-10">
+          <DetailAuctionFeed />
+          <AuctionFeedList />
+        </div>
       </HydrationBoundary>
     </section>
   );

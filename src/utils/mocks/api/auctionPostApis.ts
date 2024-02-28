@@ -23,7 +23,7 @@ function isPostType(data: any): data is Auction {
 }
 
 const handlers = [
-  http.get("/api/hot", async () => {
+  http.get("/api/auctionList", async () => {
     await delay(1000);
     return HttpResponse.json(auctionHotList);
   })

@@ -28,7 +28,7 @@ const SlideCarousel = ({
   children,
   itemsToShow = 4,
   childSize = 100,
-  height = childSize,
+  height,
   useButton = false,
   useNav = false,
   groupGap = 5,
@@ -42,7 +42,10 @@ const SlideCarousel = ({
   const child = Children.toArray(children).map((child: ReactNode) => {
     if (isValidElement(child)) {
       return cloneElement(child as JSX.Element, {
-        style: { width: `${childSize}px`, height: `${height}px` },
+        style: {
+          width: `${childSize}px`,
+          height: `${height ? `${height}px` : "auto"}`
+        },
         className: child.props.className
       });
     }

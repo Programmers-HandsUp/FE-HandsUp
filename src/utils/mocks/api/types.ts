@@ -5,6 +5,7 @@ export interface Auction {
   title: string;
   init_price: number;
   end_date: Date;
+  createdAt: Date;
   si: string;
   gu: string;
   dong: string;
