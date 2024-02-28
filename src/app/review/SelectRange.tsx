@@ -7,10 +7,10 @@ interface SelectRangeProps {
 }
 
 const SelectRange = ({ onSelected }: SelectRangeProps) => {
-  const [selectedItems, setSelectedItems] = useState<string>("");
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
-    onSelected(selectedItems);
+    onSelected(selectedItems[0]);
   }, [selectedItems, onSelected]);
 
   return (

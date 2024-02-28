@@ -10,6 +10,8 @@ import SelectReview from "./SelectReview";
 
 const ReviewForm = () => {
   const mock = {
+    userName: "거니니",
+    partnerName: "오리리",
     image: tempImage,
     name: "상품 이름",
     date: new Date("2024-02-07T13:11:20"),
@@ -26,7 +28,7 @@ const ReviewForm = () => {
     setValue("range", value);
   };
 
-  const handleReviewSelected = (value: string) => {
+  const handleReviewSelected = (value: string[]) => {
     setValue("review", value);
   };
 
@@ -42,8 +44,8 @@ const ReviewForm = () => {
       <Icon id="arrow-back" />
       <div style={{ textAlign: "center" }}>
         <p>
-          거니님, <br />
-          오리님과의 거래는 어떠셨나요?
+          {mock.userName}님, <br />
+          {mock.partnerName}님과의 거래는 어떠셨나요?
         </p>
       </div>
       <hr style={{ width: "30%", margin: "0 auto" }} />
