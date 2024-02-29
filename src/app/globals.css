@@ -18,7 +18,7 @@
     transition: color 0.3s;
     transition: background-color 0.3s;
     @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
-    margin-bottom: calc(var(--bottom-height) * 4);
+    margin-bottom: calc(var(--bottom-height) + 20px);
   }
 
   * {
@@ -26,7 +26,7 @@
   }
 
   main > section {
-    hheight: calc(100% - var(--header-height) - var(--bottom-height));
+    height: calc(100% - var(--header-height) - var(--bottom-height));
   }
 
   @keyframes watch {
