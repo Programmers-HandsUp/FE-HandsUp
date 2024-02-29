@@ -39,22 +39,16 @@ const useDragScroll = ({
   const [isTouch, setIsTouch] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setTimeout(() => {
-      if (isTouch) {
-        setIsTouch(false);
-        return;
-      }
-      if (!containerRef.current) return;
-      e.preventDefault();
-      e.stopPropagation();
+    if (!containerRef.current) return;
+    e.preventDefault();
+    e.stopPropagation();
 
-      const clientX = e.clientX;
-      const { scrollLeft } = containerRef.current;
+    const clientX = e.clientX;
+    const { scrollLeft } = containerRef.current;
 
-      setIsClick(true);
-      setStartX(clientX);
-      setCurrentScrollLeft(scrollLeft || 0);
-    }, 0);
+    setIsClick(true);
+    setStartX(clientX);
+    setCurrentScrollLeft(scrollLeft || 0);
   };
 
   const handleTouchDown = (e: React.TouchEvent) => {
@@ -71,9 +65,11 @@ const useDragScroll = ({
   };
 
   const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!containerRef.current) return;
-    if (!isClick) return;
-
+    if (!containerRef.current || !isClick) return;
+    if (!("touches" in e) && isTouch) {
+      setIsTouch(false);
+      return;
+    }
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
@@ -97,6 +93,7 @@ const useDragScroll = ({
     const { scrollLeft } = containerRef.current;
     const nearestElementIndex = Math.round(scrollLeft / childSize);
     handleClickIndicator(nearestElementIndex);
+
     setIsDragging(false);
     setIsClick(false);
   };
