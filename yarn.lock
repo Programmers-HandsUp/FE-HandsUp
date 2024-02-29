@@ -88,6 +88,58 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.0.0":
+  version: 1.6.0
+  resolution: "@floating-ui/core@npm:1.6.0"
+  dependencies:
+    "@floating-ui/utils": "npm:^0.2.1"
+  checksum: 10c0/667a68036f7dd5ed19442c7792a6002ca02d1799221c4396691bbe0b6008b48f6ccad581225e81fa266bb91232f6c66838a5f825f554217e1ec886178b93381b
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.6.1":
+  version: 1.6.3
+  resolution: "@floating-ui/dom@npm:1.6.3"
+  dependencies:
+    "@floating-ui/core": "npm:^1.0.0"
+    "@floating-ui/utils": "npm:^0.2.0"
+  checksum: 10c0/d6cac10877918ce5a8d1a24b21738d2eb130a0191043d7c0dd43bccac507844d3b4dc5d4107d3891d82f6007945ca8fb4207a1252506e91c37e211f0f73cf77e
+  languageName: node
+  linkType: hard
+
+"@floating-ui/react-dom@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "@floating-ui/react-dom@npm:2.0.8"
+  dependencies:
+    "@floating-ui/dom": "npm:^1.6.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/4d87451e2dcc54b4753a0d81181036e47821cfd0d4c23f7e9c31590c7c91fb15fb0a5a458969a5ddabd61601eca5875ebd4e40bff37cee31f373b8f1ccc64518
+  languageName: node
+  linkType: hard
+
+"@floating-ui/react@npm:^0.26.2":
+  version: 0.26.9
+  resolution: "@floating-ui/react@npm:0.26.9"
+  dependencies:
+    "@floating-ui/react-dom": "npm:^2.0.8"
+    "@floating-ui/utils": "npm:^0.2.1"
+    tabbable: "npm:^6.0.1"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/769a6bc33c4fa6c8c38b2e1c91622854e5e8fdf39cb92b0998a7ca099dc831a551a005cd0aec7e98edf9bfed4f697397335f03034b5f41a0f4fb17c97fce6d20
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.0, @floating-ui/utils@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "@floating-ui/utils@npm:0.2.1"
+  checksum: 10c0/ee77756712cf5b000c6bacf11992ffb364f3ea2d0d51cc45197a7e646a17aeb86ea4b192c0b42f3fbb29487aee918a565e84f710b8c3645827767f406a6b4cc9
+  languageName: node
+  linkType: hard
+
 "@hookform/error-message@npm:^2.0.1":
   version: 2.0.1
   resolution: "@hookform/error-message@npm:2.0.1"
@@ -616,6 +668,17 @@ __metadata:
   version: 1.2.7
   resolution: "@types/range-parser@npm:1.2.7"
   checksum: 10c0/361bb3e964ec5133fa40644a0b942279ed5df1949f21321d77de79f48b728d39253e5ce0408c9c17e4e0fd95ca7899da36841686393b9f7a1e209916e9381a3c
+  languageName: node
+  linkType: hard
+
+"@types/react-datepicker@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@types/react-datepicker@npm:6.0.1"
+  dependencies:
+    "@floating-ui/react": "npm:^0.26.2"
+    "@types/react": "npm:*"
+    date-fns: "npm:^3.3.1"
+  checksum: 10c0/2f82b7f8658f38c2bcb84722cf6d4207dd51441f6edbceb942293669855031d6d848eda9b98a287d05675dbce0023c211a35b952e5d01138328f6f113c4c7f53
   languageName: node
   linkType: hard
 
@@ -1433,6 +1496,13 @@ __metadata:
   version: 1.0.8
   resolution: "damerau-levenshtein@npm:1.0.8"
   checksum: 10c0/4c2647e0f42acaee7d068756c1d396e296c3556f9c8314bac1ac63ffb236217ef0e7e58602b18bb2173deec7ec8e0cac8e27cccf8f5526666b4ff11a13ad54a3
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^3.3.1":
+  version: 3.3.1
+  resolution: "date-fns@npm:3.3.1"
+  checksum: 10c0/e04ff79244010e03b912d791cd3250af5f18866ce868604958d76bd87e5fb0b79f0a810b8e7066248452b41779b288c4fd21de1cac2cd4b6d384e9dd931c9674
   languageName: node
   linkType: hard
 
@@ -2485,6 +2555,7 @@ __metadata:
     "@types/express": "npm:^4.17.21"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
+    "@types/react-datepicker": "npm:^6.0.1"
     "@types/react-dom": "npm:^18"
     "@types/uuid": "npm:^9"
     autoprefixer: "npm:^10.0.1"
@@ -2505,6 +2576,7 @@ __metadata:
     react: "npm:^18"
     react-dom: "npm:^18"
     react-hook-form: "npm:^7.50.1"
+    react-tailwindcss-datepicker: "npm:^1.6.6"
     tailwind-merge: "npm:^2.2.1"
     tailwind-scrollbar-hide: "npm:^1.1.7"
     tailwindcss: "npm:^3.3.0"
@@ -4124,6 +4196,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-tailwindcss-datepicker@npm:^1.6.6":
+  version: 1.6.6
+  resolution: "react-tailwindcss-datepicker@npm:1.6.6"
+  peerDependencies:
+    dayjs: ^1.11.6
+    react: ^17.0.2 || ^18.2.0
+  checksum: 10c0/c1a9b8922c75454d3e3666c1a6e9daa1cb196efabd7d4c5238fb808f33c1a6f57c0fa42907990c6516c768571ca3fa3c7c6f501e4dd1f0de971ccb6c82535a78
+  languageName: node
+  linkType: hard
+
 "react@npm:^18":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -4684,6 +4766,13 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 10c0/6c4032340701a9950865f7ae8ef38578d8d7053f5e10518076e6554a9381fa91bd9c6850193695c141f32b21f979c985db07265a758867bac95de05f7d8aeb39
+  languageName: node
+  linkType: hard
+
+"tabbable@npm:^6.0.1":
+  version: 6.2.0
+  resolution: "tabbable@npm:6.2.0"
+  checksum: 10c0/ced8b38f05f2de62cd46836d77c2646c42b8c9713f5bd265daf0e78ff5ac73d3ba48a7ca45f348bafeef29b23da7187c72250742d37627883ef89cbd7fa76898
   languageName: node
   linkType: hard
 
