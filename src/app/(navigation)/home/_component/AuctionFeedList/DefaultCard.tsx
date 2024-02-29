@@ -1,4 +1,5 @@
 import ProductCard from "@/app/_component/common/ProductCard";
+import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/cn";
 import { Auction } from "@/utils/mocks/api/types";
 
@@ -24,6 +25,10 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
         <ProductCard.CardPrice price={auction.init_price} />
         <div className="flex justify-between my-1">
           <ProductCard.CardDate date={auction.createdAt} />
+          <Timer
+            createdAt={new Date(auction.createdAt)}
+            deadline={new Date(auction.end_date)}
+          />
         </div>
       </div>
     </div>
@@ -46,6 +51,10 @@ export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
         <ProductCard.CardPrice price={auction.init_price} />
         <div className="flex justify-between my-1">
           <ProductCard.CardDate date={auction.createdAt} />
+          <Timer
+            createdAt={new Date(auction.createdAt)}
+            deadline={new Date(auction.end_date)}
+          />
         </div>
       </div>
     </div>

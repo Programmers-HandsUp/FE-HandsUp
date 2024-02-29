@@ -20,9 +20,10 @@ const DetailAuctionFeed = () => {
   return (
     <div>
       <SlideCarousel
-        childSize={360}
+        childSize={328}
         groupGap={15}
         className="py-5"
+        itemsToShow={1}
         height={360}
         useNav>
         {data?.slice(0, 6).map((auction) => (
