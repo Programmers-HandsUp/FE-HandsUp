@@ -13,22 +13,3 @@ export const productStateVariants = cva(
     defaultVariants: {}
   }
 );
-
-export const productImageSizeVariants = cva(
-  "relative overflow-hidden rounded-lg",
-  {
-    variants: {
-      imageSize: {
-        xsmall: "w-[60px] h-[60px]",
-        small: "w-[108px] h-[108px]",
-        medium: "w-[128px] h-[128px]",
-        large: "w-[158px] h-[158px]",
-        xlarge: "w-[178px] h-[178px]",
-        full: "w-full h-full"
-      }
-    },
-    defaultVariants: {
-      imageSize: "medium"
-    }
-  }
-);

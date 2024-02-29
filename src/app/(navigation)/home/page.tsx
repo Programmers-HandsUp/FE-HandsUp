@@ -16,7 +16,7 @@ const MainPage = async () => {
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <section className="">
+    <section className="px-4">
       <HydrationBoundary state={dehydratedState}>
         <div className="flex flex-col gap-10">
           <section>
@@ -37,14 +37,14 @@ const MainPage = async () => {
             <div className="text-2xl">
               <h1>💣마감 임박 경매 </h1>
             </div>
-            <AuctionFeedList divideNum={4} />
+            <AuctionFeedList divideNum={1} />
           </section>
 
           <section>
             <div className="text-2xl">
               <h1>✨따끈따끈한 최신 경매</h1>
             </div>
-            <AuctionFeedList divideNum={4} />
+            <AuctionFeedList divideNum={8} />
           </section>
 
           <section>

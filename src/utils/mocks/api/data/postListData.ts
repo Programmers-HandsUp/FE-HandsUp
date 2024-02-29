@@ -70,7 +70,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Llgnpo2RNnmQW0Kdp4vx6mFWftEUiDwH_xiEiL4r9TAYgZWCSCbm5rUwqeceJfjinNU&usqp=CAU",
+          "https://blog.kakaocdn.net/dn/Ew4ZL/btqMOyXuOdr/KFu7mNJ9p5BCkROTDyKaFk/img.jpg",
         product_id: 2141242141
       }
     }
@@ -101,7 +101,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStS-YvPvLzMr2ao-FtFQSLdyLovYcPtX0mlpeEkqUZRysbjx_ahLmSr-TCPxIk7DQoo팝니당~~&usqp=CAU",
+          "https://blog.kakaocdn.net/dn/Ew4ZL/btqMOyXuOdr/KFu7mNJ9p5BCkROTDyKaFk/img.jpg",
         product_id: generateRandomNumberId()
       }
     }
@@ -256,7 +256,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStS-YvPvLzMr2ao-FtFQSLdyLovYcPtX0mlpeEkqUZRysbjx_ahLmSr-TCPxIk7DQoo팝니당~~&usqp=CAU",
+          "https://blog.kakaocdn.net/dn/Ew4ZL/btqMOyXuOdr/KFu7mNJ9p5BCkROTDyKaFk/img.jpg",
         product_id: generateRandomNumberId()
       }
     }
@@ -411,7 +411,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStS-YvPvLzMr2ao-FtFQSLdyLovYcPtX0mlpeEkqUZRysbjx_ahLmSr-TCPxIk7DQoo팝니당~~&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Llgnpo2RNnmQW0Kdp4vx6mFWftEUiDwH_xiEiL4r9TAYgZWCSCbm5rUwqeceJfjinNU&usqp=CAU",
         product_id: generateRandomNumberId()
       }
     }
@@ -566,7 +566,7 @@ export const auctionHotList: Auction[] = [
       },
       product_image: {
         image_url:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStS-YvPvLzMr2ao-FtFQSLdyLovYcPtX0mlpeEkqUZRysbjx_ahLmSr-TCPxIk7DQoo팝니당~~&usqp=CAU",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6Llgnpo2RNnmQW0Kdp4vx6mFWftEUiDwH_xiEiL4r9TAYgZWCSCbm5rUwqeceJfjinNU&usqp=CAU",
         product_id: generateRandomNumberId()
       }
     }
