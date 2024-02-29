@@ -36,25 +36,33 @@ const useDragScroll = ({
     isRightButtonActive: true
   });
   const [currentElement, setCurrentElement] = useState(0);
+  const [isTouch, setIsTouch] = useState(false);
 
-  const handleMouseDown = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!containerRef.current) return;
-    e.preventDefault();
-    e.stopPropagation();
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setTimeout(() => {
+      if (isTouch) {
+        setIsTouch(false);
+        return;
+      }
+      if (!containerRef.current) return;
+      e.preventDefault();
+      e.stopPropagation();
 
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const { scrollLeft } = containerRef.current;
+      const clientX = e.clientX;
+      const { scrollLeft } = containerRef.current;
 
-    setIsClick(true);
-    setStartX(clientX);
-    setCurrentScrollLeft(scrollLeft || 0);
+      setIsClick(true);
+      setStartX(clientX);
+      setCurrentScrollLeft(scrollLeft || 0);
+    }, 0);
   };
 
-  const handleTouchDown = (e: React.MouseEvent | React.TouchEvent) => {
+  const handleTouchDown = (e: React.TouchEvent) => {
     if (!containerRef.current) return;
-    e.stopPropagation();
 
-    const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+    setIsTouch(true);
+
+    const clientX = e.touches[0].clientX;
     const { scrollLeft } = containerRef.current;
 
     setIsClick(true);
@@ -65,6 +73,7 @@ const useDragScroll = ({
   const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
     if (!isClick) return;
+
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
@@ -127,6 +136,7 @@ const useDragScroll = ({
       if (currentContainerRef) {
         currentContainerRef.removeEventListener("scroll", handleScroll);
       }
+      setIsTouch(false);
     };
   }, [containerRef]);
 
