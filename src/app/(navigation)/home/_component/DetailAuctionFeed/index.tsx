@@ -6,6 +6,7 @@ import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
 import { Auction } from "@/utils/mocks/api/types";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import Link from "next/link";
 
 const DetailAuctionFeed = () => {
   const { data, isPending } = useQuery<Auction[]>({
@@ -18,9 +19,6 @@ const DetailAuctionFeed = () => {
   if (isPending) return <div>Loading...</div>;
   return (
     <div>
-      <div className="text-2xl">
-        <h1>지금 핫한 경매</h1>
-      </div>
       <SlideCarousel
         childSize={360}
         groupGap={15}
@@ -28,7 +26,8 @@ const DetailAuctionFeed = () => {
         height={360}
         useNav>
         {data?.slice(0, 6).map((auction) => (
-          <div
+          <Link
+            href={`auction/${auction.product_id}`}
             key={auction.product_id}
             className="group">
             <div className="relative w-full h-full border rounded-lg overflow-hidden">
@@ -56,7 +55,7 @@ const DetailAuctionFeed = () => {
                 🔥{auction.bidding_user_count}명이 치열하게 참여하고있어요!
               </span>
             </div>
-          </div>
+          </Link>
         ))}
       </SlideCarousel>
     </div>

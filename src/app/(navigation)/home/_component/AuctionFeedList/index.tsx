@@ -7,7 +7,11 @@ import { Auction } from "@/utils/mocks/api/types";
 import { divideArray } from "@/utils/arrayDivider";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 
-const AuctionFeedList = () => {
+interface AuctionFeedListProps {
+  divideNum: 0 | 4 | 8;
+}
+
+const AuctionFeedList = ({ divideNum }: AuctionFeedListProps) => {
   const { data, isPending } = useQuery<Auction[]>({
     queryKey: ["auction"],
     queryFn: getHotAuctionRecommends,
@@ -17,27 +21,41 @@ const AuctionFeedList = () => {
 
   if (data === undefined || isPending) return <div>Loading...</div>;
 
-  const fourColumns = divideArray(data, 4);
+  const fourColumns = divideArray(data, divideNum);
   return (
     <div>
-      <div className="text-2xl">
-        <h1>많은 사람들이 눈여겨보고있는 경매</h1>
-      </div>
       <SlideCarousel
         childSize={360}
         groupGap={15}
         className="py-5"
         useNav>
         {fourColumns.map((data, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className="flex flex-col gap-5">
             {data.map((auction) => (
               <ProductCard
                 key={auction.product_id}
-                createDate={auction.createdAt}
-                titleImage={auction.product.product_image.image_url}
-                price={auction.init_price}
-                productName={auction.title}
-              />
+                id={auction.product_id}>
+                <div className="flex gap-2 w-full">
+                  <ProductCard.CardImage
+                    titleImage={auction.product.product_image.image_url}
+                    imageSize="medium"
+                  />
+                  <div className="flex flex-col gap-5">
+                    <ProductCard.CardTitle width={232}>
+                      {auction.title}
+                    </ProductCard.CardTitle>
+                    <ProductCard.CardPrice price={auction.init_price} />
+                    <div className="flex justify-between my-1">
+                      <ProductCard.CardTag
+                        tradeState={auction.auction_status}
+                      />
+                      <ProductCard.CardDate date={auction.createdAt} />
+                    </div>
+                  </div>
+                </div>
+              </ProductCard>
             ))}
           </div>
         ))}

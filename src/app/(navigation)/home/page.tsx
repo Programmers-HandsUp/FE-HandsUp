@@ -19,8 +19,40 @@ const MainPage = async () => {
     <section className="">
       <HydrationBoundary state={dehydratedState}>
         <div className="flex flex-col gap-10">
-          <DetailAuctionFeed />
-          <AuctionFeedList />
+          <section>
+            <div className="text-2xl">
+              <h1>지금 핫한 경매를 구경하세요!</h1>
+            </div>
+            <DetailAuctionFeed />
+          </section>
+
+          <section>
+            <div className="text-2xl">
+              <h1>많은 사람들이 눈여겨보고있는 경매</h1>
+            </div>
+            <AuctionFeedList divideNum={4} />
+          </section>
+
+          <section>
+            <div className="text-2xl">
+              <h1>💣마감 임박 경매 </h1>
+            </div>
+            <AuctionFeedList divideNum={4} />
+          </section>
+
+          <section>
+            <div className="text-2xl">
+              <h1>✨따끈따끈한 최신 경매</h1>
+            </div>
+            <AuctionFeedList divideNum={4} />
+          </section>
+
+          <section>
+            <div className="text-2xl">
+              <h1>💌당신을 위한 추천 경매! </h1>
+            </div>
+            <AuctionFeedList divideNum={4} />
+          </section>
         </div>
       </HydrationBoundary>
     </section>

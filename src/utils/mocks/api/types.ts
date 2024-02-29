@@ -12,7 +12,7 @@ export interface Auction {
   bookmark_count: number;
   bidding_user_count: number;
   trade_method: string;
-  auction_status: string;
+  auction_status: "pending" | "bidding" | "finished";
   trading_order: number;
   product: Product;
 }
