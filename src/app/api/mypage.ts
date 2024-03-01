@@ -37,3 +37,12 @@ export const reviewLabelList = async (
   return res.json();
 };
 
+export const reviewList = async (userId: number): Promise<Review[]> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`
+  );
+
+  if (!res.ok) throw new Error("Fail");
+
+  return res.json();
+};
