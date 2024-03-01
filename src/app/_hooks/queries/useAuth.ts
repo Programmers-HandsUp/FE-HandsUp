@@ -35,14 +35,11 @@ export function useSignIn() {
     mutationFn: async (authForm: LoginFormValues) => await setLogin(authForm),
     onSuccess: (data) => {
       localStorage.setItem("AccessToken", data.accessToken);
+      show("회원가입에 성공했습니다", "check-solid", 2000);
       router.push("/");
     },
     onError: (error: Error) => {
-      switch (Number(error.message)) {
-        case 401:
-          show("회원가입에 실패했습니다", "warn-solid", 2000);
-          break;
-      }
+      show("회원가입에 실패했습니다", "warn-solid", 2000);
     }
   });
 }
