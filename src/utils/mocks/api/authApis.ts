@@ -33,7 +33,21 @@ const handler = [
       throw new Error(`${error}`);
     }
   }),
-
+  http.get("/api/idduplicatecheck/:id", async ({ params }) => {
+    try {
+      const { id } = params;
+      if (!id || typeof id !== "string") {
+        throw new Error("아이디 데이터가 없습니다.");
+      }
+      if (userAuthData.filter((authItem) => authItem.email === id).length) {
+        return new HttpResponse(null, { status: 401 });
+      } else {
+        return new HttpResponse(null, { status: 200 });
+      }
+    } catch (error) {
+      return new HttpResponse(null, { status: 401 });
+    }
+  }),
   http.post("http://localhost:9090/api/login", async ({ request }) => {
     const authData = (await request.json()) as any;
     if (!isAuthData(authData)) {

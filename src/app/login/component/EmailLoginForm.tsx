@@ -2,9 +2,8 @@
 import Link from "next/link";
 import Input from "@/app/_component/common/Input";
 
-import { useSignUp } from "@/app/hooks/queries/useAuth";
+import { useSignIn } from "@/app/hooks/queries/useAuth";
 import { useForm } from "react-hook-form";
-import Toast from "@/app/_component/common/Toast";
 
 type LoginFormValues = {
   email: string;
@@ -12,13 +11,11 @@ type LoginFormValues = {
 };
 
 const EmailLoginForm = () => {
-  const { show } = Toast();
-  const signUpMutation = useSignUp();
+  const signInMutation = useSignIn();
 
   const { register, handleSubmit } = useForm<LoginFormValues>();
-
   const onSubmit = async (authForm: LoginFormValues) => {
-    signUpMutation.mutate(authForm);
+    signInMutation.mutate(authForm);
   };
   return (
     <div className="mx-auto w-fit mt-[12rem]">
