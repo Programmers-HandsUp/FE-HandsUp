@@ -5,6 +5,7 @@ import { cn } from "@/utils/cn";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSignUp, useIdDuplicateCheck } from "../hooks/queries/useAuth";
+import Toast from "../_component/common/Toast";
 
 type LoginFormValues = {
   email: string;
@@ -12,6 +13,7 @@ type LoginFormValues = {
 };
 
 const SignupForm = () => {
+  const { show } = Toast();
   const { register, handleSubmit, watch } = useForm<LoginFormValues>();
   const [idStatus, setIdStatus] = useState<"None" | "Change" | "Ok">("Change");
   const email = watch("email");
@@ -26,6 +28,8 @@ const SignupForm = () => {
   const onSubmit = async (data: LoginFormValues) => {
     if (idStatus === "Ok") {
       signUpMutation.mutate(data);
+    } else {
+      show("사용하실 아이디, 비밀번호를 입력해주세요", "info-solid", 3000);
     }
   };
   const getInputBorderColor = () => {
@@ -74,6 +78,14 @@ const SignupForm = () => {
         <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
           <button
             type="submit"
+            onClick={() =>
+              idStatus !== "Ok" &&
+              show(
+                "사용하실 아이디, 비밀번호를 입력해주세요",
+                "info-solid",
+                3000
+              )
+            }
             className="bg-blue-200 px-2 py-1 rounded-md">
             회원가입
           </button>
