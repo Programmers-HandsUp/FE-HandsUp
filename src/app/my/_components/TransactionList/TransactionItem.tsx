@@ -64,7 +64,7 @@ function TransactionItem({
           titleImage="/assets/logoicon.png"
           imageSize="xsmall"
         />
-        <ProductCard.CardTitle className="pl-2 col-span-2 text-base overflow-hidden whitespace-nowrap">
+        <ProductCard.CardTitle className="pl-2 col-span-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
           {transaction.auctionTitle}
         </ProductCard.CardTitle>
         <p className="text-sm col-span-2 text-center">
