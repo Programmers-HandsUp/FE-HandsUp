@@ -28,7 +28,10 @@ const config: Config = {
         growOut: "growOut ease 0.3s forwards",
         fill: "fill 1s linear forwards",
         slideIn: "slideIn ease 0.3s forwards",
-        slideOut: "slideOut ease 0.3s forwards"
+        slideOut: "slideOut ease 0.3s forwards",
+        chartUp: "chartUp ease 0.3s forwards",
+        shaking: "shaking ease 3s Infinite",
+        pumping: "pumping ease 3s Infinite"
       },
       fontFamily: {
         sans: ["Yeongdeok"]
