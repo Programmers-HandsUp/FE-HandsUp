@@ -16,7 +16,7 @@ export function ImageUploader({ onAppend, imageFile }: ImageUploaderProps) {
   const handleAddFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
 
-    let uploadedFiles = Array.from(e.target.files);
+    const uploadedFiles = Array.from(e.target.files);
 
     if (imageLength + uploadedFiles.length > 10) {
       show("상품 사진은 최대 10개까지 등록 가능해요", "warn-solid", 3000);

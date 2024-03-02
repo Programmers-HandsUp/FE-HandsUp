@@ -33,11 +33,7 @@ function InputPrice<
     e: ChangeEvent<HTMLInputElement>,
     onChange: onChangeType
   ) => {
-    let formattedValue = parseInt(e.target.value.replace(/\D/g, ""), 10);
-
-    if (isNaN(formattedValue)) {
-      formattedValue = 0;
-    }
+    const formattedValue = parseInt(e.target.value.replace(/\D/g, ""), 10) || 0;
 
     onChange(formattedValue);
   };

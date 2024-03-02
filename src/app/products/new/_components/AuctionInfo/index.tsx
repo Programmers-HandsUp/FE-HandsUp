@@ -18,8 +18,7 @@ function AuctionInfo() {
     formState: { errors }
   } = useFormContext<RegisterProduct>();
 
-  let maxDate = new Date();
-  maxDate.setDate(maxDate.getDate() + 7);
+  const maxDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
   const description = useWatch({ control, name: "description" });
   const inputCount = description ? description.length : 0;
