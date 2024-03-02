@@ -9,11 +9,11 @@ export const chipVariants = cva(
         small: "rounded-lg",
         medium: "rounded-xl",
         large: "rounded-2xl",
-        xlarge: "rounded-3xl",
-      },
+        xlarge: "rounded-3xl"
+      }
     },
     defaultVariants: {
-      rounded: "large",
-    },
+      rounded: "large"
+    }
   }
 );

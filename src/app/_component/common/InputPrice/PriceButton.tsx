@@ -8,7 +8,7 @@ function PriceButton({ children, handleClickEvent }: PriceButtonProps) {
   return (
     <button
       type="button"
-      className="border w-16 h-9 rounded-full border-[#96E4FF] bg-[#FAFAFA]"
+      className="border w-16 rounded-full hover:bg-[#96E4FF] transition-all"
       onClick={handleClickEvent}>
       {children}
     </button>
