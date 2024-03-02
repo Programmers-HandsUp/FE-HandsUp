@@ -37,7 +37,7 @@ function AuctionInfo() {
           control={control}
           name="price"
           render={({ field }) => (
-            <InputPrice<RegisterProduct>
+            <InputPrice<RegisterProduct, "price">
               title="입찰 시작가"
               price={price}
               field={field}
