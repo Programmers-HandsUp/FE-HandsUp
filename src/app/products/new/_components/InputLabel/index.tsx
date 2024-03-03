@@ -19,7 +19,7 @@ function InputLabel({
 }: PropsWithChildren<InputLabelProps>) {
   return (
     <div className="my-3">
-      <span className={`${title} ? my-2 : ""`}>{title}</span>
+      <div className={`${title} ? my-2 : ""`}>{title}</div>
       {children}
       <ErrorMessage
         errors={errors}

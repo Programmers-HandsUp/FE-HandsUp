@@ -1,6 +1,6 @@
 import InputLabel from "../InputLabel";
 import { RegisterProduct } from "../../page";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
@@ -8,20 +8,23 @@ import Tooltip from "@/app/_component/common/Tooltip";
 import Datepicker from "react-tailwindcss-datepicker";
 import SearchAddressBtn from "../SearchAddressBtn";
 
+const TRADEMETHOD_LIST = ["직거래", "택배"] as const;
+
 function AuctionInfo() {
   const {
     control,
-    watch,
     setValue,
     register,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
 
-  let maxDate = new Date();
-  maxDate.setDate(maxDate.getDate() + 7);
+  const maxDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-  const inputCount = watch("description") ? watch("description").length : 0;
-  const isDirect = watch("tradeMethod") === "직거래";
+  const description = useWatch({ control, name: "description" });
+  const inputCount = description ? description.length : 0;
+
+  const isDirect = useWatch({ control, name: "tradeMethod" }) === "직거래";
+  const price = useWatch({ control, name: "price" });
 
   return (
     <div className="m-2">
@@ -33,11 +36,11 @@ function AuctionInfo() {
           control={control}
           name="price"
           render={({ field }) => (
-            <InputPrice<RegisterProduct>
+            <InputPrice<RegisterProduct, "price">
               title="입찰 시작가"
-              price={watch("price")}
+              price={price}
               field={field}
-              setValue={() => setValue("price", "0")}
+              setValue={() => setValue("price", 0)}
             />
           )}
         />
@@ -86,9 +89,15 @@ function AuctionInfo() {
             <Chips
               Items={field.value}
               setItems={field.onChange}
-              size={90}>
-              <Chip value="직거래">직거래</Chip>
-              <Chip value="택배">택배</Chip>
+              className="pt-2">
+              {TRADEMETHOD_LIST.map((method) => (
+                <Chip
+                  key={method}
+                  value={method}
+                  className="w-24">
+                  {method}
+                </Chip>
+              ))}
             </Chips>
           )}
         />
