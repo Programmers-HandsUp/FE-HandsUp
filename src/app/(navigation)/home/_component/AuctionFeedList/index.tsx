@@ -18,8 +18,7 @@ const AuctionFeedList = ({ divideNum }: AuctionFeedListProps) => {
   const { data, isPending } = useQuery<Auction[]>({
     queryKey: ["auction"],
     queryFn: getHotAuctionRecommends,
-    staleTime: 60 * 1000,
-    gcTime: 300 * 1000
+    staleTime: 60 * 1000
   });
 
   if (data === undefined || isPending) return <div>Loading...</div>;
