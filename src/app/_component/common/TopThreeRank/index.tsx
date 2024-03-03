@@ -2,6 +2,7 @@ import { TopThreeRankDataType } from "@/utils/mocks/api/types";
 import Avatar from "../Avatar";
 import Image from "next/image";
 import TransparentMan from "/public/assets/images/transparentMan.png";
+import setMoneyUnitString from "@/utils/setMoneyUnitString";
 
 const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
   // 최대 입찰 가격을 찾습니다.
@@ -60,6 +61,9 @@ const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
                       size="small"
                       src={item.image}
                     />
+                  </div>
+                  <div className="absolute left-12 text-[0.5rem]">
+                    {setMoneyUnitString(item.biddingPrice)}
                   </div>
                 </div>
               </div>
