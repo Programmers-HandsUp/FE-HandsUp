@@ -20,47 +20,54 @@ const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
   }));
 
   return (
-    <div className="border-b-2 w-full h-[200px] flex items-end justify-around">
-      {biddingPercentages.map((item, idx) => (
-        <div
-          key={item.bidderId}
-          className="w-[45px] flex items-end"
-          style={{
-            height: `${item.percentage}%`
-          }}>
-          <div
-            className="relative animate-chartUp"
-            style={{
-              backgroundColor: item.color
-            }}>
-            <div className="relative bottom-[66px]">
-              <div className="absolute w-full bottom-[70px] text-[10px] flex justify-center px-2">
-                <span className="text-[8px] absolute -translate-y-1/2 translate-x-full rotate-12 animate-pumping">
-                  {idx === 2 && "현재 1등!"}
-                </span>
-                <span className="text-[10px] absolute -translate-y-1/2 -translate-x-full -rotate-[20deg] animate-shaking">
-                  {idx === 2 && "👑"}
-                </span>
-                <span>{item.bidderNickname}</span>
-              </div>
-              <div className="relative top-1">
-                <Image
-                  src={TransparentMan}
-                  alt="마스코트"
-                />
-              </div>
-              <div className="absolute top-0 left-[7px]">
-                <Avatar
-                  rounded="full"
-                  size="small"
-                  src={item.image}
-                />
+    <>
+      <div>
+        <div className="relative bottom-20">
+          <h1>입찰가 TOP 3🏆</h1>
+        </div>
+        <div className="border-b-2 w-full h-[200px] flex items-end justify-around">
+          {biddingPercentages.map((item, idx) => (
+            <div
+              key={item.bidderId}
+              className="w-[45px] flex items-end"
+              style={{
+                height: `${item.percentage}%`
+              }}>
+              <div
+                className="relative animate-chartUp"
+                style={{
+                  backgroundColor: item.color
+                }}>
+                <div className="relative bottom-[66px]">
+                  <div className="absolute w-full bottom-[70px] text-[10px] flex justify-center px-2">
+                    <span className="text-[8px] absolute -translate-y-1/2 translate-x-full rotate-12 animate-pumping">
+                      {idx === 2 && "현재 1등!"}
+                    </span>
+                    <span className="text-[10px] absolute -translate-y-1/2 -translate-x-full -rotate-[20deg] animate-shaking">
+                      {idx === 2 && "👑"}
+                    </span>
+                    <span>{item.bidderNickname}</span>
+                  </div>
+                  <div className="relative top-1">
+                    <Image
+                      src={TransparentMan}
+                      alt="마스코트"
+                    />
+                  </div>
+                  <div className="absolute top-0 left-[7px]">
+                    <Avatar
+                      rounded="full"
+                      size="small"
+                      src={item.image}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 };
 
