@@ -1,14 +1,14 @@
 import { http, HttpResponse } from "msw";
 
-import { PostType } from "./types";
-import { postListData } from "./data/postListData";
+import { Auction } from "./types";
+import { auctionHotList } from "./data/postListData";
 
 const delay = (ms: number) =>
   new Promise((res) => {
     setTimeout(res, ms);
   });
 
-function isPostType(data: any): data is PostType {
+function isPostType(data: any): data is Auction {
   return (
     typeof data.id === "number" &&
     typeof data.authorId === "string" &&
@@ -23,29 +23,9 @@ function isPostType(data: any): data is PostType {
 }
 
 const handlers = [
-  http.get("/api/auctionpostlist", async () => {
+  http.get("/api/auctionList", async () => {
     await delay(1000);
-    return HttpResponse.json([
-      {
-        postId: 1,
-        User: "sdasdadsa",
-        content: "Z.com is so marvelous. I'm gonna buy that.",
-        Images: "dgsdsgdgsgds",
-        createdAt: "asffsasf"
-      }
-    ]);
-  }),
-  http.post("/api/createauctionpost", async ({ request }) => {
-    try {
-      const postData = (await request.json()) as any;
-      if (isPostType(postListData)) {
-        throw new Error("postType이 아님.");
-      }
-      postListData.push(postData);
-      return HttpResponse.json(postData.body);
-    } catch (error) {
-      throw new Error(`${error}`);
-    }
+    return HttpResponse.json(auctionHotList);
   })
 ];
 

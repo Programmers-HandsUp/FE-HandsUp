@@ -1,30 +1,38 @@
-export interface PostType {
-  id: number;
-  authorId: string;
-  authorName: string;
-  postName: string;
-  titleImage?: string;
-  startPrice: number;
-  nowPrice: number;
-  images?: File[];
-  endtime: Date | String;
-  tradePlace: string;
-  postDetail: string;
-  bidRecord?: bidRecordType[];
-  comments?: CommentType[];
-}
-export interface CommentType {
-  authorName: string;
-  authorId: string;
-  detail: string;
-  id: string;
+export interface Auction {
+  seller_id: number;
+  buyer_id: number;
+  product_id: number;
+  title: string;
+  init_price: number;
+  end_date: Date;
+  createdAt: Date;
+  si: string;
+  gu: string;
+  dong: string;
+  bookmark_count: number;
+  bidding_user_count: number;
+  trade_method: string;
+  auction_status: "pending" | "bidding" | "finished";
+  trading_order: number;
+  product: Product;
 }
 
-export interface bidRecordType {
-  bidderName: string;
-  bidderId: string;
-  biddingPrice: number;
-  id: string;
+export interface Product {
+  status: string;
+  description: string;
+  purchase_time: string;
+  product_category_id: number;
+  category: Category;
+  product_image: ProductImage;
+}
+
+export interface Category {
+  product_category_value: string;
+}
+
+export interface ProductImage {
+  image_url: string;
+  product_id: number;
 }
 
 export interface userAuthType {

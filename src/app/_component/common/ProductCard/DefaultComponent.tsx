@@ -1,8 +1,5 @@
 import { ReactNode } from "react";
-import {
-  productImageSizeVariants,
-  productStateVariants
-} from "./ProductCard.variants";
+import { productStateVariants } from "./ProductCard.variants";
 import { VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/cn";
 import Image from "next/image";
@@ -14,10 +11,10 @@ interface DefaultProps {
   className?: string;
 }
 
-interface CardImageProps
-  extends DefaultProps,
-    VariantProps<typeof productImageSizeVariants> {
+interface CardImageProps extends DefaultProps {
   titleImage: string;
+  width: number;
+  height: number;
 }
 interface CardTitleProps extends DefaultProps {
   width: number;
@@ -34,12 +31,15 @@ interface CardDateProps extends DefaultProps {
 
 export const CardImage = ({
   children,
-  imageSize,
+  width,
+  height,
   titleImage,
   className
 }: CardImageProps) => {
   return (
-    <div className={cn(productImageSizeVariants({ imageSize }), className)}>
+    <div
+      className={cn("relative", className)}
+      style={{ width: `${width}px`, height: `${height}px` }}>
       <Image
         src={titleImage}
         className="bg-slate-100 object-cover group-hover:scale-125 transition-transform"
