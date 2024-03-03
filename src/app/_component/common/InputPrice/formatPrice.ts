@@ -1,14 +1,5 @@
-//** 3자리 콤마 제거 */
-export const formatPrice = (value: number | string) => {
-  if (typeof value === "string") {
-    return Number(value.replaceAll(",", ""));
-  }
-  return value;
-};
-
 /** 만, 천 단위로 표현 */
-export const formatPriceWithUnits = (value: string | number) => {
-  const money = formatPrice(value);
+export const formatPriceWithUnits = (money: number) => {
   let price = "";
 
   const tenThousand = Math.floor(money / 10000);

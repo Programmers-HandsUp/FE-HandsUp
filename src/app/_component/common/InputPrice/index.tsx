@@ -1,43 +1,39 @@
 import { ChangeEvent } from "react";
-import { formatPrice, formatPriceWithUnits } from "./formatPrice";
+import { formatPriceWithUnits } from "./formatPrice";
 import PriceButton from "./PriceButton";
-import { ControllerRenderProps, FieldValues, Path } from "react-hook-form";
+import { ControllerRenderProps, FieldPath, FieldValues } from "react-hook-form";
 
-interface InputPriceProps<T extends FieldValues> {
+interface InputPriceProps<
+  TField extends FieldValues,
+  TFieldName extends FieldPath<TField>
+> {
   title: "입찰 시작가" | "제안가";
   price: number;
-  field: ControllerRenderProps<T, Extract<Path<T>, "price">>;
+  field: ControllerRenderProps<TField, TFieldName>;
   setValue: () => void;
 }
 
-type onChangeType = (price: string) => void;
+type onChangeType = (price: number) => void;
 
 const PRICE_UNIT = [10000, 50000, 100000, 500000] as const;
 type Unit = (typeof PRICE_UNIT)[number];
 
-function InputPrice<T extends FieldValues>({
-  title,
-  price,
-  field,
-  setValue
-}: InputPriceProps<T>) {
+function InputPrice<
+  TField extends FieldValues,
+  TFieldName extends FieldPath<TField>
+>({ title, price, field, setValue }: InputPriceProps<TField, TFieldName>) {
   /** 버튼을 이용해 값을 더하는 함수 */
   const handleAddPrice = (unit: Unit, onChange: onChangeType) => {
-    const currentPrice = price !== undefined ? formatPrice(price) : 0;
-    const newPrice = (currentPrice + unit).toLocaleString();
-
+    const newPrice = price !== undefined ? price + unit : unit;
     onChange(newPrice);
   };
 
-  /** 숫자가아닌 값이 입력되면 삭제 + 3자리 콤마 추가 */
+  /** 숫자가아닌 값이 입력되면 삭제 */
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement>,
     onChange: onChangeType
   ) => {
-    const formattedValue = e.target.value
-      .replace(/\D/g, "")
-      .toLocaleString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    const formattedValue = parseInt(e.target.value.replace(/\D/g, ""), 10) || 0;
 
     onChange(formattedValue);
   };
@@ -53,6 +49,7 @@ function InputPrice<T extends FieldValues>({
               autoComplete="off"
               className="h-7 text-right text-lg font-bold px-2 bg-transparent"
               placeholder={`${title} 입력`}
+              value={price ? price.toLocaleString() : ""}
               onChange={(e) => handleInputChange(e, field.onChange)}
             />
             <span className="text-lg">원</span>
