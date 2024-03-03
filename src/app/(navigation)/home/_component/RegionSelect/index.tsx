@@ -3,9 +3,14 @@
 import Icon from "@/app/_component/common/Icon";
 import useModal from "@/app/hooks/useModal";
 import { cn } from "@/utils/cn";
+import { setCookie } from "@/utils/cookie";
 import { MouseEvent } from "react";
 
-const RegionSelect = () => {
+interface RegionSelectProps {
+  currentRegion: string;
+}
+
+const RegionSelect = ({ currentRegion }: RegionSelectProps) => {
   const { Modal, open, close, isOpen } = useModal({
     elementId: "modal-select",
     modalType: "dropBox",
@@ -15,14 +20,15 @@ const RegionSelect = () => {
   const handleClickStore = (e: MouseEvent<HTMLUListElement>) => {
     if (!e.target || !(e.target instanceof HTMLLIElement)) return;
     const targetValue = e.target.id;
-    localStorage.setItem("regionSelect", JSON.stringify(targetValue));
+    setCookie({ name: "region", value: targetValue });
+    close();
   };
   return (
     <div
       id="modal-select"
       className="relative">
       <div className="flex items-center">
-        <div>현재 지역</div>
+        <div>{currentRegion}</div>
         <button
           onClick={open}
           disabled={isOpen}>
@@ -38,10 +44,14 @@ const RegionSelect = () => {
       </div>
       <Modal>
         <ul
-          className="text-black"
+          className="text-black [&_li]:cursor-pointer hover:[&_li]:opacity-60 [&_li]:transition-opacity"
           onClick={handleClickStore}>
-          <li id="currentRegion">우리 동네</li>
-          <li id="Nationwide">전국</li>
+          <li id={currentRegion}>{currentRegion}</li>
+          <div
+            id="Nationwide"
+            className="text-gray-500 cursor-not-allowed">
+            전국(준비중)
+          </div>
         </ul>
       </Modal>
     </div>
