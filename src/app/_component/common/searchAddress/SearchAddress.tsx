@@ -1,18 +1,17 @@
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import useSearchAddrQuery from "@/app/hooks/queries/useSearchAddrQuery";
 import Icon from "../Icon";
 import useDebounce from "@/app/hooks/useDebounce";
 import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
-
 interface SearchAddressProps {
   close?: () => void;
   onChange: (address: string) => void;
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
-  const { register, watch } = useForm<{ search: string }>();
-  const address = useDebounce(watch("search"));
+  const { register, control } = useForm<{ search: string }>();
+  const address = useDebounce(useWatch({ control, name: "search" }));
   const { data } = useSearchAddrQuery(address);
 
   const handleClickAddr = (address: string) => {
@@ -38,12 +37,12 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
           />
         </label>
         {close && (
-        <button
-          type="button"
-          className="ml-4"
-          onClick={close}>
-          취소
-        </button>
+          <button
+            type="button"
+            className="ml-4"
+            onClick={close}>
+            취소
+          </button>
         )}
       </div>
 
