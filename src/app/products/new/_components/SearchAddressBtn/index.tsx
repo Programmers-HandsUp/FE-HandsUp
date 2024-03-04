@@ -14,8 +14,7 @@ function SearchAddressBtn({
 }) {
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
-    animate: "slide",
-    className: "dark:bg-black"
+    animate: "slide"
   });
   const [dong, setDong] = useState("");
   const { value: address, onChange } = field;
@@ -70,7 +69,7 @@ function SearchAddressBtn({
               <p className="">위치 추가</p>
             </div>
           </button>
-          <Modal>
+          <Modal className="dark:bg-black">
             <SearchAddress
               close={close}
               onChange={onChange}

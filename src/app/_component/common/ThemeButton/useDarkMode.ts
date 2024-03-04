@@ -4,25 +4,22 @@ import { getCookie, setCookie } from "@/utils/cookie";
 import { useEffect, useState } from "react";
 
 const useDarkMode = () => {
-  const [dark, setDark] = useState<boolean | undefined>(() => {
+  const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
       const savedDarkMode = getCookie({ name: "theme" });
       const prefersDarkMode = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
-
-      const initialDarkMode =
-        savedDarkMode === null ? prefersDarkMode : savedDarkMode === "dark";
-      return initialDarkMode;
+      return savedDarkMode === null
+        ? prefersDarkMode
+        : savedDarkMode === "dark";
     }
   });
 
   const toggleDarkMode = () => {
-    setDark((state) => {
-      const update = !state;
-      setCookie({ name: "theme", value: update ? "dark" : "light" });
-      return update;
-    });
+    const updatedDarkMode = !dark;
+    setCookie({ name: "theme", value: updatedDarkMode ? "dark" : "light" });
+    setDark(updatedDarkMode);
   };
 
   useEffect(() => {
