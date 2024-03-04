@@ -16,6 +16,7 @@ interface Inputs {
 const PurchasePage = () => {
   const createdAt = new Date("2024-02-16T10:59:59");
   const deadline = new Date("2024-02-17T16:59:59");
+  const START_PRICE = 10000;
   const MAX_PRICE = 30000;
 
   const { control, handleSubmit, setValue, getValues } = useForm<Inputs>();
@@ -25,14 +26,23 @@ const PurchasePage = () => {
   };
 
   return (
-    <div style={{ margin: "20px auto" }}>
+    <div
+      style={{
+        margin: "20px auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px"
+      }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Timer
           deadline={deadline}
           createdAt={createdAt}
         />
       </div>
-      <AuctionBanner />
+      <AuctionBanner
+        startPrice={START_PRICE}
+        maxPrice={MAX_PRICE}
+      />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <ProductCard
           titleImage={tempImage}
@@ -41,7 +51,7 @@ const PurchasePage = () => {
           price={100000}
         />
       </div>
-      <AuctionRanking />
+      <AuctionRanking maxPrice={MAX_PRICE} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
@@ -61,10 +71,10 @@ const PurchasePage = () => {
             />
           )}
         />
-
         <Button
           color="primary"
-          disabled={getValues("price") <= MAX_PRICE}>
+          disabled={getValues("price") <= MAX_PRICE}
+          style={{ marginTop: "20px" }}>
           입찰하기
         </Button>
       </form>
