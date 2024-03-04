@@ -48,7 +48,7 @@ const PurchasePage = () => {
           titleImage={tempImage}
           productName="상품명"
           createDate={new Date("2024-02-26T21:29:00")}
-          price={100000}
+          price={START_PRICE}
         />
       </div>
       <AuctionRanking maxPrice={MAX_PRICE} />
@@ -64,7 +64,6 @@ const PurchasePage = () => {
               field={{
                 ...field,
                 onChange: (value: number) => {
-                  field.onChange(value);
                   setValue("price", value);
                 }
               }}
