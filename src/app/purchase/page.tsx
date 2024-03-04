@@ -8,6 +8,8 @@ import Timer from "../_component/common/Timer";
 import AuctionBanner from "./AuctionBanner";
 import AuctionRanking from "./AuctionRanking";
 import tempImage from "../../public/tempImage.png";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 interface Inputs {
   price: number;
@@ -19,7 +21,16 @@ const PurchasePage = () => {
   const START_PRICE = 10000;
   const MAX_PRICE = 30000;
 
-  const { control, handleSubmit, setValue, getValues } = useForm<Inputs>();
+  const schema = z.object({
+    price: z
+      .number()
+      .min(MAX_PRICE + 1000, "Price must be higher than max price")
+  });
+
+  const { control, handleSubmit, setValue, formState } =
+    useForm<Inputs>({
+      resolver: zodResolver(schema)
+    });
 
   const onSubmit = (data: Inputs) => {
     console.log(data);
@@ -72,7 +83,7 @@ const PurchasePage = () => {
         />
         <Button
           color="primary"
-          disabled={getValues("price") <= MAX_PRICE}
+          disabled={!formState.isValid}
           style={{ marginTop: "20px" }}>
           입찰하기
         </Button>
