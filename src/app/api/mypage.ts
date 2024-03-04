@@ -1,8 +1,8 @@
 import { Purchase, Review, ReviewLabel, Sale, Status } from "../my/types";
 
 export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
-  let url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buy`;
-  status && (url += `?status=${status}`);
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/buy`;
+  const url = status ? `${baseUrl}?status=${status}` : baseUrl;
 
   const res = await fetch(url);
 
@@ -15,8 +15,8 @@ export const saleList = async (
   userId: number,
   status?: Status
 ): Promise<Sale[]> => {
-  let url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/sales`;
-  status && (url += `?status=${status}`);
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/sales`;
+  const url = status ? `${baseUrl}?status=${status}` : baseUrl;
 
   const res = await fetch(url);
 
