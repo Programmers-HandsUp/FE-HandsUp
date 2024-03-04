@@ -17,7 +17,7 @@ interface CardImageProps extends DefaultProps {
   height: number;
 }
 interface CardTitleProps extends DefaultProps {
-  width: number;
+  width?: number;
 }
 interface CardIPriceProps extends DefaultProps {
   price: number;
