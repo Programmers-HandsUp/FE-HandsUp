@@ -1,13 +1,20 @@
+import { useEffect, useState } from "react";
+
 interface AuctionRankingProps {
   maxPrice: number;
 }
 
 const AuctionRanking = (props: AuctionRankingProps) => {
+  const [updateTime, setUpdateTime] = useState("");
+
   const commaPrice = props.maxPrice.toLocaleString();
-  
   const padNumber = (num: number) => num.toString().padStart(2, "0");
-  const currentTime = new Date();
-  const updateTime = `${currentTime.getFullYear()}.${padNumber(currentTime.getMonth() + 1)}.${padNumber(currentTime.getDate())} ${padNumber(currentTime.getHours())}:${padNumber(currentTime.getMinutes())}:${padNumber(currentTime.getSeconds())}`;
+  
+  useEffect(() => {
+    const currentTime = new Date();
+    const updateTime = `${currentTime.getFullYear()}.${padNumber(currentTime.getMonth() + 1)}.${padNumber(currentTime.getDate())} ${padNumber(currentTime.getHours())}:${padNumber(currentTime.getMinutes())}:${padNumber(currentTime.getSeconds())}`;
+    setUpdateTime(updateTime);
+  }, []);
 
   return (
     <div
