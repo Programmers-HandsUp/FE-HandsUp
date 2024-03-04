@@ -4,6 +4,10 @@ interface AuctionRankingProps {
 
 const AuctionRanking = (props: AuctionRankingProps) => {
   const commaPrice = props.maxPrice.toLocaleString();
+  
+  const padNumber = (num: number) => num.toString().padStart(2, "0");
+  const currentTime = new Date();
+  const updateTime = `${currentTime.getFullYear()}.${padNumber(currentTime.getMonth() + 1)}.${padNumber(currentTime.getDate())} ${padNumber(currentTime.getHours())}:${padNumber(currentTime.getMinutes())}:${padNumber(currentTime.getSeconds())}`;
 
   return (
     <div
@@ -23,8 +27,8 @@ const AuctionRanking = (props: AuctionRankingProps) => {
           alignItems: "center"
         }}>
         <span>경매 진행중!</span>
-        <span style={{ fontSize: "12px", color: "gray" }}>
-          업데이트 시간 2024.02.01 13:11:22
+        <span style={{ fontSize: "12px", color: "lightgray" }}>
+          업데이트 시간 {updateTime}
         </span>
       </div>
       <div
