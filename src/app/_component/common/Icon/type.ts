@@ -39,4 +39,5 @@ export type IconName =
   | "camera"
   | "arrow-dropdown"
   | "chevron-left"
-  | "chevron-right";
+  | "chevron-right"
+  | "drop-down";
