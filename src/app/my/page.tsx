@@ -1,6 +1,6 @@
 "use client";
 
-import Layout from "./_components/Layout";
+import BoxLayout from "./_components/BoxLayout";
 import Profile from "./_components/Profile";
 import useReviewLabelList from "../hooks/queries/useReviewLabelList";
 import useReviewList from "../hooks/queries/useReviewList";
@@ -20,23 +20,23 @@ function MyPage() {
   return (
     <div>
       <Profile />
-      <Layout
+      <BoxLayout
         title="구매 내역"
         url="buying">
         <TransactionStatus
           type="구매"
           statusCounts={purchaseStatusCounts}
         />
-      </Layout>
-      <Layout
+      </BoxLayout>
+      <BoxLayout
         title="판매 내역"
         url="selling">
         <TransactionStatus
           type="판매"
           statusCounts={saleStatusCounts}
         />
-      </Layout>
-      <Layout title="이런 점이 좋았어요">
+      </BoxLayout>
+      <BoxLayout title="이런 점이 좋았어요">
         <div className="my-2 flex flex-wrap gap-2">
           {reviewLabelList &&
             reviewLabelList.map(({ label, count }, index) =>
@@ -49,8 +49,8 @@ function MyPage() {
               ) : null
             )}
         </div>
-      </Layout>
-      <Layout
+      </BoxLayout>
+      <BoxLayout
         title={
           <div className="flex gap-2">
             <p>상세한후기도 있어요</p>
@@ -67,7 +67,7 @@ function MyPage() {
               />
             ))}
         </div>
-      </Layout>
+      </BoxLayout>
     </div>
   );
 }

@@ -7,7 +7,7 @@ interface LayoutProps {
   url?: "buying" | "selling" | "review";
 }
 
-function Layout({ title, url, children }: PropsWithChildren<LayoutProps>) {
+function BoxLayout({ title, url, children }: PropsWithChildren<LayoutProps>) {
   return (
     <div className="my-6">
       {url ? (
@@ -25,4 +25,4 @@ function Layout({ title, url, children }: PropsWithChildren<LayoutProps>) {
   );
 }
 
-export default Layout;
+export default BoxLayout;
