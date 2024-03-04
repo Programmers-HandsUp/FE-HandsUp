@@ -10,7 +10,7 @@ const SelectRange = ({ onSelected }: SelectRangeProps) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   useEffect(() => {
-    onSelected(selectedItems[0]);
+    onSelected(selectedItems);
   }, [selectedItems, onSelected]);
 
   return (
