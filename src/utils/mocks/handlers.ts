@@ -6,6 +6,6 @@ import mypageHandler from "./api/mypageApis";
 export const handlers = [
   ...postApiHandler,
   ...authApiHandler,
-  ...mypageHandler
+  ...mypageHandler,
   ...bidsAPIHandler
 ];
