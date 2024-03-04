@@ -8,6 +8,12 @@ import tempImage from "../../public/tempImage.png";
 import SelectRange from "./SelectRange";
 import SelectReview from "./SelectReview";
 
+interface Inputs {
+  range: string;
+  review: string[];
+  feedback: string;
+}
+
 const ReviewForm = () => {
   const mock = {
     userName: "거니니",
@@ -20,7 +26,7 @@ const ReviewForm = () => {
 
   const { register, handleSubmit, setValue } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: Inputs) => {
     console.log(data);
   };
 
