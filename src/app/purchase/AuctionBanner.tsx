@@ -5,8 +5,10 @@ const AuctionBanner = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        width: "80%",
-        alignContent: "space-between"
+        alignContent: "space-between",
+        border: "4px solid red",
+        margin: "10px",
+        padding: "10px"
       }}>
       <div style={{ display: "flex", gap: "10px" }}>
         <div>시작가</div>
