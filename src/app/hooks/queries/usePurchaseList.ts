@@ -13,7 +13,7 @@ const usePurchaseList = () => {
         finished: 0
       };
 
-      return data?.reduce((acc, item) => {
+      return data.reduce((acc, item) => {
         acc[item.auctionStatus]++;
         return acc;
       }, initCounts);
