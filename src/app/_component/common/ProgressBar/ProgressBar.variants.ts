@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-export const ProgressBarVariants = cva("", {
+export const progressBarVariants = cva("", {
   variants: {
     bgColor: {
       red: "bg-red-600",
