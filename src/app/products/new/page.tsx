@@ -13,7 +13,7 @@ import useBeforeUnload from "./_utils/useBeforeUnload";
 import { useRouter } from "next/navigation";
 import { ProductData } from "./_utils/productType";
 
-export type RegisterProduct = z.infer<typeof RegisterSchema>;
+export type RegisterProduct = z.infer<typeof ProductSchema>;
 
 function RegisterProduct() {
   const methods = useForm<RegisterProduct>({
