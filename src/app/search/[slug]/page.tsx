@@ -1,10 +1,15 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
 import SearchBar from "../component/SearchBar";
 import ProductCard from "@/app/_component/common/ProductCard";
 import SearchFilterModal from "./component/SearchFilter";
 import getPastTime from "@/utils/getPastTime";
 import tempLogoImage from "../../../../public/logoIcon.png";
 import likeIcon from "../../../../public/assets/likeIcon.svg";
-import Image from "next/image";
+import DropDown from "@/app/_component/common/DropDown";
 
 interface SearchResultPageProps {
   params: string;
@@ -21,17 +26,22 @@ const MockData = {
 
 const SearchResultPage = ({ params }: SearchResultPageProps) => {
   const resultList = [MockData, MockData];
-
+  const [alignOption, setAlignOption] = useState("마감 임박 순");
   return (
     <main className="w-[90%] mx-auto">
       <SearchBar />
       <h1>진행중인 경매 상품</h1>
       <div className="flex justify-between">
         <button>필터</button>
-        <button>추천순</button>
+        <DropDown
+          setSelectedOption={(selectedOption) => setAlignOption(selectedOption)}
+          selectedOption={alignOption}
+          className="w-[6rem] text-sm"
+          options={["마감 임박 순", "저장 순", "최신 순"]}
+        />
       </div>
-      {resultList.map((resultItem) => (
-        <div key={resultItem.id}>
+      {resultList.map((resultItem, index) => (
+        <div key={index}>
           <ProductCard
             className="my-2"
             id={resultItem.id}>
