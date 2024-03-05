@@ -106,11 +106,11 @@ function ProductInfo() {
               Items={field.value}
               setItems={field.onChange}
               className="grid grid-cols-3">
-              {PURCHASE_TIME_LIST.map((value) => (
+              {PURCHASE_TIME_LIST.map(({ value, title }) => (
                 <Chip
                   key={value}
                   value={value}>
-                  {value}
+                  {title}
                 </Chip>
               ))}
             </Chips>
