@@ -19,15 +19,21 @@ const CommentInput = ({ onSubmit }: CommentProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<IForm>({
     mode: "onSubmit"
   });
 
+  const onSubmitWithReset = (data: IForm) => {
+    onSubmit(data);
+    reset();
+  };
+
   return (
     <div>
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmitWithReset)}
         className="flex">
         <input
           type="text"
