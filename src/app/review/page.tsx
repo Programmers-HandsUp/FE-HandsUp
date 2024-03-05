@@ -41,12 +41,7 @@ const ReviewForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      style={{
-        padding: "10%",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px"
-      }}>
+      className="p-[10%] flex flex-col space-y-5">
       <Icon id="arrow-back" />
       <div style={{ textAlign: "center" }}>
         <p>
@@ -54,7 +49,7 @@ const ReviewForm = () => {
           {mock.partnerName}님과의 거래는 어떠셨나요?
         </p>
       </div>
-      <hr style={{ width: "30%", margin: "0 auto" }} />
+      <hr className="w-[30%] mx-auto" />
       <ProductCard
         titleImage={mock.image}
         productName={mock.name}
@@ -68,17 +63,11 @@ const ReviewForm = () => {
         <textarea
           {...register("feedback")}
           style={{
-            width: "100%",
-            height: "150px",
             backgroundColor: "#f8f8f8",
-            border: "2px solid #efefef",
-            borderRadius: "12px",
-            resize: "none",
-            padding: "8px",
             scrollbarColor: "#96E4FF #ffffff",
             scrollbarWidth: "thin"
           }}
-          className="text-black"
+          className="w-full h-[150px] resize-none border-2 rounded-xl border-[#efefef] p-2 text-black"
         />
       </div>
       <Button color="primary">후기 작성 완료하기</Button>
