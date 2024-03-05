@@ -8,6 +8,8 @@ interface SignupHeaderProps {
   onClickRightButton: () => void;
 }
 
+const PAGE_PERCENTAGES = [20, 50, 75, 100];
+
 const SignupHeader = ({ nowPage, onClickRightButton }: SignupHeaderProps) => {
   const getProgressbarPercentage = () => {
     if (nowPage === 0) {
@@ -26,7 +28,7 @@ const SignupHeader = ({ nowPage, onClickRightButton }: SignupHeaderProps) => {
         className="mx-auto mt-6 b-4"
         width={300}
         height={15}
-        percent={getProgressbarPercentage()}
+        percent={PAGE_PERCENTAGES[nowPage]}
       />
       <div className="flex justify-end w-[300px] mx-auto my-4">
         {nowPage < 3 && (
