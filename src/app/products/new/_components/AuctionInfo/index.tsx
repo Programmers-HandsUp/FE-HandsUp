@@ -1,14 +1,14 @@
-import InputLabel from "../InputLabel";
-import { RegisterProduct } from "../../page";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
+import Datepicker from "react-tailwindcss-datepicker";
+
 import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Tooltip from "@/app/_component/common/Tooltip";
-import Datepicker from "react-tailwindcss-datepicker";
+import InputLabel from "../InputLabel";
+import { RegisterProduct } from "../../page";
 import SearchAddressBtn from "../SearchAddressBtn";
-
-const TRADEMETHOD_LIST = ["직거래", "택배"] as const;
+import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
 
 function AuctionInfo() {
   const {

@@ -1,7 +1,8 @@
-import { ErrorMessage } from "@hookform/error-message";
-import { FieldErrors } from "react-hook-form";
-import { RegisterProduct } from "../../page";
 import { PropsWithChildren } from "react";
+import { FieldErrors } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+
+import { RegisterProduct } from "../../page";
 
 interface InputLabelProps {
   title?: React.ReactNode;
