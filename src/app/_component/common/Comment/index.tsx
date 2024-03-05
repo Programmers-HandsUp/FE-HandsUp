@@ -7,7 +7,7 @@ import {
   useQueryClient
 } from "@tanstack/react-query";
 import { ICreateComment, createComment } from "@/app/api/createComment";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useGetCommentList, { ICommentListAPI } from "./useGetCommentList";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 import CommentInput, { IForm } from "./CommentInput";
@@ -22,8 +22,6 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       createComment({ comment, auctionId })
   });
 
-  const MY_ID = 12342; //더미데이터
-
   const {
     data: commentsData,
     isFetched,
@@ -34,10 +32,11 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
   const queryClient = useQueryClient();
 
   const refetch = () => {
-    if (hasNextPage && isFetched) {
+    if (isScroll) return;
+    if (hasNextPage) {
       const prevScrollTop = messagesEndRef.current?.scrollTop;
       const prevScrollHeight = messagesEndRef.current?.scrollHeight;
-
+      setIsScroll(true);
       fetchNextPage().then(() => {
         if (prevScrollTop !== undefined && prevScrollHeight !== undefined) {
           setTimeout(() => {
@@ -46,11 +45,17 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
                 prevScrollTop +
                 (messagesEndRef.current.scrollHeight - prevScrollHeight);
             }
+            setIsScroll(false);
           }, 0);
         }
       });
     }
   };
+  const MY_ID = 12342; //더미데이터
+
+  const [isScroll, setIsScroll] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
   const onSubmit = (data: IForm) => {
     mutation.mutate({ comment: data.comment, auctionId });
@@ -74,10 +79,6 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
 
     queryClient.setQueryData(["comment", auctionId], exMessages);
   };
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
   const scrollToBottom = () => {
     if (!messagesEndRef.current) return;
