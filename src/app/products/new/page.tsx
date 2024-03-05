@@ -24,10 +24,39 @@ function RegisterProduct() {
     resolver: zodResolver(ProductSchema)
   });
 
+  const { mutateImageUpload } = useImageUpload();
+  const { mutateRegisterProduct } = useRegisterProduct();
+  const router = useRouter();
   const setActive = useBeforeUnload();
 
-  const onSubmit: SubmitHandler<RegisterProduct> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<RegisterProduct> = async (data) => {
+    const { images, address, dateRangeTime, ...rest } = data;
+    const imageData = new FormData();
+
+    for (const image of images) {
+      imageData.append("images", image.file);
+    }
+
+    const imageUrls = await mutateImageUpload(imageData);
+
+    const productData: ProductData = {
+      ...rest,
+      si: address?.gu,
+      gu: address?.gu,
+      dong: address?.dong,
+      endDate: dateRangeTime.endDate,
+      imageUrls
+    };
+
+    mutateRegisterProduct(productData, {
+      onSuccess: (data) => {
+        const { auctionId } = data;
+
+        setActive(false);
+
+        router.replace(`/products/${auctionId}`);
+      }
+    });
   };
 
   return (
