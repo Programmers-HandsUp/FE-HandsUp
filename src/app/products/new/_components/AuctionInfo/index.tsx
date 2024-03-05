@@ -25,19 +25,21 @@ function AuctionInfo() {
   const inputCount = description ? description.length : 0;
 
   const isDirect = useWatch({ control, name: "tradeMethod" }) === "직거래";
-  const price = useWatch({ control, name: "price" });
+  const price = useWatch({ control, name: "initPrice" });
+
+  if (!isDirect) setValue("address", { si: "", gu: "", dong: "" });
 
   return (
     <div className="m-2">
       <span className="text-xl mb-4">| 경매정보</span>
       <InputLabel
-        name="price"
+        name="initPrice"
         errors={errors}>
         <Controller
           control={control}
-          name="price"
+          name="initPrice"
           render={({ field }) => (
-            <InputPrice<RegisterProduct, "price">
+            <InputPrice<RegisterProduct, "initPrice">
               title="입찰 시작가"
               price={price}
               field={field}

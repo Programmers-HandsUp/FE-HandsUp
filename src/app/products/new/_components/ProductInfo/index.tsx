@@ -65,21 +65,21 @@ function ProductInfo() {
       </InputLabel>
       <InputLabel
         title="카테고리"
-        name="category"
+        name="productCategory"
         errors={errors}>
         <Controller
-          name="category"
+          name="productCategory"
           control={control}
           render={({ field }) => <CategoryList field={field} />}
         />
       </InputLabel>
       <InputLabel
         title="상품상태"
-        name="state"
+        name="productStatus"
         errors={errors}>
         <Controller
           control={control}
-          name="state"
+          name="productStatus"
           render={({ field }) => (
             <Chips
               Items={field.value}
