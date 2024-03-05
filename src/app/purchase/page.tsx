@@ -1,6 +1,6 @@
 "use client";
 
-import { Controller, useForm } from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import Button from "../_component/common/Button";
 import InputPrice from "../_component/common/InputPrice";
 import ProductCard from "../_component/common/ProductCard";
@@ -10,9 +10,13 @@ import AuctionRanking from "./AuctionRanking";
 import tempImage from "../../public/tempImage.png";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { ErrorMessage } from "@hookform/error-message";
 
-interface Inputs {
+interface PurchaseProps {
   price: number;
+  title: string;
+  field: FieldValues;
+  setValue: () => void;
 }
 
 const PurchasePage = () => {
@@ -24,15 +28,19 @@ const PurchasePage = () => {
   const schema = z.object({
     price: z
       .number()
-      .min(MAX_PRICE + 1000, "Price must be higher than max price")
+      .min(MAX_PRICE + 1000, "제안가는 현재 최고가 보다 높아야 합니다")
   });
 
-  const { control, handleSubmit, setValue, formState } =
-    useForm<Inputs>({
-      resolver: zodResolver(schema)
-    });
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid }
+  } = useForm<PurchaseProps>({
+    resolver: zodResolver(schema)
+  });
 
-  const onSubmit = (data: Inputs) => {
+  const onSubmit = (data: PurchaseProps) => {
     console.log(data);
   };
 
@@ -69,21 +77,24 @@ const PurchasePage = () => {
           name="price"
           defaultValue={0}
           render={({ field }) => (
-            <InputPrice
-              title="입찰 시작가"
+            <InputPrice<PurchaseProps>
+              title="제안가"
               price={field.value}
-              field={{
-                ...field,
-                onChange: (value: number) => {
-                  setValue("price", value);
-                }
-              }}
+              field={field}
+              setValue={() => reset()}
             />
+          )}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="price"
+          render={({ message }) => (
+            <p className="text-red-600 mt-2">{message}</p>
           )}
         />
         <Button
           color="primary"
-          disabled={!formState.isValid}
+          disabled={!isValid}
           style={{ marginTop: "20px" }}>
           입찰하기
         </Button>
