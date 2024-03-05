@@ -22,7 +22,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       createComment({ comment, auctionId })
   });
 
-  const MY_ID = 12342;
+  const MY_ID = 12342; //더미데이터
 
   const {
     data: commentsData,
@@ -39,7 +39,6 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       const prevScrollHeight = messagesEndRef.current?.scrollHeight;
 
       fetchNextPage().then(() => {
-        // 데이터를 불러온 후에 스크롤 위치를 복원
         if (prevScrollTop !== undefined && prevScrollHeight !== undefined) {
           setTimeout(() => {
             if (messagesEndRef.current) {
@@ -60,6 +59,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       auctionId
     ]) as InfiniteData<ICommentListAPI>;
 
+    //더미데이터
     const newComment = {
       messageId: 12412412,
       content: data.comment,
