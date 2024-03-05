@@ -18,12 +18,12 @@ interface PurchaseProps {
   field: FieldValues;
   setValue: () => void;
 }
+const createdAt = new Date("2024-02-16T10:59:59");
+const deadline = new Date("2024-02-17T16:59:59");
+const START_PRICE = 10000;
+const MAX_PRICE = 30000;
 
 const PurchasePage = () => {
-  const createdAt = new Date("2024-02-16T10:59:59");
-  const deadline = new Date("2024-02-17T16:59:59");
-  const START_PRICE = 10000;
-  const MAX_PRICE = 30000;
 
   const schema = z.object({
     price: z
