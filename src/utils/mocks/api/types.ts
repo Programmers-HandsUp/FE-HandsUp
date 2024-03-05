@@ -79,3 +79,13 @@ export interface BidsDataType {
   bidderNickname: string;
   createdAt: Date;
 }
+
+export interface CommentType {
+  messageId: number;
+  auctionId: number;
+  userId: number;
+  userNickname: string;
+  userProfileImage: string;
+  content: string;
+  createdAt: Date;
+}

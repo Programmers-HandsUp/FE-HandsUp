@@ -19,6 +19,30 @@
     transition: background-color 0.3s;
     @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
     margin-bottom: calc(var(--bottom-height) + 20px);
+    overflow-y: overlay;
+  }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 #8bc9dd;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 #8bc9dd;
+    opacity: 0.3;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: transparent;
   }
 
   * {
