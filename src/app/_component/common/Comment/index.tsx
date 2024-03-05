@@ -43,11 +43,6 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
         if (prevScrollTop !== undefined && prevScrollHeight !== undefined) {
           setTimeout(() => {
             if (messagesEndRef.current) {
-              console.log(
-                prevScrollTop,
-                messagesEndRef.current.scrollHeight,
-                prevScrollHeight
-              );
               messagesEndRef.current.scrollTop =
                 prevScrollTop +
                 (messagesEndRef.current.scrollHeight - prevScrollHeight);
