@@ -69,6 +69,7 @@ function AuctionInfo() {
         <Controller
           control={control}
           name="dateRangeTime"
+          defaultValue={{ startDate: "", endDate: "" }}
           render={({ field }) => (
             <Datepicker
               minDate={new Date()}
@@ -113,6 +114,7 @@ function AuctionInfo() {
           <Controller
             control={control}
             name="address"
+            defaultValue={{ si: "", gu: "", dong: "" }}
             render={({ field }) => <SearchAddressBtn field={field} />}
           />
         </InputLabel>
@@ -125,6 +127,7 @@ function AuctionInfo() {
           {...register("description")}
           style={{ resize: "none" }}
           className="mt-4 p-4 border border-gray-200 w-full h-48 rounded-lg"
+          defaultValue=""
           placeholder={
             "상품 및 경매 관련해서 추가적인 정보를 입력해주세요. \n안전하고 건전한 거래환경을 만들어가요 🙌🏻"
           }></textarea>

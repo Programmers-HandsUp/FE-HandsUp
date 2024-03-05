@@ -55,6 +55,7 @@ function ProductInfo() {
         errors={errors}>
         <input
           {...register("title")}
+          defaultValue=""
           className={`w-full h-9 px-3 rounded-lg border ${errors["title"] ? "border-red-600" : ""}`}
           placeholder="상품명"
         />

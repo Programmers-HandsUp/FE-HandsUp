@@ -18,18 +18,12 @@ export type RegisterProduct = z.infer<typeof RegisterSchema>;
 function RegisterProduct() {
   const methods = useForm<RegisterProduct>({
     defaultValues: {
-      title: "",
-      images: [],
-      price: 0,
-      description: "",
-      dateRangeTime: {
-        startDate: "",
-        endDate: ""
-      }
+      initPrice: 0,
+      images: []
     },
-    mode: "onChange",
-    resolver: zodResolver(RegisterSchema)
+    resolver: zodResolver(ProductSchema)
   });
+
 
   const onSubmit: SubmitHandler<RegisterProduct> = (data) => {
     console.log(data);
