@@ -4,6 +4,7 @@ import Icon from "../Icon";
 import useDebounce from "@/app/hooks/useDebounce";
 import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
+
 interface SearchAddressProps {
   close?: () => void;
   onChange: (address: string) => void;
@@ -26,8 +27,7 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
           className={`flex items-center border h-9 rounded-md px-1 bg-white ${close ? "w-72" : "w-80"}`}>
           <Icon
             id="search"
-            fill="none"
-            stroke="gray"
+            className="text-gray-600"
           />
           <input
             {...register("search", { required: true })}

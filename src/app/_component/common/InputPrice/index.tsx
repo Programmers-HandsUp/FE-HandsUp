@@ -47,7 +47,7 @@ function InputPrice<
             <input
               {...field}
               autoComplete="off"
-              className="h-7 text-right text-lg font-bold px-2 bg-transparent"
+              className="h-7 text-right text-lg font-bold px-2 bg-transparent dark:text-white"
               placeholder={`${title} 입력`}
               value={price ? price.toLocaleString() : ""}
               onChange={(e) => handleInputChange(e, field.onChange)}
