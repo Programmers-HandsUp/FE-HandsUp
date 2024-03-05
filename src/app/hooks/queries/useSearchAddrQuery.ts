@@ -13,7 +13,7 @@ const useSearchAddrQuery = (addr: string) => {
         }));
       return response;
     },
-    enabled: !!addr
+    enabled: !!addr && addr.length > 1,
   });
 };
 
