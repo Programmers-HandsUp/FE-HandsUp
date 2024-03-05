@@ -7,7 +7,13 @@ import AddrList from "./AddrList";
 
 interface SearchAddressProps {
   close?: () => void;
-  onChange: (address: string) => void;
+  onChange: (address: Address) => void;
+}
+
+interface Address {
+  si: string;
+  gu: string;
+  dong: string;
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
@@ -17,7 +23,8 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
 
   const handleClickAddr = (address: string) => {
     close && close();
-    onChange(address);
+    const [si, gu, dong] = address.split(" ");
+    onChange({ si, gu, dong });
   };
 
   return (
