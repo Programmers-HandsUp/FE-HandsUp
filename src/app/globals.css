@@ -14,10 +14,11 @@
   }
 
   body {
-    height: 100dvh;
+    min-height: 100dvh;
     transition: color 0.3s;
     transition: background-color 0.3s;
     @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
+    margin-bottom: calc(var(--bottom-height) + 20px);
   }
 
   * {
@@ -25,7 +26,46 @@
   }
 
   main > section {
-    height: calc(100dvh - var(--header-height) - var(--bottom-height));
+    height: calc(100% - var(--header-height) - var(--bottom-height));
+  }
+
+  @keyframes watch {
+    0% {
+      transform: translate(0);
+    }
+    10% {
+      transform: translate(-2px, 2px);
+    }
+    20% {
+      transform: translate(-2px, -2px);
+    }
+    30% {
+      transform: translate(2px, 2px);
+    }
+    40% {
+      transform: translate(0);
+    }
+    50% {
+      transform: translate(2px, -2px);
+    }
+    60% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes tiltAndScale {
+    0% {
+      transform: scale(1) rotate(0deg);
+    }
+    20% {
+      transform: scale(1.05) rotate(-3deg);
+    }
+    40% {
+      transform: scale(1.1) rotate(2deg);
+    }
+    60% {
+      transform: scale(1) rotate(0deg);
+    }
   }
 
   @keyframes beat {
@@ -60,6 +100,42 @@
     }
     to {
       width: 100%;
+    }
+  }
+  @keyframes chartUp {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 100%;
+    }
+  }
+
+  @keyframes shaking {
+    0% {
+      transform: translate(-100%, -50%) rotate(-20deg);
+    }
+    10% {
+      transform: translate(-100%, -50%) rotate(-8deg);
+    }
+    30% {
+      transform: translate(-100%, -50%) rotate(-35deg);
+    }
+
+    50% {
+      transform: translate(-100%, -50%) rotate(-8deg);
+    }
+  }
+
+  @keyframes pumping {
+    0% {
+      scale: 1;
+    }
+    20% {
+      scale: 1.2;
+    }
+    30% {
+      scale: 1;
     }
   }
 }
@@ -104,12 +180,48 @@
     }
   }
 
-  @keyframes grow {
+  @keyframes growIn {
     0% {
       transform: scale(0.2);
     }
     100% {
       transform: scale(1);
+    }
+  }
+
+  @keyframes growOut {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+
+  @keyframes slideIn {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(calc(100vw - 360px));
+    }
+  }
+
+  @keyframes slideOut {
+    0% {
+      transform: translateX(calc(100vw - 360px));
+    }
+    100% {
+      transform: translateX(100vw);
+    }
+  }
+
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
     }
   }
 }
