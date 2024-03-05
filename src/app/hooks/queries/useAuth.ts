@@ -11,7 +11,7 @@ export function useSignUp() {
   const { show } = Toast();
   const router = useRouter();
   return useMutation({
-    mutationFn: async (authForm: LoginFormValues) => await setLogin(authForm),
+    mutationFn: (authForm: LoginFormValues) => setLogin(authForm),
     onSuccess: (data) => {
       localStorage.setItem("AccessToken", data.accessToken);
       router.push("/");
