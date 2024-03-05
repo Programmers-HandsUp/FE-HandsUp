@@ -1,5 +1,6 @@
 import SearchBar from "../component/SearchBar";
 import ProductCard from "@/app/_component/common/ProductCard";
+import SearchFilterModal from "./component/SearchFilter";
 
 interface SearchResultPageProps {
   params: string;
@@ -17,6 +18,7 @@ const SearchResultPage = ({ params }: SearchResultPageProps) => {
       <ProductCard id={1}>
         <ProductCard.CardImage titleImage="/public/logoIcon.png" />
       </ProductCard>
+      <SearchFilterModal />
     </main>
   );
 };
