@@ -4,10 +4,10 @@ interface AuctionRankingProps {
   maxPrice: number;
 }
 
-const AuctionRanking = (props: AuctionRankingProps) => {
+const AuctionRanking = ({maxPrice}: AuctionRankingProps) => {
   const [updateTime, setUpdateTime] = useState("");
 
-  const commaPrice = props.maxPrice.toLocaleString();
+  const commaPrice = maxPrice.toLocaleString();
   const padNumber = (num: number) => num.toString().padStart(2, "0");
   
   useEffect(() => {
