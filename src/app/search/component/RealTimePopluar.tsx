@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import setSearchRecordInLocalStorage from "../utils/setSearchRecordInLocalStorage";
 import useGetPopluarKeywrodrQuery from "@/app/hooks/queries/useGetPopluarKeyword";
 
 /* @TODO : 
@@ -16,6 +17,7 @@ const RealTimePopluar = () => {
         {popularKeywords ? (
           popularKeywords.map((item, index) => (
             <Link
+              onClick={() => setSearchRecordInLocalStorage(item)}
               href={`/search/${item}`}
               className="flex gap-3"
               key={index}>

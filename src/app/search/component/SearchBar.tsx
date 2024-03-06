@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useState } from "react";
 
+import setSearchRecordInLocalStorage from "../utils/setSearchRecordInLocalStorage";
 import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
 import Toast from "@/app/_component/common/Toast";
@@ -11,21 +12,6 @@ const SearchBar = () => {
   const router = useRouter();
   const { show } = Toast();
   const [searchKeyword, setSearchKeyword] = useState("");
-
-  const setRecentSearchRecord = (keyword: string) => {
-    console.log("*");
-    const record = localStorage.getItem("searchKeyword");
-    if (record) {
-      const recordList = [...JSON.parse(record)];
-      if (recordList.length >= 5) {
-        recordList.pop();
-      }
-      recordList.unshift(keyword);
-      localStorage.setItem("searchKeyword", JSON.stringify(recordList));
-    } else {
-      localStorage.setItem("searchKeyword", JSON.stringify([keyword]));
-    }
-  };
 
   const onKeyDownSearchButton = (event: KeyboardEvent<HTMLInputElement>) => {
     event.stopPropagation();
@@ -36,7 +22,7 @@ const SearchBar = () => {
         show("2글자 이상 입력해주세요.", "info-solid", 3000);
         return;
       }
-      setRecentSearchRecord(searchKeyword);
+      setSearchRecordInLocalStorage(searchKeyword);
       router.push(`/search/${searchKeyword}`);
     }
   };

@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import Icon from "@/app/_component/common/Icon";
 import { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
+import setSearchRecordInLocalStorage from "../utils/setSearchRecordInLocalStorage";
 
 interface SearchRecordItemProps {
   itemText: string;
@@ -12,6 +13,7 @@ const TEMPLIST = ["갤럭시노트", "아이폰", "갤럭시노트"];
 
 const RecentSearch = () => {
   const [recentSearchList, setRecentSearchList] = useState<string[]>();
+
   const searchResults = useCallback((newList: string[]) => {
     setRecentSearchList(newList);
   }, []);
