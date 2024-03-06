@@ -1,45 +1,42 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect, useRef, Fragment } from "react";
+import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 
-import useModal from "@/app/hooks/useModal";
 import SearchBar from "../component/SearchBar";
 import ProductCard from "@/app/_component/common/ProductCard";
 import SearchFilterModal from "./component/SearchFilter";
-import getPastTime from "@/utils/getPastTime";
-import tempLogoImage from "../../../../public/logoIcon.png";
 import likeIcon from "../../../../public/assets/likeIcon.svg";
+import useModal from "@/app/hooks/useModal";
+import getPastTime from "@/utils/getPastTime";
 import DropDown from "@/app/_component/common/DropDown";
+import tempLogoImage from "../../../../public/logoIcon.png";
+import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";
 
-interface SearchResultPageProps {
-  params: string;
-}
-
-const MockData = {
-  id: 12491249,
-  title: "휴대폰",
-  price: 15000,
-  dong: "성수동",
-  date: "Wed Mar 06 2024 00:43:11 GMT+0900",
-  likeCount: 10
-};
-const MockData2 = {
-  id: 999999,
-  title: "휴대폰",
-  price: 15000,
-  dong: "성수동",
-  date: "Wed Mar 06 2024 00:43:11 GMT+0900",
-  likeCount: 10
-};
-
-const SearchResultPage = ({ params }: SearchResultPageProps) => {
-  const resultList = [MockData, MockData2];
+const SearchResultPage = () => {
+  const param = usePathname();
   const [alignOption, setAlignOption] = useState("마감 임박 순");
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
     animate: "slide"
   });
+
+  const {
+    data: searchResults,
+    isFetched,
+    isLoading,
+    fetchNextPage,
+    hasNextPage
+  } = useGetSearchResult(param);
+
+  const refetch = () => {
+    if (hasNextPage && isFetched) fetchNextPage();
+  };
+  const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
+
+  if (isLoading) return <div>Loading</div>;
 
   return (
     <main className="w-[90%] mx-auto">
@@ -58,39 +55,44 @@ const SearchResultPage = ({ params }: SearchResultPageProps) => {
           options={["마감 임박 순", "저장 순", "최신 순"]}
         />
       </div>
-      {resultList.map((resultItem) => (
-        <div key={resultItem.id}>
-          <ProductCard
-            className="my-2"
-            id={resultItem.id}>
-            <ProductCard.CardImage
-              className="w-[6.5rem] h-[6.5rem] mr-4"
-              titleImage={tempLogoImage.src}
-            />
-            <ProductCard.CardTitle width={200}>
-              <p className="text-2xl">{resultItem.title}</p>
-              <div className="flex gap-4 text-[0.85rem]">
-                <p>{resultItem.dong}</p>
-                <p>{getPastTime(new Date(resultItem.date))}</p>
-              </div>
-              <div className="flex justify-between">
-                <p className="font-bold text-[1.1rem]">{resultItem.price}</p>
-                <div className="flex">
-                  <Image
-                    className="h-fit mr-1 mt-3"
-                    src={likeIcon}
-                    alt="likeButton"
-                  />
-                  <p className="text-[1rem]">{resultItem.likeCount}</p>
+      <div className="pb-6">
+        {searchResults.map((resultItem) => (
+          <div key={resultItem.id}>
+            <ProductCard
+              className="my-2"
+              id={resultItem.id}>
+              <ProductCard.CardImage
+                className="w-[6.5rem] h-[6.5rem] mr-4"
+                titleImage={tempLogoImage.src}
+              />
+              <ProductCard.CardTitle width={200}>
+                <p className="text-2xl">{resultItem.postName}</p>
+                <div className="flex gap-4 text-[0.85rem]">
+                  <p>{resultItem.tradePlace}</p>
+                  <p>{getPastTime(new Date())}</p>
                 </div>
-              </div>
-            </ProductCard.CardTitle>
-          </ProductCard>
-          <hr />
-        </div>
-      ))}
+                <div className="flex justify-between">
+                  <p className="font-bold text-[1.1rem]">
+                    {resultItem.nowPrice}
+                  </p>
+                  <div className="flex">
+                    <Image
+                      className="h-fit mr-1 mt-3"
+                      src={likeIcon}
+                      alt="likeButton"
+                    />
+                    <p className="text-[1rem]">10</p>
+                  </div>
+                </div>
+              </ProductCard.CardTitle>
+            </ProductCard>
+            <hr />
+          </div>
+        ))}
+        <div ref={ref}></div>
+      </div>
       <Modal className="bg-black">
-        <SearchFilterModal closeModal={close}/>
+        <SearchFilterModal closeModal={close} />
       </Modal>
     </main>
   );

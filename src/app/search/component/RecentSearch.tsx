@@ -1,20 +1,57 @@
+"use client";
+
 import Icon from "@/app/_component/common/Icon";
+import { useState, useEffect, useCallback } from "react";
 
 interface SearchRecordItemProps {
   itemText: string;
+  onClickRemoveButton: () => void;
 }
+const TEMPLIST = ["갤럭시노트", "아이폰", "갤럭시노트"];
 
 const RecentSearch = () => {
-  const recentSearchList = ["갤럭시노트", "아이폰", "갤럭시노트"];
+  const [recentSearchList, setRecentSearchList] = useState<string[]>();
+  const searchResults = useCallback((newList: string[]) => {
+    setRecentSearchList(newList);
+  }, []);
 
-  const SearchRecordItem = ({ itemText }: SearchRecordItemProps) => {
+  useEffect(() => {
+    const searchRecord = localStorage.getItem("searchKeyword");
+    if (searchRecord) {
+      setRecentSearchList(JSON.parse(searchRecord));
+    } else {
+      setRecentSearchList(TEMPLIST);
+    }
+  }, [searchResults]);
+
+  const onClickClearButton = () => {
+    setRecentSearchList([]);
+    localStorage.setItem("searchKeyword", JSON.stringify([]));
+  };
+
+  const onClickDeleteButton = (index: number) => {
+    if (recentSearchList) {
+      const tempSearchList = recentSearchList.filter((_, i) => i !== index);
+      setRecentSearchList(tempSearchList);
+      localStorage.setItem("searchKeyword", JSON.stringify(tempSearchList));
+    }
+  };
+
+  const SearchRecordItem = ({
+    itemText,
+    onClickRemoveButton
+  }: SearchRecordItemProps) => {
     return (
       <div className="flex justify-between my-4">
         <div className="flex gap-6">
           <Icon id="clock" />
           <p>{itemText}</p>
         </div>
-        <button className="pr-2">X</button>
+        <button
+          onClick={onClickRemoveButton}
+          className="pr-2">
+          X
+        </button>
       </div>
     );
   };
@@ -23,17 +60,22 @@ const RecentSearch = () => {
     <div className="my-6">
       <div className="flex justify-between">
         <h1 className="text-xl">최근 검색</h1>
-        <button className="text-sm">전체 삭제</button>
+        <button
+          className="text-sm"
+          onClick={onClickClearButton}>
+          전체 삭제
+        </button>
       </div>
-      {recentSearchList.length ? (
+      {recentSearchList && recentSearchList.length ? (
         recentSearchList.map((item, index) => (
           <SearchRecordItem
+            onClickRemoveButton={() => onClickDeleteButton(index)}
             key={index}
             itemText={item}
           />
         ))
       ) : (
-        <p>최근 검색기록이 없습니다.</p>
+        <p className="my-4 text-md">최근 검색기록이 없습니다.</p>
       )}
     </div>
   );

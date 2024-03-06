@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/utils/cn";
 import { useState } from "react";
+import Icon from "../Icon";
 
 interface DropDownProps {
   className?: string;
@@ -19,11 +20,18 @@ const DropDown = ({
   return (
     <div
       className={cn(
-        "relative text-black bg-slate-200 border-[0.12rem] border-gray-500 rounded-md",
+        "relative text-black  bg-slate-200 border-[0.12rem] border-gray-500 rounded-md",
         className
       )}>
-      <button onClick={() => setIsOpenDropDown((isOpen) => !isOpen)}>
-        <p className="px-2">{selectedOption}</p>
+      <button
+        onClick={() => setIsOpenDropDown((isOpen) => !isOpen)}
+        className="flex justify-between">
+        <p className="px-2 text-[0.7rem]">{selectedOption}</p>
+        <Icon
+          className="ml-1 -rotate-90"
+          id="arrow-back"
+          size={16}
+        />
       </button>
       {isOpenDropDown && (
         <div className="rounded-md absolute my-1 bg-slate-300 text-black pb-3 w-[6rem] grid">

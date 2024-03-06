@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
 import { Chips, Chip } from "@/app/_component/common/Chips";
-import InputForm from "@/app/_component/common/Input/InputForm";
 
 interface SearchFilterModal {
   closeModal: () => void;
@@ -27,6 +27,7 @@ const CATEGORY_LIST = [
 ] as const;
 
 const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
+  const { register, handleSubmit, setValue } = useForm();
   const [isShowCategory, setIsShowCateogory] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
@@ -60,7 +61,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
       <div className="flex gap-[6.7rem] my-3 px-2">
         <div>
           <input
-            className="mr-2"
+            className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="direct"
             type="radio"
             name="trade"
@@ -69,7 +70,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
         </div>
         <div>
           <input
-            className="mr-2"
+            className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="delivery"
             type="radio"
             name="trade"
@@ -99,7 +100,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
           <label className="my-auto mr-4 text-lg">이상</label>
           <Input.InputInnerBox className="w-[14rem] h-[2.8rem]">
             <Input.InputForm
-              className="w-[11.5rem] text-start"
+              className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
             />
             <label className="text-black my-auto text-2xl">원</label>
@@ -109,7 +110,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
           <label className="my-auto mr-4 text-lg">이하</label>
           <Input.InputInnerBox className="w-[14rem] h-[2.8rem]">
             <Input.InputForm
-              className="w-[11.5rem] text-start"
+              className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
             />
             <label className="text-black my-auto text-2xl">원</label>

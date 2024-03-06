@@ -1,5 +1,6 @@
 import { HttpResponse, http } from "msw";
 
+import { postListData } from "./data/postListData";
 import { popularSearchData } from "./data/popularSearchData";
 
 const handler = [
@@ -11,6 +12,30 @@ const handler = [
     } catch (error) {
       throw new Error(`${error}`);
     }
+  }),
+  http.get("/api/search/:id", async ({ params, request }) => {
+    const { searchParams } = new URL(request.url);
+    const { id } = params;
+    const size = Number(searchParams.get("size"));
+    const page = Number(searchParams.get("page"));
+
+    const result = postListData.filter((item) =>
+      item.postName.includes(id as string)
+    );
+
+    const totalCount = result.length;
+    const totalPages = Math.ceil(totalCount / size);
+
+    const nextPage = page < totalPages - 1 ? page + 1 : null;
+
+    return HttpResponse.json({
+      content: result.slice(page * 5, page * 5 + size),
+      pageNumber: page,
+      pageSize: size,
+      totalPages,
+      totalCount,
+      nextPage
+    });
   })
 ];
 

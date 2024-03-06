@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import useGetPopluarKeywrodrQuery from "@/app/hooks/queries/useGetPopluarKeyword";
 
 /* @TODO : 
@@ -13,15 +15,15 @@ const RealTimePopluar = () => {
       <div className="grid grid-rows-5 grid-flow-col my-1">
         {popularKeywords ? (
           popularKeywords.map((item, index) => (
-            <button
-              onClick={() => console.log(item)}
+            <Link
+              href={`/search/${item}`}
               className="flex gap-3"
               key={index}>
               <p className="text-red-500 text-[0.8rem] py-[0.2rem]">{`${index + 1} `}</p>
               <p className="text-[0.9rem] overflow-hidden text-ellipsis">
                 {item}
               </p>
-            </button>
+            </Link>
           ))
         ) : (
           <p> 로딩중 ...</p>
