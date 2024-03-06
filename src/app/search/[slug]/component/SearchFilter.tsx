@@ -8,6 +8,7 @@ import { Chips, Chip } from "@/app/_component/common/Chips";
 
 interface SearchFilterModal {
   closeModal: () => void;
+  setFilterOption: (filterOption: Record<string, string | number>) => void;
 }
 
 const CATEGORY_LIST = [
@@ -26,8 +27,11 @@ const CATEGORY_LIST = [
   "기타중고물품"
 ] as const;
 
-const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
-  const { register, handleSubmit, setValue } = useForm();
+const SearchFilterModal = ({
+  closeModal,
+  setFilterOption
+}: SearchFilterModal) => {
+  const { register, getValues, setValue } = useForm();
   const [isShowCategory, setIsShowCateogory] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
@@ -46,7 +50,10 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
         <Chips
           className="grid grid-cols-2"
           Items={selectedCategory}
-          setItems={setSelectedCategory}>
+          setItems={(items) => {
+            setSelectedCategory(items);
+            setValue("categories", items);
+          }}>
           {CATEGORY_LIST.map((value) => (
             <Chip
               className="border-0 w-[7rem] h-[1.5rem] my-0 text-start"
@@ -64,7 +71,8 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
             className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="direct"
             type="radio"
-            name="trade"
+            value="meet"
+            {...register("tradeMethod")}
           />
           <label>직거래</label>
         </div>
@@ -73,7 +81,8 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
             className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="delivery"
             type="radio"
-            name="trade"
+            value="delivery"
+            {...register("tradeMethod")}
           />
           <label>택배</label>
         </div>
@@ -83,6 +92,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
           <input
             type="checkbox"
             className="mr-2"
+            {...register("unOpenProduct")}
           />
           <label>미개봉 상품</label>
         </div>
@@ -90,6 +100,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
           <input
             type="checkbox"
             className="mr-2"
+            {...register("onGoingAuction")}
           />
           <label>진행 중인 경매만 보기</label>
         </div>
@@ -102,6 +113,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
+              {...register("minPrice")}
             />
             <label className="text-black my-auto text-2xl">원</label>
           </Input.InputInnerBox>
@@ -112,6 +124,7 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
+              {...register("maxPrice")}
             />
             <label className="text-black my-auto text-2xl">원</label>
           </Input.InputInnerBox>
@@ -121,7 +134,9 @@ const SearchFilterModal = ({ closeModal }: SearchFilterModal) => {
         <button
           className="w-[8rem] h-[2.3rem] bg-blue-300 rounded-md"
           onClick={() => {
+            const filterOptions = getValues();
             closeModal();
+            setFilterOption(filterOptions);
           }}>
           적용
         </button>

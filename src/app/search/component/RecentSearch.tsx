@@ -2,6 +2,7 @@
 
 import Icon from "@/app/_component/common/Icon";
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 
 interface SearchRecordItemProps {
   itemText: string;
@@ -45,7 +46,7 @@ const RecentSearch = () => {
       <div className="flex justify-between my-4">
         <div className="flex gap-6">
           <Icon id="clock" />
-          <p>{itemText}</p>
+          <Link href={`/search/${itemText}`}>{itemText}</Link>
         </div>
         <button
           onClick={onClickRemoveButton}
@@ -75,7 +76,9 @@ const RecentSearch = () => {
           />
         ))
       ) : (
-        <p className="my-4 text-md">최근 검색기록이 없습니다.</p>
+        <p className="h-fit w-fit my-[8rem] mx-auto text-md">
+          최근 검색 기록이 없습니다.
+        </p>
       )}
     </div>
   );

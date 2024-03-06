@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef, Fragment } from "react";
+import { useState } from "react";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 
 import SearchBar from "../component/SearchBar";
@@ -17,6 +17,8 @@ import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";
 
 const SearchResultPage = () => {
   const param = usePathname();
+  const [filterOptions, setFilterOptions] =
+    useState<Record<string, string | number>>(); // @TODO : 해당 데이터로 필터링 검색 api 구현예정
   const [alignOption, setAlignOption] = useState("마감 임박 순");
   const { Modal, open, close } = useModal({
     modalType: "fullScreen",
@@ -39,10 +41,10 @@ const SearchResultPage = () => {
   if (isLoading) return <div>Loading</div>;
 
   return (
-    <main className="w-[90%] mx-auto">
+    <main className="w-[90%] mx-auto bg-blue">
       <SearchBar />
-      <h1>진행중인 경매 상품</h1>
-      <div className="flex justify-between my-2 mb-6">
+      <h1 className="text-lg">진행중인 경매 상품</h1>
+      <div className="flex justify-between my-1 mb-6">
         <button
           onClick={open}
           className="px-4 border-2 border-black text-black bg-white rounded-md">
@@ -56,43 +58,54 @@ const SearchResultPage = () => {
         />
       </div>
       <div className="pb-6">
-        {searchResults.map((resultItem) => (
-          <div key={resultItem.id}>
-            <ProductCard
-              className="my-2"
-              id={resultItem.id}>
-              <ProductCard.CardImage
-                className="w-[6.5rem] h-[6.5rem] mr-4"
-                titleImage={tempLogoImage.src}
-              />
-              <ProductCard.CardTitle width={200}>
-                <p className="text-2xl">{resultItem.postName}</p>
-                <div className="flex gap-4 text-[0.85rem]">
-                  <p>{resultItem.tradePlace}</p>
-                  <p>{getPastTime(new Date())}</p>
-                </div>
-                <div className="flex justify-between">
-                  <p className="font-bold text-[1.1rem]">
-                    {resultItem.nowPrice}
-                  </p>
-                  <div className="flex">
-                    <Image
-                      className="h-fit mr-1 mt-3"
-                      src={likeIcon}
-                      alt="likeButton"
-                    />
-                    <p className="text-[1rem]">10</p>
+        {searchResults.length ? (
+          searchResults.map((resultItem) => (
+            <div key={resultItem.id}>
+              <ProductCard
+                className="my-2"
+                id={resultItem.id}>
+                <ProductCard.CardImage
+                  className="w-[6.5rem] h-[6.5rem] mr-4"
+                  titleImage={tempLogoImage.src}
+                />
+                <ProductCard.CardTitle width={200}>
+                  <div className="text-2xl">{resultItem.postName}</div>
+                  <div className="flex gap-4 text-[0.85rem]">
+                    <span>{resultItem.tradePlace}</span>
+                    <span>{getPastTime(new Date())}</span>
                   </div>
-                </div>
-              </ProductCard.CardTitle>
-            </ProductCard>
-            <hr />
-          </div>
-        ))}
+                  <div className="flex justify-between">
+                    <span className="font-bold text-[1.1rem]">
+                      {resultItem.nowPrice}
+                    </span>
+                    <div className="flex">
+                      <Image
+                        className="h-fit mr-1 mt-3"
+                        src={likeIcon}
+                        alt="likeButton"
+                      />
+                      <span className="text-[1rem]">10</span>
+                    </div>
+                  </div>
+                </ProductCard.CardTitle>
+              </ProductCard>
+              <hr />
+            </div>
+          ))
+        ) : (
+          <p className="text-xl mx-auto w-fit my-[11rem]">
+            검색결과가 없습니다.
+          </p>
+        )}
         <div ref={ref}></div>
       </div>
       <Modal className="bg-black">
-        <SearchFilterModal closeModal={close} />
+        <SearchFilterModal
+          setFilterOption={(newFilterOptions) =>
+            setFilterOptions(newFilterOptions)
+          }
+          closeModal={close}
+        />
       </Modal>
     </main>
   );

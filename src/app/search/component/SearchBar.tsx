@@ -33,7 +33,8 @@ const SearchBar = () => {
     if (event.key === "Enter") {
       event.preventDefault();
       if (searchKeyword.length < 2) {
-        show("키워드를 2글자 이상 입력해주세요.", "info-solid", 3000);
+        show("2글자 이상 입력해주세요.", "info-solid", 3000);
+        return;
       }
       setRecentSearchRecord(searchKeyword);
       router.push(`/search/${searchKeyword}`);

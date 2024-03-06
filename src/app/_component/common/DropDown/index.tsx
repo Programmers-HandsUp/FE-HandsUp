@@ -25,12 +25,13 @@ const DropDown = ({
       )}>
       <button
         onClick={() => setIsOpenDropDown((isOpen) => !isOpen)}
-        className="flex justify-between">
-        <p className="px-2 text-[0.7rem]">{selectedOption}</p>
+        className="w-full flex justify-between">
+        <p className="px-3 py-[0.1rem] text-[0.7rem]">{selectedOption}</p>
         <Icon
-          className="ml-1 -rotate-90"
+          className="text-black mr-1 my-[0.1rem] -rotate-90"
+          fill="black"
           id="arrow-back"
-          size={16}
+          size={14}
         />
       </button>
       {isOpenDropDown && (
