@@ -20,7 +20,17 @@ const useTimer = (deadline: Date): TimeRemaining => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining(deadline));
+      const newTimeRemaining = calculateTimeRemaining(deadline);
+      if (
+        newTimeRemaining.days === 0 &&
+        newTimeRemaining.hours === 0 &&
+        newTimeRemaining.minutes === 0 &&
+        newTimeRemaining.seconds === 0
+      ) {
+        clearInterval(intervalId);
+      } else {
+        setTimeRemaining(newTimeRemaining);
+      }
     }, 1000);
 
     return () => clearInterval(intervalId);
