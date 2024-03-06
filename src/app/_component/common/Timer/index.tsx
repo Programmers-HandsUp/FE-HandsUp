@@ -6,12 +6,14 @@ interface TimerProps {
   createdAt: Date | string;
   className?: string;
   isIcon?: boolean;
+  hiddenTimer?: boolean;
 }
 
 const Timer = ({
   createdAt,
   deadline,
   isIcon = true,
+  hiddenTimer = false,
   className
 }: TimerProps) => {
   if (deadline instanceof Date) {
@@ -28,7 +30,10 @@ const Timer = ({
       createdAt={processedCreatedAt}
       className={className}
       isIcon={isIcon}>
-      <Time deadline={processedDeadLine} />
+      <Time
+        deadline={processedDeadLine}
+        hiddenTimer={hiddenTimer}
+      />
     </TimerContainer>
   );
 };
