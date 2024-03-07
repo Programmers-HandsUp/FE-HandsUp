@@ -217,10 +217,10 @@
   }
 
   .fire {
-    font-size: 24px;
+    font-size: inherit;
     filter: blur(0.02em);
     -webkit-filter: blur(0.02em);
-    margin: 3em auto 0 auto;
+
     position: relative;
     width: 10em;
     height: 12em;
