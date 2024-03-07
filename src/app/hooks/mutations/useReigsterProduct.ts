@@ -12,7 +12,6 @@ export const useRegisterProduct = () => {
         "상품 등록을 완료했어요! 좋은 경매가 되길 바랍니다 😇",
         "check-solid"
       );
-      console.log(data);
       return data;
       // 경매 리스트 query 초기화 필요
     },
