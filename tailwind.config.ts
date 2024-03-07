@@ -13,7 +13,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
       },
       animation: {
         tiltAndScale: "tiltAndScale linear 1.2s infinite",
@@ -25,7 +26,7 @@ const config: Config = {
         leftMove: "leftMove ease forwards 0.4s ",
         grow: "grow 0.4s ease",
         fill: "fill 1s linear forwards",
-        slideInFromRight: "slideInFromRight 0.7s ease forwards"
+        slideInFromRight: "slideInFromRight 0.7s ease forwards",
         growIn: "growIn ease 0.3s forwards",
         growOut: "growOut ease 0.3s forwards",
         slideIn: "slideIn ease 0.3s forwards",
