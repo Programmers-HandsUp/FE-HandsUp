@@ -1,10 +1,10 @@
-import { cn } from "@/utils/cn";
-import { progressBarVariants, BarVariants } from "./ProgressBar.variants";
 import React from "react";
 import { VariantProps } from "class-variance-authority";
 
-interface ProgressBarProps
-  extends VariantProps<typeof progressBarVariants>,
+import { cn } from "@/utils/cn";
+import { progressBarVariants, BarVariants } from "./ProgressBar.variants";
+
+interface ProgressBarProps extends VariantProps<typeof progressBarVariants>,
     VariantProps<typeof BarVariants> {
   className?: string;
   width: number;

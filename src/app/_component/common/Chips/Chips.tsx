@@ -16,6 +16,7 @@ interface ChipsProps<T extends string | string[]>
   setItems: React.Dispatch<React.SetStateAction<T>> | ((items: T) => void);
   multiple?: boolean;
   size?: number;
+  className?: string;
 }
 
 export const Chips = <T extends string | string[]>({
@@ -26,7 +27,7 @@ export const Chips = <T extends string | string[]>({
   Items,
   setItems,
   multiple,
-  ...props
+  className
 }: ChipsProps<T>) => {
   const handleCheckboxChange = (value: string) => {
     if (multiple && Array.isArray(Items)) {
@@ -58,9 +59,7 @@ export const Chips = <T extends string | string[]>({
   );
 
   return (
-    <div
-      className={cn(chipsVariants({ spacing }))}
-      {...props}>
+    <div className={cn(chipsVariants({ spacing }), className)}>
       {renderChips}
     </div>
   );
