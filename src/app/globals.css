@@ -135,7 +135,6 @@
       transform: translateX(0);
     }
   }
-
   @keyframes chartUp {
     0% {
       height: 0%;

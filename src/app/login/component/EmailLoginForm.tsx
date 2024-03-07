@@ -1,9 +1,9 @@
 "use client";
 import Link from "next/link";
-import Input from "@/app/_component/common/Input";
-
-import { useSignIn } from "@/app/hooks/mutations/useSignin";
 import { useForm } from "react-hook-form";
+
+import Input from "@/app/_component/common/Input";
+import { useSignIn } from "@/app/hooks/mutations/useSignin";
 
 type LoginFormValues = {
   email: string;
@@ -22,7 +22,7 @@ const EmailLoginForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input>
           <Input.InputInnerBox className="w-[13.2rem] h-[2.6rem] text-black">
-            <label className="my-auto w-[3.5rem]"> 아이디 </label>
+            <label className="my-auto w-[3.5rem] ml-1"> 아이디 </label>
 
             <Input.InputForm
               className="my-1 w-[8rem]"
@@ -32,7 +32,7 @@ const EmailLoginForm = () => {
         </Input>
         <Input>
           <Input.InputInnerBox className="w-[13.2rem] h-[2.6rem] my-1 text-black">
-            <label className="my-auto w-[3.5rem]"> 비밀번호 </label>
+            <label className="my-auto w-[3.5rem] ml-1"> 비밀번호 </label>
             <Input.InputForm
               type="password"
               className="my-1"
