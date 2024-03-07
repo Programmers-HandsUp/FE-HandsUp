@@ -94,6 +94,7 @@
       opacity: 0;
     }
   }
+
   @keyframes fill {
     from {
       width: 0%;
@@ -109,6 +110,9 @@
     }
     100% {
       transform: translateX(0);
+    }
+  }
+
   @keyframes chartUp {
     0% {
       height: 0%;
