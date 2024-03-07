@@ -47,6 +47,7 @@ const handler = [
     } catch (error) {
       return new HttpResponse(null, { status: 401 });
     }
+    return new HttpResponse("에러", { status: 401 });
   }),
   http.post("http://localhost:9090/api/login", async ({ request }) => {
     const authData = (await request.json()) as any;

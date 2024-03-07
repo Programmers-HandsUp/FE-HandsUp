@@ -17,6 +17,7 @@ const EmailLoginForm = () => {
   const onSubmit = async (authForm: LoginFormValues) => {
     signInMutation.mutate(authForm);
   };
+  
   return (
     <div className="mx-auto w-fit mt-[12rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
