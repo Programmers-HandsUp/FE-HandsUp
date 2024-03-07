@@ -22,19 +22,19 @@ const AuctionDetailFooterBar = ({
     const handleScroll = () => {
       const currentScrollTop =
         window.scrollY || document.documentElement.scrollTop;
-      if (currentScrollTop > lastScrollTop) {
-        // 아래로 스크롤했을 때
-        setIsVisible(true);
-      } else {
-        // 위로 스크롤했을 때
-        setIsVisible(false);
-      }
-      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
+      setLastScrollTop((prevScrollTop) => {
+        if (currentScrollTop > prevScrollTop) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+        return currentScrollTop <= 0 ? 0 : currentScrollTop;
+      });
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop]);
+  }, []);
 
   return (
     <div
