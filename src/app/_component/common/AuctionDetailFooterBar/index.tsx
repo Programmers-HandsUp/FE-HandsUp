@@ -1,17 +1,19 @@
 "use client";
 
-import { IAuctionDetail, IBids } from "@/app/types/product";
+import { IBids } from "@/app/types/product";
 import Icon from "../Icon";
 import { useEffect, useState } from "react";
 
 interface AuctionDetailDataProps {
-  auctionData: IAuctionDetail;
+  bookmarkCount: number;
+  auctionId: number;
   bidsData: IBids;
 }
 
 const AuctionDetailFooterBar = ({
-  auctionData,
-  bidsData
+  bidsData,
+  auctionId,
+  bookmarkCount
 }: AuctionDetailDataProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
@@ -45,7 +47,7 @@ const AuctionDetailFooterBar = ({
         <div className="flex">
           <Icon id="book-mark" />
           {/*TODO: 좋아요 클릭 가능하게 구현 */}
-          {auctionData.bookmarkCount}
+          {bookmarkCount}
         </div>
         <div className="flex">
           <Icon id="user-alt-fill" />
