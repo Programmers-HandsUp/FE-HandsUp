@@ -1,20 +1,21 @@
-import InputLabel from "../InputLabel";
-import { RegisterProduct } from "../../page";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
+import Datepicker from "react-tailwindcss-datepicker";
+
 import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Tooltip from "@/app/_component/common/Tooltip";
-import Datepicker from "react-tailwindcss-datepicker";
+import InputLabel from "../InputLabel";
+import { RegisterProduct } from "../../page";
 import SearchAddressBtn from "../SearchAddressBtn";
-
-const TRADEMETHOD_LIST = ["직거래", "택배"] as const;
+import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
 
 function AuctionInfo() {
   const {
     control,
     setValue,
     register,
+    reset,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
 
@@ -24,23 +25,25 @@ function AuctionInfo() {
   const inputCount = description ? description.length : 0;
 
   const isDirect = useWatch({ control, name: "tradeMethod" }) === "직거래";
-  const price = useWatch({ control, name: "price" });
+  const price = useWatch({ control, name: "initPrice" });
+
+  if (!isDirect) setValue("address", { si: "", gu: "", dong: "" });
 
   return (
     <div className="m-2">
       <span className="text-xl mb-4">| 경매정보</span>
       <InputLabel
-        name="price"
+        name="initPrice"
         errors={errors}>
         <Controller
           control={control}
-          name="price"
+          name="initPrice"
           render={({ field }) => (
-            <InputPrice<RegisterProduct, "price">
+            <InputPrice<RegisterProduct, "initPrice">
               title="입찰 시작가"
               price={price}
               field={field}
-              setValue={() => setValue("price", 0)}
+              reset={() => reset()}
             />
           )}
         />
@@ -66,6 +69,7 @@ function AuctionInfo() {
         <Controller
           control={control}
           name="dateRangeTime"
+          defaultValue={{ startDate: "", endDate: "" }}
           render={({ field }) => (
             <Datepicker
               minDate={new Date()}
@@ -110,6 +114,7 @@ function AuctionInfo() {
           <Controller
             control={control}
             name="address"
+            defaultValue={{ si: "", gu: "", dong: "" }}
             render={({ field }) => <SearchAddressBtn field={field} />}
           />
         </InputLabel>
@@ -122,6 +127,7 @@ function AuctionInfo() {
           {...register("description")}
           style={{ resize: "none" }}
           className="mt-4 p-4 border border-gray-200 w-full h-48 rounded-lg"
+          defaultValue=""
           placeholder={
             "상품 및 경매 관련해서 추가적인 정보를 입력해주세요. \n안전하고 건전한 거래환경을 만들어가요 🙌🏻"
           }></textarea>

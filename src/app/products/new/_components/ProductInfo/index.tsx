@@ -4,21 +4,17 @@ import {
   useFormContext,
   useWatch
 } from "react-hook-form";
-import InputLabel from "../InputLabel";
-import CategoryList from "./CategoryList";
+
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import { RegisterProduct } from "@/app/products/new/page";
 import { ImagePreviewer, ImageUploader } from "./ImageUploader";
+import InputLabel from "../InputLabel";
+import CategoryList from "./CategoryList";
 
-const STATE_LIST = ["미개봉", "깨끗해요", "사용감"] as const;
-const PURCHASE_TIME_LIST = [
-  "1개월이하",
-  "3개월이하",
-  "6개월이하",
-  "1년이하",
-  "1년이상",
-  "모름"
-] as const;
+import {
+  STATE_LIST,
+  PURCHASE_TIME_LIST
+} from "@/app/products/new/_utils/constants";
 
 function ProductInfo() {
   const {
@@ -59,27 +55,28 @@ function ProductInfo() {
         errors={errors}>
         <input
           {...register("title")}
+          defaultValue=""
           className={`w-full h-9 px-3 rounded-lg border ${errors["title"] ? "border-red-600" : ""}`}
           placeholder="상품명"
         />
       </InputLabel>
       <InputLabel
         title="카테고리"
-        name="category"
+        name="productCategory"
         errors={errors}>
         <Controller
-          name="category"
+          name="productCategory"
           control={control}
           render={({ field }) => <CategoryList field={field} />}
         />
       </InputLabel>
       <InputLabel
         title="상품상태"
-        name="state"
+        name="productStatus"
         errors={errors}>
         <Controller
           control={control}
-          name="state"
+          name="productStatus"
           render={({ field }) => (
             <Chips
               Items={field.value}
@@ -109,11 +106,11 @@ function ProductInfo() {
               Items={field.value}
               setItems={field.onChange}
               className="grid grid-cols-3">
-              {PURCHASE_TIME_LIST.map((value) => (
+              {PURCHASE_TIME_LIST.map(({ value, title }) => (
                 <Chip
                   key={value}
                   value={value}>
-                  {value}
+                  {title}
                 </Chip>
               ))}
             </Chips>

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ControllerRenderProps } from "react-hook-form";
+
 import useModal from "@/app/hooks/useModal";
 import Icon from "@/app/_component/common/Icon";
-import { ControllerRenderProps } from "react-hook-form";
-import { RegisterProduct } from "../../page";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
+import { RegisterProduct } from "../../page";
 
 function SearchAddressBtn({
   field
@@ -16,25 +16,16 @@ function SearchAddressBtn({
     modalType: "fullScreen",
     animate: "slide"
   });
-  const [dong, setDong] = useState("");
   const { value: address, onChange } = field;
-
-  useEffect(() => {
-    if (address) {
-      const [, , dong] = address.split(" ");
-      setDong(dong);
-    }
-  }, [address]);
 
   const handleClose = () => {
     close();
-    setDong("");
-    onChange("");
+    onChange({ si: "", gu: "", dong: "" });
   };
 
   return (
     <main className="flex flex-col dark:text-black">
-      {dong ? (
+      {address && address.dong ? (
         <button
           type="button"
           className="p-2 rounded-lg bg-gray-100">
@@ -44,7 +35,7 @@ function SearchAddressBtn({
                 id="pin-fill"
                 stroke="black"
               />
-              <p>{dong}</p>
+              <p>{address.dong}</p>
             </div>
             <button onClick={handleClose}>
               <Icon

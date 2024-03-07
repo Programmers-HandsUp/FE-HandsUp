@@ -4,9 +4,16 @@ import Icon from "../Icon";
 import useDebounce from "@/app/hooks/useDebounce";
 import { EmptyResults } from "./EmptyResults";
 import AddrList from "./AddrList";
+
 interface SearchAddressProps {
   close?: () => void;
-  onChange: (address: string) => void;
+  onChange: (address: Address) => void;
+}
+
+interface Address {
+  si: string;
+  gu: string;
+  dong: string;
 }
 
 export function SearchAddress({ close, onChange }: SearchAddressProps) {
@@ -16,7 +23,8 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
 
   const handleClickAddr = (address: string) => {
     close && close();
-    onChange(address);
+    const [si, gu, dong] = address.split(" ");
+    onChange({ si, gu, dong });
   };
 
   return (
@@ -26,8 +34,7 @@ export function SearchAddress({ close, onChange }: SearchAddressProps) {
           className={`flex items-center border h-9 rounded-md px-1 bg-white ${close ? "w-72" : "w-80"}`}>
           <Icon
             id="search"
-            fill="none"
-            stroke="gray"
+            className="text-gray-600"
           />
           <input
             {...register("search", { required: true })}

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Icon from "@/app/_component/common/Icon";
 import { ControllerRenderProps } from "react-hook-form";
+
+import Icon from "@/app/_component/common/Icon";
 import { RegisterProduct } from "@/app/products/new/page";
+import { CATEGORY_LIST } from "@/app/products/new/_utils/constants";
 
-const CATEGORY_LIST = ["디지털 기기", "가구/인테리어", "패션/잡화", "생활가전", "생활/주방", "스포츠/레저", "취미/게임/음반", "뷰티/미용", "반려동물용품", "티켓/교환권", "도서", "유아도서", "기타중고물품"] as const;
-
-function CategoryList({ field }: { field: ControllerRenderProps<RegisterProduct, "category"> }) {
+interface CategoryListProps {
+  field: ControllerRenderProps<RegisterProduct, "productCategory">;
+}
+function CategoryList({ field }: CategoryListProps) {
   const [isShow, setIsShow] = useState(false);
 
   return (
