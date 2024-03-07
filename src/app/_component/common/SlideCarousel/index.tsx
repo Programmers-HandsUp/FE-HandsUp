@@ -113,13 +113,19 @@ const SlideCarousel = ({
               onClick={buttonScrollLeft}
               className="order-1"
               disabled={!isLeftButtonActive}>
-              <Icon id="chevron-left" />
+              <Icon
+                id="chevron-left"
+                className={`${!isLeftButtonActive ? "text-gray-500" : "text-[#96E4FF]"}`}
+              />
             </button>
             <button
               onClick={buttonScrollRight}
               className="order-3"
               disabled={!isRightButtonActive}>
-              <Icon id="chevron-right" />
+              <Icon
+                id="chevron-right"
+                className={`${!isRightButtonActive ? "text-gray-500" : "text-[#96E4FF]"}`}
+              />
             </button>
           </>
         )}
@@ -130,7 +136,7 @@ const SlideCarousel = ({
             <button
               key={index}
               onClick={() => handleClickIndicator(index)}
-              className={`w-[0.8rem] h-[0.8rem] ${index === currentElement ? "bg-white" : " bg-gray-400"} rounded-full`}
+              className={`w-[0.8rem] h-[0.8rem] ${index === currentElement ? "bg-[#96E4FF]" : " bg-[#7f949b]"} rounded-full transition-colors`}
             />
           ))}
         </div>
