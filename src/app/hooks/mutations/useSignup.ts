@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { signUp } from "@/app/api/auth";
 import Toast from "@/app/_component/common/Toast";
-import { LoginFormValues } from "@/app/types/loginform";
+import { LoginFormValues } from "@/app/types/loginForm";
 
 export function useSignUp() {
   const { show } = Toast();

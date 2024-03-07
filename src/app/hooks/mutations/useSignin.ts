@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { setLogin } from "@/app/api/auth";
 import Toast from "@/app/_component/common/Toast";
-import { LoginFormValues } from "@/app/types/loginform";
+import { LoginFormValues } from "@/app/types/loginForm";
 
 export function useSignIn() {
   const { show } = Toast();
@@ -16,7 +16,7 @@ export function useSignIn() {
       show("회원가입에 성공했습니다", "check-solid", 2000);
       router.push("/");
     },
-    onError: (error: Error) => {
+    onError: () => {
       show("회원가입에 실패했습니다", "warn-solid", 2000);
     }
   });

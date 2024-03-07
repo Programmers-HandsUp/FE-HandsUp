@@ -17,7 +17,7 @@ export const useIdDuplicateCheck = (
       switch (Number(error.message)) {
         case 401:
           setIdStatus("None");
-          show("해당 아이디는 사용할 수 없습니다.", "warn-solid", 2000);
+          show("중복된 아이디가 존재합니다!", "warn-solid", 2000);
           break;
       }
     }
