@@ -4,33 +4,33 @@ type LoginFormValues = {
 };
 
 const setLogin = async (authData: LoginFormValues): Promise<any> => {
-  const req = await fetch("http://localhost:9090/api/login", {
+  const response = await fetch("http://localhost:9090/api/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(authData)
   });
-  if (req.ok) {
-    const token = await req.json();
+  if (response.ok) {
+    const token = await response.json();
     return token;
   }
-  throw new Error(req.status.toString());
+  throw new Error(response.status.toString());
 };
 
 const signUp = async (authData: LoginFormValues): Promise<any> => {
-  const req = await fetch("http://localhost:9090/api/signup", {
+  const response = await fetch("http://localhost:9090/api/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(authData)
   });
-  if (req.ok) {
-    const token = await req.json();
+  if (response.ok) {
+    const token = await response.json();
     return token;
   }
-  throw new Error(req.status.toString());
+  throw new Error(response.status.toString());
 };
 
 const idduplicatecheck = async (id: string): Promise<any> => {
