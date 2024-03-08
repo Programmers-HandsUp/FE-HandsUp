@@ -2,12 +2,12 @@ import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
-export interface IForm {
+export interface FormDataType {
   comment: string;
 }
 
 interface CommentProps {
-  onSubmit: (data: IForm) => void;
+  onSubmit: (data: FormDataType) => void;
 }
 
 const CommentInput = ({ onSubmit }: CommentProps) => {
@@ -21,11 +21,11 @@ const CommentInput = ({ onSubmit }: CommentProps) => {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<IForm>({
+  } = useForm<FormDataType>({
     mode: "onSubmit"
   });
 
-  const onSubmitWithReset = (data: IForm) => {
+  const onSubmitWithReset = (data: FormDataType) => {
     onSubmit(data);
     reset();
   };
