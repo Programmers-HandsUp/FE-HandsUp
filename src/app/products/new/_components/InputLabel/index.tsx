@@ -1,7 +1,8 @@
-import { ErrorMessage } from "@hookform/error-message";
-import { FieldErrors } from "react-hook-form";
-import { RegisterProduct } from "../../page";
 import { PropsWithChildren } from "react";
+import { FieldErrors } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+
+import { RegisterProduct } from "../../page";
 
 interface InputLabelProps {
   title?: React.ReactNode;
@@ -19,7 +20,7 @@ function InputLabel({
 }: PropsWithChildren<InputLabelProps>) {
   return (
     <div className="my-3">
-      <span className={`${title} ? my-2 : ""`}>{title}</span>
+      <div className={`${title} ? my-2 : ""`}>{title}</div>
       {children}
       <ErrorMessage
         errors={errors}

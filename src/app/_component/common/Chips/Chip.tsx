@@ -43,9 +43,9 @@ export const Chip = ({
         htmlFor={value}
         className={cn(
           chipVariants({ rounded }),
-          className,
-          isSelected ? `${selectedStyle}` : ""
-        )}>
+          isSelected ? "bg-[#96E4FF]" : ""
+        )}
+        {...props}>
         {children}
       </label>
     </div>

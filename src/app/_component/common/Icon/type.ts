@@ -37,6 +37,7 @@ export type IconName =
   | "box-add"
   | "clock"
   | "camera"
-  | "drop-down"
-  | "arrow-right"
-  | "arrow-dropdown";
+  | "arrow-dropdown"
+  | "chevron-left"
+  | "chevron-right"
+  | "drop-down";

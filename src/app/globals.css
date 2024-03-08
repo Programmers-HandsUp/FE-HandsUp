@@ -14,10 +14,11 @@
   }
 
   body {
-    height: 100dvh;
+    min-height: 100dvh;
     transition: color 0.3s;
     transition: background-color 0.3s;
     @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
+    margin-bottom: calc(var(--bottom-height) + 20px);
   }
 
   * {
@@ -25,7 +26,7 @@
   }
 
   main > section {
-    height: calc(100dvh - var(--header-height) - var(--bottom-height));
+    height: calc(100% - var(--header-height) - var(--bottom-height));
   }
 
   @keyframes watch {
@@ -93,6 +94,7 @@
       opacity: 0;
     }
   }
+
   @keyframes fill {
     from {
       width: 0%;
@@ -101,15 +103,50 @@
       width: 100%;
     }
   }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-}
+  @keyframes chartUp {
+    0% {
+      height: 0%;
+    }
+    100% {
+      height: 100%;
+    }
+  }
 
-@layer base {
+  @keyframes shaking {
+    0% {
+      transform: translate(-100%, -50%) rotate(-20deg);
+    }
+    10% {
+      transform: translate(-100%, -50%) rotate(-8deg);
+    }
+    30% {
+      transform: translate(-100%, -50%) rotate(-35deg);
+    }
+
+    50% {
+      transform: translate(-100%, -50%) rotate(-8deg);
+    }
+  }
+
+  @keyframes pumping {
+    0% {
+      scale: 1;
+    }
+    20% {
+      scale: 1.2;
+    }
+    30% {
+      scale: 1;
+    }
+  }
   @keyframes progress {
     0% {
       width: 0;
@@ -177,5 +214,70 @@
     100% {
       transform: translateX(100vw);
     }
+  }
+
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .fire {
+    font-size: inherit;
+    filter: blur(0.02em);
+    -webkit-filter: blur(0.02em);
+
+    position: relative;
+    width: 10em;
+    height: 12em;
+  }
+  .particle {
+    animation: rise 1s ease-in infinite;
+    background-image: radial-gradient(
+      rgb(255, 80, 0) 20%,
+      rgba(255, 80, 0, 0) 70%
+    );
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    width: 5em;
+    height: 5em;
+  }
+  .particle:nth-of-type(1) {
+    animation-delay: 1s;
+    left: calc((100% - 5em) * 0);
+  }
+  .particle:nth-of-type(2) {
+    animation-delay: 1s;
+    left: calc((100% - 5em) * 0.02);
+  }
+  /* ... */
+  .particle:nth-of-type(50) {
+    animation-delay: 1s;
+    left: calc((100% - 5em) * 0.98);
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(0) scale(1);
+    }
+    25% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10em) scale(0);
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

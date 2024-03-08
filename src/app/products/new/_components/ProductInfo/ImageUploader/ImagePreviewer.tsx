@@ -1,5 +1,11 @@
-import { Controller, FieldArrayWithId, UseFieldArrayRemove, useFormContext } from "react-hook-form";
+import {
+  Controller,
+  FieldArrayWithId,
+  UseFieldArrayRemove,
+  useFormContext
+} from "react-hook-form";
 import Image from "next/image";
+
 import Icon from "@/app/_component/common/Icon";
 import { RegisterProduct } from "@/app/products/new/page";
 
@@ -9,7 +15,7 @@ interface ImagePreviewerProps {
 }
 
 export function ImagePreviewer({ fields, onRemove }: ImagePreviewerProps) {
-  const { control } = useFormContext();
+  const { control } = useFormContext<RegisterProduct>();
 
   return (
     <div className="flex gap-2 whitespace-nowrap overflow-x-auto overflow-scroll">

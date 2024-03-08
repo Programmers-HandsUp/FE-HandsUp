@@ -1,10 +1,8 @@
 import { VariantProps } from "class-variance-authority";
 import {
   Children,
-  Dispatch,
   ReactElement,
   ReactNode,
-  SetStateAction,
   cloneElement,
   isValidElement
 } from "react";
@@ -15,7 +13,7 @@ interface ChipsProps<T extends string | string[]>
   extends VariantProps<typeof chipsVariants> {
   children: React.ReactNode;
   Items: T;
-  setItems: Dispatch<SetStateAction<T>>;
+  setItems: React.Dispatch<React.SetStateAction<T>> | ((items: T) => void);
   multiple?: boolean;
   size?: number;
   className?: string;

@@ -1,43 +1,49 @@
-import InputLabel from "../InputLabel";
-import { RegisterProduct } from "../../page";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
+import Datepicker from "react-tailwindcss-datepicker";
+
 import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Tooltip from "@/app/_component/common/Tooltip";
-import Datepicker from "react-tailwindcss-datepicker";
+import InputLabel from "../InputLabel";
+import { RegisterProduct } from "../../page";
 import SearchAddressBtn from "../SearchAddressBtn";
+import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
 
 function AuctionInfo() {
   const {
     control,
-    watch,
     setValue,
     register,
+    reset,
     formState: { errors }
   } = useFormContext<RegisterProduct>();
 
-  let maxDate = new Date();
-  maxDate.setDate(maxDate.getDate() + 7);
+  const maxDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-  const inputCount = watch("description") ? watch("description").length : 0;
-  const isDirect = watch("tradeMethod") === "직거래";
+  const description = useWatch({ control, name: "description" });
+  const inputCount = description ? description.length : 0;
+
+  const isDirect = useWatch({ control, name: "tradeMethod" }) === "직거래";
+  const price = useWatch({ control, name: "initPrice" });
+
+  if (!isDirect) setValue("address", { si: "", gu: "", dong: "" });
 
   return (
     <div className="m-2">
       <span className="text-xl mb-4">| 경매정보</span>
       <InputLabel
-        name="price"
+        name="initPrice"
         errors={errors}>
         <Controller
           control={control}
-          name="price"
+          name="initPrice"
           render={({ field }) => (
-            <InputPrice<RegisterProduct>
+            <InputPrice<RegisterProduct, "initPrice">
               title="입찰 시작가"
-              price={watch("price")}
+              price={price}
               field={field}
-              setValue={() => setValue("price", "0")}
+              reset={() => reset()}
             />
           )}
         />
@@ -63,6 +69,7 @@ function AuctionInfo() {
         <Controller
           control={control}
           name="dateRangeTime"
+          defaultValue={{ startDate: "", endDate: "" }}
           render={({ field }) => (
             <Datepicker
               minDate={new Date()}
@@ -86,9 +93,15 @@ function AuctionInfo() {
             <Chips
               Items={field.value}
               setItems={field.onChange}
-              size={90}>
-              <Chip value="직거래">직거래</Chip>
-              <Chip value="택배">택배</Chip>
+              className="pt-2">
+              {TRADEMETHOD_LIST.map((method) => (
+                <Chip
+                  key={method}
+                  value={method}
+                  className="w-24">
+                  {method}
+                </Chip>
+              ))}
             </Chips>
           )}
         />
@@ -101,6 +114,7 @@ function AuctionInfo() {
           <Controller
             control={control}
             name="address"
+            defaultValue={{ si: "", gu: "", dong: "" }}
             render={({ field }) => <SearchAddressBtn field={field} />}
           />
         </InputLabel>
@@ -113,6 +127,7 @@ function AuctionInfo() {
           {...register("description")}
           style={{ resize: "none" }}
           className="mt-4 p-4 border border-gray-200 w-full h-48 rounded-lg"
+          defaultValue=""
           placeholder={
             "상품 및 경매 관련해서 추가적인 정보를 입력해주세요. \n안전하고 건전한 거래환경을 만들어가요 🙌🏻"
           }></textarea>
