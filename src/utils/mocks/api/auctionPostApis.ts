@@ -15,8 +15,7 @@ const handlers = [
   http.post("/api/comment/create", async ({ request }) => {
     await delay(1000);
     const data = await request.json();
-    console.log(data);
-    console.log("댓글 생성!");
+
     return HttpResponse.text(JSON.stringify("ok"));
   }),
   http.get("/api/:autionId/commentList", async ({ request }) => {
