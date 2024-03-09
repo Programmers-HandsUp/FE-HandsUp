@@ -101,7 +101,7 @@ const useDragScroll = ({
   };
 
   const buttonScrollLeft = () => {
-    if (containerRef.current && !isButtonScroll) {
+    if (!isButtonScroll) {
       setIsButtonScroll(true);
       setTimeout(() => {
         if (containerRef.current) {
@@ -111,7 +111,7 @@ const useDragScroll = ({
           });
           setCurrentElement((prev) => prev - 1);
         }
-      });
+      }, 0);
     }
   };
 
