@@ -1,7 +1,9 @@
 "use client";
 
 import Icon from "@/app/_component/common/Icon";
-import useModal from "@/app/hooks/useModal";
+import Modal from "@/app/_component/common/Modal";
+import useModalState from "@/app/hooks/useModalState";
+
 import { cn } from "@/utils/cn";
 import { setCookie } from "@/utils/cookie";
 import { MouseEvent } from "react";
@@ -11,11 +13,7 @@ interface RegionSelectProps {
 }
 
 const RegionSelect = ({ currentRegion }: RegionSelectProps) => {
-  const { Modal, open, close, isOpen } = useModal({
-    elementId: "modal-select",
-    modalType: "dropBox",
-    animate: "grow"
-  });
+  const { open, close, isOpen } = useModalState();
 
   const handleClickStore = (e: MouseEvent<HTMLUListElement>) => {
     if (!e.target || !(e.target instanceof HTMLLIElement)) return;
@@ -42,7 +40,11 @@ const RegionSelect = ({ currentRegion }: RegionSelectProps) => {
           />
         </button>
       </div>
-      <Modal>
+      <Modal
+        elementId="modal-select"
+        modalType="dropBox"
+        isOpen={isOpen}
+        close={close}>
         <ul
           className="text-black [&_li]:cursor-pointer hover:[&_li]:opacity-60 [&_li]:transition-opacity"
           onClick={handleClickStore}>

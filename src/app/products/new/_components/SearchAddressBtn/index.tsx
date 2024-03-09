@@ -1,21 +1,18 @@
 "use client";
 
 import { ControllerRenderProps } from "react-hook-form";
-
-import useModal from "@/app/hooks/useModal";
 import Icon from "@/app/_component/common/Icon";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 import { RegisterProduct } from "../../page";
+import useModalState from "@/app/hooks/useModalState";
+import Modal from "@/app/_component/common/Modal";
 
 function SearchAddressBtn({
   field
 }: {
   field: ControllerRenderProps<RegisterProduct, "address">;
 }) {
-  const { Modal, open, close } = useModal({
-    modalType: "fullScreen",
-    animate: "slide"
-  });
+  const { open, close, isOpen } = useModalState();
   const { value: address, onChange } = field;
 
   const handleClose = () => {
@@ -60,7 +57,12 @@ function SearchAddressBtn({
               <p className="">위치 추가</p>
             </div>
           </button>
-          <Modal className="dark:bg-black">
+          <Modal
+            isOpen={isOpen}
+            close={close}
+            modalType="fullScreen"
+            animate="slide"
+            className="dark:bg-black">
             <SearchAddress
               close={close}
               onChange={onChange}
