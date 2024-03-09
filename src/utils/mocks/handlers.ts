@@ -7,7 +7,7 @@ import mypageHandler from "./api/mypageApis";
 export const handlers = [
   ...postApiHandler,
   ...authApiHandler,
-  ...searchApiHandler
+  ...searchApiHandler,
   ...mypageHandler,
   ...bidsAPIHandler
 ];
