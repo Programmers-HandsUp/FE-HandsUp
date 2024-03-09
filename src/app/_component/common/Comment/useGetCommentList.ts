@@ -42,7 +42,7 @@ const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
   });
 
   return {
-    data: data?.pages.map((x) => x.content).flat() || [],
+    data: data?.pages.flatMap((x) => x.content) || [],
     isFetched,
     hasNextPage,
     isLoading,

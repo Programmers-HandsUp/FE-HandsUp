@@ -10,7 +10,7 @@ import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useEffect, useRef, useState } from "react";
 import useGetCommentList, { ICommentListAPI } from "./useGetCommentList";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
-import CommentInput, { IForm } from "./CommentInput";
+import CommentInput, { FormDataType } from "./CommentInput";
 
 interface CommentProps {
   auctionId: number;
@@ -57,7 +57,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
-  const onSubmit = (data: IForm) => {
+  const onSubmit = (data: FormDataType) => {
     mutation.mutate({ comment: data.comment, auctionId });
     const exMessages = queryClient.getQueryData([
       "comment",
