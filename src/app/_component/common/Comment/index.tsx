@@ -8,7 +8,9 @@ import {
 } from "@tanstack/react-query";
 import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useEffect, useRef, useState } from "react";
-import useGetCommentList, { ICommentListAPI } from "./useGetCommentList";
+import useGetCommentList, {
+  ICommentListAPI
+} from "../../../hooks/queries/useGetCommentList";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 import CommentInput, { FormDataType } from "./CommentInput";
 

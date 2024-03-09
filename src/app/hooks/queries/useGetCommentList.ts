@@ -28,10 +28,10 @@ const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
     ICommentListAPI,
     DefaultError,
     InfiniteData<ICommentListAPI>,
-    [string, number],
+    [string, number, string],
     number
   >({
-    queryKey: ["comment", auctionId],
+    queryKey: ["product", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => {
