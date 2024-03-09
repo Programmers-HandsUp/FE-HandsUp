@@ -44,7 +44,7 @@ const Modal = ({
     setPortalElement(document.getElementById("global-modal"));
   }, []);
 
-  if (!portalElement) return <></>;
+  if (!portalElement) return null;
 
   return createPortal(
     <>
