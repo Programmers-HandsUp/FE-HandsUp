@@ -26,7 +26,6 @@ export const Chip = ({
   className,
   ...props
 }: ChipProps) => {
-  console.log(isSelected);
   return (
     <div
       style={{

@@ -34,7 +34,6 @@ export const Chips = <T extends string | string[]>({
       const updatedSelection = Items.includes(value)
         ? Items.filter((item) => item !== value)
         : [...Items, value];
-
       setItems(updatedSelection as T);
     } else {
       setItems(value as T);
