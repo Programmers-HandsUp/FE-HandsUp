@@ -2,7 +2,7 @@
 
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import Timer from "@/app/_component/common/Timer";
-import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
+import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
 import { Auction } from "@/utils/mocks/api/types";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
