@@ -1,10 +1,8 @@
 import { VariantProps } from "class-variance-authority";
 import {
   Children,
-  Dispatch,
   ReactElement,
   ReactNode,
-  SetStateAction,
   cloneElement,
   isValidElement
 } from "react";
@@ -15,7 +13,7 @@ interface ChipsProps<T extends string | string[]>
   extends VariantProps<typeof chipsVariants> {
   children: React.ReactNode;
   Items: T;
-  setItems: Dispatch<SetStateAction<T>>;
+  setItems: React.Dispatch<React.SetStateAction<T>> | ((items: T) => void);
   multiple?: boolean;
   size?: number;
   className?: string;
@@ -36,7 +34,6 @@ export const Chips = <T extends string | string[]>({
       const updatedSelection = Items.includes(value)
         ? Items.filter((item) => item !== value)
         : [...Items, value];
-
       setItems(updatedSelection as T);
     } else {
       setItems(value as T);
@@ -51,7 +48,7 @@ export const Chips = <T extends string | string[]>({
           key: index,
           rounded,
           size,
-          isSelected: Items.includes(child.props.value),
+          isSelected: Items?.includes(child.props.value),
           onChange: () => handleCheckboxChange(child.props.value),
           type: multiple ? "checkbox" : "radio"
         });

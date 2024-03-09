@@ -12,14 +12,19 @@ import { ReactNode } from "react";
 
 interface ProductWrapperProps {
   id: number;
+  className?: string;
   children: ReactNode;
 }
 
-const ProductCardWrapper = ({ id, children }: ProductWrapperProps) => {
+const ProductCardWrapper = ({
+  id,
+  children,
+  className
+}: ProductWrapperProps) => {
   return (
     <Link
       href={`auction/${id}`}
-      className={cn("flex group")}>
+      className={cn("flex group", className)}>
       {children}
     </Link>
   );

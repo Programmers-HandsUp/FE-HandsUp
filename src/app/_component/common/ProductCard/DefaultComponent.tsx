@@ -17,7 +17,7 @@ interface CardImageProps extends DefaultProps {
   height: number;
 }
 interface CardTitleProps extends DefaultProps {
-  width: number;
+  width?: number;
 }
 interface CardIPriceProps extends DefaultProps {
   price: number;
@@ -53,17 +53,16 @@ export const CardImage = ({
 
 export const CardTitle = ({ children, className, width }: CardTitleProps) => {
   return (
-    <p
+    <div
       className={cn(
         "h-auto text-left text-2xl overflow-hidden text-ellipsis whitespace-nowrap",
         className
       )}
       style={{ width: `${width}px` }}>
       {children}
-    </p>
+    </div>
   );
 };
-
 export const CardPrice = ({ children, className, price }: CardIPriceProps) => {
   return (
     <p className={cn("text-base text-left", className)}>

@@ -23,7 +23,8 @@ export const Chip = ({
   size,
   children,
   selectedStyle = "bg-[#96E4FF]",
-  className
+  className,
+  ...props
 }: ChipProps) => {
   return (
     <div
@@ -43,9 +44,10 @@ export const Chip = ({
         htmlFor={value}
         className={cn(
           chipVariants({ rounded }),
-          className,
-          isSelected ? `${selectedStyle}` : ""
-        )}>
+          isSelected ? `${selectedStyle}` : "",
+          className
+        )}
+        {...props}>
         {children}
       </label>
     </div>

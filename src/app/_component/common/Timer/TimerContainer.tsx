@@ -47,17 +47,19 @@ const TimerContainer = ({
           />
         )}
         <div className={cn("w-[90px] pt-[1px] pr-[2px] dark:border-white")}>
-          {children}
-          {isTimerFinished && (
-            <div className="absolute -bottom-2 left-8 w-[70px]">
-              <Image
-                src={deadlineImage}
-                alt="deadline"
-                className="w-full h-auto dark:saturate-200"
-                priority
-              />
-            </div>
-          )}
+          <div className="flex justify-center items-center ">
+            {children}
+            {isTimerFinished && (
+              <div className="absolute w-[70px]">
+                <Image
+                  src={deadlineImage}
+                  alt="deadline"
+                  className="w-full h-auto dark:saturate-200"
+                  priority
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
