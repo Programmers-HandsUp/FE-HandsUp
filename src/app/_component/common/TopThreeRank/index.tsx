@@ -22,7 +22,7 @@ const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
 
   return (
     <>
-      <div>
+      <div className="relative top-28">
         <div className="relative bottom-20">
           <h1>입찰가 TOP 3🏆</h1>
         </div>
