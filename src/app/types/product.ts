@@ -31,4 +31,5 @@ export interface IAuctionDetail {
   dong: string;
   bookmarkCount: number;
   createdAt: string;
+  auctionStatus: "경매중" | "거래진행중" | "거래완료";
 }
