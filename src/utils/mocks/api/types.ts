@@ -53,33 +53,6 @@ export interface userDataType {
   interetedcategory: string[];
 }
 
-export interface TopThreeRankType {
-  content: TopThreeRankDataType[];
-  size: number;
-  hasNext: boolean;
-}
-
-export interface TopThreeRankDataType {
-  biddingPrice: number;
-  auctionId: number;
-  bidderId: number;
-  bidderNickname: string;
-}
-
-export interface BidsType {
-  content: BidsDataType[];
-  size: number;
-  hasNext: boolean;
-}
-
-export interface BidsDataType {
-  biddingPrice: number;
-  auctionId: number;
-  bidderId: number;
-  bidderNickname: string;
-  createdAt: Date;
-}
-
 export interface CommentType {
   messageId: number;
   auctionId: number;

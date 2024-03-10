@@ -1,4 +1,4 @@
-import { TopThreeRankDataType } from "@/utils/mocks/api/types";
+import { TopThreeRankDataType } from "@/app/types/product";
 import Avatar from "../Avatar";
 import Image from "next/image";
 import TransparentMan from "/public/assets/images/transparentMan.png";

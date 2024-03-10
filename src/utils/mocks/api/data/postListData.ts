@@ -1,4 +1,4 @@
-import { IAuctionDetail } from "@/app/types/product";
+import { AuctionDetailType } from "@/app/types/product";
 import { Auction, CommentType } from "../types";
 
 export const postListData = [
@@ -910,7 +910,7 @@ export const auctionHotList: Auction[] = [
   }
 ];
 
-export const auctionDetail: IAuctionDetail = {
+export const auctionDetail: AuctionDetailType = {
   auctionId: 353256236,
   sellerId: 12342,
   title: "나이키 덩크 로우 팔아영",

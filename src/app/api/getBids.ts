@@ -1,4 +1,5 @@
-import { BidsType, TopThreeRankType } from "@/utils/mocks/api/types";
+import { TopThreeRankType } from "../types/product";
+import { Bids } from "../types/product";
 
 export async function getTopThreeRank({
   auctionId
@@ -24,7 +25,7 @@ export async function getBids({
   auctionId
 }: {
   auctionId: number;
-}): Promise<BidsType> {
+}): Promise<Bids> {
   const res = await fetch(
     `http://localhost:9090/api/auctions/${auctionId}/bids`,
     {

@@ -1,13 +1,13 @@
 "use client";
 
-import { IBids } from "@/app/types/product";
+import { Bids } from "@/app/types/product";
 import Icon from "../Icon";
 import { useEffect, useState } from "react";
 
 interface AuctionDetailDataProps {
   bookmarkCount: number;
   auctionId: number;
-  bidsData: IBids;
+  bidsData: Bids;
 }
 
 const AuctionDetailFooterBar = ({
