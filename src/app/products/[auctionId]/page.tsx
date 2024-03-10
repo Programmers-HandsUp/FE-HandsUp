@@ -51,7 +51,6 @@ const Product = async ({ params }: ProductProps) => {
   });
   const dehydratedState = dehydrate(queryClient);
 
-  // const { data, isLoading } = useGetAuctionDetail({ auctionId });
   return (
     <section>
       <HydrationBoundary state={dehydratedState}>
