@@ -22,11 +22,11 @@ const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
 
   return (
     <>
-      <div className="relative top-28">
+      <div className="relative mt-[112px] mb-[20px]">
         <div className="relative bottom-20">
           <h1>입찰가 TOP 3🏆</h1>
         </div>
-        <div className="border-b-2 w-full h-[200px] flex items-end justify-around">
+        <div className="relative border-b-2 w-full h-[200px] flex items-end justify-around">
           {biddingPercentages.map((item, idx) => (
             <div
               key={item.bidderId}
