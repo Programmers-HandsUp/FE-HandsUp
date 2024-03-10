@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 
 interface LayoutProps {
   title: React.ReactNode;
-  url?: "buying" | "selling" | "review";
+  url?: "buying?status=bidding" | "selling?status=bidding" | "review";
 }
 
 function BoxLayout({ title, url, children }: PropsWithChildren<LayoutProps>) {

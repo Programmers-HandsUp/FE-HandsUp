@@ -22,7 +22,7 @@ function MyPage() {
       <Profile />
       <BoxLayout
         title="구매 내역"
-        url="buying">
+        url="buying?status=bidding">
         <TransactionStatus
           type="구매"
           statusCounts={purchaseStatusCounts}
@@ -30,7 +30,7 @@ function MyPage() {
       </BoxLayout>
       <BoxLayout
         title="판매 내역"
-        url="selling">
+        url="selling?status=bidding">
         <TransactionStatus
           type="판매"
           statusCounts={saleStatusCounts}

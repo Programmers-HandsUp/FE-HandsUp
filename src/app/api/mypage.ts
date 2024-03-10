@@ -1,7 +1,7 @@
 import { Purchase, Review, ReviewLabel, Sale, Status } from "../my/types";
 
 export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
-  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/user/buy`;
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buy`;
   const url = status ? `${baseUrl}?status=${status}` : baseUrl;
 
   const res = await fetch(url);
