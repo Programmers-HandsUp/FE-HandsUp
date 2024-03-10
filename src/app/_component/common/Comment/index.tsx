@@ -62,8 +62,9 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
   const onSubmit = (data: FormDataType) => {
     mutation.mutate({ comment: data.comment, auctionId });
     const exMessages = queryClient.getQueryData([
-      "comment",
-      auctionId
+      "product",
+      auctionId,
+      "comments"
     ]) as InfiniteData<ICommentListAPI>;
 
     //더미데이터
@@ -104,6 +105,9 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
 
   return (
     <div>
+      <div className="text-xl p-2">
+        <h1>경매에 대해서 얘기를 나눠봐요!</h1>
+      </div>
       <div
         ref={messagesEndRef}
         className="bg-[#96e5ff8f] rounded-lg p-2 h-[300px] overflow-auto">
