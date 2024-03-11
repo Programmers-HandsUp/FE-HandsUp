@@ -2,10 +2,10 @@ import { z } from "zod";
 
 import {
   CATEGORY_LIST,
+  ERRORS,
   PURCHASE_TIME_VALUE,
   STATE_LIST,
-  TRADEMETHOD_LIST,
-  ERRORS
+  TRADEMETHOD_LIST
 } from "./constants";
 
 export const ProductSchema = z

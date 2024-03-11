@@ -3,10 +3,11 @@
 import { useRouter } from "next/navigation";
 import { KeyboardEvent, useState } from "react";
 
-import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
 import Toast from "@/app/_component/common/Toast";
+
+import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 
 const SearchBar = () => {
   const router = useRouter();

@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
+
 import Icon from "@/app/_component/common/Icon";
-import { useState, useEffect, useCallback } from "react";
-import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 
 interface SearchRecordItemProps {
   itemText: string;

@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { Chip, Chips } from "../../_component/common/Chips";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+import { Chip, Chips } from "../../_component/common/Chips";
 
 interface SelectRangeProps {
   onSelected: (value: string) => void;

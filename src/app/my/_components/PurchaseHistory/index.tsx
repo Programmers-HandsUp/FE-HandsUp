@@ -1,5 +1,5 @@
-import Transaction from "../Transaction/Transaction";
 import { Purchase } from "../../types";
+import Transaction from "../Transaction/Transaction";
 
 interface PurchaseHistoryProps {
   purchaseList: Purchase[] | undefined;

@@ -1,9 +1,11 @@
 "use client";
 
-import SlideCarousel from "@/app/_component/common/SlideCarousel";
-import Timer from "@/app/_component/common/Timer";
 import Image from "next/image";
 import Link from "next/link";
+
+import SlideCarousel from "@/app/_component/common/SlideCarousel";
+import Timer from "@/app/_component/common/Timer";
+
 import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
 
 export interface Root {

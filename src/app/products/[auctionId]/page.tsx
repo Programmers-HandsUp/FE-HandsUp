@@ -1,16 +1,17 @@
+import {
+  DefaultError,
+  dehydrate,
+  HydrationBoundary,
+  InfiniteData,
+  QueryClient
+} from "@tanstack/react-query";
+
 import { getAuctionDetail } from "@/app/api/getAuctionDetail";
+import { getBids, getTopThreeRank } from "@/app/api/getBids";
 import { getComments } from "@/app/api/getComments";
 import { ICommentListAPI } from "@/app/products/[auctionId]/_hooks/queries/useGetCommentList";
 
-import {
-  DefaultError,
-  HydrationBoundary,
-  InfiniteData,
-  QueryClient,
-  dehydrate
-} from "@tanstack/react-query";
 import DetailInfoSection from "./_component/DetailInfoSection";
-import { getBids, getTopThreeRank } from "@/app/api/getBids";
 
 interface ProductProps {
   params: { auctionId: number };

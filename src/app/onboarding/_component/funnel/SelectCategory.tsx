@@ -1,9 +1,9 @@
 "use client";
 
-import useOnboardingStore from "../store/store";
-
 import { Chips } from "@/app/_component/common/Chips";
 import { Chip } from "@/app/_component/common/Chips";
+
+import useOnboardingStore from "../store/store";
 
 const SelectCategory = () => {
   const category = useOnboardingStore((state) => state.category);

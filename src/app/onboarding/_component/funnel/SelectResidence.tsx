@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import SearchAddress from "@/app/_component/common/searchAddress";
+
+import { SearchAddress } from "@/app/_component/common/searchAddress";
 
 interface SelectResidenceProps {
   setAddress: React.Dispatch<React.SetStateAction<string>>;

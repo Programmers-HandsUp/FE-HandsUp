@@ -1,10 +1,10 @@
+import Image from "next/image";
 import {
   Controller,
   FieldArrayWithId,
   UseFieldArrayRemove,
   useFormContext
 } from "react-hook-form";
-import Image from "next/image";
 
 import Icon from "@/app/_component/common/Icon";
 import { RegisterProduct } from "@/app/products/new/page";

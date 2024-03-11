@@ -2,12 +2,12 @@
 
 import BoxLayout from "./_components/BoxLayout";
 import Profile from "./_components/Profile";
-import useReviewLabelList from "./_hooks/queries/useReviewLabelList";
-import useReviewList from "./_hooks/queries/useReviewList";
+import ReviewItem from "./_components/ReviewItem";
 import TransactionStatus from "./_components/TransactionStatus";
 import usePurchaseList from "./_hooks/queries/usePurchaseList";
+import useReviewLabelList from "./_hooks/queries/useReviewLabelList";
+import useReviewList from "./_hooks/queries/useReviewList";
 import useSaleList from "./_hooks/queries/useSaleList";
-import ReviewItem from "./_components/ReviewItem";
 
 function MyPage() {
   // 사용자 정보 받아오는 API 필요

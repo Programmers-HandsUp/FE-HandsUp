@@ -1,7 +1,8 @@
 "use client";
 
-import { calculateTimeRemaining } from "@/utils/function/time";
 import { useEffect, useState } from "react";
+
+import { calculateTimeRemaining } from "@/utils/function/time";
 
 interface TimeRemaining {
   days: number;

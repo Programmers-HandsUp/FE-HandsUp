@@ -1,12 +1,13 @@
 "use client";
 
 import ProductCard from "@/app/_component/common/ProductCard";
-import { divideArray } from "@/utils/function/arrayDivider";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
-import { HorizontalCard, VerticalCard } from "./DefaultCard";
-import { feedDivideVariants } from "./AuctionFeedList.variants";
+import { divideArray } from "@/utils/function/arrayDivider";
 import { cn } from "@/utils/function/cn";
+
 import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
+import { feedDivideVariants } from "./AuctionFeedList.variants";
+import { HorizontalCard, VerticalCard } from "./DefaultCard";
 
 interface AuctionFeedListProps {
   divideNum: 1 | 4 | 8;

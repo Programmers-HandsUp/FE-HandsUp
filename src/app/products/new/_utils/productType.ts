@@ -1,8 +1,8 @@
 import {
   CATEGORY_LIST,
+  PURCHASE_TIME_VALUE,
   STATE_LIST,
-  TRADEMETHOD_LIST,
-  PURCHASE_TIME_VALUE
+  TRADEMETHOD_LIST
 } from "./constants";
 
 export type ImageUrl =

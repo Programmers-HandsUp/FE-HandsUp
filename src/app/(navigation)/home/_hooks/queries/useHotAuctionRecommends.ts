@@ -1,6 +1,7 @@
-import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
-import { AuctionDetailType } from "@/app/types/product";
 import { useQuery } from "@tanstack/react-query";
+
+import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
+
 import { Root } from "../../_component/DetailAuctionFeed";
 
 const useHotAuctionRecommends = () => {

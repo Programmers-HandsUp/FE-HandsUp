@@ -1,14 +1,15 @@
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import Datepicker from "react-tailwindcss-datepicker";
 
-import InputPrice from "@/app/_component/common/InputPrice";
 import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
+import InputPrice from "@/app/_component/common/InputPrice";
 import Tooltip from "@/app/_component/common/Tooltip";
-import InputLabel from "../InputLabel";
-import { RegisterProduct } from "../../page";
-import SearchAddressBtn from "../SearchAddressBtn";
 import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
+
+import { RegisterProduct } from "../../page";
+import InputLabel from "../InputLabel";
+import SearchAddressBtn from "../SearchAddressBtn";
 
 function AuctionInfo() {
   const {

@@ -12,7 +12,7 @@ interface GeolocationError {
 
 const options = {
   timeout: 7000,
-  maximumAge: 6000,
+  maximumAge: 6000
 };
 
 const useGeolocation = () => {
@@ -24,7 +24,7 @@ const useGeolocation = () => {
 
     setGeoLocation({
       latitude,
-      longitude,
+      longitude
     });
   };
 
@@ -41,12 +41,12 @@ const useGeolocation = () => {
           navigator.geolocation.getCurrentPosition(
             handleGeolocationSuccess,
             handleGeolocationError,
-            options,
+            options
           );
         } else if (result.state === "denied") {
           setError({
             code: -1,
-            message: "정확한 위치 확인을 위해 위치 정보 사용을 허용해 주세요.",
+            message: "정확한 위치 확인을 위해 위치 정보 사용을 허용해 주세요."
           });
         }
       });
@@ -54,7 +54,7 @@ const useGeolocation = () => {
       setError({
         code: -1,
         message:
-          "현재 브라우저에서는 위치 정보를 제공할 수 없어요. 다시 시도해주세요.",
+          "현재 브라우저에서는 위치 정보를 제공할 수 없어요. 다시 시도해주세요."
       });
     }
   }, []);

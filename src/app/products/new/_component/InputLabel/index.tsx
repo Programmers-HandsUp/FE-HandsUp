@@ -1,6 +1,6 @@
+import { ErrorMessage } from "@hookform/error-message";
 import { PropsWithChildren } from "react";
 import { FieldErrors } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 
 import { RegisterProduct } from "../../page";
 

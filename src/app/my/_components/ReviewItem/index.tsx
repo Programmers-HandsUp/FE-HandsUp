@@ -1,5 +1,7 @@
-import UserCard from "@/app/_component/common/UserCard";
 import React from "react";
+
+import UserCard from "@/app/_component/common/UserCard";
+
 import { Review } from "../../types";
 
 function ReviewItem({ review }: { review: Review }) {

@@ -1,11 +1,11 @@
-import { getComments } from "@/app/api/getComments";
-import { CommentType } from "@/utils/mocks/api/types";
-
 import {
   DefaultError,
   InfiniteData,
   useInfiniteQuery
 } from "@tanstack/react-query";
+
+import { getComments } from "@/app/api/getComments";
+import { CommentType } from "@/utils/mocks/api/types";
 
 export interface ICommentListAPI {
   content: CommentType[];

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { ControllerRenderProps } from "react-hook-form";
+import { v4 as uuidv4 } from "uuid";
 
 import Icon from "@/app/_component/common/Icon";
-import { RegisterProduct } from "@/app/products/new/page";
 import { CATEGORY_LIST } from "@/app/products/new/_utils/constants";
+import { RegisterProduct } from "@/app/products/new/page";
 
 interface CategoryListProps {
   field: ControllerRenderProps<RegisterProduct, "productCategory">;
@@ -26,7 +26,8 @@ function CategoryList({ field }: CategoryListProps) {
           />
         </div>
       </button>
-      <div className={`h-60 overflow-y-auto border border-solid rounded transition-all ${isShow ? "opacity-100 max-h-60 transition ease-out duration-300" : "opacity-0 max-h-0 overflow-hidden transition ease-in duration-200"}`}>
+      <div
+        className={`h-60 overflow-y-auto border border-solid rounded transition-all ${isShow ? "opacity-100 max-h-60 transition ease-out duration-300" : "opacity-0 max-h-0 overflow-hidden transition ease-in duration-200"}`}>
         <ul className="flex flex-col border-solid border-gray-300">
           {CATEGORY_LIST.map((category) => (
             <li

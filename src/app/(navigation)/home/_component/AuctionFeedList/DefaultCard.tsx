@@ -1,6 +1,7 @@
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/function/cn";
+
 import { Content } from "../DetailAuctionFeed";
 
 interface DefaultCardProps {

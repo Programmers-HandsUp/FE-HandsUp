@@ -1,12 +1,13 @@
 import { PropsWithChildren } from "react";
 
 import ProductCard from "@/app/_component/common/ProductCard";
+
+import { Purchase, Sale } from "../../types";
 import {
   TransactionDate,
   TransactionHeader,
   TransactionPrice
 } from "./TransactionItem";
-import { Purchase, Sale } from "../../types";
 
 function TransactionWrapper({
   children,

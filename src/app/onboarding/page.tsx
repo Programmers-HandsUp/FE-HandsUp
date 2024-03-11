@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import useFunnel from "../hooks/useFunnel";
+
 import Toast from "../_component/common/Toast";
-
-import useProfileImageStore from "./_component/store/store";
-
+import useFunnel from "../hooks/useFunnel";
 import FinishFunnel from "./_component/funnel/FinishFunnel";
-import SignupHeader from "./_component/SignupHeader";
 import SelectCategory from "./_component/funnel/SelectCategory";
 import SelectResidence from "./_component/funnel/SelectResidence";
 import UserProfileSetting from "./_component/funnel/UserProfileSetting";
+import SignupHeader from "./_component/SignupHeader";
+import useProfileImageStore from "./_component/store/store";
 
 const OnBoarding = () => {
   const { show } = Toast();

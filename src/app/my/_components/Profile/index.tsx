@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import UserCard from "@/app/_component/common/UserCard";
-import Link from "next/link";
 
 function Profile() {
   return (

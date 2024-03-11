@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 import useGetPopluarKeywrodrQuery from "@/app/search/_hooks/queries/useGetPopluarKeyword";
+
+import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 
 /* @TODO : 
     로딩텍스트 스켈레톤으로 대체 예정

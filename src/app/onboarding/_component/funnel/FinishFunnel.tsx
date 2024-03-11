@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface FinishFunnelProps {
   profileImage: File | undefined;

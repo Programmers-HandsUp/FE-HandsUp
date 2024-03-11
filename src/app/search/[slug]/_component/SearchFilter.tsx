@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
-import { Chips, Chip } from "@/app/_component/common/Chips";
 
 interface SearchFilterModal {
   closeModal: () => void;

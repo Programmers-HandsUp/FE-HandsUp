@@ -1,5 +1,5 @@
-import { Bidding, Finished, Pending } from ".";
 import { Sale, Status } from "../../types";
+import { Bidding, Finished, Pending } from ".";
 
 export interface SaleList {
   saleList: Sale[] | undefined;

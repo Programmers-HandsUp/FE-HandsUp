@@ -4,12 +4,12 @@ interface AuctionRankingProps {
   maxPrice: number;
 }
 
-const AuctionRanking = ({maxPrice}: AuctionRankingProps) => {
+const AuctionRanking = ({ maxPrice }: AuctionRankingProps) => {
   const [updateTime, setUpdateTime] = useState("");
 
   const commaPrice = maxPrice.toLocaleString();
   const padNumber = (num: number) => num.toString().padStart(2, "0");
-  
+
   useEffect(() => {
     const currentTime = new Date();
     const updateTime = `${currentTime.getFullYear()}.${padNumber(currentTime.getMonth() + 1)}.${padNumber(currentTime.getDate())} ${padNumber(currentTime.getHours())}:${padNumber(currentTime.getMinutes())}:${padNumber(currentTime.getSeconds())}`;

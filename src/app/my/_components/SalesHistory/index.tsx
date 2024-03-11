@@ -1,3 +1,3 @@
 export { Bidding } from "./Bidding";
-export { Pending } from "./Pending";
 export { Finished } from "./Finished";
+export { Pending } from "./Pending";

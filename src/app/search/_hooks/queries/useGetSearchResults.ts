@@ -1,11 +1,11 @@
-import { getSearchResults } from "@/app/api/getSearchResults";
-import { PostType } from "@/utils/mocks/api/types";
-
 import {
   DefaultError,
   InfiniteData,
   useInfiniteQuery
 } from "@tanstack/react-query";
+
+import { getSearchResults } from "@/app/api/getSearchResults";
+import { PostType } from "@/utils/mocks/api/types";
 
 export interface SearchResultListAPI {
   content: PostType[];

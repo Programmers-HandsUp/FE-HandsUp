@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import useOnboardingStore from "../store/store";
 
 import onGetImageFile from "@/utils/function/onGetImageFile";
+
+import useOnboardingStore from "../store/store";
 
 interface UserProfileSettingProps {
   setNickName: React.Dispatch<React.SetStateAction<string>>;

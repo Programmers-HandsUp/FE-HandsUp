@@ -1,6 +1,7 @@
+import { useMutation } from "@tanstack/react-query";
+
 import Toast from "@/app/_component/common/Toast";
 import { registerProduct } from "@/app/api/registerProduct";
-import { useMutation } from "@tanstack/react-query";
 
 export const useRegisterProduct = () => {
   const { show } = Toast();

@@ -6,15 +6,15 @@ import {
 } from "react-hook-form";
 
 import { Chip, Chips } from "@/app/_component/common/Chips";
+import {
+  PURCHASE_TIME_LIST,
+  STATE_LIST
+} from "@/app/products/new/_utils/constants";
 import { RegisterProduct } from "@/app/products/new/page";
-import { ImagePreviewer, ImageUploader } from "./ImageUploader";
+
 import InputLabel from "../InputLabel";
 import CategoryList from "./CategoryList";
-
-import {
-  STATE_LIST,
-  PURCHASE_TIME_LIST
-} from "@/app/products/new/_utils/constants";
+import { ImagePreviewer, ImageUploader } from "./ImageUploader";
 
 function ProductInfo() {
   const {

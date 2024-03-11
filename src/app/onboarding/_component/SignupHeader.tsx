@@ -1,7 +1,7 @@
 "use client";
 
-import ProgressBar from "@/app/_component/common/ProgressBar";
 import Icon from "@/app/_component/common/Icon";
+import ProgressBar from "@/app/_component/common/ProgressBar";
 
 interface SignupHeaderProps {
   nowPage: number;
