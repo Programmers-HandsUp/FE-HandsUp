@@ -5,14 +5,14 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 
-import SearchBar from "../component/SearchBar";
+import SearchBar from "../_component/SearchBar";
 import ProductCard from "@/app/_component/common/ProductCard";
-import SearchFilterModal from "./component/SearchFilter";
+import SearchFilterModal from "./_component/SearchFilter";
 import likeIcon from "../../../../public/assets/likeIcon.svg";
 import getPastTime from "@/utils/getPastTime";
 import DropDown from "@/app/_component/common/DropDown";
 import tempLogoImage from "~/images/logoIcon.png";
-import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";
+import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
 import useModalState from "@/app/hooks/useModalState";
 import Modal from "@/app/_component/common/Modal";
 
