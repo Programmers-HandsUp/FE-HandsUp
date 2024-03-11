@@ -1,4 +1,4 @@
-export interface getUserReviewsResponse {
+export interface UserReviewsResponse {
   content: UserReview[];
   size: number;
   hasNext: boolean;

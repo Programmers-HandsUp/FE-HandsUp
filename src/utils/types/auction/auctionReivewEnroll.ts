@@ -1,4 +1,4 @@
-export interface enrollAuctionReviewRequest {
+export interface AuctionReviewEnrollRequest {
   request: {
     evaluationScore: number;
     content: string;
@@ -22,7 +22,7 @@ export interface enrollAuctionReviewRequest {
   };
 }
 
-export interface enrollAuctionReviewResponse {
+export interface AuctionReviewEnrollResponse {
   evaluationScore: number;
   content: string;
   auctionId: number;

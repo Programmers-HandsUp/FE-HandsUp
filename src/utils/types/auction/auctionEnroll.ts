@@ -1,4 +1,4 @@
-export interface enrollAuctionRequest {
+export interface AuctionEnrollRequest {
   title: string;
   productCategory: string;
   initPrice: number;

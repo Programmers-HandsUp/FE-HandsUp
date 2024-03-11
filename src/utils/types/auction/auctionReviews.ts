@@ -1,4 +1,4 @@
-export interface getAuctionReviewsResponse {
+export interface AuctionReviewsResponse {
   content: AuctionReview[];
   size: number;
   hasNext: boolean;

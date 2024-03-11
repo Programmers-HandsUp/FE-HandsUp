@@ -1,4 +1,4 @@
-export interface getAuctionInformResponse {
+export interface AuctionInformGetResponse {
   auctionId: number;
   sellerId: number;
   title: string;

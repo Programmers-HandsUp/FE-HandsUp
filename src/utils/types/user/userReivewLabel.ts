@@ -1,10 +1,10 @@
-export interface getUserReviewLabelResponse {
-  content: userReviewLabel[];
+export interface UserReviewLabelResponse {
+  content: UserReviewLabel[];
   size: number;
   hasNext: boolean;
 }
 
-export interface userReviewLabel {
+export interface UserReviewLabel {
   userReviewLabelId: number;
   reviewLabelId: number;
   userId: number;

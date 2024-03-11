@@ -1,3 +1,3 @@
-export interface emailDuplicateCheckRequest {
+export interface EmailDuplicateCheckRequest {
   isAvailable: boolean;
 }

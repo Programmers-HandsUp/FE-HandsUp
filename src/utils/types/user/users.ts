@@ -1,4 +1,4 @@
-export interface getUserReviewResponse {
+export interface UserReviewResponse {
   content: [
     {
       reviewId: number;
