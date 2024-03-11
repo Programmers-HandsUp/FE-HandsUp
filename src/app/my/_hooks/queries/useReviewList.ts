@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { reviewList } from "../../../api/mypage";
+import { reviewList } from "../../_api/mypage";
 
 const useReviewList = (userId: number) => {
   return useQuery({

@@ -1,8 +1,7 @@
 import React from "react";
 
 import UserCard from "@/app/_component/common/UserCard";
-
-import { Review } from "../../types";
+import { Review } from "@/utils/types/user/mypage";
 
 function ReviewItem({ review }: { review: Review }) {
   const { reviewId, profileImageUrl, nickname, content } = review;

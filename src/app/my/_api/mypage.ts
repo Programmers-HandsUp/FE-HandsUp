@@ -1,4 +1,10 @@
-import { Purchase, Review, ReviewLabel, Sale, Status } from "../my/types";
+import {
+  Purchase,
+  Review,
+  ReviewLabel,
+  Sale,
+  Status
+} from "@/utils/types/user/mypage";
 
 export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buy`;

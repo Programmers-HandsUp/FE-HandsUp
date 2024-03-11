@@ -1,4 +1,5 @@
-import { Sale, Status } from "../../types";
+import { Sale, Status } from "@/utils/types/user/mypage";
+
 import { Bidding, Finished, Pending } from ".";
 
 export interface SaleList {

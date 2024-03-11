@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { saleList } from "../../../api/mypage";
-import { Status } from "../../types";
+import { Status } from "@/utils/types/user/mypage";
+
+import { saleList } from "../../_api/mypage";
 
 const useSaleStatusList = (userId: number, status: Status) => {
   return useQuery({

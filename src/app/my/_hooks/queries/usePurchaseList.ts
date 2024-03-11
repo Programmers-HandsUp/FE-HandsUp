@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { purchaseList } from "../../../api/mypage";
-import { Status } from "../../types";
+import { Status } from "@/utils/types/user/mypage";
+
+import { purchaseList } from "../../_api/mypage";
 
 const usePurchaseList = () => {
   return useQuery({

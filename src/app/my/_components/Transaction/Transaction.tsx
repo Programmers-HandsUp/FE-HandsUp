@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
 
 import ProductCard from "@/app/_component/common/ProductCard";
+import { Purchase, Sale } from "@/utils/types/user/mypage";
 
-import { Purchase, Sale } from "../../types";
 import {
   TransactionDate,
   TransactionHeader,
