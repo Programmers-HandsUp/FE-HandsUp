@@ -8,7 +8,7 @@ import {
   TRADEMETHOD_LIST
 } from "./constants";
 
-export const ProductSchema = z
+export const AuctionSchema = z
   .object({
     images: z
       .array(z.object({ file: z.instanceof(File) }))

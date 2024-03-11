@@ -7,7 +7,7 @@ import InputPrice from "@/app/_component/common/InputPrice";
 import Tooltip from "@/app/_component/common/Tooltip";
 import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
 
-import { RegisterProduct } from "../../page";
+import { RegisterAuction } from "../../page";
 import InputLabel from "../InputLabel";
 import SearchAddressBtn from "../SearchAddressBtn";
 
@@ -18,7 +18,7 @@ function AuctionInfo() {
     register,
     reset,
     formState: { errors }
-  } = useFormContext<RegisterProduct>();
+  } = useFormContext<RegisterAuction>();
 
   const maxDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
@@ -40,7 +40,7 @@ function AuctionInfo() {
           control={control}
           name="initPrice"
           render={({ field }) => (
-            <InputPrice<RegisterProduct, "initPrice">
+            <InputPrice<RegisterAuction, "initPrice">
               title="입찰 시작가"
               price={price}
               field={field}

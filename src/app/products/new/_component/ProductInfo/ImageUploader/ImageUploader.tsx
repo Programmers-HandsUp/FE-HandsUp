@@ -2,15 +2,15 @@ import { UseFieldArrayAppend, useFormContext } from "react-hook-form";
 
 import Icon from "@/app/_component/common/Icon";
 import Toast from "@/app/_component/common/Toast";
-import { RegisterProduct } from "@/app/products/new/page";
+import { RegisterAuction } from "@/app/products/new/page";
 
 interface ImageUploaderProps {
-  onAppend: UseFieldArrayAppend<RegisterProduct, "images">;
+  onAppend: UseFieldArrayAppend<RegisterAuction, "images">;
   imageFile: { file: File }[];
 }
 
 export function ImageUploader({ onAppend, imageFile }: ImageUploaderProps) {
-  const { register } = useFormContext<RegisterProduct>();
+  const { register } = useFormContext<RegisterAuction>();
   const imageLength = imageFile && imageFile.length > 0 ? imageFile.length : 0;
   const { show } = Toast();
 

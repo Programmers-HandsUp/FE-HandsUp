@@ -6,31 +6,31 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useImageUpload } from "@/app/hooks/mutations/useImageUpload";
-import { useRegisterProduct } from "@/app/products/new/_hooks/mutations/useReigsterProduct";
-import { ProductData } from "@/utils/types/auction/registerAuction";
+import { useRegisterAuction } from "@/app/products/new/_hooks/mutations/useReigsterAuction";
+import { AuctionData } from "@/utils/types/auction/registerAuction";
 
 import AuctionInfo from "./_component/AuctionInfo";
 import ProductInfo from "./_component/ProductInfo";
 import useBeforeUnload from "./_utils/useBeforeUnload";
-import { ProductSchema } from "./_utils/validation";
+import { AuctionSchema } from "./_utils/validation";
 
-export type RegisterProduct = z.infer<typeof ProductSchema>;
+export type RegisterAuction = z.infer<typeof AuctionSchema>;
 
-function RegisterProduct() {
-  const methods = useForm<RegisterProduct>({
+function RegisterAuctionPage() {
+  const methods = useForm<RegisterAuction>({
     defaultValues: {
       initPrice: 0,
       images: []
     },
-    resolver: zodResolver(ProductSchema)
+    resolver: zodResolver(AuctionSchema)
   });
 
   const { mutateImageUpload } = useImageUpload();
-  const { mutateRegisterProduct } = useRegisterProduct();
+  const { mutateRegisterAuction } = useRegisterAuction();
   const router = useRouter();
   const setActive = useBeforeUnload();
 
-  const onSubmit: SubmitHandler<RegisterProduct> = async (data) => {
+  const onSubmit: SubmitHandler<RegisterAuction> = async (data) => {
     const { images, address, dateRangeTime, ...rest } = data;
     const imageData = new FormData();
 
@@ -40,7 +40,7 @@ function RegisterProduct() {
 
     const imageUrls = await mutateImageUpload(imageData);
 
-    const productData: ProductData = {
+    const auctionData: AuctionData = {
       ...rest,
       si: address?.gu,
       gu: address?.gu,
@@ -49,13 +49,13 @@ function RegisterProduct() {
       imageUrls
     };
 
-    mutateRegisterProduct(productData, {
+    mutateRegisterAuction(auctionData, {
       onSuccess: (data) => {
         const { auctionId } = data;
 
         setActive(false);
 
-        router.replace(`/products/${auctionId}`);
+        router.replace(`/auctions/${auctionId}`);
       }
     });
   };
@@ -69,7 +69,7 @@ function RegisterProduct() {
           <button
             type="submit"
             className="border w-full mt-7 py-2 rounded-lg bg-[#96E4FF]">
-            상품 등록
+            경매 등록
           </button>
         </form>
       </FormProvider>
@@ -77,4 +77,4 @@ function RegisterProduct() {
   );
 }
 
-export default RegisterProduct;
+export default RegisterAuctionPage;

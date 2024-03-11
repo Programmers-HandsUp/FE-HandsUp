@@ -2,13 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 
 import Toast from "@/app/_component/common/Toast";
 
-import { registerProduct } from "../../_api/registerProduct";
+import { registerAction } from "../../_api/registerAuction";
 
-export const useRegisterProduct = () => {
+export const useRegisterAuction = () => {
   const { show } = Toast();
 
-  const registerProductMutation = useMutation({
-    mutationFn: registerProduct,
+  const registerAuctionMutation = useMutation({
+    mutationFn: registerAction,
     onSuccess(data) {
       show(
         "상품 등록을 완료했어요! 좋은 경매가 되길 바랍니다 😇",
@@ -23,6 +23,6 @@ export const useRegisterProduct = () => {
   });
 
   return {
-    mutateRegisterProduct: registerProductMutation.mutate
+    mutateRegisterAuction: registerAuctionMutation.mutate
   };
 };

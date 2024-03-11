@@ -12,7 +12,7 @@ export type StateList = (typeof STATE_LIST)[number];
 export type PurchaseTime = (typeof PURCHASE_TIME_VALUE)[number];
 export type TradeMethod = (typeof TRADEMETHOD_LIST)[number];
 
-export interface ProductData {
+export interface AuctionData {
   title: string;
   description: string;
   initPrice: number;
@@ -27,7 +27,7 @@ export interface ProductData {
   dong?: string;
 }
 
-export interface Product extends ProductData {
+export interface Auction extends AuctionData {
   auctionId: number;
   sellerId: number;
   bookmarkCount: number;

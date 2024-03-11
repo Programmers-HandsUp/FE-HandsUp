@@ -7,12 +7,12 @@ import Modal from "@/app/_component/common/Modal";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 import useModalState from "@/app/hooks/useModalState";
 
-import { RegisterProduct } from "../../page";
+import { RegisterAuction } from "../../page";
 
 function SearchAddressBtn({
   field
 }: {
-  field: ControllerRenderProps<RegisterProduct, "address">;
+  field: ControllerRenderProps<RegisterAuction, "address">;
 }) {
   const { open, close, isOpen } = useModalState();
   const { value: address, onChange } = field;

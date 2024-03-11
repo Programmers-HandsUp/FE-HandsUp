@@ -7,15 +7,14 @@ import {
 } from "react-hook-form";
 
 import Icon from "@/app/_component/common/Icon";
-import { RegisterProduct } from "@/app/products/new/page";
-
+import { RegisterAuction } from "@/app/products/new/page";
 interface ImagePreviewerProps {
-  fields: FieldArrayWithId<RegisterProduct, "images", "imagesId">[];
+  fields: FieldArrayWithId<RegisterAuction, "images", "imagesId">[];
   onRemove: UseFieldArrayRemove;
 }
 
 export function ImagePreviewer({ fields, onRemove }: ImagePreviewerProps) {
-  const { control } = useFormContext<RegisterProduct>();
+  const { control } = useFormContext<RegisterAuction>();
 
   return (
     <div className="flex gap-2 whitespace-nowrap overflow-x-auto overflow-scroll">

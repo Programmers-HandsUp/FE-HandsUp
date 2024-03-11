@@ -10,7 +10,7 @@ import {
   PURCHASE_TIME_LIST,
   STATE_LIST
 } from "@/app/products/new/_utils/constants";
-import { RegisterProduct } from "@/app/products/new/page";
+import { RegisterAuction } from "@/app/products/new/page";
 
 import InputLabel from "../InputLabel";
 import CategoryList from "./CategoryList";
@@ -21,7 +21,7 @@ function ProductInfo() {
     control,
     register,
     formState: { errors }
-  } = useFormContext<RegisterProduct>();
+  } = useFormContext<RegisterAuction>();
 
   const { fields, append, remove } = useFieldArray({
     name: "images",
