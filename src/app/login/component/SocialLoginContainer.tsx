@@ -1,6 +1,6 @@
 import Image from "next/image";
-import googleIcon from "~/google-icon.png";
-import naverIcon from "~/naver-icon.png";
+import googleIcon from "~/images/google-icon.png";
+import naverIcon from "~/images/naver-icon.png";
 
 const SocialLoginContainer = () => {
   return (

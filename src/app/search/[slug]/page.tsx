@@ -11,7 +11,7 @@ import SearchFilterModal from "./component/SearchFilter";
 import likeIcon from "../../../../public/assets/likeIcon.svg";
 import getPastTime from "@/utils/getPastTime";
 import DropDown from "@/app/_component/common/DropDown";
-import tempLogoImage from "../../../../public/logoIcon.png";
+import tempLogoImage from "~/images/logoIcon.png";
 import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";
 import useModalState from "@/app/hooks/useModalState";
 import Modal from "@/app/_component/common/Modal";

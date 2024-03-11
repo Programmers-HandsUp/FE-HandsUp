@@ -110,25 +110,25 @@ export const reviewList: Review[] = [
   {
     reviewId: 1,
     nickname: "세인",
-    profileImageUrl: "/assets/logoicon.png",
+    profileImageUrl: "/images/logoicon.png",
     content: "감사해요 잘 쓸게요!"
   },
   {
     reviewId: 2,
     nickname: "준혁",
-    profileImageUrl: "/assets/logoicon.png",
+    profileImageUrl: "/images/logoicon.png",
     content: "아주 좋은 물건이네요!"
   },
   {
     reviewId: 3,
     nickname: "지호",
-    profileImageUrl: "/assets/logoicon.png",
+    profileImageUrl: "/images/logoicon.png",
     content: "완전 좋아요"
   },
   {
     reviewId: 3,
     nickname: "장권",
-    profileImageUrl: "/assets/logoicon.png",
+    profileImageUrl: "/images/logoicon.png",
     content: "좋은 물건 잘쓸게요~~"
   }
 ];
@@ -137,7 +137,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 1,
     auctionTitle: "범고래 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "202024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "pending",
@@ -147,7 +147,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 2,
     auctionTitle: "감자깡 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "2024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "pending",
@@ -157,7 +157,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 3,
     auctionTitle: "매직마우스 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "2024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "finished",
@@ -167,7 +167,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 4,
     auctionTitle: "트랙패드 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "2024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "finished",
@@ -177,7 +177,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 5,
     auctionTitle: "맥북 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "2024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "bidding",
@@ -187,7 +187,7 @@ export const saleList: Sale[] = [
   {
     auctionId: 6,
     auctionTitle: "감자 팔아요",
-    auctionImageUrl: "/assets/logoicon.png",
+    auctionImageUrl: "/images/logoicon.png",
     auctionCompleteTime: "2024-03-01",
     auctionLeftTime: "2024-03-02",
     auctionStatus: "bidding",
