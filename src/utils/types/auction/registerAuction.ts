@@ -3,10 +3,9 @@ import {
   PURCHASE_TIME_VALUE,
   STATE_LIST,
   TRADEMETHOD_LIST
-} from "./constants";
+} from "@/app/products/new/_utils/constants";
 
-export type ImageUrl =
-  `https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/${string}`;
+import { ImageUrl } from "../image";
 
 export type Category = (typeof CATEGORY_LIST)[number];
 export type StateList = (typeof STATE_LIST)[number];
@@ -16,6 +15,7 @@ export type TradeMethod = (typeof TRADEMETHOD_LIST)[number];
 export interface ProductData {
   title: string;
   description: string;
+  initPrice: number;
   productCategory: Category;
   productStatus: StateList;
   purchaseTime: PurchaseTime;
