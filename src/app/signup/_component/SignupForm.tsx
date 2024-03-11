@@ -4,9 +4,9 @@ import Input from "@/app/_component/common/Input";
 import { cn } from "@/utils/cn";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSignUp } from "../hooks/mutations/useSignup";
-import { useIdDuplicateCheck } from "../hooks/mutations/useIdDuplicateCheck";
-import Toast from "../_component/common/Toast";
+import { useSignUp } from "../_hooks/mutations/useSignup";
+import { useIdDuplicateCheck } from "../_hooks/mutations/useIdDuplicateCheck";
+import Toast from "../../_component/common/Toast";
 
 type LoginFormValues = {
   email: string;
