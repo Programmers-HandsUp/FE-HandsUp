@@ -26,5 +26,8 @@
     ],
     "unused-imports/no-unused-imports-ts": ["error"],
     "comma-spacing": ["error", { "before": false, "after": true }]
+  },
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
   }
 }
