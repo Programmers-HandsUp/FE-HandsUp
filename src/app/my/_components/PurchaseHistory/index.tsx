@@ -1,4 +1,5 @@
-import { Purchase } from "../../types";
+import { Purchase } from "@/utils/types/user/mypage";
+
 import Transaction from "../Transaction/Transaction";
 
 interface PurchaseHistoryProps {

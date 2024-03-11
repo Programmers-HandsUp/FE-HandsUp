@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import Toast from "@/app/_component/common/Toast";
-import { imageUpload } from "@/app/api/registerProduct";
+import { imageUpload } from "@/app/api/imageUpload";
 
 export const useImageUpload = () => {
   const { show } = Toast();

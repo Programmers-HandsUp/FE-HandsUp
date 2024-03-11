@@ -2,9 +2,10 @@
 
 import { useSearchParams } from "next/navigation";
 
+import { Status } from "@/utils/types/user/mypage";
+
 import usePurchaseStatusList from "../../_hooks/queries/usePurchaseStatusList";
 import useSaleStatusList from "../../_hooks/queries/useSaleStatusList";
-import { Status } from "../../types";
 import PurchaseHistory from "../PurchaseHistory";
 import SalesHistory from "../SalesHistory/SalesHistory";
 import Tab from "../Tab";
