@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import searchAddr from "@/app/api/address";
+import searchAddr from "@/app/_api/address";
 
 const useSearchAddrQuery = (addr: string) => {
   return useQuery({

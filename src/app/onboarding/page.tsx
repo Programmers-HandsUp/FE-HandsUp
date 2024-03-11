@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Toast from "../_component/common/Toast";
-import useFunnel from "../hooks/useFunnel";
+import useFunnel from "../_hooks/useFunnel";
 import FinishFunnel from "./_component/funnel/FinishFunnel";
 import SelectCategory from "./_component/funnel/SelectCategory";
 import SelectResidence from "./_component/funnel/SelectResidence";

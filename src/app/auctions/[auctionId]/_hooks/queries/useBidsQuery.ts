@@ -2,7 +2,7 @@
 
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { getBids, getTopThreeRank } from "@/app/api/getBids";
+import { getBids, getTopThreeRank } from "@/app/_api/getBids";
 
 const useBidsQuery = ({ auctionId }: { auctionId: number }) => {
   const [{ data: top3 }, { data: bids }] = useSuspenseQueries({

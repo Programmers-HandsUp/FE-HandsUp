@@ -4,7 +4,7 @@ import {
   useInfiniteQuery
 } from "@tanstack/react-query";
 
-import { getComments } from "@/app/api/getComments";
+import { getComments } from "@/app/_api/getComments";
 import { CommentType } from "@/utils/mocks/api/types";
 
 export interface ICommentListAPI {

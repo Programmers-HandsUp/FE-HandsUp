@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
 import Toast from "@/app/_component/common/Toast";
-import { idduplicatecheck } from "@/app/api/auth";
+import { idduplicatecheck } from "@/app/_api/auth";
 
 export const useIdDuplicateCheck = (
   setIdStatus: (status: "None" | "Change" | "Ok") => void

@@ -7,9 +7,11 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
-import { createComment, ICreateComment } from "@/app/api/createComment";
-import useGetCommentList, { ICommentListAPI } from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
-import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
+import { createComment, ICreateComment } from "@/app/_api/createComment";
+import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
+import useGetCommentList, {
+  ICommentListAPI
+} from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
 
 import ChatMessage from "../ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";

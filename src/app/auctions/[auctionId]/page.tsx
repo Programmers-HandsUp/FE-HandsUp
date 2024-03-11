@@ -6,9 +6,9 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 
-import { getAuctionDetail } from "@/app/api/getAuctionDetail";
-import { getBids, getTopThreeRank } from "@/app/api/getBids";
-import { getComments } from "@/app/api/getComments";
+import { getAuctionDetail } from "@/app/_api/getAuctionDetail";
+import { getBids, getTopThreeRank } from "@/app/_api/getBids";
+import { getComments } from "@/app/_api/getComments";
 
 import DetailInfoSection from "./_component/DetailInfoSection";
 import { ICommentListAPI } from "./_hooks/queries/useGetCommentList";

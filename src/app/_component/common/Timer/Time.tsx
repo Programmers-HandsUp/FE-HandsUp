@@ -1,6 +1,6 @@
 "use client";
 
-import useTimer from "@/app/hooks/useTimer";
+import useTimer from "@/app/_hooks/useTimer";
 
 interface TimeProps {
   deadline: Date;

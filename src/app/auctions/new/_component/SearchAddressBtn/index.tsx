@@ -5,7 +5,7 @@ import { ControllerRenderProps } from "react-hook-form";
 import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import { SearchAddress } from "@/app/_component/common/searchAddress";
-import useModalState from "@/app/hooks/useModalState";
+import useModalState from "@/app/_hooks/useModalState";
 
 import { RegisterAuction } from "../../page";
 

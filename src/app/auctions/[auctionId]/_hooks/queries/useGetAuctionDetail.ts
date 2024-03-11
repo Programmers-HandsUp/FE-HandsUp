@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getAuctionDetail } from "@/app/api/getAuctionDetail";
+import { getAuctionDetail } from "@/app/_api/getAuctionDetail";
 
 const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
   const { data } = useQuery({

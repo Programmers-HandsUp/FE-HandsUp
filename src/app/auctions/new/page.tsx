@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { useImageUpload } from "@/app/hooks/mutations/useImageUpload";
+import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
 import { AuctionData } from "@/utils/types/auction/registerAuction";
 
 import AuctionInfo from "./_component/AuctionInfo";

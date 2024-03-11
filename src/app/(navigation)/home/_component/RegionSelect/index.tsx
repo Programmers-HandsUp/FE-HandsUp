@@ -4,7 +4,7 @@ import { MouseEvent } from "react";
 
 import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
-import useModalState from "@/app/hooks/useModalState";
+import useModalState from "@/app/_hooks/useModalState";
 import { cn } from "@/utils/function/cn";
 import { setCookie } from "@/utils/function/cookie";
 
