@@ -5,8 +5,8 @@ import Button from "../_component/common/Button";
 import InputPrice from "../_component/common/InputPrice";
 import ProductCard from "../_component/common/ProductCard";
 import Timer from "../_component/common/Timer";
-import AuctionBanner from "./AuctionBanner";
-import AuctionRanking from "./AuctionRanking";
+import AuctionBanner from "./_component/AuctionBanner";
+import AuctionRanking from "./_component/AuctionRanking";
 import tempImage from "../../public/tempImage.png";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -24,7 +24,6 @@ const START_PRICE = 10000;
 const MAX_PRICE = 30000;
 
 const PurchasePage = () => {
-
   const schema = z.object({
     price: z
       .number()
