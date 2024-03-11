@@ -8,24 +8,6 @@ import Timer from "@/app/_component/common/Timer";
 
 import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
 
-export interface Root {
-  content: Content[];
-  size: number;
-  hasNext: boolean;
-}
-
-export interface Content {
-  auctionId: number;
-  title: string;
-  dong: string;
-  currentBiddingPrice: number;
-  imgUrl: string;
-  bookmarkCount: number;
-  biddingCount: number;
-  createdAt: string;
-  endDate: string;
-}
-
 const DetailAuctionFeed = () => {
   const { data, isPending } = useHotAuctionRecommends();
 

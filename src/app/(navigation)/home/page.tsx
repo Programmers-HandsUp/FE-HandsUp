@@ -4,8 +4,7 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 
-import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
-
+import { getHotAuctionRecommends } from "./_api/getAuctionRecommends";
 import AuctionFeedList from "./_component/AuctionFeedList";
 import DetailAuctionFeed from "./_component/DetailAuctionFeed";
 

@@ -1,11 +1,10 @@
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/function/cn";
-
-import { Content } from "../DetailAuctionFeed";
+import { RecommendedAuction } from "@/utils/types/auction/recommendAuction";
 
 interface DefaultCardProps {
-  auction: Content;
+  auction: RecommendedAuction;
   className?: string;
 }
 

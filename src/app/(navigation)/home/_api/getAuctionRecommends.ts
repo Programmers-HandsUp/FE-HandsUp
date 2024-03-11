@@ -1,4 +1,6 @@
-export async function getHotAuctionRecommends() {
+import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
+
+export async function getHotAuctionRecommends(): Promise<RecommendAuctionsResponse> {
   const res = await fetch("http://localhost:9090/api/auctionList", {
     next: {
       tags: ["auction"]

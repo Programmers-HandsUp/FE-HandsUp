@@ -18,8 +18,6 @@ const handlers = [
   }),
   http.post("/api/comment/create", async ({ request }) => {
     await delay(1000);
-    const data = await request.json();
-
     return HttpResponse.text(JSON.stringify("ok"));
   }),
   http.get("/api/auctions/:auctionId", async () => {
