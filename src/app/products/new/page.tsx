@@ -6,7 +6,7 @@ import { z } from "zod";
 
 import AuctionInfo from "./_component/AuctionInfo";
 import ProductInfo from "./_component/ProductInfo";
-import { useImageUpload } from "@/app/products/new/_hooks/mutations/useImageUpload";
+import { useImageUpload } from "@/app/hooks/mutations/useImageUpload";
 import { useRegisterProduct } from "@/app/products/new/_hooks/mutations/useReigsterProduct";
 import { ProductSchema } from "./_utils/validation";
 import useBeforeUnload from "./_utils/useBeforeUnload";
