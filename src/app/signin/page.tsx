@@ -3,7 +3,7 @@
 import EmailLoginForm from "./_component/EmailLoginForm";
 import SocialLoginContainer from "./_component/SocialLoginContainer";
 
-const Login = () => {
+const SignIn = () => {
   return (
     <div>
       <div className="w-[310px] mx-auto">
@@ -18,4 +18,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;
