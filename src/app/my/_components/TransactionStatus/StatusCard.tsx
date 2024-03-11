@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 interface StatusCardProps {
   status: "전체" | "입찰 중" | "거래 진행 중" | "종료";

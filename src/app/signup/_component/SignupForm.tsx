@@ -1,7 +1,7 @@
 "use client";
 import Input from "@/app/_component/common/Input";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSignUp } from "../_hooks/mutations/useSignup";

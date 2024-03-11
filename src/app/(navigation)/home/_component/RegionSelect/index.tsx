@@ -4,8 +4,8 @@ import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import useModalState from "@/app/hooks/useModalState";
 
-import { cn } from "@/utils/cn";
-import { setCookie } from "@/utils/cookie";
+import { cn } from "@/utils/function/cn";
+import { setCookie } from "@/utils/function/cookie";
 import { MouseEvent } from "react";
 
 interface RegionSelectProps {

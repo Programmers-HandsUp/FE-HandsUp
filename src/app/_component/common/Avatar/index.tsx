@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { VariantProps } from "class-variance-authority";
 import Image from "next/image";
 import { ImgHTMLAttributes } from "react";

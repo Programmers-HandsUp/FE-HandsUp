@@ -1,11 +1,11 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import {
   chatMessageBoxVariants,
   chatMessageLayoutVariants
 } from "./Chatmessage.variants";
 import { VariantProps } from "class-variance-authority";
 import Avatar from "../Avatar";
-import getPastTime from "@/utils/getPastTime";
+import getPastTime from "@/utils/function/getPastTime";
 
 interface Props
   extends VariantProps<typeof chatMessageLayoutVariants>,

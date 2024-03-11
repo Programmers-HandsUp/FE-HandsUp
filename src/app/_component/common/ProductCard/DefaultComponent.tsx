@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 import { productStateVariants } from "./ProductCard.variants";
 import { VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import Image from "next/image";
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
-import getPastTime from "@/utils/getPastTime";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
+import getPastTime from "@/utils/function/getPastTime";
 
 interface DefaultProps {
   children?: ReactNode;
