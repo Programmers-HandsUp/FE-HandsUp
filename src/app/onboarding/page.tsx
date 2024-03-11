@@ -4,13 +4,13 @@ import { useState } from "react";
 import useFunnel from "../hooks/useFunnel";
 import Toast from "../_component/common/Toast";
 
-import useProfileImageStore from "./component/store/store";
+import useProfileImageStore from "./_component/store/store";
 
-import FinishFunnel from "./component/funnel/FinishFunnel";
-import SignupHeader from "./component/SignupHeader";
-import SelectCategory from "./component/funnel/SelectCategory";
-import SelectResidence from "./component/funnel/SelectResidence";
-import UserProfileSetting from "./component/funnel/UserProfileSetting";
+import FinishFunnel from "./_component/funnel/FinishFunnel";
+import SignupHeader from "./_component/SignupHeader";
+import SelectCategory from "./_component/funnel/SelectCategory";
+import SelectResidence from "./_component/funnel/SelectResidence";
+import UserProfileSetting from "./_component/funnel/UserProfileSetting";
 
 const OnBoarding = () => {
   const { show } = Toast();
