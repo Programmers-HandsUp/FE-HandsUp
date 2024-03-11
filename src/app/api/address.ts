@@ -1,4 +1,4 @@
-import { AddrType } from "../types/address";
+import { AddrType } from "@/utils/types/address";
 
 const searchAddr = async (addr: string): Promise<AddrType> => {
   const response = await fetch(
