@@ -12,8 +12,8 @@ import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
 import TopThreeRank from "@/app/_component/common/TopThreeRank";
 import UserCard from "@/app/_component/common/UserCard";
-import useBidsQuery from "@/app/hooks/queries/useBidsQuery";
-import useGetAuctionDetail from "@/app/hooks/queries/useGetAuctionDetail";
+import useBidsQuery from "@/app/products/[auctionId]/_hooks/queries/useBidsQuery";
+import useGetAuctionDetail from "@/app/products/[auctionId]/_hooks/queries/useGetAuctionDetail";
 
 interface DetailInfoSectionProps {
   auctionId: number;

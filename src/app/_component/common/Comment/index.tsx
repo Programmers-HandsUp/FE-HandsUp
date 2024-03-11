@@ -10,7 +10,7 @@ import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useEffect, useRef, useState } from "react";
 import useGetCommentList, {
   ICommentListAPI
-} from "../../../hooks/queries/useGetCommentList";
+} from "../../../products/[auctionId]/_hooks/queries/useGetCommentList";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 import CommentInput, { FormDataType } from "./CommentInput";
 

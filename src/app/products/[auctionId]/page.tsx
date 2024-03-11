@@ -1,6 +1,6 @@
 import { getAuctionDetail } from "@/app/api/getAuctionDetail";
 import { getComments } from "@/app/api/getComments";
-import { ICommentListAPI } from "@/app/hooks/queries/useGetCommentList";
+import { ICommentListAPI } from "@/app/products/[auctionId]/_hooks/queries/useGetCommentList";
 
 import {
   DefaultError,

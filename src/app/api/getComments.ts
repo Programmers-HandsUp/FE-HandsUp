@@ -1,4 +1,4 @@
-import { ICommentListAPI } from "../hooks/queries/useGetCommentList";
+import { ICommentListAPI } from "../products/[auctionId]/_hooks/queries/useGetCommentList";
 
 export interface IGetComments {
   auctionId: number;
