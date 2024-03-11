@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DropDown from "@/app/_component/common/DropDown";
 import Modal from "@/app/_component/common/Modal";
@@ -22,7 +22,7 @@ const SearchResultPage = () => {
   const [filterOptions, setFilterOptions] =
     useState<Record<string, string | number>>(); // @TODO : 해당 데이터로 필터링 검색 api 구현예정
   const [alignOption, setAlignOption] = useState("마감 임박 순");
-  const { open, close, isOpen } = useModalState();
+  const { open, close } = useModalState();
 
   const {
     data: searchResults,
@@ -31,6 +31,10 @@ const SearchResultPage = () => {
     fetchNextPage,
     hasNextPage
   } = useGetSearchResult(param);
+
+  useEffect(() => {
+    console.log(filterOptions); // 추후 filterOptions 사용예정
+  }, [filterOptions]);
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();

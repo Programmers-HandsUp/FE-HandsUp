@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 import getPopularKeyword from "@/app/_api/popularKeyword";
 
-const useGetPopluarKeywrodrQuery = () => {
+const useGetPopularKeywordQuery = () => {
   return useQuery({
-    queryKey: ["getPopularhKeyword"],
+    queryKey: ["getPopularKeyword"],
     queryFn: getPopularKeyword,
     select: (data) => {
       const response = data;
@@ -13,4 +13,4 @@ const useGetPopluarKeywrodrQuery = () => {
   });
 };
 
-export default useGetPopluarKeywrodrQuery;
+export default useGetPopularKeywordQuery;

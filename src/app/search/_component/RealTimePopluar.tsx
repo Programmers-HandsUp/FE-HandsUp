@@ -1,15 +1,14 @@
 import Link from "next/link";
 
-import useGetPopluarKeywrodrQuery from "@/app/search/_hooks/queries/useGetPopluarKeyword";
-
+import useGetPopularKeywordQuery from "../_hooks/queries/useGetPopularKeyword";
 import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 
 /* @TODO : 
     로딩텍스트 스켈레톤으로 대체 예정
   */
 
-const RealTimePopluar = () => {
-  const { data: popularKeywords } = useGetPopluarKeywrodrQuery();
+const RealTimePopular = () => {
+  const { data: popularKeywords } = useGetPopularKeywordQuery();
 
   return (
     <div>
@@ -36,4 +35,4 @@ const RealTimePopluar = () => {
   );
 };
 
-export default RealTimePopluar;
+export default RealTimePopular;

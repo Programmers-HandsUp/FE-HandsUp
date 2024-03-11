@@ -17,6 +17,7 @@ const FinishFunnel = ({
   const [isLoading, setIsLoading] = useState(true);
 
   const setOnboardingPost = async () => {
+    console.log(profileImage, category, address, nickName); // 추후 사용 예정
     setTimeout(() => {
       // api 통신 예정 (profileImage  / category / address / )
       // 통신되는 척 딜레이
@@ -27,6 +28,7 @@ const FinishFunnel = ({
   useEffect(() => {
     setOnboardingPost();
   }, []);
+
   return (
     <div>
       {isLoading ? (
