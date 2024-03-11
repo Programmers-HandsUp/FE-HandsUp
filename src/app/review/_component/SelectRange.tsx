@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Chip, Chips } from "../_component/common/Chips";
+import { Chip, Chips } from "../../_component/common/Chips";
 import Image from "next/image";
 
 interface SelectRangeProps {
