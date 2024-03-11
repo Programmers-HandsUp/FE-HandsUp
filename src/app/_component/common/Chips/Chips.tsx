@@ -7,7 +7,7 @@ import {
   isValidElement
 } from "react";
 import { chipsVariants } from "./Chips.variants";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 interface ChipsProps<T extends string | string[]>
   extends VariantProps<typeof chipsVariants> {

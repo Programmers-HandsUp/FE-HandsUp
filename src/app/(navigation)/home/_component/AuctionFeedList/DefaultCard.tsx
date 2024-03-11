@@ -1,6 +1,6 @@
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { Auction } from "@/utils/mocks/api/types";
 
 interface DefaultCardProps {

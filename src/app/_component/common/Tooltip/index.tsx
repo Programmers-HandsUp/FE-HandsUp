@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import useInteraction, { EventType } from "./useInteraction";
 import {
   MainPositionVariants,

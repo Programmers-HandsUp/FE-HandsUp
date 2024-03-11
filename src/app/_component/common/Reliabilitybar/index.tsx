@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { TextVariants, ThemeVariants } from "./Reliability.variants";
 
 type Theme = "default" | "main" | "terrible" | "poor" | "good";
@@ -30,7 +30,9 @@ function ReliabilityBar({ score = 100 }) {
       </div>
 
       <div className="relative w-full h-3 rounded-full bg-gray-100 z-10">
-        <div className="absolute h-3 z-100" style={{ width: `${width}%` }}>
+        <div
+          className="absolute h-3 z-100"
+          style={{ width: `${width}%` }}>
           <div className={cn(ThemeVariants({ theme }))}></div>
         </div>
       </div>

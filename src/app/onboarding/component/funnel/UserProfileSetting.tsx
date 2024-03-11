@@ -3,7 +3,7 @@
 import Image from "next/image";
 import useOnboardingStore from "../store/store";
 
-import onGetImageFile from "@/utils/onGetImageFile";
+import onGetImageFile from "@/utils/function/onGetImageFile";
 
 interface UserProfileSettingProps {
   setNickName: React.Dispatch<React.SetStateAction<string>>;
@@ -12,7 +12,7 @@ interface UserProfileSettingProps {
 const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
   const profileImage = useOnboardingStore((state) => state.profileImage);
   const setProfileImage = useOnboardingStore((state) => state.setProfileImage);
-  
+
   return (
     <div>
       <form className="w-[300px] mx-auto flex flex-col">

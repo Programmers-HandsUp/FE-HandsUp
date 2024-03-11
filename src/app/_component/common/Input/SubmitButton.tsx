@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { SubmitButtonVariants } from "./SubmitButton.variants";
 import { VariantProps } from "class-variance-authority";
 
@@ -21,14 +21,18 @@ const SubmitButton = ({
   ...props
 }: PropsWithChildren<SubmitButtonProps>) => {
   return children ? (
-    <button {...props} className={className}>
+    <button
+      {...props}
+      className={className}>
       {children}
     </button>
   ) : (
     <button
       {...props}
-      className={cn(SubmitButtonVariants({ color, size, fontSize }), className)}
-    >
+      className={cn(
+        SubmitButtonVariants({ color, size, fontSize }),
+        className
+      )}>
       {buttonText ? buttonText : "확인"}
     </button>
   );

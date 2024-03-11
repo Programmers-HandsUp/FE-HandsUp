@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { useState } from "react";
 import Icon from "../Icon";
 

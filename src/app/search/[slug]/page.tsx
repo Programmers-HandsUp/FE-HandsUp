@@ -9,7 +9,7 @@ import SearchBar from "../component/SearchBar";
 import ProductCard from "@/app/_component/common/ProductCard";
 import SearchFilterModal from "./component/SearchFilter";
 import likeIcon from "../../../../public/assets/likeIcon.svg";
-import getPastTime from "@/utils/getPastTime";
+import getPastTime from "@/utils/function/getPastTime";
 import DropDown from "@/app/_component/common/DropDown";
 import tempLogoImage from "~/images/logoIcon.png";
 import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";

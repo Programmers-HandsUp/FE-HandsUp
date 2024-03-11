@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { ButtonHTMLAttributes, ReactNode } from "react";
 import Icon from "../Icon";
 import { IconName } from "../Icon/type";
@@ -27,13 +27,20 @@ const Button = ({
     <button
       className={cn(ButtonVariants({ size, rounded, color }))}
       {...props}
-      disabled
-    >
+      disabled>
       Loading
     </button>
   ) : (
-    <button className={cn(ButtonVariants({ size, rounded, color }))} {...props}>
-      {icon && <Icon id={icon} size={24} className="mr-2" />}
+    <button
+      className={cn(ButtonVariants({ size, rounded, color }))}
+      {...props}>
+      {icon && (
+        <Icon
+          id={icon}
+          size={24}
+          className="mr-2"
+        />
+      )}
       {children}
     </button>
   );

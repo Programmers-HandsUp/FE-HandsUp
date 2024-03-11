@@ -1,6 +1,6 @@
 "use client";
 
-import { getCookie, setCookie } from "@/utils/cookie";
+import { getCookie, setCookie } from "@/utils/function/cookie";
 import { useEffect, useState } from "react";
 
 const useDarkMode = () => {

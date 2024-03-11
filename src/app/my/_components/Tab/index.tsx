@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 import usePurchaseList from "@/app/hooks/queries/usePurchaseList";
 import useSaleList from "@/app/hooks/queries/useSaleList";

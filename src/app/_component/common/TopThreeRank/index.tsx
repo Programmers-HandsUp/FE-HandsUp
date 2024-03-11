@@ -2,7 +2,7 @@ import { TopThreeRankDataType } from "@/app/types/product";
 import Avatar from "../Avatar";
 import Image from "next/image";
 import TransparentMan from "/public/assets/images/transparentMan.png";
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 
 const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
   // 최대 입찰 가격을 찾습니다.

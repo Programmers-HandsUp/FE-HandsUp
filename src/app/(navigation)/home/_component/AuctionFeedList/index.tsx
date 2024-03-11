@@ -4,11 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
 import ProductCard from "@/app/_component/common/ProductCard";
 import { Auction } from "@/utils/mocks/api/types";
-import { divideArray } from "@/utils/arrayDivider";
+import { divideArray } from "@/utils/function/arrayDivider";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import { HorizontalCard, VerticalCard } from "./DefaultCard";
 import { feedDivideVariants } from "./AuctionFeedList.variants";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 interface AuctionFeedListProps {
   divideNum: 1 | 4 | 8;

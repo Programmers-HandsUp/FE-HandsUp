@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 import { InputInnerBoxVariants } from "./InputInnerBox.variants";
 import { VariantProps } from "class-variance-authority";
 
@@ -11,12 +11,11 @@ const InputInnerBox = ({
   className,
   children,
   fontSize,
-  rounded,
+  rounded
 }: React.PropsWithChildren<InputInnerBoxProps>) => {
   return (
     <div
-      className={cn(InputInnerBoxVariants({ fontSize, rounded }), className)}
-    >
+      className={cn(InputInnerBoxVariants({ fontSize, rounded }), className)}>
       {children}
     </div>
   );

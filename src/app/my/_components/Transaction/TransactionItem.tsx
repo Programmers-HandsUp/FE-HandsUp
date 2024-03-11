@@ -1,4 +1,4 @@
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 import { PropsWithChildren } from "react";
 
 interface HeaderProps {

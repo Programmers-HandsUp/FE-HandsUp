@@ -1,11 +1,12 @@
 import React from "react";
 import { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils/cn";
-import { progressBarVariants, BarVariants } from "./ProgressBar.variants";
+import { cn } from "@/utils/function/cn";
+import { progressBarVariants, barVariants } from "./ProgressBar.variants";
 
-interface ProgressBarProps extends VariantProps<typeof progressBarVariants>,
-    VariantProps<typeof BarVariants> {
+interface ProgressBarProps
+  extends VariantProps<typeof progressBarVariants>,
+    VariantProps<typeof barVariants> {
   className?: string;
   width: number;
   height: number;
@@ -27,7 +28,7 @@ const ProgressBar = ({
       className={cn(progressBarVariants({ round, bgColor }), className)}>
       <div
         style={{ width: `${percent}%`, height: height }}
-        className={cn(BarVariants({ round, barColor }))}
+        className={cn(barVariants({ barColor }))}
       />
     </div>
   );
