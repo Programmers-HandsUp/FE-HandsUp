@@ -2035,6 +2035,37 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-plugin-simple-import-sort@npm:^12.0.0":
+  version: 12.0.0
+  resolution: "eslint-plugin-simple-import-sort@npm:12.0.0"
+  peerDependencies:
+    eslint: ">=5.0.0"
+  checksum: 10c0/5405f01e4ca5b3c9a2a1b019e39fa858bb081872eb9602fb85d2e4913356fec0a9b3f997e957b1df0c370908ec124114148491e442d57e911b8249728d474398
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-unused-imports@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "eslint-plugin-unused-imports@npm:3.1.0"
+  dependencies:
+    eslint-rule-composer: "npm:^0.3.0"
+  peerDependencies:
+    "@typescript-eslint/eslint-plugin": 6 - 7
+    eslint: 8
+  peerDependenciesMeta:
+    "@typescript-eslint/eslint-plugin":
+      optional: true
+  checksum: 10c0/712268fc10e7a5b169070c5ec2655733f4cdcf079848b2812ebe716b429a16cb87f315d3c0004cf128ba3874f68dd938eec8394a03587484e97e146494b48cda
+  languageName: node
+  linkType: hard
+
+"eslint-rule-composer@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "eslint-rule-composer@npm:0.3.0"
+  checksum: 10c0/1f0c40d209e1503a955101a0dbba37e7fc67c8aaa47a5b9ae0b0fcbae7022c86e52b3df2b1b9ffd658e16cd80f31fff92e7222460a44d8251e61d49e0af79a07
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:^7.2.2":
   version: 7.2.2
   resolution: "eslint-scope@npm:7.2.2"
@@ -2621,6 +2652,8 @@ __metadata:
     dayjs: "npm:^1.11.10"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.1.0"
+    eslint-plugin-simple-import-sort: "npm:^12.0.0"
+    eslint-plugin-unused-imports: "npm:^3.1.0"
     express: "npm:^4.18.2"
     file-saver: "npm:^2.0.5"
     html2canvas: "npm:^1.4.1"
