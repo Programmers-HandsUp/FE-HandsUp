@@ -2,19 +2,30 @@
 
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import Timer from "@/app/_component/common/Timer";
-import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
-import { Auction } from "@/utils/mocks/api/types";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
+
+export interface Root {
+  content: Content[];
+  size: number;
+  hasNext: boolean;
+}
+
+export interface Content {
+  auctionId: number;
+  title: string;
+  dong: string;
+  currentBiddingPrice: number;
+  imgUrl: string;
+  bookmarkCount: number;
+  biddingCount: number;
+  createdAt: string;
+  endDate: string;
+}
 
 const DetailAuctionFeed = () => {
-  const { data, isPending } = useQuery<Auction[]>({
-    queryKey: ["auction"],
-    queryFn: getHotAuctionRecommends,
-    staleTime: 60 * 1000,
-    gcTime: 300 * 1000
-  });
+  const { data, isPending } = useHotAuctionRecommends();
 
   if (isPending) return <div>Loading...</div>;
   return (
@@ -28,12 +39,12 @@ const DetailAuctionFeed = () => {
         useNav>
         {data?.slice(0, 6).map((auction) => (
           <Link
-            href={`auction/${auction.product_id}`}
-            key={auction.product_id}
+            href={`auction/${auction.auctionId}`}
+            key={auction.auctionId}
             className="group">
             <div className="relative w-full h-full border rounded-lg overflow-hidden">
               <Image
-                src={auction.product.product_image.image_url}
+                src={auction.imgUrl}
                 width={0}
                 height={0}
                 alt="상품 이미지"
@@ -43,18 +54,16 @@ const DetailAuctionFeed = () => {
                 <div>
                   <Timer
                     createdAt={new Date(auction.createdAt)}
-                    deadline={new Date(auction.end_date)}
+                    deadline={new Date(auction.endDate)}
                   />
                 </div>
                 <div className="hidden group-hover:block">
-                  현재 입찰 가격 : {auction.init_price}
+                  현재 입찰 가격 : {auction.currentBiddingPrice}
                 </div>
               </div>
             </div>
             <div className="text-xs text-center">
-              <span>
-                🔥{auction.bidding_user_count}명이 치열하게 참여하고있어요!
-              </span>
+              <span>🔥{auction.biddingCount}명이 치열하게 참여하고있어요!</span>
             </div>
           </Link>
         ))}
