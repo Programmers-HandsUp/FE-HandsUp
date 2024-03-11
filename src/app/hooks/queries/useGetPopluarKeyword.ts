@@ -1,4 +1,4 @@
-import getPopularKeyword from "@/app/api/\bpopularKeyword";
+import getPopularKeyword from "@/app/api/popularKeyword";
 import { useQuery } from "@tanstack/react-query";
 
 const useGetPopluarKeywrodrQuery = () => {

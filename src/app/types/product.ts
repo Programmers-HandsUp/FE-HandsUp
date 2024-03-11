@@ -1,19 +1,19 @@
-export interface IBids {
-  content: IBidsData[];
+export interface Bids {
+  content: BidsData[];
   size: number;
   hasNext: boolean;
 }
 
-export interface IBidsData {
+export interface BidsData {
   biddingPrice: number;
   auctionId: number;
   bidderId: number;
   bidderNickname: string;
   imgUrl: string;
-  createdAt: string;
+  createdAt: string | Date;
 }
 
-export interface IAuctionDetail {
+export interface AuctionDetailType {
   auctionId: number;
   sellerId: number;
   title: string;
@@ -31,4 +31,18 @@ export interface IAuctionDetail {
   dong: string;
   bookmarkCount: number;
   createdAt: string;
+  auctionStatus: "경매중" | "거래진행중" | "거래완료";
+}
+
+export interface TopThreeRankType {
+  content: TopThreeRankDataType[];
+  size: number;
+  hasNext: boolean;
+}
+
+export interface TopThreeRankDataType {
+  biddingPrice: number;
+  auctionId: number;
+  bidderId: number;
+  bidderNickname: string;
 }

@@ -1,13 +1,13 @@
 "use client";
 
-import { IBids } from "@/app/types/product";
+import { Bids } from "@/app/types/product";
 import Icon from "../Icon";
 import { useEffect, useState } from "react";
 
 interface AuctionDetailDataProps {
   bookmarkCount: number;
   auctionId: number;
-  bidsData: IBids;
+  bidsData: Bids;
 }
 
 const AuctionDetailFooterBar = ({
@@ -24,9 +24,9 @@ const AuctionDetailFooterBar = ({
         window.scrollY || document.documentElement.scrollTop;
       setLastScrollTop((prevScrollTop) => {
         if (currentScrollTop > prevScrollTop) {
-          setIsVisible(true);
-        } else {
           setIsVisible(false);
+        } else {
+          setIsVisible(true);
         }
         return currentScrollTop <= 0 ? 0 : currentScrollTop;
       });
@@ -38,7 +38,7 @@ const AuctionDetailFooterBar = ({
 
   return (
     <div
-      className="fixed flex justify-between bottom-0 border-t-2 border-t-gray-400 min-w-[360px] py-4"
+      className="fixed flex justify-between bottom-0 border-t-2 border-t-gray-400 min-w-[360px] py-4 dark:bg-black bg-white"
       style={{
         transform: isVisible ? "translateY(0)" : "translateY(100%)",
         transition: "transform 0.3s ease-in-out"

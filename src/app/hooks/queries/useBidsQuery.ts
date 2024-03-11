@@ -1,18 +1,18 @@
 "use client";
 
-import { getBids, getTopThreeRank } from "@/app/api/bids";
+import { getBids, getTopThreeRank } from "@/app/api/getBids";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
 const useBidsQuery = ({ auctionId }: { auctionId: number }) => {
   const [{ data: top3 }, { data: bids }] = useSuspenseQueries({
     queries: [
       {
-        queryKey: ["topThreeRank"],
+        queryKey: ["product", auctionId, "topThreeRank"],
         queryFn: () => getTopThreeRank({ auctionId }),
         staleTime: 60 * 1000
       },
       {
-        queryKey: ["bids", auctionId],
+        queryKey: ["product", auctionId, "bids"],
         queryFn: () => getBids({ auctionId }),
         staleTime: 60 * 1000
       }

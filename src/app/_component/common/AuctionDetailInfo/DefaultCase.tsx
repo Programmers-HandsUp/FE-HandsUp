@@ -10,7 +10,6 @@ interface DefaultAuctionDetailInfoProps {
   si: string;
   gu: string;
   dong: string;
-  bookmarkCount: number;
 }
 
 export const DefaultAuctionDetailInfo = ({

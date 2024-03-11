@@ -1,7 +1,7 @@
+import { AuctionDetailType } from "@/app/types/product";
 import { Auction, CommentType } from "../types";
-import { v4 } from "uuid";
 
-export const postListData: PostType[] = [
+export const postListData = [
   {
     id: 1,
     authorId: "id1",
@@ -273,15 +273,18 @@ export const postListData: PostType[] = [
     bidRecord: [
       { bidderName: "jjg", bidderId: "id1", biddingPrice: 400, id: "123fdsf1" }
     ]
+  }
+];
+
 const generateRandomNumberId = (length = 8) => {
   let randomId = "";
 
   for (let i = 0; i < length; i++) {
-    const randomNumber = Math.floor(Math.random() * 10); // 0부터 9까지의 랜덤한 정수
+    const randomNumber = Math.floor(Math.random() * 10);
     randomId += randomNumber;
   }
 
-  return parseInt(randomId, 10); // 문자열을 숫자로 변환
+  return parseInt(randomId, 10);
 };
 
 export const auctionHotList: Auction[] = [
@@ -906,6 +909,32 @@ export const auctionHotList: Auction[] = [
     }
   }
 ];
+
+export const auctionDetail: AuctionDetailType = {
+  auctionId: 353256236,
+  sellerId: 12342,
+  title: "나이키 덩크 로우 팔아영",
+  productCategory: "신발",
+  initPrice: 5000,
+  currentBiddingPrice: 12000,
+  endDate: "2024-03-12",
+  productStatus: "깨끗해요",
+  purchaseTime: "3개월 이하",
+  description:
+    "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
+  tradeMethod: "직접 만나서",
+  imageUrls: [
+    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
+    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
+    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp"
+  ],
+  si: "서울시",
+  gu: "강동구",
+  dong: "둔촌동",
+  bookmarkCount: 20,
+  createdAt: "2024-03-05",
+  auctionStatus: "경매중"
+};
 
 export const commentData: CommentType[] = [
   {

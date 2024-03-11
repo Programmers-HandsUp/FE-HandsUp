@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
+import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
 import ProductCard from "@/app/_component/common/ProductCard";
 import { Auction } from "@/utils/mocks/api/types";
 import { divideArray } from "@/utils/arrayDivider";

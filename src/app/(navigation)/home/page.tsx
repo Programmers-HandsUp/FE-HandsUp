@@ -4,7 +4,7 @@ import {
   dehydrate
 } from "@tanstack/react-query";
 import DetailAuctionFeed from "./_component/DetailAuctionFeed";
-import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
+import { getHotAuctionRecommends } from "@/app/api/getAuctionRecommends";
 import AuctionFeedList from "./_component/AuctionFeedList";
 
 const MainPage = async () => {

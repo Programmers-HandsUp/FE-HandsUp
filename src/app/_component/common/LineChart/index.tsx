@@ -10,7 +10,7 @@ import {
   Legend
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { BidsType } from "@/utils/mocks/api/types";
+import { Bids } from "@/app/types/product";
 
 ChartJS.register(
   CategoryScale,
@@ -38,7 +38,7 @@ export const options = {
 };
 
 interface LineChartProps {
-  bids: BidsType;
+  bids: Bids;
 }
 
 const LineChart = ({ bids }: LineChartProps) => {
