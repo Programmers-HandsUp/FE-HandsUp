@@ -3,11 +3,12 @@ import { ControllerRenderProps } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
 import Icon from "@/app/_component/common/Icon";
-import { CATEGORY_LIST } from "@/app/products/new/_utils/constants";
-import { RegisterProduct } from "@/app/products/new/page";
+import { RegisterAuction } from "@/app/auctions/new/page";
+
+import { CATEGORY_LIST } from "../../../_utils/constants";
 
 interface CategoryListProps {
-  field: ControllerRenderProps<RegisterProduct, "productCategory">;
+  field: ControllerRenderProps<RegisterAuction, "productCategory">;
 }
 function CategoryList({ field }: CategoryListProps) {
   const [isShow, setIsShow] = useState(false);

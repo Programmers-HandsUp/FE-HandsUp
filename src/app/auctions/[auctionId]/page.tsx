@@ -9,29 +9,29 @@ import {
 import { getAuctionDetail } from "@/app/api/getAuctionDetail";
 import { getBids, getTopThreeRank } from "@/app/api/getBids";
 import { getComments } from "@/app/api/getComments";
-import { ICommentListAPI } from "@/app/products/[auctionId]/_hooks/queries/useGetCommentList";
 
 import DetailInfoSection from "./_component/DetailInfoSection";
+import { ICommentListAPI } from "./_hooks/queries/useGetCommentList";
 
-interface ProductProps {
+interface AuctionProps {
   params: { auctionId: number };
 }
 
-const Product = async ({ params }: ProductProps) => {
+const Auction = async ({ params }: AuctionProps) => {
   const { auctionId } = params;
 
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ["product", auctionId],
+    queryKey: ["auction", auctionId],
     queryFn: () => getAuctionDetail({ auctionId })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["product", auctionId, "topThreeRank"],
+    queryKey: ["auction", auctionId, "topThreeRank"],
     queryFn: () => getTopThreeRank({ auctionId }),
     staleTime: 60 * 1000
   });
   await queryClient.prefetchQuery({
-    queryKey: ["product", auctionId, "bids"],
+    queryKey: ["auction", auctionId, "bids"],
     queryFn: () => getBids({ auctionId }),
     staleTime: 60 * 1000
   });
@@ -42,7 +42,7 @@ const Product = async ({ params }: ProductProps) => {
     [string, number, string],
     number
   >({
-    queryKey: ["product", auctionId, "comments"],
+    queryKey: ["auction", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
     initialPageParam: 0,
     getNextPageParam: (lastPage: ICommentListAPI) => {
@@ -61,4 +61,4 @@ const Product = async ({ params }: ProductProps) => {
   );
 };
 
-export default Product;
+export default Auction;

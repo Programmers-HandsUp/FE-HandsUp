@@ -6,12 +6,9 @@ import {
 } from "react-hook-form";
 
 import { Chip, Chips } from "@/app/_component/common/Chips";
-import {
-  PURCHASE_TIME_LIST,
-  STATE_LIST
-} from "@/app/products/new/_utils/constants";
-import { RegisterAuction } from "@/app/products/new/page";
+import { RegisterAuction } from "@/app/auctions/new/page";
 
+import { PURCHASE_TIME_LIST, STATE_LIST } from "../../_utils/constants";
 import InputLabel from "../InputLabel";
 import CategoryList from "./CategoryList";
 import { ImagePreviewer, ImageUploader } from "./ImageUploader";

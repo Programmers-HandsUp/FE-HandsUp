@@ -7,7 +7,7 @@ import {
 } from "react-hook-form";
 
 import Icon from "@/app/_component/common/Icon";
-import { RegisterAuction } from "@/app/products/new/page";
+import { RegisterAuction } from "@/app/auctions/new/page";
 interface ImagePreviewerProps {
   fields: FieldArrayWithId<RegisterAuction, "images", "imagesId">[];
   onRemove: UseFieldArrayRemove;

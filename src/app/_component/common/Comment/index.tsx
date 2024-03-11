@@ -8,11 +8,9 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 import { createComment, ICreateComment } from "@/app/api/createComment";
+import useGetCommentList, { ICommentListAPI } from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
 import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
 
-import useGetCommentList, {
-  ICommentListAPI
-} from "../../../products/[auctionId]/_hooks/queries/useGetCommentList";
 import ChatMessage from "../ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
 

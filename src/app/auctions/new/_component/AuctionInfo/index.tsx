@@ -5,8 +5,8 @@ import { Chip, Chips } from "@/app/_component/common/Chips";
 import Icon from "@/app/_component/common/Icon";
 import InputPrice from "@/app/_component/common/InputPrice";
 import Tooltip from "@/app/_component/common/Tooltip";
-import { TRADEMETHOD_LIST } from "@/app/products/new/_utils/constants";
 
+import { TRADEMETHOD_LIST } from "../../_utils/constants";
 import { RegisterAuction } from "../../page";
 import InputLabel from "../InputLabel";
 import SearchAddressBtn from "../SearchAddressBtn";

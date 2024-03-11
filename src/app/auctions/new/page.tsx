@@ -6,11 +6,11 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useImageUpload } from "@/app/hooks/mutations/useImageUpload";
-import { useRegisterAuction } from "@/app/products/new/_hooks/mutations/useReigsterAuction";
 import { AuctionData } from "@/utils/types/auction/registerAuction";
 
 import AuctionInfo from "./_component/AuctionInfo";
 import ProductInfo from "./_component/ProductInfo";
+import { useRegisterAuction } from "./_hooks/mutations/useReigsterAuction";
 import useBeforeUnload from "./_utils/useBeforeUnload";
 import { AuctionSchema } from "./_utils/validation";
 

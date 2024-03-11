@@ -2,12 +2,12 @@ import { ErrorMessage } from "@hookform/error-message";
 import { PropsWithChildren } from "react";
 import { FieldErrors } from "react-hook-form";
 
-import { RegisterProduct } from "../../page";
+import { RegisterAuction } from "../../page";
 
 interface InputLabelProps {
   title?: React.ReactNode;
-  errors: FieldErrors<RegisterProduct>;
-  name: keyof RegisterProduct;
+  errors: FieldErrors<RegisterAuction>;
+  name: keyof RegisterAuction;
   className?: string;
 }
 
