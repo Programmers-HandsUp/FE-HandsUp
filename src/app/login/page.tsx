@@ -1,7 +1,7 @@
 "use client";
 
-import EmailLoginForm from "./component/EmailLoginForm";
-import SocialLoginContainer from "./component/SocialLoginContainer";
+import EmailLoginForm from "./_component/EmailLoginForm";
+import SocialLoginContainer from "./_component/SocialLoginContainer";
 
 const Login = () => {
   return (

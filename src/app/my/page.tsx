@@ -2,11 +2,11 @@
 
 import BoxLayout from "./_components/BoxLayout";
 import Profile from "./_components/Profile";
-import useReviewLabelList from "../hooks/queries/useReviewLabelList";
-import useReviewList from "../hooks/queries/useReviewList";
+import useReviewLabelList from "./_hooks/queries/useReviewLabelList";
+import useReviewList from "./_hooks/queries/useReviewList";
 import TransactionStatus from "./_components/TransactionStatus";
-import usePurchaseList from "../hooks/queries/usePurchaseList";
-import useSaleList from "../hooks/queries/useSaleList";
+import usePurchaseList from "./_hooks/queries/usePurchaseList";
+import useSaleList from "./_hooks/queries/useSaleList";
 import ReviewItem from "./_components/ReviewItem";
 
 function MyPage() {

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/utils/function/cn";
 
-import usePurchaseList from "@/app/hooks/queries/usePurchaseList";
-import useSaleList from "@/app/hooks/queries/useSaleList";
+import usePurchaseList from "@/app/my/_hooks/queries/usePurchaseList";
+import useSaleList from "@/app/my/_hooks/queries/useSaleList";
 import { Status } from "../../types";
 import { TabVariants } from "./Tab.variants";
 

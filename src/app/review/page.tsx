@@ -5,8 +5,8 @@ import Button from "../_component/common/Button";
 import Icon from "../_component/common/Icon";
 import ProductCard from "../_component/common/ProductCard";
 import tempImage from "../../public/tempImage.png";
-import SelectRange from "./SelectRange";
-import SelectReview from "./SelectReview";
+import SelectRange from "./_component/SelectRange";
+import SelectReview from "./_component/SelectReview";
 
 interface Inputs {
   range: string;
