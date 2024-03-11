@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-import { Bids } from "@/app/types/product";
+import { BidRequest } from "@/utils/types/bid/bids";
 
 import Icon from "../Icon";
 
 interface AuctionDetailDataProps {
   bookmarkCount: number;
   auctionId: number;
-  bidsData: Bids;
+  bidsData: BidRequest;
 }
 
 const AuctionDetailFooterBar = ({

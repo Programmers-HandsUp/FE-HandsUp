@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 import TransparentMan from "/public/assets/images/transparentMan.png";
-import { TopThreeRankDataType } from "@/app/types/product";
 import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
+import { TopThreeRankDataType } from "@/utils/types/index.";
 
 import Avatar from "../Avatar";
 
