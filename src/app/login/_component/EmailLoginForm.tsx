@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Input from "@/app/_component/common/Input";
 
-import { useSignIn } from "@/app/hooks/mutations/useSignin";
+import { useSignIn } from "../_hooks/mutations/useSignin";
 import { useForm } from "react-hook-form";
 
 type LoginFormValues = {
