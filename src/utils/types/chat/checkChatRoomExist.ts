@@ -1,3 +1,3 @@
-export interface CheckChatRoomExsit {
+export interface CheckChatRoomExist {
   isExist: boolean;
 }

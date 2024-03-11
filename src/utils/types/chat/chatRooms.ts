@@ -1,10 +1,10 @@
 export interface ChatRoomsResponse {
-  content: ChatRoomInfom[];
+  content: ChatRoomInfo[];
   size: number;
   hasNext: boolean;
 }
 
-export interface ChatRoomInfom {
+export interface ChatRoomInfo {
   chatRoomId: number;
   receiverNickName: string;
   receiverImageUrl: string;
