@@ -8,10 +8,12 @@ interface UserCardContentAreaProps {
 export const UserCardContentArea = ({
   className,
   children,
-  onClickContentArea,
+  onClickContentArea
 }: PropsWithChildren<UserCardContentAreaProps>) => {
   return (
-    <div onClick={onClickContentArea} className={className}>
+    <div
+      onClick={onClickContentArea}
+      className={className}>
       {children}
     </div>
   );

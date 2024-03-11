@@ -1,8 +1,9 @@
+import { VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
 
 import { cn } from "@/utils/function/cn";
+
 import { SubmitButtonVariants } from "./SubmitButton.variants";
-import { VariantProps } from "class-variance-authority";
 
 interface SubmitButtonProps
   extends VariantProps<typeof SubmitButtonVariants>,

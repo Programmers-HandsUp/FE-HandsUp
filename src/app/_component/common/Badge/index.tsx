@@ -1,5 +1,7 @@
-import { cn } from "@/utils/function/cn";
 import { VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/function/cn";
+
 import { BadgeVariants } from "./Badge.variants";
 
 interface BadgeProps extends VariantProps<typeof BadgeVariants> {

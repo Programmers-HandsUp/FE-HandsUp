@@ -1,9 +1,11 @@
 "use client";
 
 import { ComponentProps, useEffect, useState } from "react";
-import useDarkMode from "./useDarkMode";
+
 import { cn } from "@/utils/function/cn";
+
 import Icon from "../Icon";
+import useDarkMode from "./useDarkMode";
 
 interface ThemeButtonProps extends ComponentProps<"button"> {}
 

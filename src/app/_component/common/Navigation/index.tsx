@@ -1,6 +1,7 @@
+import Link from "next/link";
+
 import Icon from "../Icon";
 import LoginLink from "./LoginLink";
-import Link from "next/link";
 
 interface NavigationProps {
   userId?: string;
@@ -17,7 +18,9 @@ const Navigation = ({ userId }: NavigationProps) => {
           className="hover:bg-[#72dbfe] hover:text-gray-200 rounded-full transition-colors"
         />
       </Link>
-      <LoginLink userId={userId} href="/chat">
+      <LoginLink
+        userId={userId}
+        href="/chat">
         <Icon
           id="chat"
           size={35}
@@ -25,7 +28,9 @@ const Navigation = ({ userId }: NavigationProps) => {
         />
       </LoginLink>
 
-      <LoginLink userId={userId} href="/create">
+      <LoginLink
+        userId={userId}
+        href="/create">
         <Icon
           id="box-add"
           size={35}
@@ -33,14 +38,18 @@ const Navigation = ({ userId }: NavigationProps) => {
         />
       </LoginLink>
 
-      <LoginLink userId={userId} href="/bookmark">
+      <LoginLink
+        userId={userId}
+        href="/bookmark">
         <Icon
           id="book-mark"
           size={35}
           className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 rounded-full transition-colors"
         />
       </LoginLink>
-      <LoginLink userId={userId} href={`/account/${userId}`}>
+      <LoginLink
+        userId={userId}
+        href={`/account/${userId}`}>
         <Icon
           id="user-alt-fill"
           size={35}

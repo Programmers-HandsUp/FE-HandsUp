@@ -1,8 +1,9 @@
-import React from "react";
 import { VariantProps } from "class-variance-authority";
+import React from "react";
 
 import { cn } from "@/utils/function/cn";
-import { progressBarVariants, barVariants } from "./ProgressBar.variants";
+
+import { barVariants, progressBarVariants } from "./ProgressBar.variants";
 
 interface ProgressBarProps
   extends VariantProps<typeof progressBarVariants>,

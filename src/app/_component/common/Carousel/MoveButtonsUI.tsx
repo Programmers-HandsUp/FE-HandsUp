@@ -1,5 +1,6 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+
 import tempLeftButton from "@/public/tempLeftButton.svg";
 
 interface MoveButtonsUIProps {
@@ -11,7 +12,7 @@ interface MoveButtonsUIProps {
 const MoveButtonsUI = ({
   imageNum,
   moveButtonImage = tempLeftButton,
-  setSelectedScene,
+  setSelectedScene
 }: MoveButtonsUIProps) => {
   return (
     <div className="w-full absolute bottom-1/2 flex justify-between">
@@ -20,18 +21,23 @@ const MoveButtonsUI = ({
           setSelectedScene((selectedNum) =>
             selectedNum ? selectedNum - 1 : selectedNum
           )
-        }
-      >
-        <Image src={moveButtonImage} alt="leftButton" />
+        }>
+        <Image
+          src={moveButtonImage}
+          alt="leftButton"
+        />
       </button>
       <button
         onClick={() =>
           setSelectedScene((selectedNum) =>
             selectedNum !== imageNum - 1 ? selectedNum + 1 : selectedNum
           )
-        }
-      >
-        <Image className="rotate-180" src={moveButtonImage} alt="rightButton" />
+        }>
+        <Image
+          className="rotate-180"
+          src={moveButtonImage}
+          alt="rightButton"
+        />
       </button>
     </div>
   );

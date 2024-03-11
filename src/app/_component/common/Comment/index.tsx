@@ -1,17 +1,19 @@
 "use client";
 
-import ChatMessage from "../ChatMessage";
 import {
   InfiniteData,
   useMutation,
   useQueryClient
 } from "@tanstack/react-query";
-import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useEffect, useRef, useState } from "react";
+
+import { createComment, ICreateComment } from "@/app/api/createComment";
+import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
+
 import useGetCommentList, {
   ICommentListAPI
 } from "../../../products/[auctionId]/_hooks/queries/useGetCommentList";
-import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
+import ChatMessage from "../ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
 
 interface CommentProps {

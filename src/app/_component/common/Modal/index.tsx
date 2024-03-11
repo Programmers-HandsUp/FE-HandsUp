@@ -1,10 +1,12 @@
 "use client";
 
 import { VariantProps } from "class-variance-authority";
-import { modalTypeVariants } from "./ModalType.variants";
 import React, { ReactNode, useEffect, useState } from "react";
-import { cn } from "@/utils/function/cn";
 import { createPortal } from "react-dom";
+
+import { cn } from "@/utils/function/cn";
+
+import { modalTypeVariants } from "./ModalType.variants";
 
 interface ModalProps extends VariantProps<typeof modalTypeVariants> {
   initialValue?: boolean;

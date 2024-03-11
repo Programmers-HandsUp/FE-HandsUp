@@ -1,8 +1,10 @@
 "use client";
 
-import { Bids } from "@/app/types/product";
-import Icon from "../Icon";
 import { useEffect, useState } from "react";
+
+import { Bids } from "@/app/types/product";
+
+import Icon from "../Icon";
 
 interface AuctionDetailDataProps {
   bookmarkCount: number;

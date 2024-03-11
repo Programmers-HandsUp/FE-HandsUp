@@ -1,7 +1,9 @@
-import { cn } from "@/utils/function/cn";
-import { InputVariants } from "./Input.variants";
 import { VariantProps } from "class-variance-authority";
 import { ComponentPropsWithoutRef, forwardRef } from "react";
+
+import { cn } from "@/utils/function/cn";
+
+import { InputVariants } from "./Input.variants";
 
 interface InputFormProps
   extends VariantProps<typeof InputVariants>,

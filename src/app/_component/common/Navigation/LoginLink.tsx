@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { MouseEvent, ReactNode } from "react";
-import Toast from "../Toast";
 import { useRouter } from "next/navigation";
+import { MouseEvent, ReactNode } from "react";
+
+import Toast from "../Toast";
 
 interface LoginLinkProps {
   userId: string | undefined;
@@ -24,7 +25,9 @@ const LoginLink = ({ userId, href, children }: LoginLinkProps) => {
   };
 
   return (
-    <Link href={href} onClick={handleLinkClick}>
+    <Link
+      href={href}
+      onClick={handleLinkClick}>
       {children}
     </Link>
   );

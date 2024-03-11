@@ -9,9 +9,9 @@ export const ThemeVariants = cva(
         terrible: "bg-purple-400",
         poor: "bg-red-400",
         main: "bg-sky-400",
-        good: "bg-blue-400",
-      },
-    },
+        good: "bg-blue-400"
+      }
+    }
   }
 );
 
@@ -22,7 +22,7 @@ export const TextVariants = cva("text-sm", {
       terrible: "text-purple-400 absolute left-10",
       poor: "text-red-400 absolute left-10",
       main: "text-sky-400 absolute right-10",
-      good: "text-blue-400 absolute right-10",
-    },
-  },
+      good: "text-blue-400 absolute right-10"
+    }
+  }
 });

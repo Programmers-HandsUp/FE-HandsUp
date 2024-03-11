@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
+
 import {
-  Title,
   Category,
-  Tag,
   Description,
+  Tag,
+  TagWrapper,
+  Title,
   TradeMethod,
   TradeRegion,
-  TagWrapper,
   TradeWrapper
 } from "./DefaultComponent";
 

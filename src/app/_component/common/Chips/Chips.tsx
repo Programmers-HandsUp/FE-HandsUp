@@ -1,13 +1,15 @@
 import { VariantProps } from "class-variance-authority";
 import {
   Children,
-  ReactElement,
-  ReactNode,
   cloneElement,
-  isValidElement
+  isValidElement,
+  ReactElement,
+  ReactNode
 } from "react";
-import { chipsVariants } from "./Chips.variants";
+
 import { cn } from "@/utils/function/cn";
+
+import { chipsVariants } from "./Chips.variants";
 
 interface ChipsProps<T extends string | string[]>
   extends VariantProps<typeof chipsVariants> {

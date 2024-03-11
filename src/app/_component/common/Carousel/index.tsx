@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
 import Image from "next/image";
-import { useState, useEffect, ReactElement } from "react";
-import { carouselVariants } from "./Carousel.variants";
+import React from "react";
+import { ReactElement, useEffect, useState } from "react";
+
 import { cn } from "@/utils/function/cn";
+
+import { carouselVariants } from "./Carousel.variants";
 import Indicator from "./Indicator";
 import MoveButtonsUI from "./MoveButtonsUI";
 

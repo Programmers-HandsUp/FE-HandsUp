@@ -1,10 +1,12 @@
 "use client";
 
-import useTimeout from "./useTimeout";
 import { useState } from "react";
+
 import { cn } from "@/utils/function/cn";
-import { Toast } from "./type";
+
 import Icon from "../Icon";
+import { Toast } from "./type";
+import useTimeout from "./useTimeout";
 
 interface ToastItemProps extends Toast {
   onDone: () => void;

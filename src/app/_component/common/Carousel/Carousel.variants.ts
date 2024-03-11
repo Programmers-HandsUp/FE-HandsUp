@@ -10,10 +10,10 @@ export const carouselVariants = cva("relative", {
       medium: "w-[150px] h-[150px]",
       large: "w-[200px] h-[200px]",
       xlarge: "w-[250px] h-[250px]",
-      xxlarge: "w-[300px] h-[300px]",
-    },
+      xxlarge: "w-[300px] h-[300px]"
+    }
   },
   defaultVariants: {
-    size: "large",
-  },
+    size: "large"
+  }
 });

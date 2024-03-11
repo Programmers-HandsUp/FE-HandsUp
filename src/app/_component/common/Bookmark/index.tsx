@@ -1,10 +1,12 @@
 "use client";
 
-import { ComponentProps, MouseEvent } from "react";
-import Icon from "../Icon";
-import { cn } from "@/utils/function/cn";
-import { shadowSizeVariants } from "./ShadowSize.variants";
 import { VariantProps } from "class-variance-authority";
+import { ComponentProps, MouseEvent } from "react";
+
+import { cn } from "@/utils/function/cn";
+
+import Icon from "../Icon";
+import { shadowSizeVariants } from "./ShadowSize.variants";
 
 interface BookmarkProps
   extends VariantProps<typeof shadowSizeVariants>,

@@ -1,6 +1,7 @@
-import { ICreateComment, createComment } from "@/app/api/createComment";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+
+import { createComment, ICreateComment } from "@/app/api/createComment";
 
 export interface FormDataType {
   comment: string;

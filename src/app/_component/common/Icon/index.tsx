@@ -1,4 +1,5 @@
 import { ComponentProps } from "react";
+
 import { IconName } from "./type";
 
 interface IconProps extends Omit<ComponentProps<"svg">, "width" | "height"> {

@@ -1,14 +1,15 @@
+import Link from "next/link";
+import { ReactNode } from "react";
+
 import { cn } from "@/utils/function/cn";
+
 import {
+  CardDate,
   CardImage,
   CardPrice,
-  CardDate,
   CardTag,
   CardTitle
 } from "./DefaultComponent";
-import Link from "next/link";
-
-import { ReactNode } from "react";
 
 interface ProductWrapperProps {
   id: number;

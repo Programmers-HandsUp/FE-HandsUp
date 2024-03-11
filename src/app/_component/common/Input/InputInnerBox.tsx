@@ -1,6 +1,8 @@
-import { cn } from "@/utils/function/cn";
-import { InputInnerBoxVariants } from "./InputInnerBox.variants";
 import { VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/function/cn";
+
+import { InputInnerBoxVariants } from "./InputInnerBox.variants";
 
 interface InputInnerBoxProps
   extends VariantProps<typeof InputInnerBoxVariants> {

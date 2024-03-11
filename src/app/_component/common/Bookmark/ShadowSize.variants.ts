@@ -9,11 +9,11 @@ export const shadowSizeVariants = cva(
         small: "w-[2px] h-[2px]",
         medium: "w-[2px] h-[2px]",
         large: "w-[3px] h-[3px]",
-        xlarge: "w-[4px] h-[4px]",
-      },
+        xlarge: "w-[4px] h-[4px]"
+      }
     },
     defaultVariants: {
-      size: "medium",
-    },
+      size: "medium"
+    }
   }
 );

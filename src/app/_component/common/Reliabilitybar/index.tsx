@@ -1,4 +1,5 @@
 import { cn } from "@/utils/function/cn";
+
 import { TextVariants, ThemeVariants } from "./Reliability.variants";
 
 type Theme = "default" | "main" | "terrible" | "poor" | "good";

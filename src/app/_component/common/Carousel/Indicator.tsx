@@ -7,7 +7,7 @@ interface IndicatorProps {
 const Indicator = ({
   imageNum,
   selectedScene,
-  onClickIndicatorIcon,
+  onClickIndicatorIcon
 }: IndicatorProps) => {
   return (
     <div className="absolute left-1/2 -translate-x-1/2 bottom-1 flex gap-2">
