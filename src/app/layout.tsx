@@ -9,9 +9,16 @@ import Providers from "@/utils/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const viewport = {
+  themeColor: "#ffffff"
+};
+
 export const metadata: Metadata = {
   title: "Hands Up",
-  description: "Used goods traded at auction"
+  description: "Used goods traded at auction",
+  manifest: "/manifest.json",
+  viewport:
+    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
 };
 
 export default async function RootLayout({
@@ -24,6 +31,7 @@ export default async function RootLayout({
 
   const initialDarkMode =
     savedDarkMode === undefined ? "dark" : savedDarkMode.value;
+
   return (
     <html
       lang="en"
