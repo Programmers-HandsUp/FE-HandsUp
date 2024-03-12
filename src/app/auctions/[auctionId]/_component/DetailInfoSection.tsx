@@ -23,7 +23,6 @@ interface DetailInfoSectionProps {
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   const { data } = useGetAuctionDetail({ auctionId });
   const { top3, bids } = useBidsQuery({ auctionId });
-  if (!data) return <div>데이터가 없습니다!</div>;
 
   return (
     <>
@@ -38,6 +37,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           }
         />
       </header>
+
       <div className="flex flex-col gap-6">
         <AuctionBidsSection
           auctionId={data.auctionId}
