@@ -1,4 +1,4 @@
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 
 interface AuctionBidsSectionProps {
   currentBiddingPrice: number;

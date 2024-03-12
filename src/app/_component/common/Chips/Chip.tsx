@@ -1,6 +1,8 @@
 import { VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
-import { cn } from "@/utils/cn";
+
+import { cn } from "@/utils/function/cn";
+
 import { chipVariants } from "./Chip.variants";
 
 interface ChipProps extends VariantProps<typeof chipVariants> {

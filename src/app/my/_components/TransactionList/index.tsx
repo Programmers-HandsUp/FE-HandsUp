@@ -1,11 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Status } from "../../types";
-import usePurchaseStatusList from "../../../hooks/queries/usePurchaseStatusList";
-import useSaleStatusList from "../../../hooks/queries/useSaleStatusList";
-import SalesHistory from "../SalesHistory/SalesHistory";
+
+import { Status } from "@/utils/types/user/mypage";
+
+import usePurchaseStatusList from "../../_hooks/queries/usePurchaseStatusList";
+import useSaleStatusList from "../../_hooks/queries/useSaleStatusList";
 import PurchaseHistory from "../PurchaseHistory";
+import SalesHistory from "../SalesHistory/SalesHistory";
 import Tab from "../Tab";
 
 export type TradeMethod = "구매" | "판매";

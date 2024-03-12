@@ -11,12 +11,12 @@ export const InputVariants = cva(
         xl: "w-32",
         xxl: "w-48",
         xxxl: "w-64",
-        xxxxl: "w-96",
+        xxxxl: "w-96"
       },
       verticalAlign: {
         left: "text-left",
         right: "text-right",
-        center: "text-center",
+        center: "text-center"
       },
       fontSize: {
         sm: "text-sm",
@@ -24,13 +24,13 @@ export const InputVariants = cva(
         lg: "text-lg",
         xl: "text-xl",
         "2xl": "text-2xl",
-        "3xl": "text-3xl",
-      },
+        "3xl": "text-3xl"
+      }
     },
     defaultVariants: {
       verticalAlign: "left",
       fontSize: "lg",
-      size: "md",
-    },
+      size: "md"
+    }
   }
 );

@@ -1,7 +1,7 @@
 "use client";
-import RealTimePopluar from "./component/RealTimePopluar";
-import RecentSearch from "./component/RecentSearch";
-import SearchBar from "./component/SearchBar";
+import RealTimePopluar from "./_component/RealTimePopluar";
+import RecentSearch from "./_component/RecentSearch";
+import SearchBar from "./_component/SearchBar";
 
 export default function Search() {
   return (

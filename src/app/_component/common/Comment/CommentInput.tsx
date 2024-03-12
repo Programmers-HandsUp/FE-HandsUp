@@ -1,5 +1,3 @@
-import { ICreateComment, createComment } from "@/app/api/createComment";
-import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 
 export interface FormDataType {
@@ -11,17 +9,7 @@ interface CommentProps {
 }
 
 const CommentInput = ({ onSubmit }: CommentProps) => {
-  const mutation = useMutation({
-    mutationFn: ({ comment, auctionId }: ICreateComment) =>
-      createComment({ comment, auctionId })
-  });
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors }
-  } = useForm<FormDataType>({
+  const { register, handleSubmit, reset } = useForm<FormDataType>({
     mode: "onSubmit"
   });
 

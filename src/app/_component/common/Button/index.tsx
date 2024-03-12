@@ -1,9 +1,11 @@
-import { cn } from "@/utils/cn";
+import { VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, ReactNode } from "react";
+
+import { cn } from "@/utils/function/cn";
+
 import Icon from "../Icon";
 import { IconName } from "../Icon/type";
 import { ButtonVariants } from "./Button.variants";
-import { VariantProps } from "class-variance-authority";
 
 interface Props
   extends VariantProps<typeof ButtonVariants>,
@@ -27,13 +29,20 @@ const Button = ({
     <button
       className={cn(ButtonVariants({ size, rounded, color }))}
       {...props}
-      disabled
-    >
+      disabled>
       Loading
     </button>
   ) : (
-    <button className={cn(ButtonVariants({ size, rounded, color }))} {...props}>
-      {icon && <Icon id={icon} size={24} className="mr-2" />}
+    <button
+      className={cn(ButtonVariants({ size, rounded, color }))}
+      {...props}>
+      {icon && (
+        <Icon
+          id={icon}
+          size={24}
+          className="mr-2"
+        />
+      )}
       {children}
     </button>
   );

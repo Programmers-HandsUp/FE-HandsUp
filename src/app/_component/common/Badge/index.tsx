@@ -1,5 +1,7 @@
-import { cn } from "@/utils/cn";
 import { VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/function/cn";
+
 import { BadgeVariants } from "./Badge.variants";
 
 interface BadgeProps extends VariantProps<typeof BadgeVariants> {
@@ -25,11 +27,12 @@ const Badge = ({
       : content;
 
   return (
-    <div className="relative inline-block" {...props}>
+    <div
+      className="relative inline-block"
+      {...props}>
       {children}
       <span
-        className={cn(BadgeVariants({ position, size, badgeType }), className)}
-      >
+        className={cn(BadgeVariants({ position, size, badgeType }), className)}>
         {badgeContent}
       </span>
     </div>

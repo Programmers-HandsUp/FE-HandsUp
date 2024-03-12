@@ -1,5 +1,6 @@
+import { Sale, Status } from "@/utils/types/user/mypage";
+
 import { Bidding, Finished, Pending } from ".";
-import { Sale, Status } from "../../types";
 
 export interface SaleList {
   saleList: Sale[] | undefined;

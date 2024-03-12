@@ -1,27 +1,28 @@
 "use client";
 
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import useInfiniteScroll from "@/app/hooks/useInfiniteScroll";
+import { useEffect, useState } from "react";
 
-import SearchBar from "../component/SearchBar";
-import ProductCard from "@/app/_component/common/ProductCard";
-import SearchFilterModal from "./component/SearchFilter";
-import likeIcon from "../../../../public/assets/likeIcon.svg";
-import getPastTime from "@/utils/getPastTime";
 import DropDown from "@/app/_component/common/DropDown";
-import tempLogoImage from "../../../../public/logoIcon.png";
-import useGetSearchResult from "@/app/hooks/queries/useGetSearchResults";
-import useModalState from "@/app/hooks/useModalState";
+import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
+import ProductCard from "@/app/_component/common/ProductCard";
+import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
+import useModalState from "@/app/_hooks/useModalState";
+import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
+import getPastTime from "@/utils/function/getPastTime";
+import { AuctionSearchResult } from "@/utils/types/search/search";
+import tempLogoImage from "~/images/logoIcon.png";
+
+import SearchBar from "../_component/SearchBar";
+import SearchFilterModal from "./_component/SearchFilter";
 
 const SearchResultPage = () => {
   const param = usePathname();
   const [filterOptions, setFilterOptions] =
     useState<Record<string, string | number>>(); // @TODO : 해당 데이터로 필터링 검색 api 구현예정
   const [alignOption, setAlignOption] = useState("마감 임박 순");
-  const { open, close, isOpen } = useModalState();
+  const { open, close } = useModalState();
 
   const {
     data: searchResults,
@@ -30,6 +31,10 @@ const SearchResultPage = () => {
     fetchNextPage,
     hasNextPage
   } = useGetSearchResult(param);
+
+  useEffect(() => {
+    console.log(filterOptions); // 추후 filterOptions 사용예정
+  }, [filterOptions]);
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();
@@ -57,7 +62,7 @@ const SearchResultPage = () => {
       </div>
       <div className="pb-6">
         {searchResults.length ? (
-          searchResults.map((resultItem) => (
+          searchResults.map((resultItem: AuctionSearchResult) => (
             <div key={resultItem.id}>
               <ProductCard
                 className="my-2"
@@ -79,10 +84,9 @@ const SearchResultPage = () => {
                       {resultItem.nowPrice}
                     </span>
                     <div className="flex">
-                      <Image
+                      <Icon
                         className="h-fit mr-1 mt-3"
-                        src={likeIcon}
-                        alt="likeButton"
+                        id="book-mark-fill"
                       />
                       <span className="text-[1rem]">10</span>
                     </div>

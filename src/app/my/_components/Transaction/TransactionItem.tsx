@@ -1,5 +1,6 @@
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
 import { PropsWithChildren } from "react";
+
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 
 interface HeaderProps {
   firstLabel: "구매 희망가" | "최고 입찰가" | "낙찰가";

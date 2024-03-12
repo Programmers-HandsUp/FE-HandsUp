@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Status } from "../../types";
+
+import { Status } from "@/utils/types/user/mypage";
+
 import StatusCard from "./StatusCard";
 
 interface TransactionListProps {

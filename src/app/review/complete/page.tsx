@@ -1,10 +1,11 @@
 "use client";
 
-import html2canvas from "html2canvas";
 import saveAs from "file-saver";
+import html2canvas from "html2canvas";
 import Image from "next/image";
-import { useRef } from "react";
 import Link from "next/link";
+import { useRef } from "react";
+
 import Icon from "@/app/_component/common/Icon";
 
 function ReviewComplete() {
@@ -47,7 +48,7 @@ function ReviewComplete() {
           className="flex flex-col w-72 h-[500px] bg-gray-100 drop-shadow-xl rounded-b-md dark:text-black">
           <div className="flex justify-center mb-7">
             <Image
-              src="/assets/logo.webp"
+              src="~/images/logo.webp"
               width={100}
               height={100}
               alt="app logo"
@@ -96,7 +97,7 @@ function ReviewComplete() {
           <div className="flex flex-col items-center gap-2 mt-auto mb-3 pt-2 border-t-2 text-sm">
             <p>HandsUp에서 좋은 거래하세요 :)</p>
             <Image
-              src="/assets/barcode.webp"
+              src="/assets/images/barcode.webp"
               width={130}
               height={18}
               alt="barcode image"

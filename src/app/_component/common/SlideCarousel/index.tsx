@@ -9,7 +9,7 @@ import {
   useRef
 } from "react";
 
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 import Icon from "../Icon";
 import useDragScroll from "./useDragScroll";

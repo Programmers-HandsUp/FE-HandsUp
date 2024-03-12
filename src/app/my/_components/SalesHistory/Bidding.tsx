@@ -1,4 +1,5 @@
 import Timer from "@/app/_component/common/Timer";
+
 import Transaction from "../Transaction/Transaction";
 import { SaleList } from "./SalesHistory";
 

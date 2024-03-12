@@ -1,6 +1,7 @@
-import Icon from "@/app/_component/common/Icon";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
+
+import Icon from "@/app/_component/common/Icon";
 
 interface LayoutProps {
   title: React.ReactNode;

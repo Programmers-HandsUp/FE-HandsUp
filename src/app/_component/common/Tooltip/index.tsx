@@ -1,14 +1,16 @@
 "use client";
 
-import { cn } from "@/utils/cn";
-import useInteraction, { EventType } from "./useInteraction";
-import {
-  MainPositionVariants,
-  PositionVariants,
-  ArrowPositionVariants
-} from "./Tooltip.variants";
-import React, { PropsWithChildren } from "react";
 import { VariantProps } from "class-variance-authority";
+import React, { PropsWithChildren } from "react";
+
+import { cn } from "@/utils/function/cn";
+
+import {
+  ArrowPositionVariants,
+  MainPositionVariants,
+  PositionVariants
+} from "./Tooltip.variants";
+import useInteraction, { EventType } from "./useInteraction";
 
 interface TooltipProps extends VariantProps<typeof MainPositionVariants> {
   eventType: EventType;

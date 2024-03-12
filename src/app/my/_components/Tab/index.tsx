@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { cn } from "@/utils/cn";
 
-import usePurchaseList from "@/app/hooks/queries/usePurchaseList";
-import useSaleList from "@/app/hooks/queries/useSaleList";
-import { Status } from "../../types";
+import usePurchaseList from "@/app/my/_hooks/queries/usePurchaseList";
+import useSaleList from "@/app/my/_hooks/queries/useSaleList";
+import { cn } from "@/utils/function/cn";
+import { Status } from "@/utils/types/user/mypage";
+
 import { TabVariants } from "./Tab.variants";
 
 interface TabProps {

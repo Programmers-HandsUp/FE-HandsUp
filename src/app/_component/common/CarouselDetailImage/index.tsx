@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import SlideCarousel from "../SlideCarousel";
 
 interface CarouselDetailImageProps {

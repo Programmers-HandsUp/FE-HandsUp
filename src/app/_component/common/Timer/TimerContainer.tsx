@@ -1,9 +1,11 @@
-import { cn } from "@/utils/cn";
-import Clock from "./Clock";
-import { ReactNode } from "react";
 import Image from "next/image";
+import { ReactNode } from "react";
+
 import deadlineImage from "/public/assets/images/deadline.webp";
-import { calculateTimeRemaining } from "@/utils/time";
+import { cn } from "@/utils/function/cn";
+import { calculateTimeRemaining } from "@/utils/function/time";
+
+import Clock from "./Clock";
 
 interface TimerContainerProps {
   deadline: Date;
