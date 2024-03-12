@@ -14,19 +14,22 @@ interface ModalProps extends VariantProps<typeof modalTypeVariants> {
   height?: number;
   elementId?: string;
   modalType?: "default" | "dropBox" | "fullScreen";
-  animate?: "grow" | "slide";
+  animate?: "grow" | "slide" | "raise";
   children: ReactNode;
   className?: string;
   isOpen?: boolean;
   close: () => void;
 }
+
 const animateIn = {
   grow: "scale-100 mx-auto",
-  slide: "fixed translate-x-[calc(100vw - 360px)]"
+  slide: "fixed translate-x-[calc(100vw-360px)]",
+  raise: "fixed translate-y-[calc(50vh-70%)]"
 };
 const animateOut = {
   grow: "scale-0 mx-auto",
-  slide: "fixed translate-x-[100vw]"
+  slide: "fixed translate-x-[100vw]",
+  raise: "fixed translate-y-[100vh]"
 };
 
 const Modal = ({
