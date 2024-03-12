@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "dayjs": "^1.11.10",
     "file-saver": "^2.0.5",
+    "firebase": "^10.8.1",
     "html2canvas": "^1.4.1",
     "install": "^0.13.0",
     "msw": "^2.2.2",
