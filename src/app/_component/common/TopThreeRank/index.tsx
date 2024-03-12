@@ -2,18 +2,15 @@ import Image from "next/image";
 
 import TransparentMan from "/public/assets/images/transparentMan.png";
 import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
-import { TopThreeRankDataType } from "@/utils/types/index.";
+import { Top3BidData } from "@/utils/types/bid/top3Bid";
 
 import Avatar from "../Avatar";
 
-const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
-  // 최대 입찰 가격을 찾습니다.
+const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
   const maxBiddingPrice = Math.max(...content.map((item) => item.biddingPrice));
 
-  // Y축의 최댓값을 정합니다. 여기서는 최대 입찰 가격에 10%를 더했습니다.
   const maxYValue = maxBiddingPrice + maxBiddingPrice * 0.1;
 
-  // 각 입찰 가격의 백분율을 계산합니다.sssssss
   const biddingPercentages = content.map((item, index) => ({
     ...item,
     percentage: (item.biddingPrice / maxYValue) * 100,
