@@ -1,44 +1,29 @@
 import { getMessaging, getToken } from "firebase/messaging";
-import { useEffect, useState } from "react";
 
+import Toast from "../../common/Toast";
 import firebaseApp from "../_api/firebase";
 
 const useFcmToken = () => {
   const [token, setToken] = useState("");
   const [notificationPermissionStatus, setNotificationPermissionStatus] =
     useState("");
+  const { show } = Toast();
 
-  useEffect(() => {
-    const retrieveToken = async () => {
-      try {
-        if (typeof window !== "undefined" && "serviceWorker" in navigator) {
-          const messaging = getMessaging(firebaseApp);
+  const getFcmToken = async () => {
+    const messaging = getMessaging(firebaseApp);
+    const currentToken = await getToken(messaging, {
+      vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY
+    });
 
-          const permission = await Notification.requestPermission();
-          setNotificationPermissionStatus(permission); // granted
-
-          if (permission === "granted") {
-            const currentToken = await getToken(messaging, {
-              vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY
-            });
-            if (currentToken) {
+    if (currentToken) {
+      // token 전송 로직 추가
               setToken(currentToken);
-            } else {
-              console.log(
-                "No registration token available. Request permission to generate one."
-              );
-            }
-          }
-        }
-      } catch (error) {
-        console.log("An error occurred while retrieving token:", error);
-      }
-    };
+    } else {
+      show("잠시 후 다시 이용해주세요", "warn-solid");
+    }
+  };
 
-    retrieveToken();
-  }, []);
-
-  return { fcmToken: token, notificationPermissionStatus };
+  return { getFcmToken };
 };
 
 export default useFcmToken;
