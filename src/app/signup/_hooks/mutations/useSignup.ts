@@ -1,15 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
-import signUp
 import Toast from "@/app/_component/common/Toast";
 import { LoginRequest } from "@/utils/types/authorization/login";
+
+import { signUp } from "../../_api/signUp";
 
 export function useSignUp() {
   const { show } = Toast();
   const router = useRouter();
   return useMutation({
-    mutationFn: async (authForm: LoginRequest) => await signUp(authForm),
+    mutationFn: (authForm: LoginRequest) => signUp(authForm),
     onSuccess: (data) => {
       localStorage.setItem("AccessToken", data.accessToken);
       router.push("/");

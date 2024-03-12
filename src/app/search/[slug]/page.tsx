@@ -1,19 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import DropDown from "@/app/_component/common/DropDown";
+import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import ProductCard from "@/app/_component/common/ProductCard";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 import useModalState from "@/app/_hooks/useModalState";
 import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
 import getPastTime from "@/utils/function/getPastTime";
+import { AuctionSearchResult } from "@/utils/types/search/search";
 import tempLogoImage from "~/images/logoIcon.png";
 
-import likeIcon from "../../../../public/assets/likeIcon.svg";
 import SearchBar from "../_component/SearchBar";
 import SearchFilterModal from "./_component/SearchFilter";
 
@@ -62,7 +62,7 @@ const SearchResultPage = () => {
       </div>
       <div className="pb-6">
         {searchResults.length ? (
-          searchResults.map((resultItem) => (
+          searchResults.map((resultItem: AuctionSearchResult) => (
             <div key={resultItem.id}>
               <ProductCard
                 className="my-2"
@@ -84,10 +84,9 @@ const SearchResultPage = () => {
                       {resultItem.nowPrice}
                     </span>
                     <div className="flex">
-                      <Image
+                      <Icon
                         className="h-fit mr-1 mt-3"
-                        src={likeIcon}
-                        alt="likeButton"
+                        id="book-mark-fill"
                       />
                       <span className="text-[1rem]">10</span>
                     </div>

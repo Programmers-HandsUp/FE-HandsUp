@@ -1,4 +1,6 @@
-const getPopluarKeyword = async (): Promise<string[]> => {
+import { PopularKeywordResponse } from "@/utils/types/search/popularKeyword";
+
+const getPopularKeyword = async (): Promise<PopularKeywordResponse> => {
   const request = await fetch(
     "http://localhost:9090/api/search/popularkeyword"
   );
@@ -9,4 +11,4 @@ const getPopluarKeyword = async (): Promise<string[]> => {
   return request.json();
 };
 
-export default getPopluarKeyword;
+export default getPopularKeyword;

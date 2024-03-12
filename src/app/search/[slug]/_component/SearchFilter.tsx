@@ -33,13 +33,13 @@ const SearchFilterModal = ({
   setFilterOption
 }: SearchFilterModal) => {
   const { register, getValues, setValue } = useForm();
-  const [isShowCategory, setIsShowCateogory] = useState(true);
+  const [isShowCategory, setIsShowCategory] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
     <div>
       <button
         className="flex text-2xl my-1"
-        onClick={() => setIsShowCateogory((isShow) => !isShow)}>
+        onClick={() => setIsShowCategory((isShow) => !isShow)}>
         카테고리
         <Icon
           className={`${isShowCategory ? "-rotate-90" : "rotate-90"} ml-1 my-auto`}
@@ -51,7 +51,7 @@ const SearchFilterModal = ({
         <Chips
           className="grid grid-cols-2"
           Items={selectedCategory}
-          setItems={(items) => {
+          setItems={(items: string[]) => {
             setSelectedCategory(items);
             setValue("categories", items);
           }}>

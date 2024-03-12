@@ -4,8 +4,9 @@ import {
   useInfiniteQuery
 } from "@tanstack/react-query";
 
-import { getSearchResults } from "@/app/_api/getSearchResults";
 import { AuctionSearchResultResponse } from "@/utils/types/search/search";
+
+import { getSearchResults } from "../../_api/getSearchResults";
 
 const useGetSearchResult = (keyword: string) => {
   const {
@@ -25,7 +26,10 @@ const useGetSearchResult = (keyword: string) => {
     queryKey: ["searchResult", keyword],
     queryFn: ({ pageParam = 0 }) => getSearchResults(keyword, pageParam),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => lastPage.hasNext ?? undefined
+    getNextPageParam: (lastPage, _, pageParam) => {
+      if (!lastPage.hasNext) return undefined;
+      return pageParam + 1;
+    }
   });
 
   return {
