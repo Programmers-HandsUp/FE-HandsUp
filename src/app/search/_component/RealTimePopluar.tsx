@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { PopularKeyword } from "@/utils/types/search/popularKeyword";
+
 import useGetPopularKeywordQuery from "../_hooks/queries/useGetPopularKeyword";
 import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
 /* @TODO : 
@@ -7,22 +9,23 @@ import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStora
   */
 
 const RealTimePopular = () => {
-  const { data: popularKeywords } = useGetPopularKeywordQuery();
+  const { data: { keywords: popularKeywords } = {} } =
+    useGetPopularKeywordQuery();
 
   return (
     <div>
       <h1 className="text-xl">실시간 인기</h1>
       <div className="grid grid-rows-5 grid-flow-col my-1">
         {popularKeywords ? (
-          popularKeywords.map((item: string, index: number) => (
+          popularKeywords.map(({ keyword }: PopularKeyword, index: number) => (
             <Link
-              onClick={() => setSearchRecordInLocalStorage(item)}
-              href={`/search/${item}`}
+              onClick={() => setSearchRecordInLocalStorage(keyword)}
+              href={`/search/${keyword}`}
               className="flex gap-3"
               key={index}>
               <p className="text-red-500 text-[0.8rem] py-[0.2rem]">{`${index + 1} `}</p>
               <p className="text-[0.9rem] overflow-hidden text-ellipsis">
-                {item}
+                {keyword}
               </p>
             </Link>
           ))
