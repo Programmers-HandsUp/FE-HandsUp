@@ -13,7 +13,6 @@ import Timer from "@/app/_component/common/Timer";
 import TopThreeRank from "@/app/_component/common/TopThreeRank";
 import UserCard from "@/app/_component/common/UserCard";
 
-import useBidsQuery from "../_hooks/queries/useBidsQuery";
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
 
 interface DetailInfoSectionProps {
@@ -21,9 +20,10 @@ interface DetailInfoSectionProps {
 }
 
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
-  const { data } = useGetAuctionDetail({ auctionId });
-  const { top3, bids } = useBidsQuery({ auctionId });
-
+  const { top3, bids, auction } = useGetAuctionDetail({ auctionId });
+  console.log(top3);
+  console.log(bids);
+  console.log(auction);
   return (
     <>
       <header>
@@ -31,8 +31,8 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           left={<ArrowBackButton />}
           center={
             <Timer
-              createdAt={data.createdAt}
-              deadline={data.endDate}
+              createdAt={auction.createdAt}
+              deadline={auction.endDate}
             />
           }
         />
@@ -40,17 +40,17 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
 
       <div className="flex flex-col gap-6">
         <AuctionBidsSection
-          auctionId={data.auctionId}
-          currentBiddingPrice={data.currentBiddingPrice}
+          auctionId={auction.auctionId}
+          currentBiddingPrice={auction.currentBiddingPrice}
         />
         <CarouselDetailImage
-          imageUrls={data.imageUrls}
-          auctionStatus={data.auctionStatus}
+          imageUrls={auction.imageUrls}
+          auctionStatus={auction.auctionStatus}
         />
         <div>
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
-              src="/assets/logo.webp"
+              src="/assets/images/logo.webp"
               size="medium"
               rounded="full"
               className="bg-slate-100"
@@ -67,15 +67,15 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         </div>
         <hr />
         <DefaultAuctionDetailInfo
-          title={data.title}
-          productCategory={data.productCategory}
-          description={data.description}
-          si={data.si}
-          gu={data.gu}
-          dong={data.dong}
-          tradeMethod={data.tradeMethod}
-          productStatus={data.productStatus}
-          purchaseTime={data.purchaseTime}
+          title={auction.title}
+          productCategory={auction.productCategory}
+          description={auction.description}
+          si={auction.si}
+          gu={auction.gu}
+          dong={auction.dong}
+          tradeMethod={auction.tradeMethod}
+          productStatus={auction.productStatus}
+          purchaseTime={auction.purchaseTime}
         />
         <hr />
         <LineChart bids={bids} />
@@ -84,7 +84,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         <AuctionDetailFooterBar
           bidsData={bids}
           auctionId={auctionId}
-          bookmarkCount={data.bookmarkCount}
+          bookmarkCount={auction.bookmarkCount}
         />
       </div>
     </>

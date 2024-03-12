@@ -7,14 +7,18 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
-import { createComment, ICreateComment } from "@/app/_api/createComment";
+import { createComment } from "@/app/auctions/[auctionId]/_api/createComment";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
-import useGetCommentList, {
-  ICommentListAPI
-} from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
+import useGetCommentList from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
 
 import ChatMessage from "../ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
+import { CommentListData } from "@/utils/types/comment/commentData";
+
+export interface CreateComment {
+  comment: string;
+  auctionId: number;
+}
 
 interface CommentProps {
   auctionId: number;
@@ -22,7 +26,7 @@ interface CommentProps {
 
 const Comment = ({ auctionId = 12342 }: CommentProps) => {
   const mutation = useMutation({
-    mutationFn: ({ comment, auctionId }: ICreateComment) =>
+    mutationFn: ({ comment, auctionId }: CreateComment) =>
       createComment({ comment, auctionId })
   });
 
@@ -67,7 +71,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       "product",
       auctionId,
       "comments"
-    ]) as InfiniteData<ICommentListAPI>;
+    ]) as InfiniteData<CommentListData>;
 
     //더미데이터
     const newComment = {
@@ -115,21 +119,22 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
         className="bg-[#96e5ff8f] rounded-lg p-2 h-[300px] overflow-auto">
         <div ref={ref}></div>
         {commentsData.reverse().map((item, idx) => (
-          <ChatMessage
-            avatar={item.userProfileImage}
-            nickname={item.userNickname}
-            key={item.userId + idx}
-            message={item.content}
-            createdAt={item.createdAt}
-            sender={item.userId === MY_ID ? "me" : "you"}
-            previousSender={
-              idx > 0
-                ? commentsData[idx - 1].userId === item.userId
-                  ? "me"
-                  : "you"
-                : null
-            }
-          />
+          <div key={item.userId + idx}>
+            <ChatMessage
+              avatar={item.userProfileImage}
+              nickname={item.userNickname}
+              message={item.content}
+              createdAt={item.createdAt}
+              sender={item.userId === MY_ID ? "me" : "you"}
+              previousSender={
+                idx > 0
+                  ? commentsData[idx - 1].userId === item.userId
+                    ? "me"
+                    : "you"
+                  : null
+              }
+            />
+          </div>
         ))}
       </div>
       <CommentInput onSubmit={onSubmit} />

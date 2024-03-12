@@ -4,7 +4,7 @@ import SlideCarousel from "../SlideCarousel";
 
 interface CarouselDetailImageProps {
   imageUrls: string[];
-  auctionStatus: "경매중" | "거래진행중" | "거래완료";
+  auctionStatus: "경매중" | "거래중" | "거래완료";
 }
 
 const CarouselDetailImage = ({
