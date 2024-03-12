@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BidRequest } from "@/utils/types/bid/bids";
 
 import Icon from "../Icon";
+import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 
 interface AuctionDetailDataProps {
   bookmarkCount: number;
@@ -17,27 +18,7 @@ const AuctionDetailFooterBar = ({
   auctionId,
   bookmarkCount
 }: AuctionDetailDataProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollTop =
-        window.scrollY || document.documentElement.scrollTop;
-      setLastScrollTop((prevScrollTop) => {
-        if (currentScrollTop > prevScrollTop) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-        return currentScrollTop <= 0 ? 0 : currentScrollTop;
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  const isVisible = useVisibilityOnScroll();
   return (
     <div
       className="fixed flex justify-between bottom-0 border-t-2 border-t-gray-400 min-w-[360px] py-4 dark:bg-black bg-white"

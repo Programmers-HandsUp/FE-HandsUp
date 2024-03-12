@@ -6,12 +6,13 @@ import Link from "next/link";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import Timer from "@/app/_component/common/Timer";
 
-import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
+import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
-const DetailAuctionFeed = () => {
-  const { data, isPending } = useHotAuctionRecommends();
+interface DetailAuctionFeedProps {
+  data: RecommendAuctionsResponse;
+}
 
-  if (isPending) return <div>Loading...</div>;
+const DetailAuctionFeed = ({ data }: DetailAuctionFeedProps) => {
   return (
     <div>
       <SlideCarousel
@@ -21,7 +22,7 @@ const DetailAuctionFeed = () => {
         itemsToShow={1}
         height={360}
         useNav>
-        {data?.slice(0, 6).map((auction) => (
+        {data.content?.slice(0, 6).map((auction) => (
           <Link
             href={`auction/${auction.auctionId}`}
             key={auction.auctionId}

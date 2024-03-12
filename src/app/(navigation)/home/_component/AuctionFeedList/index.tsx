@@ -5,20 +5,18 @@ import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import { divideArray } from "@/utils/function/arrayDivider";
 import { cn } from "@/utils/function/cn";
 
-import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
+import useHotAuctionRecommends from "../../_hooks/queries/useRecommendAuction";
 import { feedDivideVariants } from "./AuctionFeedList.variants";
 import { HorizontalCard, VerticalCard } from "./DefaultCard";
+import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 interface AuctionFeedListProps {
+  data: RecommendAuctionsResponse;
   divideNum: 1 | 4 | 8;
 }
 
-const AuctionFeedList = ({ divideNum }: AuctionFeedListProps) => {
-  const { data, isPending } = useHotAuctionRecommends();
-
-  if (data === undefined || isPending) return <div>Loading...</div>;
-
-  const fourColumns = divideArray(data, divideNum);
+const AuctionFeedList = ({ data, divideNum }: AuctionFeedListProps) => {
+  const fourColumns = divideArray(data.content, divideNum);
 
   const childCardSize = {
     1: 175,
