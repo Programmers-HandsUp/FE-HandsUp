@@ -4,7 +4,7 @@ import SlideCarousel from "../SlideCarousel";
 
 interface CarouselDetailImageProps {
   imageUrls: string[];
-  auctionStatus: "경매중" | "거래중" | "거래완료";
+  auctionStatus: "입찰중" | "거래중" | "거래완료";
 }
 
 const CarouselDetailImage = ({
@@ -13,7 +13,7 @@ const CarouselDetailImage = ({
 }: CarouselDetailImageProps) => {
   return (
     <div className="relative">
-      {auctionStatus !== "경매중" && (
+      {auctionStatus !== "입찰중" && (
         <div className="absolute w-full h-full bg-[rgba(255,255,255,0.5)] z-20 flex justify-center items-center">
           <div className="relative z-30 font-semibold">
             <span className="text-black text-2xl">{auctionStatus}</span>
