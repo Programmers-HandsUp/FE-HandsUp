@@ -51,7 +51,7 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
       </div>
       <div className="pl-2 pt-2">
         <h2 className="text-black font-bold">{iconHeader[iconId]}</h2>
-        <p className="text-black text-sm text-ellipsis">{message}</p>
+        <p className="text-black text-sm w-[170px] truncate">{message}</p>
       </div>
     </div>
   );
