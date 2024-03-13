@@ -2,12 +2,12 @@
 
 import { useForm } from "react-hook-form";
 
-import tempImage from "../../public/tempImage.png";
 import Button from "../_component/common/Button";
 import Icon from "../_component/common/Icon";
 import ProductCard from "../_component/common/ProductCard";
 import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
+import { useReviewPost } from "./_hooks/useReviewPost";
 
 interface Inputs {
   range: string;
@@ -15,20 +15,22 @@ interface Inputs {
   feedback: string;
 }
 
-const ReviewForm = () => {
-  const mock = {
-    userName: "거니니",
-    partnerName: "오리리",
-    image: tempImage,
-    name: "상품 이름",
-    date: new Date("2024-02-07T13:11:20"),
-    price: 10000
-  };
+const mock = {
+  userName: "거니니",
+  partnerName: "오리리",
+  image: "/assets/images/logoIcon.png",
+  name: "상품 이름",
+  date: new Date("2024-02-07T13:11:20"),
+  price: 10000
+};
 
-  const { register, handleSubmit, setValue } = useForm();
+const ReviewForm = () => {
+  const { register, handleSubmit, setValue } = useForm<Inputs>();
+
+  const reviewPostMutation = useReviewPost();
 
   const onSubmit = (data: Inputs) => {
-    console.log(data);
+    reviewPostMutation.mutate(data);
   };
 
   const handleRangeSelected = (value: string) => {
@@ -50,13 +52,30 @@ const ReviewForm = () => {
           {mock.partnerName}님과의 거래는 어떠셨나요?
         </p>
       </div>
-      <hr className="w-[30%] mx-auto" />
-      <ProductCard
-        titleImage={mock.image}
-        productName={mock.name}
-        createDate={mock.date}
-        price={mock.price}
-      />
+      <ProductCard id={1}>
+        <div className="flex justify-between items-center w-full border-t py-4">
+          <ProductCard.CardImage
+            titleImage={mock.image}
+            width={100}
+            height={100}
+            className="flex-none group-hover:[&_img]:scale-100"
+          />
+          <div>
+            <div>
+              <ProductCard.CardTitle className="pl-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
+                {mock.name}
+              </ProductCard.CardTitle>
+            </div>
+            <p className="text-sm flex-none text-center">
+              <strong>{mock.price}원</strong>
+            </p>
+          </div>
+          <p className="text-sm text-[#ABABAB] text-right">
+            {mock.date.toLocaleDateString()}
+          </p>
+        </div>
+      </ProductCard>
+
       <SelectRange onSelected={handleRangeSelected} />
       <SelectReview onSelected={handleReviewSelected} />
       <div>
