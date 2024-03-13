@@ -21,9 +21,7 @@ interface DetailInfoSectionProps {
 
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   const { top3, bids, auction } = useGetAuctionDetail({ auctionId });
-  console.log(top3);
-  console.log(bids);
-  console.log(auction);
+
   return (
     <>
       <header>
@@ -50,7 +48,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         <div>
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
-              src="/assets/images/logo.webp"
+              src={auction.sellerInfo.profileImageUrl}
               size="medium"
               rounded="full"
               className="bg-slate-100"
@@ -58,12 +56,12 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
             />
             <UserCard.ContentArea className="my-1">
               <div className="flex flex-col">
-                <p className="text-lg">오리도리</p>
-                <p className="text-sm">성수동</p>
+                <p className="text-lg">{auction.sellerInfo.nickname}</p>
+                <p className="text-sm">{auction.sellerInfo.dong}</p>
               </div>
             </UserCard.ContentArea>
           </UserCard>
-          <ReliabilityBar score={140} />
+          <ReliabilityBar score={auction.sellerInfo.score} />
         </div>
         <hr />
         <DefaultAuctionDetailInfo

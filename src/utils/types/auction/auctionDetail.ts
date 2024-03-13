@@ -1,6 +1,12 @@
 export interface AuctionDetailResponse {
   auctionId: number;
-  sellerId: number;
+  sellerInfo: {
+    userId: number;
+    nickname: string;
+    profileImageUrl: string;
+    dong: string;
+    score: number;
+  };
   title: string;
   productCategory: string;
   auctionStatus: "입찰중" | "거래중" | "거래완료";
