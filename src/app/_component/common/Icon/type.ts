@@ -1,6 +1,6 @@
 export type IconName =
   | "user-alt-fill"
-  | "book-mark"
+  | "bookmark"
   | "book-mark-fill"
   | "edit"
   | "pin-fill"
@@ -20,7 +20,6 @@ export type IconName =
   | "fire-fill"
   | "local-fire"
   | "gavel"
-  | "chat"
   | "more-horiz"
   | "chat-comment"
   | "time"
@@ -41,4 +40,11 @@ export type IconName =
   | "chevron-left"
   | "chevron-right"
   | "drop-down"
-  | "arrow-right";
+  | "arrow-right"
+  | "comment"
+  | "chat"
+  | "purchase_winning"
+  | "canceld_purchase_winning"
+  | "notification-off"
+  | "circle"
+  | "dot";
