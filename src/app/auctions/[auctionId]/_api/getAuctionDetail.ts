@@ -6,7 +6,7 @@ export const getAuctionDetail = async ({
   auctionId: number;
 }): Promise<AuctionDetailResponse> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/auctions/${auctionId}`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}`,
     {
       next: {
         tags: ["detail", String(auctionId)]
