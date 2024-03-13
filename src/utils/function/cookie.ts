@@ -20,8 +20,7 @@ export const getCookie = ({ name }: getCookieParams) => {
     const trimmedCookie = cookieString.trim();
     return trimmedCookie.startsWith(name + "=");
   });
-
-  return cookie ? cookie.substring(name.length + 1) : null;
+  return cookie ? cookie.substring(name.length + 2) : null;
 };
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
   const { expires, maxAge, path } = options || {};
