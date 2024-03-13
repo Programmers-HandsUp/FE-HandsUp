@@ -4,10 +4,11 @@ import ArrowBackButton from "@/app/_component/common/ArrowBackButton";
 import AuctionBidsSection from "@/app/_component/common/AuctionBidsSection";
 import AuctionDetailFooterBar from "@/app/_component/common/AuctionDetailFooterBar";
 import { DefaultAuctionDetailInfo } from "@/app/_component/common/AuctionDetailInfo/DefaultCase";
+import LikeButton from "@/app/_component/common/BookmarkButton";
+import useBookmark from "@/app/_component/common/BookmarkButton/useBookmark";
 import CarouselDetailImage from "@/app/_component/common/CarouselDetailImage";
 import Comment from "@/app/_component/common/Comment";
 import Header from "@/app/_component/common/Header";
-import LikeButton from "@/app/_component/common/LikeButton";
 import LineChart from "@/app/_component/common/LineChart";
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
@@ -21,7 +22,21 @@ interface DetailInfoSectionProps {
 }
 
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
-  const { top3, bids, auction } = useGetAuctionDetail({ auctionId });
+  const { top3, bids, auction, bookmark } = useGetAuctionDetail({
+    auctionId
+  });
+
+  const BookmarkMutation = useBookmark({
+    remove: bookmark.isBookmarked,
+    auctionId: auction.auctionId,
+    authUserId: 1234,
+    postUserId: auction.sellerInfo.userId
+  });
+
+  const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    BookmarkMutation.mutate(auction.auctionId);
+  };
 
   return (
     <>
@@ -46,7 +61,10 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           imageUrls={auction.imageUrls}
           auctionStatus={auction.auctionStatus}
         />
-        <LikeButton initialState={false} />
+        <LikeButton
+          initialState={bookmark.isBookmarked}
+          onClick={handleLikeClick}
+        />
         <div>
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
