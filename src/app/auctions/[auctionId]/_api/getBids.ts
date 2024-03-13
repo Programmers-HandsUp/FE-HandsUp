@@ -1,13 +1,12 @@
-import { TopThreeRankType } from "../types/product";
-import { Bids } from "../types/product";
-
+import { Top3BidResponse } from "@/utils/types/bid/top3Bid";
+import { BidResponse } from "@/utils/types/bid/bids";
 export async function getTopThreeRank({
   auctionId
 }: {
   auctionId: number;
-}): Promise<TopThreeRankType> {
+}): Promise<Top3BidResponse> {
   const res = await fetch(
-    `http://localhost:9090/api/auctions/${auctionId}/bids/top3`,
+    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/auctions/${auctionId}/bids/top3`,
     {
       next: {
         tags: ["top3"]
@@ -15,7 +14,7 @@ export async function getTopThreeRank({
       cache: "no-store"
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
+  if (!res.ok) throw new Error("Failed to fetch data [Top3bids] ");
 
   const jsonData = await res.json();
   return jsonData;
@@ -25,9 +24,9 @@ export async function getBids({
   auctionId
 }: {
   auctionId: number;
-}): Promise<Bids> {
+}): Promise<BidResponse> {
   const res = await fetch(
-    `http://localhost:9090/api/auctions/${auctionId}/bids`,
+    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/auctions/${auctionId}/bids`,
     {
       next: {
         tags: ["bids"]
@@ -35,7 +34,7 @@ export async function getBids({
       cache: "no-store"
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
+  if (!res.ok) throw new Error("Failed to fetch data [bids] ");
 
   const jsonData = await res.json();
   return jsonData;

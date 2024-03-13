@@ -1,4 +1,4 @@
-import { AuctionDetailType } from "@/app/types/product";
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 import { CommentType } from "../types";
@@ -308,7 +308,7 @@ export const auctionHotList: RecommendAuctionsResponse = {
   hasNext: false
 };
 
-export const auctionDetail: AuctionDetailType = {
+export const auctionDetail: AuctionDetailResponse = {
   auctionId: 353256236,
   sellerId: 12342,
   title: "나이키 덩크 로우 팔아영",

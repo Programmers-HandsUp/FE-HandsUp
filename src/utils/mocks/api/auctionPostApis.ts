@@ -34,15 +34,12 @@ const handlers = [
     const totalCount = commentData.length;
     const totalPages = Math.ceil(totalCount / size);
 
-    const nextPage = page < totalPages - 1 ? page + 1 : null;
+    const nextPage = page < totalPages - 1 ? true : false;
 
     https: return HttpResponse.json({
       content: commentData.slice(page * 10, page * 10 + size),
-      pageNumber: page,
-      pageSize: size,
-      totalPages,
-      totalCount,
-      nextPage
+      size: commentData.slice(page * 10, page * 10 + size).length,
+      hasNext: nextPage
     });
   })
 ];

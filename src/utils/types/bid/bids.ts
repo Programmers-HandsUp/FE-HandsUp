@@ -1,4 +1,4 @@
-export interface BidRequest {
+export interface BidResponse {
   content: BidsData[];
   size: number;
   hasNext: boolean;
