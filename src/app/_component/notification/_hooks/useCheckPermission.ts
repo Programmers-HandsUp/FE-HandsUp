@@ -20,9 +20,9 @@ const useNotificationPermission = () => {
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         getFcmToken();
-        show("PUSH 알림을 허용했어요", "check-solid");
+        show("PUSH 알림을 허용했어요.", "check-solid");
       } else if (permission === "denied") {
-        show("PUSH 알림 취소", "warn-solid");
+        show("PUSH 알림을 취소했어요.", "warn-solid");
       }
       setPermissionStatus(permission);
     });
