@@ -1,12 +1,12 @@
 import { getCookie } from "./cookie";
 
-export const authCheck = async () => {
+export const authCheck = () => {
   const authCheckFunction =
     typeof window === "undefined"
       ? getServerSideAuthCheck
       : getClientSideAuthCheck;
 
-  const isTokenValid = await authCheckFunction();
+  const isTokenValid = authCheckFunction();
 
   return isTokenValid;
 };

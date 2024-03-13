@@ -67,9 +67,10 @@ export async function getSortedBids(): Promise<RecommendAuctionsResponse> {
 }
 
 export async function getSortedCategory(): Promise<RecommendAuctionsResponse | null> {
-  const isTokenValid = await authCheck();
+  const isTokenValid = authCheck();
 
   if (!isTokenValid) return null;
+
   // FIX: 현재는 토큰을 직접 헤더에 넣어줬음 추후 자동으로 쿠키에 들어가도록 수정돼서 요청도 수정해야함
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend/category?&page=0&size=10&sort=북마크수`,
