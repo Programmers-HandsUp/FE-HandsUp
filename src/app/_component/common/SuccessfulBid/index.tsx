@@ -7,7 +7,23 @@ import Button from "../Button";
 import Header from "../Header";
 import ArrowBackButton from "../ArrowBackButton";
 
-const SuccessfulBids = () => {
+interface SuccessfulBidProps {
+  sellerNickName: string;
+  buyerNickName: string;
+  biddingCount: number;
+  bookmarkCount: number;
+  initialBiddingPrice: number;
+  currentBiddingPrice: number;
+}
+
+const SuccessfulBid = ({
+  sellerNickName,
+  buyerNickName,
+  biddingCount,
+  bookmarkCount,
+  initialBiddingPrice,
+  currentBiddingPrice
+}: SuccessfulBidProps) => {
   return (
     <div>
       <Header left={<ArrowBackButton />} />
@@ -32,22 +48,22 @@ const SuccessfulBids = () => {
       </div>
       <div>
         <p>
-          <span>도리</span>님이 참여한 <span>두더지</span>님의 경매 상품이
-          낙찰되었습니다!
+          <span>{buyerNickName}</span>님이 참여한 <span>{sellerNickName}</span>
+          님의 경매 상품이 낙찰되었습니다!
         </p>
       </div>
       <hr />
       <div>🔥치열했던 경매 요약</div>
       <div>
-        <span>경매에 참여한 사람 : 12명</span>
-        <span>경매에 관심있었던 사람 : 52명</span>
+        <span>경매에 참여한 사람 : {biddingCount}명</span>
+        <span>경매에 관심있었던 사람 : {bookmarkCount}명</span>
       </div>
 
-      <div>경매 시작 가격 : 500000원</div>
-      <div>최종 낙찰 가격 : 1000000원</div>
+      <div>경매 시작 가격 : {initialBiddingPrice}원</div>
+      <div>최종 낙찰 가격 : {currentBiddingPrice}원</div>
       <hr />
       <Button color="primary">입찰자 목록 페이지로 가기</Button>
     </div>
   );
 };
-export default SuccessfulBids;
+export default SuccessfulBid;
