@@ -6,12 +6,12 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 
-import { getAuctionDetail } from "@/app/_api/getAuctionDetail";
-import { getBids, getTopThreeRank } from "@/app/_api/getBids";
-import { getComments } from "@/app/_api/getComments";
+import { getAuctionDetail } from "./_api/getAuctionDetail";
+import { getBids, getTopThreeRank } from "./_api/getBids";
+import { getComments } from "./_api/getComments";
 
 import DetailInfoSection from "./_component/DetailInfoSection";
-import { ICommentListAPI } from "./_hooks/queries/useGetCommentList";
+import { CommentListData } from "@/utils/types/comment/commentData";
 
 interface AuctionProps {
   params: { auctionId: number };
@@ -36,19 +36,15 @@ const Auction = async ({ params }: AuctionProps) => {
     staleTime: 60 * 1000
   });
   await queryClient.prefetchInfiniteQuery<
-    ICommentListAPI,
+    CommentListData,
     DefaultError,
-    InfiniteData<ICommentListAPI>,
+    InfiniteData<CommentListData>,
     [string, number, string],
     number
   >({
     queryKey: ["auction", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
-    initialPageParam: 0,
-    getNextPageParam: (lastPage: ICommentListAPI) => {
-      if (!lastPage.nextPage) return undefined;
-      return lastPage.nextPage;
-    }
+    initialPageParam: 0
   });
   const dehydratedState = dehydrate(queryClient);
 

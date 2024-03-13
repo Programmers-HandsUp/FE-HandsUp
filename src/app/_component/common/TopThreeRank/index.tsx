@@ -5,7 +5,7 @@ import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 import { Top3BidData } from "@/utils/types/bid/top3Bid";
 
 import Avatar from "../Avatar";
-
+//@TODO: map으로 뿌릴 때 id 오류 생김
 const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
   const maxBiddingPrice = Math.max(...content.map((item) => item.biddingPrice));
 
@@ -28,7 +28,7 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
         <div className="relative border-b-2 w-full h-[200px] flex items-end justify-around">
           {biddingPercentages.map((item, idx) => (
             <div
-              key={item.bidderId}
+              key={item.bidderId + idx}
               className="w-[45px] flex items-end"
               style={{
                 height: `${item.percentage}%`

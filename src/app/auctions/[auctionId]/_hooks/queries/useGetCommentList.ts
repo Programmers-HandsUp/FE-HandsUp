@@ -1,20 +1,12 @@
 import {
   DefaultError,
   InfiniteData,
-  useInfiniteQuery
+  useSuspenseInfiniteQuery
 } from "@tanstack/react-query";
 
-import { getComments } from "@/app/_api/getComments";
-import { CommentType } from "@/utils/mocks/api/types";
+import { getComments } from "../../_api/getComments";
 
-export interface ICommentListAPI {
-  content: CommentType[];
-  pageNumber: number;
-  pageSize: number;
-  totalPages: number;
-  totalCount: number;
-  nextPage: number;
-}
+import { CommentListData } from "@/utils/types/comment/commentData";
 
 const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
   const {
@@ -24,19 +16,19 @@ const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
     hasNextPage,
     fetchNextPage,
     isFetched
-  } = useInfiniteQuery<
-    ICommentListAPI,
+  } = useSuspenseInfiniteQuery<
+    CommentListData,
     DefaultError,
-    InfiniteData<ICommentListAPI>,
+    InfiniteData<CommentListData>,
     [string, number, string],
     number
   >({
     queryKey: ["product", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
-      if (!lastPage.nextPage) return undefined;
-      return lastPage.nextPage;
+    getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage.hasNext) return undefined;
+      return lastPageParam + 1;
     }
     // enabled: !!(session?.user?.email && id),
   });
