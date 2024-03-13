@@ -1,81 +1,80 @@
+"use client";
+
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { Chip, Chips } from "../../_component/common/Chips";
+import { Chip, Chips } from "@/app/_component/common/Chips";
 
 interface SelectRangeProps {
   onSelected: (value: string) => void;
 }
 
+const IMAGE_SIZE = 48;
+const CHIP_ITEMS = [
+  {
+    value: "bad",
+    src: "/assets/images/bad.webp",
+    alt: "별로였어요",
+    label: "별로였어요"
+  },
+  {
+    value: "soso",
+    src: "/assets/images/soso.webp",
+    alt: "아쉬웠어요",
+    label: "아쉬웠어요"
+  },
+  {
+    value: "normal",
+    src: "/assets/images/normal.webp",
+    alt: "보통이에요",
+    label: "보통이에요"
+  },
+  {
+    value: "good",
+    src: "/assets/images/good.webp",
+    alt: "만족했어요",
+    label: "만족했어요"
+  },
+  {
+    value: "veryGood",
+    src: "/assets/images/veryGood.webp",
+    alt: "최고예요",
+    label: "최고예요"
+  }
+];
+
 const SelectRange = ({ onSelected }: SelectRangeProps) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [selectedItem, setSelectedItem] = useState<string>("");
 
   useEffect(() => {
-    onSelected(selectedItems);
-  }, [selectedItems, onSelected]);
+    onSelected(selectedItem);
+    console.log(selectedItem);
+  }, [selectedItem, onSelected]);
 
   return (
-    <Chips
-      Items={selectedItems}
-      setItems={setSelectedItems}
-      multiple={false}
-      size={48}>
-      <Chip value="worst">
-        <div>
-          <Image
-            src="https://www.emojiall.com/images/60/apple/1f635.png"
-            alt="worst"
-            width={30}
-            height={30}
-          />
-        </div>
-        최악
-      </Chip>
-      <Chip value="bad">
-        <div>
-          <Image
-            src="https://www.emojiall.com/images/60/apple/1f61e.png"
-            alt="bad"
-            width={30}
-            height={30}
-          />
-        </div>
-        불만
-      </Chip>
-      <Chip value="average">
-        <div>
-          <Image
-            src="https://www.emojiall.com/images/60/apple/1f610.png"
-            alt="average"
-            width={30}
-            height={30}
-          />
-        </div>
-        보통
-      </Chip>
-      <Chip value="good">
-        <div>
-          <Image
-            src="https://www.emojiall.com/images/60/apple/1f642.png"
-            alt="good"
-            width={30}
-            height={30}
-          />
-        </div>
-        만족
-      </Chip>
-      <Chip value="best">
-        <div>
-          <Image
-            src="https://www.emojiall.com/images/60/apple/1f604.png"
-            alt="best"
-            width={30}
-            height={30}
-          />
-        </div>
-        최고
-      </Chip>
-    </Chips>
+    <main className="">
+      <Chips
+        Items={selectedItem}
+        setItems={setSelectedItem}
+        className="text-xs">
+        {CHIP_ITEMS.map((item) => (
+          <Chip
+            key={item.value}
+            value={item.value}
+            className={`p-0 grayscale hover:grayscale-0 border-none ${selectedItem === item.value ? "grayscale-0" : ""}`}
+            selectedStyle="grayscale-0">
+            <Image
+              src={item.src}
+              alt={item.alt}
+              width={IMAGE_SIZE}
+              height={IMAGE_SIZE}
+              className="rounded-xl"
+            />
+            <span>{item.label}</span>
+          </Chip>
+        ))}
+      </Chips>
+    </main>
   );
 };
 
