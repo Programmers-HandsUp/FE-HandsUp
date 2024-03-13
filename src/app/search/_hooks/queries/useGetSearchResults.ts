@@ -1,7 +1,7 @@
 import {
   DefaultError,
   InfiniteData,
-  useInfiniteQuery
+  useSuspenseInfiniteQuery
 } from "@tanstack/react-query";
 
 import { AuctionSearchResultResponse } from "@/utils/types/search/search";
@@ -20,7 +20,7 @@ const useGetSearchResult = (
     hasNextPage,
     fetchNextPage,
     isFetched
-  } = useInfiniteQuery<
+  } = useSuspenseInfiniteQuery<
     AuctionSearchResultResponse,
     DefaultError,
     InfiniteData<AuctionSearchResultResponse>,

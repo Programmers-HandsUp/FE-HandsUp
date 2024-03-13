@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 
 import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
@@ -37,11 +37,14 @@ const SearchResultPage = () => {
 
   return (
     <main className="w-[90%] mx-auto bg-blue">
-      <SearchHeader
-        setAlignOption={setAlignOption}
-        alignOption={alignOption}
-        filterModalOpen={open}
-      />
+      <Suspense>
+        <SearchHeader
+          setAlignOption={setAlignOption}
+          alignOption={alignOption}
+          filterModalOpen={open}
+        />
+      </Suspense>
+
       <div className="pb-6">
         {searchResults ? (
           searchResults.map(
