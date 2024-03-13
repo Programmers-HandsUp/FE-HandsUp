@@ -7,6 +7,7 @@ import { DefaultAuctionDetailInfo } from "@/app/_component/common/AuctionDetailI
 import CarouselDetailImage from "@/app/_component/common/CarouselDetailImage";
 import Comment from "@/app/_component/common/Comment";
 import Header from "@/app/_component/common/Header";
+import LikeButton from "@/app/_component/common/LikeButton";
 import LineChart from "@/app/_component/common/LineChart";
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
@@ -45,6 +46,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           imageUrls={auction.imageUrls}
           auctionStatus={auction.auctionStatus}
         />
+        <LikeButton initialState={false} />
         <div>
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
@@ -68,9 +70,9 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           title={auction.title}
           productCategory={auction.productCategory}
           description={auction.description}
-          si={auction.si}
-          gu={auction.gu}
-          dong={auction.dong}
+          si={auction.tradeSi}
+          gu={auction.tradeGu}
+          dong={auction.tradeDong}
           tradeMethod={auction.tradeMethod}
           productStatus={auction.productStatus}
           purchaseTime={auction.purchaseTime}

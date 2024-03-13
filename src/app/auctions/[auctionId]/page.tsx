@@ -6,12 +6,12 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 
+import { CommentListData } from "@/utils/types/comment/commentData";
+
 import { getAuctionDetail } from "./_api/getAuctionDetail";
 import { getBids, getTopThreeRank } from "./_api/getBids";
 import { getComments } from "./_api/getComments";
-
 import DetailInfoSection from "./_component/DetailInfoSection";
-import { CommentListData } from "@/utils/types/comment/commentData";
 
 interface AuctionProps {
   params: { auctionId: number };
