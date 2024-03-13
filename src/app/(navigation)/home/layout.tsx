@@ -1,10 +1,10 @@
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 import Header from "@/app/_component/common/Header";
 import Icon from "@/app/_component/common/Icon";
 
 import RegionSelect from "./_component/RegionSelect";
-import ThemeButton from "@/app/_component/common/ThemeButton";
 
 export default function MainPageLayout({
   children
@@ -12,12 +12,16 @@ export default function MainPageLayout({
   children: React.ReactNode;
 }) {
   const HeaderRightSection = (
-    <div className="flex items-center justify-end">
-      <Icon
-        id="search"
-        fill="black"
-      />
-      <ThemeButton />
+    <div className="flex items-center justify-end gap-2">
+      <Link href="/search">
+        <Icon
+          id="search"
+          fill="black"
+        />
+      </Link>
+      <Link href="/notification">
+        <Icon id="bell-fill" />
+      </Link>
     </div>
   );
   const cookieStore = cookies();
