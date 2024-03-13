@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import tempImage from "../../public/tempImage.png";
 import Button from "../_component/common/Button";
 import InputPrice from "../_component/common/InputPrice";
 import ProductCard from "../_component/common/ProductCard";
@@ -17,12 +16,19 @@ interface PurchaseProps {
   price: number;
   title: string;
   field: FieldValues;
-  setValue: () => void;
 }
+
 const createdAt = new Date("2024-02-16T10:59:59");
 const deadline = new Date("2024-02-17T16:59:59");
 const START_PRICE = 10000;
 const MAX_PRICE = 30000;
+
+const mock = {
+  image: "/assets/images/logoIcon.png",
+  name: "상품 이름",
+  date: new Date("2024-02-07T13:11:20"),
+  price: 10000
+};
 
 const PurchasePage = () => {
   const schema = z.object({
@@ -35,7 +41,7 @@ const PurchasePage = () => {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isValid }
+    formState: { errors }
   } = useForm<PurchaseProps>({
     resolver: zodResolver(schema)
   });
@@ -62,13 +68,30 @@ const PurchasePage = () => {
         startPrice={START_PRICE}
         maxPrice={MAX_PRICE}
       />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <ProductCard
-          titleImage={tempImage}
-          productName="상품명"
-          createDate={new Date("2024-02-26T21:29:00")}
-          price={START_PRICE}
-        />
+      <div>
+        <ProductCard id={1}>
+          <div className="flex justify-evenly items-center w-full py-4">
+            <ProductCard.CardImage
+              titleImage={mock.image}
+              width={100}
+              height={100}
+              className="group-hover:[&_img]:scale-100"
+            />
+            <div>
+              <div>
+                <ProductCard.CardTitle className="pl-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
+                  {mock.name}
+                </ProductCard.CardTitle>
+              </div>
+              <p className="text-sm flex-none text-center">
+                <strong>{mock.price}원</strong>
+              </p>
+            </div>
+            <p className="text-sm text-[#ABABAB] text-right">
+              {mock.date.toLocaleDateString()}
+            </p>
+          </div>
+        </ProductCard>
       </div>
       <AuctionRanking maxPrice={MAX_PRICE} />
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -77,11 +100,11 @@ const PurchasePage = () => {
           name="price"
           defaultValue={0}
           render={({ field }) => (
-            <InputPrice<PurchaseProps>
+            <InputPrice<PurchaseProps, "price">
               title="제안가"
               price={field.value}
               field={field}
-              setValue={() => reset()}
+              reset={() => reset({ price: 0 })}
             />
           )}
         />
@@ -94,7 +117,6 @@ const PurchasePage = () => {
         />
         <Button
           color="primary"
-          disabled={!isValid}
           style={{ marginTop: "20px" }}>
           입찰하기
         </Button>
