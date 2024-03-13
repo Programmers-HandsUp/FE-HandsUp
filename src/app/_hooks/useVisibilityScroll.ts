@@ -18,7 +18,7 @@ const useVisibilityOnScroll = () => {
 
         return currentScrollTop <= 0 ? 0 : currentScrollTop;
       });
-    }, 300);
+    }, 500);
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
