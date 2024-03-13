@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type EventType = "focus" | "hover" | "click";
 
@@ -10,16 +10,16 @@ interface InteractionEvent {
 const INTERACTION_EVENTS: Record<EventType, InteractionEvent> = {
   hover: {
     startEvent: "mouseover",
-    endEvent: "mouseout",
+    endEvent: "mouseout"
   },
   focus: {
     startEvent: "focusin",
-    endEvent: "focusout",
+    endEvent: "focusout"
   },
   click: {
     startEvent: "click",
-    endEvent: "mouseleave",
-  },
+    endEvent: "mouseleave"
+  }
 };
 
 const useInteraction = (eventType: EventType) => {

@@ -40,4 +40,5 @@ export type IconName =
   | "arrow-dropdown"
   | "chevron-left"
   | "chevron-right"
-  | "drop-down";
+  | "drop-down"
+  | "arrow-right";

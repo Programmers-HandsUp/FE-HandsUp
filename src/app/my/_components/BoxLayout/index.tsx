@@ -1,10 +1,11 @@
-import Icon from "@/app/_component/common/Icon";
 import Link from "next/link";
 import { PropsWithChildren } from "react";
 
+import Icon from "@/app/_component/common/Icon";
+
 interface LayoutProps {
   title: React.ReactNode;
-  url?: "buying" | "selling" | "review";
+  url?: "buying?status=bidding" | "selling?status=bidding" | "review";
 }
 
 function BoxLayout({ title, url, children }: PropsWithChildren<LayoutProps>) {

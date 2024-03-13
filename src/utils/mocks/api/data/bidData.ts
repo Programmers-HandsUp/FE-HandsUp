@@ -1,4 +1,5 @@
-import { BidsType, TopThreeRankType } from "../types";
+import { Bids } from "@/app/types/product";
+import { TopThreeRankType } from "@/app/types/product";
 
 export const topThreeRank: TopThreeRankType = {
   content: [
@@ -26,13 +27,14 @@ export const topThreeRank: TopThreeRankType = {
   hasNext: true
 };
 
-export const bidsData: BidsType = {
+export const bidsData: Bids = {
   content: [
     {
       biddingPrice: 12000,
       auctionId: 12513,
       bidderId: 22321321,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-04")
     },
     {
@@ -40,6 +42,7 @@ export const bidsData: BidsType = {
       auctionId: 12513,
       bidderId: 22321322,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-06")
     },
     {
@@ -47,6 +50,7 @@ export const bidsData: BidsType = {
       auctionId: 12513,
       bidderId: 22321323,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-07")
     },
     {
@@ -54,6 +58,7 @@ export const bidsData: BidsType = {
       auctionId: 12513,
       bidderId: 22321321,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-12")
     },
     {
@@ -61,6 +66,7 @@ export const bidsData: BidsType = {
       auctionId: 12513,
       bidderId: 22321322,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-14")
     },
     {
@@ -68,6 +74,7 @@ export const bidsData: BidsType = {
       auctionId: 12513,
       bidderId: 22321323,
       bidderNickname: "오리도리",
+      imgUrl: "",
       createdAt: new Date("2024-03-15")
     }
   ],

@@ -37,6 +37,7 @@ const useDragScroll = ({
   });
   const [currentElement, setCurrentElement] = useState(0);
   const [isTouch, setIsTouch] = useState(false);
+  const [isButtonScroll, setIsButtonScroll] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -70,6 +71,7 @@ const useDragScroll = ({
       setIsTouch(false);
       return;
     }
+
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
 
@@ -99,14 +101,33 @@ const useDragScroll = ({
   };
 
   const buttonScrollLeft = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft -= childSize;
+    if (!isButtonScroll) {
+      setIsButtonScroll(true);
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollBy({
+            left: -childSize,
+            behavior: "smooth"
+          });
+          setCurrentElement((prev) => prev - 1);
+        }
+      }, 0);
     }
   };
 
   const buttonScrollRight = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollLeft += childSize;
+    if (!isButtonScroll) {
+      setIsButtonScroll(true);
+      console.log(isButtonScroll);
+      setTimeout(() => {
+        if (containerRef.current) {
+          containerRef.current.scrollBy({
+            left: childSize,
+            behavior: "smooth"
+          });
+          setCurrentElement((prev) => prev + 1);
+        }
+      }, 0);
     }
   };
 
@@ -119,23 +140,24 @@ const useDragScroll = ({
 
       setButtonState({
         isLeftButtonActive: scrollLeft > 0,
-        isRightButtonActive: scrollLeft < maxScrollLeft
+        isRightButtonActive: scrollLeft < maxScrollLeft - childSize / 2
       });
+      setIsButtonScroll(false);
     };
 
     const currentContainerRef = containerRef.current;
 
     if (currentContainerRef) {
-      currentContainerRef.addEventListener("scroll", handleScroll);
+      currentContainerRef.addEventListener("scrollend", handleScroll);
     }
 
     return () => {
       if (currentContainerRef) {
-        currentContainerRef.removeEventListener("scroll", handleScroll);
+        currentContainerRef.removeEventListener("scrollend", handleScroll);
       }
       setIsTouch(false);
     };
-  }, [containerRef]);
+  }, [containerRef, childSize]);
 
   return {
     isLeftButtonActive: buttonState.isLeftButtonActive,

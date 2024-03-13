@@ -1,6 +1,6 @@
 const Clock = ({
   rotation,
-  className,
+  className
 }: {
   rotation: number;
   className: string;
@@ -12,9 +12,14 @@ const Clock = ({
         height="24"
         viewBox="0 0 24 24"
         className="fill-none dark:fill-transparent"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="12" cy="14" r="8" stroke="currentColor" strokeWidth="2" />
+        xmlns="http://www.w3.org/2000/svg">
+        <circle
+          cx="12"
+          cy="14"
+          r="8"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
         <g transform={`translate(12, 13) rotate(${rotation})`}>
           <path
             d="M0 0L0 -3"

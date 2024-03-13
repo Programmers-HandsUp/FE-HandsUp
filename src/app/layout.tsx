@@ -1,9 +1,11 @@
+import "./globals.css";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Providers from "@/utils/provider";
 import { cookies } from "next/headers";
+
 import { MSWComponent } from "@/utils/MSWComponent";
+import Providers from "@/utils/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 

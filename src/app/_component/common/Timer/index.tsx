@@ -1,5 +1,5 @@
-import TimerContainer from "./TimerContainer";
 import Time from "./Time";
+import TimerContainer from "./TimerContainer";
 
 interface TimerProps {
   deadline: Date | string;

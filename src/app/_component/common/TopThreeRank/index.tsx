@@ -1,8 +1,10 @@
-import { TopThreeRankDataType } from "@/utils/mocks/api/types";
-import Avatar from "../Avatar";
 import Image from "next/image";
+
 import TransparentMan from "/public/assets/images/transparentMan.png";
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
+import { TopThreeRankDataType } from "@/utils/types/index.";
+
+import Avatar from "../Avatar";
 
 const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
   // 최대 입찰 가격을 찾습니다.
@@ -22,11 +24,11 @@ const TopThreeRank = ({ content }: { content: TopThreeRankDataType[] }) => {
 
   return (
     <>
-      <div>
+      <div className="relative mt-[112px] mb-[20px]">
         <div className="relative bottom-20">
           <h1>입찰가 TOP 3🏆</h1>
         </div>
-        <div className="border-b-2 w-full h-[200px] flex items-end justify-around">
+        <div className="relative border-b-2 w-full h-[200px] flex items-end justify-around">
           {biddingPercentages.map((item, idx) => (
             <div
               key={item.bidderId}

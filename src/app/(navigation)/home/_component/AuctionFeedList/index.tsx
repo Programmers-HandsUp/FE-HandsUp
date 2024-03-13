@@ -1,25 +1,20 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
 import ProductCard from "@/app/_component/common/ProductCard";
-import { Auction } from "@/utils/mocks/api/types";
-import { divideArray } from "@/utils/arrayDivider";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
-import { HorizontalCard, VerticalCard } from "./DefaultCard";
+import { divideArray } from "@/utils/function/arrayDivider";
+import { cn } from "@/utils/function/cn";
+
+import useHotAuctionRecommends from "../../_hooks/queries/useHotAuctionRecommends";
 import { feedDivideVariants } from "./AuctionFeedList.variants";
-import { cn } from "@/utils/cn";
+import { HorizontalCard, VerticalCard } from "./DefaultCard";
 
 interface AuctionFeedListProps {
   divideNum: 1 | 4 | 8;
 }
 
 const AuctionFeedList = ({ divideNum }: AuctionFeedListProps) => {
-  const { data, isPending } = useQuery<Auction[]>({
-    queryKey: ["auction"],
-    queryFn: getHotAuctionRecommends,
-    staleTime: 60 * 1000
-  });
+  const { data, isPending } = useHotAuctionRecommends();
 
   if (data === undefined || isPending) return <div>Loading...</div>;
 
@@ -45,8 +40,8 @@ const AuctionFeedList = ({ divideNum }: AuctionFeedListProps) => {
             className={cn(feedDivideVariants({ divideNum }))}>
             {data.map((auction) => (
               <ProductCard
-                id={auction.product_id}
-                key={auction.product_id}>
+                id={auction.auctionId}
+                key={auction.auctionId}>
                 {divideNum === 1 ? (
                   <VerticalCard auction={auction} />
                 ) : divideNum === 4 ? (

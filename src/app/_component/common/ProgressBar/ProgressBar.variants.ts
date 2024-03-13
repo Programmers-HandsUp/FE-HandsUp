@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-export const ProgressBarVariants = cva("overflow-hidden", {
+export const progressBarVariants = cva("overflow-hidden", {
   variants: {
     bgColor: {
       red: "bg-red-600",
@@ -31,7 +31,7 @@ export const ProgressBarVariants = cva("overflow-hidden", {
   }
 });
 
-export const BarVariants = cva("transition-all duration-500 ease-in-out", {
+export const barVariants = cva("transition-all duration-500 ease-in-out", {
   variants: {
     barColor: {
       red: "bg-red-600",

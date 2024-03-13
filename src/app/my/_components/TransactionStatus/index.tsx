@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Status } from "../../types";
+
+import { Status } from "@/utils/types/user/mypage";
+
 import StatusCard from "./StatusCard";
 
 interface TransactionListProps {
@@ -27,7 +29,7 @@ function TransactionStatus({ type, statusCounts }: TransactionListProps) {
           count={bidding}
         />
         <StatusCard
-          status="진행 중"
+          status="거래 진행 중"
           type={type}
           count={pending}
         />

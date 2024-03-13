@@ -1,9 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
+
 import ToastManager from "./ToastManager";
 import { ToastCreate, ToastIconId } from "./type";
-import { useEffect, useState } from "react";
 
 let createToastInstance: ToastCreate | undefined;
 

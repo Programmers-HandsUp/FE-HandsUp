@@ -1,7 +1,7 @@
 import Navigation from "../_component/common/Navigation";
 
 export default function DashboardLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

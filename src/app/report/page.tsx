@@ -1,11 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import UserCard from "../_component/common/UserCard";
-import onGetImageFile from "@/utils/onGetImageFile";
+
 import TempImg from "@/public/tempImage.png";
+import onGetImageFile from "@/utils/function/onGetImageFile";
+
 import Icon from "../_component/common/Icon";
+import UserCard from "../_component/common/UserCard";
 
 const TEMP_USER_DATA = {
   profileImage: TempImg.src,
@@ -46,7 +49,20 @@ const ReportPage = () => {
           onClick={() =>
             onGetImageFile((newImage) => setUploadImage(newImage))
           }>
-          이미지 첨부하기
+          {uploadImage ? (
+            <div className="flex justify-center gap-6 mr-16">
+              <Image
+                className="bg-gray-100 px-1 py-1"
+                src={URL.createObjectURL(uploadImage)}
+                width={40}
+                height={40}
+                alt="image"
+              />
+              <p className="my-auto">{"이미지 변경하기"}</p>
+            </div>
+          ) : (
+            "이미지 첨부하기"
+          )}
         </button>
         <button className="w-full h-[3.5rem] bg-[#96E4FF] mx-auto">
           제출하기

@@ -1,4 +1,4 @@
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils/function/cn";
 
 const FireAnimation = ({
   size = 12,

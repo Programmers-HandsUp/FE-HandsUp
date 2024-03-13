@@ -1,10 +1,12 @@
-import { ReactNode } from "react";
-import { productStateVariants } from "./ProductCard.variants";
 import { VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/cn";
 import Image from "next/image";
-import setMoneyUnitString from "@/utils/setMoneyUnitString";
-import getPastTime from "@/utils/getPastTime";
+import { ReactNode } from "react";
+
+import { cn } from "@/utils/function/cn";
+import getPastTime from "@/utils/function/getPastTime";
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
+
+import { productStateVariants } from "./ProductCard.variants";
 
 interface DefaultProps {
   children?: ReactNode;
@@ -53,17 +55,16 @@ export const CardImage = ({
 
 export const CardTitle = ({ children, className, width }: CardTitleProps) => {
   return (
-    <p
+    <div
       className={cn(
         "h-auto text-left text-2xl overflow-hidden text-ellipsis whitespace-nowrap",
         className
       )}
       style={{ width: `${width}px` }}>
       {children}
-    </p>
+    </div>
   );
 };
-
 export const CardPrice = ({ children, className, price }: CardIPriceProps) => {
   return (
     <p className={cn("text-base text-left", className)}>

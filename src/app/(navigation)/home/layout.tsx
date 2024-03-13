@@ -1,7 +1,9 @@
+import { cookies } from "next/headers";
+
 import Header from "@/app/_component/common/Header";
 import Icon from "@/app/_component/common/Icon";
+
 import RegionSelect from "./_component/RegionSelect";
-import { cookies } from "next/headers";
 
 export default function MainPageLayout({
   children

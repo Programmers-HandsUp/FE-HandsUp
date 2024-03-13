@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
 import Image from "next/image";
-import { useState, useEffect, ReactElement } from "react";
+import React from "react";
+import { ReactElement, useEffect, useState } from "react";
+
+import { cn } from "@/utils/function/cn";
+
 import { carouselVariants } from "./Carousel.variants";
-import { cn } from "../../../../utils/cn";
 import Indicator from "./Indicator";
 import MoveButtonsUI from "./MoveButtonsUI";
 
@@ -32,7 +34,7 @@ const Carousel = ({
   moveButtonImage,
   isMoveButton = true,
   isIndicator = true,
-  changeDelay,
+  changeDelay
 }: Carousel) => {
   const [selectedScene, setSelectedScene] = useState(0);
   const imageNum = itemList.length;

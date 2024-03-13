@@ -1,11 +1,12 @@
 import {
+  dehydrate,
   HydrationBoundary,
-  QueryClient,
-  dehydrate
+  QueryClient
 } from "@tanstack/react-query";
-import DetailAuctionFeed from "./_component/DetailAuctionFeed";
-import { getHotAuctionRecommends } from "@/app/api/auctionRecommends";
+
+import { getHotAuctionRecommends } from "./_api/getAuctionRecommends";
 import AuctionFeedList from "./_component/AuctionFeedList";
+import DetailAuctionFeed from "./_component/DetailAuctionFeed";
 
 const MainPage = async () => {
   const queryClient = new QueryClient();

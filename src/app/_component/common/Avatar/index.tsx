@@ -1,10 +1,14 @@
-import { cn } from "@/utils/cn";
 import { VariantProps } from "class-variance-authority";
 import Image from "next/image";
 import { ImgHTMLAttributes } from "react";
+
+import { cn } from "@/utils/function/cn";
+
 import { AvatarVariants } from "./Avatar.variants";
 
-interface Props extends VariantProps<typeof AvatarVariants>, Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "width" | "height"> {
+interface Props
+  extends VariantProps<typeof AvatarVariants>,
+    Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "width" | "height"> {
   src: string;
 }
 
@@ -14,8 +18,7 @@ const Avatar = ({ size, rounded, src, ...props }: Props) => {
       <Image
         alt={props.alt || ""}
         src={src}
-        width={100}
-        height={100}
+        fill
         className="w-full h-full object-cover"
         {...props}
       />

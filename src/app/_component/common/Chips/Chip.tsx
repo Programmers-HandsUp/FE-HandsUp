@@ -1,6 +1,8 @@
 import { VariantProps } from "class-variance-authority";
 import { ReactNode } from "react";
-import { cn } from "@/utils/cn";
+
+import { cn } from "@/utils/function/cn";
+
 import { chipVariants } from "./Chip.variants";
 
 interface ChipProps extends VariantProps<typeof chipVariants> {
@@ -23,7 +25,8 @@ export const Chip = ({
   size,
   children,
   selectedStyle = "bg-[#96E4FF]",
-  className
+  className,
+  ...props
 }: ChipProps) => {
   return (
     <div
@@ -43,7 +46,8 @@ export const Chip = ({
         htmlFor={value}
         className={cn(
           chipVariants({ rounded }),
-          isSelected ? "bg-[#96E4FF]" : ""
+          isSelected ? `${selectedStyle}` : "",
+          className
         )}
         {...props}>
         {children}
