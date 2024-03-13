@@ -1,4 +1,5 @@
 "use client";
+
 import useRecommendedAuction from "../../_hooks/queries/useRecommendAuction";
 import AuctionFeedList from "../AuctionFeedList";
 import DetailAuctionFeed from "../DetailAuctionFeed";
@@ -16,7 +17,7 @@ const MainContentSection = () => {
         {result[2].data ? (
           <DetailAuctionFeed data={result[2].data} />
         ) : (
-          "경매 없음"
+          "지금은 경매가 없네요.."
         )}
       </section>
 
@@ -30,7 +31,7 @@ const MainContentSection = () => {
             divideNum={4}
           />
         ) : (
-          "경매 없음"
+          "지금은 경매가 없네요.."
         )}
       </section>
 
@@ -44,7 +45,7 @@ const MainContentSection = () => {
             divideNum={1}
           />
         ) : (
-          "경매 없음"
+          "지금은 경매가 없네요.."
         )}
       </section>
 
@@ -58,16 +59,24 @@ const MainContentSection = () => {
             divideNum={8}
           />
         ) : (
-          "경매 없음"
+          "지금은 경매가 없네요.."
         )}
       </section>
 
-      {/* <section>
+      {}
+      <section>
         <div className="text-2xl">
-          <h1>💌당신을 위한 추천 경매! </h1>
+          <h1>💌당신만을 위한 추천 경매! </h1>
         </div>
-        <AuctionFeedList  divideNum={4} />
-      </section> */}
+        {result[4].data ? (
+          <AuctionFeedList
+            data={result[4].data}
+            divideNum={4}
+          />
+        ) : (
+          "지금은 경매가 없네요.."
+        )}
+      </section>
     </div>
   );
 };
