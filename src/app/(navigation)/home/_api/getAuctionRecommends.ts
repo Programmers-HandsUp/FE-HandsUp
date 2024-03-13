@@ -3,7 +3,7 @@ import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuctio
 //TODO : 지역으로 next tag 값 수정 및 지역값 추후 받아오는 매개변수 생성 후 적용
 export async function getSortedBookMarks(): Promise<RecommendAuctionsResponse> {
   const res = await fetch(
-    "http://13.209.236.54:8080/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=북마크수",
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=북마크수`,
     {
       next: {
         tags: ["auction", "bookmark"]
@@ -19,7 +19,7 @@ export async function getSortedBookMarks(): Promise<RecommendAuctionsResponse> {
 
 export async function getSortedRecentlyCreated(): Promise<RecommendAuctionsResponse> {
   const res = await fetch(
-    "http://13.209.236.54:8080/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=최근생성",
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=최근생성`,
     {
       next: {
         tags: ["auction", "recently"]
@@ -35,7 +35,7 @@ export async function getSortedRecentlyCreated(): Promise<RecommendAuctionsRespo
 
 export async function getSortedDeadLine(): Promise<RecommendAuctionsResponse> {
   const res = await fetch(
-    "http://13.209.236.54:8080/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=마감일",
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=마감일`,
     {
       next: {
         tags: ["auction", "deadline"]
@@ -51,7 +51,7 @@ export async function getSortedDeadLine(): Promise<RecommendAuctionsResponse> {
 
 export async function getSortedBids(): Promise<RecommendAuctionsResponse> {
   const res = await fetch(
-    "http://13.209.236.54:8080/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=입찰수",
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend?si=서울시&gu=강남구&dong=논현동&page=0&size=10&sort=입찰수`,
     {
       next: {
         tags: ["auction", "bids"]

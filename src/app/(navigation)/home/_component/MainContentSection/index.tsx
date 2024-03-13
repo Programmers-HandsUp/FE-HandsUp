@@ -13,37 +13,53 @@ const MainContentSection = () => {
         <div className="text-2xl">
           <h1>지금 핫한 경매를 구경하세요!</h1>
         </div>
-        <DetailAuctionFeed data={result[2].data} />
+        {result[2].data ? (
+          <DetailAuctionFeed data={result[2].data} />
+        ) : (
+          "경매 없음"
+        )}
       </section>
 
       <section>
         <div className="text-2xl">
           <h1>많은 사람들이 눈여겨보고있는 경매</h1>
         </div>
-        <AuctionFeedList
-          data={result[3].data}
-          divideNum={4}
-        />
+        {result[2].data ? (
+          <AuctionFeedList
+            data={result[3].data}
+            divideNum={4}
+          />
+        ) : (
+          "경매 없음"
+        )}
       </section>
 
       <section>
         <div className="text-2xl">
           <h1>💣마감 임박 경매 </h1>
         </div>
-        <AuctionFeedList
-          data={result[1].data}
-          divideNum={1}
-        />
+        {result[1] ? (
+          <AuctionFeedList
+            data={result[1].data}
+            divideNum={1}
+          />
+        ) : (
+          "경매 없음"
+        )}
       </section>
 
       <section>
         <div className="text-2xl">
           <h1>✨따끈따끈한 최신 경매</h1>
         </div>
-        <AuctionFeedList
-          data={result[0].data}
-          divideNum={8}
-        />
+        {result[0] ? (
+          <AuctionFeedList
+            data={result[0].data}
+            divideNum={8}
+          />
+        ) : (
+          "경매 없음"
+        )}
       </section>
 
       {/* <section>
