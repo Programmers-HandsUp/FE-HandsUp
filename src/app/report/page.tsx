@@ -4,21 +4,29 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import TempImg from "@/public/tempImage.png";
 import onGetImageFile from "@/utils/function/onGetImageFile";
+import tempImage from "~/images/tempImage.png";
 
 import Icon from "../_component/common/Icon";
+import Modal from "../_component/common/Modal";
+import Toast from "../_component/common/Toast";
 import UserCard from "../_component/common/UserCard";
+import CompleteReport from "./_component/CompleteReport";
 
 const TEMP_USER_DATA = {
-  profileImage: TempImg.src,
+  profileImage: tempImage.src,
   nickName: "닉네임#1234",
   goodness: 140
 };
 
 const ReportPage = () => {
   const router = useRouter();
+  const [isOpenFinishReport, setIsOpenFinishReport] = useState(false);
   const [uploadImage, setUploadImage] = useState<File | undefined>();
+  const [reportText, setReportText] = useState<string>();
+
+  const { show } = Toast();
+
   return (
     <div>
       <button
@@ -32,7 +40,7 @@ const ReportPage = () => {
           <UserCard className=" mx-auto w-[92%] mt-2 mb-2 gap-2 ">
             <UserCard.Avatar
               className="w-[10rem] h-[10rem]"
-              src={TempImg.src}
+              src={TEMP_USER_DATA.profileImage}
             />
             <UserCard.ContentArea>
               <p>{TEMP_USER_DATA.nickName}</p>
@@ -42,7 +50,10 @@ const ReportPage = () => {
         </div>
         <label className="text-lg my-2">신고내용</label>
         <div className="bg-white text-black rounded-sm">
-          <textarea className="px-2 py-1 w-full min-h-[21rem] mx-auto " />
+          <textarea
+            onChange={(event) => setReportText(event.target.value)}
+            className="px-2 py-1 w-full min-h-[21rem] mx-auto "
+          />
         </div>
         <button
           className="w-full h-[3.5rem] my-2 bg-[#96E4FF] mx-auto"
@@ -64,10 +75,24 @@ const ReportPage = () => {
             "이미지 첨부하기"
           )}
         </button>
-        <button className="w-full h-[3.5rem] bg-[#96E4FF] mx-auto">
+        <button
+          onClick={() =>
+            reportText && reportText?.length > 10
+              ? setIsOpenFinishReport(true)
+              : show("최소 10글자이상 입력해주세요", "info-solid", 3000)
+          }
+          className="w-full h-[3.5rem] bg-[#96E4FF] mx-auto">
           제출하기
         </button>
       </div>
+      <Modal
+        className="bg-black"
+        modalType="fullScreen"
+        animate="slide"
+        isOpen={isOpenFinishReport}
+        close={() => setIsOpenFinishReport}>
+        <CompleteReport />
+      </Modal>
     </div>
   );
 };

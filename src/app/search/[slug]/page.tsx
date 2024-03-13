@@ -107,6 +107,7 @@ const SearchResultPage = () => {
         className="bg-black"
         modalType="fullScreen"
         animate="slide"
+        isOpen={}
         close={close}>
         <SearchFilterModal
           setFilterOption={(newFilterOptions) =>
