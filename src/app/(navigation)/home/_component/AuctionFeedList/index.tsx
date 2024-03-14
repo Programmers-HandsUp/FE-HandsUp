@@ -4,11 +4,10 @@ import ProductCard from "@/app/_component/common/ProductCard";
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import { divideArray } from "@/utils/function/arrayDivider";
 import { cn } from "@/utils/function/cn";
+import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
-import useHotAuctionRecommends from "../../_hooks/queries/useRecommendAuction";
 import { feedDivideVariants } from "./AuctionFeedList.variants";
 import { HorizontalCard, VerticalCard } from "./DefaultCard";
-import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 interface AuctionFeedListProps {
   data: RecommendAuctionsResponse;

@@ -1,3 +1,6 @@
+import { MouseEvent } from "react";
+
+import BookmarkButton from "@/app/_component/common/BookmarkButton";
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/function/cn";
@@ -10,13 +13,16 @@ interface DefaultCardProps {
 
 export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
   return (
-    <div className={cn("flex gap-2 w-full", className)}>
+    <div className={cn("relative flex gap-2 w-full", className)}>
       <ProductCard.CardImage
         width={128}
         height={128}
         titleImage={auction.imgUrl}
         className="overflow-hidden"
       />
+      <div className="absolute left-0 z-20">
+        <BookmarkButton initialState={false} />
+      </div>
       <div className="flex flex-col gap-5">
         <ProductCard.CardTitle width={198}>
           {auction.title}
@@ -34,15 +40,28 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
     </div>
   );
 };
+
 export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+    console.log(auction.auctionId);
+  };
+
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("relative flex flex-col gap-2", className)}>
       <ProductCard.CardImage
         titleImage={auction.imgUrl}
         width={154}
         height={154}
         className="overflow-hidden"
       />
+      <div className="absolute left-0 z-20">
+        <BookmarkButton
+          initialState={false}
+          onClick={handleClick}
+        />
+      </div>
       <div className="flex flex-col gap-5">
         <ProductCard.CardTitle width={142}>
           {auction.title}

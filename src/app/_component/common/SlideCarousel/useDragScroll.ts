@@ -54,7 +54,8 @@ const useDragScroll = ({
 
   const handleTouchDown = (e: React.TouchEvent) => {
     if (!containerRef.current) return;
-
+    e.preventDefault();
+    e.stopPropagation();
     setIsTouch(true);
 
     const clientX = e.touches[0].clientX;
@@ -71,6 +72,8 @@ const useDragScroll = ({
       setIsTouch(false);
       return;
     }
+    e.preventDefault();
+    e.stopPropagation();
 
     setIsDragging(true);
     const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;

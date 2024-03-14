@@ -61,10 +61,13 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           imageUrls={auction.imageUrls}
           auctionStatus={auction.auctionStatus}
         />
-        <LikeButton
-          initialState={bookmark.isBookmarked}
-          onClick={handleLikeClick}
-        />
+        <div className="flex justify-end">
+          <LikeButton
+            initialState={bookmark.isBookmarked}
+            onClick={handleLikeClick}
+          />
+        </div>
+
         <div>
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
