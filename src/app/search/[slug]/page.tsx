@@ -61,9 +61,9 @@ const SearchResultPage = () => {
                       <span className="font-bold text-[1.1rem]">
                         {currentBiddingPrice}
                       </span>
-                      <div className="flex">
+                      <div className="flex mt-1">
                         <Icon
-                          className="h-fit mr-1 mt-3"
+                          className="h-fit mr-1 mt-1"
                           id="book-mark-fill"
                         />
                         <span className="text-[1rem]">10</span>
