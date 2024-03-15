@@ -44,10 +44,10 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="mx-auto w-fit mt-[12rem]">
+    <div className="mx-auto w-fit mt-[8rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>아이디</label>
-        <Input>
+        <Input className="gap-1">
           <Input.InputInnerBox
             className={cn(
               getInputBorderColor(),
@@ -65,8 +65,7 @@ const SignupForm = () => {
             중복검사
           </Input.SubmitButton>
         </Input>
-        <label>비밀번호</label>
-
+        <h2 className="mt-[2rem]">비밀번호</h2>
         <Input>
           <Input.InputInnerBox className="w-[13rem] h-[2.6rem] my-1 text-black">
             <Input.InputForm
@@ -74,6 +73,16 @@ const SignupForm = () => {
               placeholder="사용하실 비밀번호를 입력해주세요."
               className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
               {...register("password", { required: true })}
+            />
+          </Input.InputInnerBox>
+        </Input>
+        <h2>비밀번호 재검사</h2>
+        <Input>
+          <Input.InputInnerBox className="w-[13rem] h-[2.6rem] my-1 text-black">
+            <Input.InputForm
+              type="password"
+              placeholder="비밀번호를 다시 한번 입력해주세요."
+              className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
             />
           </Input.InputInnerBox>
         </Input>
