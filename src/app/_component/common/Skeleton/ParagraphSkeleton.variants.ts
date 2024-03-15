@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-export const ParagraphSkeletonVariants = cva("bg-gray-200 animate-pulseFast", {
+export const ParagraphSkeletonVariants = cva("bg-gray-200 animate-pulse", {
   variants: {
     size: {
       default: "w-[330px] h-14",
