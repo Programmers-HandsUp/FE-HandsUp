@@ -1,9 +1,8 @@
+"use client";
+
 import { useQuery } from "@tanstack/react-query";
 
-interface AuctionData {
-  startPrice: number;
-  maxPrice: number;
-}
+import { AuctionData } from "@/utils/types/auction/registerAuction";
 
 const fetchAuctionData = async (): Promise<AuctionData> => {
   const response = await fetch("http://13.209.236.54:8080/api/auctions/3");
@@ -21,16 +20,13 @@ export const useAuctionData = () => {
   return { data, isLoading };
 };
 
-// AuctionBanner 컴포넌트
 const AuctionBanner = () => {
-  const { data, isLoading } = useAuctionData();
+  const { data: auction, isLoading } = useAuctionData();
 
-  // 로딩 중이거나 에러 발생 시 처리
   if (isLoading) return <div>Loading...</div>;
 
-  // // API 응답을 사용하여 경매 정보 표시
-  // const commaStart = data?.startPrice;
-  // const commaMax = data?.maxPrice;
+  const commaStart = auction?.initPrice;
+  const commaMax = auction?.initPrice;
 
   return (
     <div
