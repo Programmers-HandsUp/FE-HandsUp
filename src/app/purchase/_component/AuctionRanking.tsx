@@ -1,20 +1,31 @@
 import { useEffect, useState } from "react";
 
-interface AuctionRankingProps {
-  maxPrice: number;
-}
+import { useBidders } from "../_hooks/useBidders";
 
-const AuctionRanking = ({ maxPrice }: AuctionRankingProps) => {
+const AuctionRanking = () => {
+  const { data: bidders, error } = useBidders();
   const [updateTime, setUpdateTime] = useState("");
 
-  const commaPrice = maxPrice.toLocaleString();
-  const padNumber = (num: number) => num.toString().padStart(2, "0");
-
   useEffect(() => {
-    const currentTime = new Date();
-    const updateTime = `${currentTime.getFullYear()}.${padNumber(currentTime.getMonth() + 1)}.${padNumber(currentTime.getDate())} ${padNumber(currentTime.getHours())}:${padNumber(currentTime.getMinutes())}:${padNumber(currentTime.getSeconds())}`;
-    setUpdateTime(updateTime);
+    const interval = setInterval(() => {
+      const currentTime = new Date();
+      const formattedTime = `${currentTime.getFullYear()}.${currentTime.getMonth() + 1}.${currentTime.getDate()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
+      setUpdateTime(formattedTime);
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
+
+  if (error) return <div> {error.message}</div>;
+
+  const bidderElements = bidders?.map((bidder, index) => (
+    <div
+      key={index}
+      style={{ display: "flex", gap: "10px" }}>
+      <div>{bidder.bidderNickname}</div>
+      <div>{bidder.biddingPrice.toLocaleString()}원</div>
+    </div>
+  ));
 
   return (
     <div
@@ -45,22 +56,7 @@ const AuctionRanking = ({ maxPrice }: AuctionRankingProps) => {
           flexDirection: "column",
           alignItems: "stretch"
         }}>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div>최고 입찰가</div>
-          <div>{commaPrice}</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div>닉네임AA</div>
-          <div>{commaPrice}원</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div>닉네임BB</div>
-          <div>29,000원</div>
-        </div>
-        <div style={{ display: "flex", gap: "10px" }}>
-          <div>닉네임CC</div>
-          <div>25,000원</div>
-        </div>
+        {bidderElements}
       </div>
     </div>
   );
