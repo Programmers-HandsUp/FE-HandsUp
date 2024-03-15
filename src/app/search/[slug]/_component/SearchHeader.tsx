@@ -14,7 +14,7 @@ const SearchHeader = ({
   setAlignOption
 }: SearchHeaderProps) => {
   return (
-    <div>
+    <div className="w-fit mx-auto">
       <SearchBar />
       <h1 className="text-lg">진행중인 경매 상품</h1>
       <div className="flex justify-between my-1 mb-6">

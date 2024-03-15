@@ -1,27 +1,21 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Suspense, useState } from "react";
+import { useContext } from "react";
 
 import Icon from "@/app/_component/common/Icon";
-import Modal from "@/app/_component/common/Modal";
 import ProductCard from "@/app/_component/common/ProductCard";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
-import useModalState from "@/app/_hooks/useModalState";
 import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
 import getPastTime from "@/utils/function/getPastTime";
 import { AuctionSearchResult } from "@/utils/types/search/search";
 import tempLogoImage from "~/images/logoIcon.png";
 
-import SearchFilterModal from "./_component/SearchFilter";
-import SearchHeader from "./_component/SearchHeader";
+import { SearchOptionContext } from "./layout";
 
 const SearchResultPage = () => {
-  const [alignOption, setAlignOption] = useState("마감 임박 순");
   const param = decodeURIComponent(usePathname());
-  const [filterOptions, setFilterOptions] =
-    useState<Record<string, string | number>>();
-  const { isOpen, open, close } = useModalState();
+  const { alignOption, filterOptions } = useContext(SearchOptionContext);
 
   const {
     data: searchResults,
@@ -37,14 +31,6 @@ const SearchResultPage = () => {
 
   return (
     <main className="w-[90%] mx-auto bg-blue">
-      <Suspense>
-        <SearchHeader
-          setAlignOption={setAlignOption}
-          alignOption={alignOption}
-          filterModalOpen={open}
-        />
-      </Suspense>
-
       <div className="pb-6">
         {searchResults ? (
           searchResults.map(
@@ -96,19 +82,6 @@ const SearchResultPage = () => {
         )}
         <div ref={ref}></div>
       </div>
-      <Modal
-        className="bg-black"
-        modalType="fullScreen"
-        animate="slide"
-        isOpen={isOpen}
-        close={close}>
-        <SearchFilterModal
-          setFilterOption={(newFilterOptions) =>
-            setFilterOptions(newFilterOptions)
-          }
-          closeModal={close}
-        />
-      </Modal>
     </main>
   );
 };
