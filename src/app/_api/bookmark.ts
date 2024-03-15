@@ -35,6 +35,9 @@ export const getCheckBookmark = async ({
       }
     }
   );
+  if (!res.ok) {
+    throw new Error("서버 에러 발생");
+  }
 
   return await res.json();
 };
@@ -52,6 +55,9 @@ export const addBookmark = async (
       }
     }
   );
+  if (!res.ok) {
+    throw new Error(`${res.status}`);
+  }
   const result = await res.json();
 
   return result;
@@ -70,6 +76,9 @@ export const deleteBookmark = async (
       }
     }
   );
+  if (!res.ok) {
+    throw new Error(`${res.status}`);
+  }
   const result = await res.json();
 
   return result;
@@ -85,6 +94,10 @@ export const getCheckBookmarkList = async (): Promise<BookmarkListResponse> => {
       }
     }
   );
+  if (!res.ok) {
+    throw new Error("서버 에러 발생");
+  }
+
   const result = await res.json();
 
   return result;

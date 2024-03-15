@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { addBookmark, deleteBookmark } from "@/app/_api/bookmark";
+import {
+  addBookmark,
+  deleteBookmark,
+  getCheckBookmarkResponse
+} from "@/app/_api/bookmark";
 import Toast from "@/app/_component/common/Toast";
 
 const useBookmark = ({
@@ -16,38 +20,49 @@ const useBookmark = ({
 
   const BookmarkMutation = useMutation({
     mutationFn: () => fn(auctionId),
-    onMutate: async (newData) => {
+    onMutate: async () => {
       await queryClient.cancelQueries({
         queryKey: ["auction", auctionId, "bookmark"]
       });
 
-      const previousTodos = queryClient.getQueryData([
+      const previousData = queryClient.getQueryData<getCheckBookmarkResponse>([
         "auction",
         auctionId,
         "bookmark"
       ]);
+      console.log(previousData?.isBookmarked);
 
-      queryClient.setQueryData(["auction", auctionId, "bookmark"], () => [
-        newData
-      ]);
+      queryClient.setQueryData(["auction", auctionId, "bookmark"], {
+        isBookmarked: !previousData?.isBookmarked
+      });
 
-      return { previousTodos };
+      return { previousData };
     },
-    onSuccess: () => {},
     onError: (err, newData, context) => {
-      console.log(err);
-      toast.show("로그인 후 이용해주세요.", "warn-solid", 2000);
+      console.log(err.message === "401");
+      if (err.message === "401") {
+        toast.show("로그인 후 이용해주세요.", "warn-solid", 2000);
+      } else if (err.message === "500") {
+        toast.show(
+          "자신의 게시글에는 북마크를 할 수 없습니다.",
+          "warn-solid",
+          2000
+        );
+      } else {
+        toast.show("오류 발생", "warn-solid", 2000);
+      }
+
       if (context) {
         queryClient.setQueryData(
           ["auction", auctionId, "bookmark"],
-          context.previousTodos
+          context.previousData
         );
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["auction", auctionId, "bookmark"]
-      });
+      // queryClient.invalidateQueries({
+      //   queryKey: ["auction", auctionId, "bookmark"]
+      // });
     }
   });
 
