@@ -6,6 +6,7 @@ import {
   getCheckBookmarkResponse
 } from "@/app/_api/bookmark";
 import Toast from "@/app/_component/common/Toast";
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 
 const useBookmark = ({
   remove,
@@ -30,11 +31,21 @@ const useBookmark = ({
         auctionId,
         "bookmark"
       ]);
-      console.log(previousData?.isBookmarked);
 
-      queryClient.setQueryData(["auction", auctionId, "bookmark"], {
-        isBookmarked: !previousData?.isBookmarked
-      });
+      const previousAuctionData =
+        queryClient.getQueryData<AuctionDetailResponse>(["auction", auctionId]);
+      if (previousAuctionData && previousData) {
+        const updateAuctionData = {
+          ...previousAuctionData,
+          bookmarkCount: !previousData.isBookmarked
+            ? previousAuctionData.bookmarkCount + 1
+            : previousAuctionData.bookmarkCount - 1
+        };
+        queryClient.setQueryData(["auction", auctionId], updateAuctionData);
+        queryClient.setQueryData(["auction", auctionId, "bookmark"], {
+          isBookmarked: !previousData.isBookmarked
+        });
+      }
 
       return { previousData };
     },
