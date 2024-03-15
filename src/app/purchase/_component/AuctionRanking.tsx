@@ -1,7 +1,14 @@
+import { useEffect, useState } from "react";
+
 import { useBidders } from "../_hooks/useBidders";
 
 const AuctionRanking = () => {
   const { data: bidders, error } = useBidders();
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    setTime(new Date().toLocaleString());
+  }, []);
 
   if (error) return <div> {error.message}</div>;
 
@@ -33,7 +40,7 @@ const AuctionRanking = () => {
         }}>
         <span>경매 진행중!</span>
         <span style={{ fontSize: "12px", color: "lightgray" }}>
-          업데이트 시간 {new Date().toLocaleString()}
+          업데이트 시간 {time}
         </span>
       </div>
       <div
