@@ -1,6 +1,3 @@
-import { MouseEvent } from "react";
-
-import BookmarkButton from "@/app/_component/common/BookmarkButton";
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/function/cn";
@@ -20,9 +17,6 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
         titleImage={auction.imgUrl}
         className="overflow-hidden"
       />
-      <div className="absolute left-0 z-20">
-        <BookmarkButton initialState={false} />
-      </div>
       <div className="flex flex-col gap-5">
         <ProductCard.CardTitle width={198}>
           {auction.title}
@@ -42,12 +36,6 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
 };
 
 export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
-  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log(auction.auctionId);
-  };
-
   return (
     <div className={cn("relative flex flex-col gap-2", className)}>
       <ProductCard.CardImage
@@ -56,12 +44,6 @@ export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
         height={154}
         className="overflow-hidden"
       />
-      <div className="absolute left-0 z-20">
-        <BookmarkButton
-          initialState={false}
-          onClick={handleClick}
-        />
-      </div>
       <div className="flex flex-col gap-5">
         <ProductCard.CardTitle width={142}>
           {auction.title}

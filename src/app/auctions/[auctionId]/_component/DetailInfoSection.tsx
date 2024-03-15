@@ -1,11 +1,12 @@
 "use client";
 
+import { MouseEvent } from "react";
+
 import ArrowBackButton from "@/app/_component/common/ArrowBackButton";
 import AuctionBidsSection from "@/app/_component/common/AuctionBidsSection";
 import AuctionDetailFooterBar from "@/app/_component/common/AuctionDetailFooterBar";
 import { DefaultAuctionDetailInfo } from "@/app/_component/common/AuctionDetailInfo/DefaultCase";
-import LikeButton from "@/app/_component/common/BookmarkButton";
-import useBookmark from "@/app/_component/common/BookmarkButton/useBookmark";
+import Bookmark from "@/app/_component/common/Bookmark";
 import CarouselDetailImage from "@/app/_component/common/CarouselDetailImage";
 import Comment from "@/app/_component/common/Comment";
 import Header from "@/app/_component/common/Header";
@@ -14,6 +15,7 @@ import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
 import TopThreeRank from "@/app/_component/common/TopThreeRank";
 import UserCard from "@/app/_component/common/UserCard";
+import useBookmark from "@/app/_hooks/mutations/useBookmark";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
 
@@ -26,16 +28,13 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
     auctionId
   });
 
-  const BookmarkMutation = useBookmark({
-    remove: bookmark.isBookmarked,
-    auctionId: auction.auctionId,
-    authUserId: 1234,
-    postUserId: auction.sellerInfo.userId
+  const bookmarkMutation = useBookmark({
+    auctionId,
+    remove: bookmark.isBookmarked
   });
 
-  const handleLikeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    BookmarkMutation.mutate(auction.auctionId);
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    bookmarkMutation.mutate();
   };
 
   return (
@@ -62,9 +61,9 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           auctionStatus={auction.auctionStatus}
         />
         <div className="flex justify-end">
-          <LikeButton
+          <Bookmark
             initialState={bookmark.isBookmarked}
-            onClick={handleLikeClick}
+            onClick={handleClick}
           />
         </div>
 

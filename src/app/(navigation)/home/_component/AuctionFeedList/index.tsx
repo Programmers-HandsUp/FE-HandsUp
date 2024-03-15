@@ -14,14 +14,14 @@ interface AuctionFeedListProps {
   divideNum: 1 | 4 | 8;
 }
 
+const childCardSize = {
+  1: 175,
+  4: 328,
+  8: 328
+};
+
 const AuctionFeedList = ({ data, divideNum }: AuctionFeedListProps) => {
   const fourColumns = divideArray(data.content, divideNum);
-
-  const childCardSize = {
-    1: 175,
-    4: 328,
-    8: 328
-  };
 
   return (
     <div>

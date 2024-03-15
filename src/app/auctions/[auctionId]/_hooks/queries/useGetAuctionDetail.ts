@@ -1,8 +1,9 @@
 import { useSuspenseQueries } from "@tanstack/react-query";
 
+import { getCheckBookmark } from "@/app/_api/bookmark";
+
 import { getAuctionDetail } from "../../_api/getAuctionDetail";
 import { getBids, getTopThreeRank } from "../../_api/getBids";
-import { getCheckBookmark } from "../../_api/getCheckBookmark";
 
 const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
   const [

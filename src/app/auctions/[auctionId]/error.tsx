@@ -1,7 +1,8 @@
 "use client";
 
-import Icon from "@/app/_component/common/Icon";
 import { useEffect } from "react";
+
+import Icon from "@/app/_component/common/Icon";
 
 export default function Error({
   error,

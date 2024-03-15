@@ -16,7 +16,7 @@ interface BookmarkProps
 
 const Bookmark = ({
   initialState = false,
-  size = "medium",
+  size = "xlarge",
   onClick
 }: BookmarkProps) => {
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {

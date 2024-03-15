@@ -1,4 +1,5 @@
-import {  useSuspenseQueries } from "@tanstack/react-query";
+import { useSuspenseQueries } from "@tanstack/react-query";
+
 import {
   getSortedBids,
   getSortedBookMarks,
