@@ -1,7 +1,5 @@
 import DropDown from "@/app/_component/common/DropDown";
 
-import SearchBar from "../../_component/SearchBar";
-
 interface SearchHeaderProps {
   filterModalOpen: () => void;
   alignOption: string;
@@ -14,8 +12,7 @@ const SearchHeader = ({
   setAlignOption
 }: SearchHeaderProps) => {
   return (
-    <div className="w-fit mx-auto">
-      <SearchBar />
+    <div className="w-[90%] mx-auto">
       <h1 className="text-lg">진행중인 경매 상품</h1>
       <div className="flex justify-between my-1 mb-6">
         <button
