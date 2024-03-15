@@ -1,36 +1,66 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
 
 import Button from "../_component/common/Button";
 import Icon from "../_component/common/Icon";
 import ProductCard from "../_component/common/ProductCard";
 import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
-import { useReviewPost } from "./_hooks/useReviewPost";
+import { usePostReview, useProduct } from "./_hooks/useProduct";
 
-interface Inputs {
+interface ReviewInputProps {
   range: string;
   review: string[];
   feedback: string;
 }
 
-const mock = {
-  userName: "거니니",
-  partnerName: "오리리",
-  image: "/assets/images/logoIcon.png",
-  name: "상품 이름",
-  date: new Date("2024-02-07T13:11:20"),
-  price: 10000
-};
-
 const ReviewForm = () => {
-  const { register, handleSubmit, setValue } = useForm<Inputs>();
+  const reviewPostMutation = usePostReview();
+  const { data: product } = useProduct();
 
-  const reviewPostMutation = useReviewPost();
+  const schema = z.object({
+    range: z.string(),
+    review: z.array(z.string()),
+    feedback: z.string()
+  });
 
-  const onSubmit = (data: Inputs) => {
-    reviewPostMutation.mutate(data);
+  const {
+    control,
+    setValue,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<ReviewInputProps>({
+    resolver: zodResolver(schema)
+  });
+
+  const onSubmit = (data: ReviewInputProps) => {
+    reviewPostMutation.mutate({
+      request: {
+        evaluationScore: parseInt(data.range),
+        content: data.feedback,
+        reviewLabelIds: data.review.map(Number)
+      },
+      writer: {
+        createdAt: "",
+        updatedAt: "",
+        id: 0,
+        email: "",
+        password: "",
+        nickname: "",
+        score: 0,
+        address: {
+          si: "",
+          gu: "",
+          dong: ""
+        },
+        profileImageUrl: "",
+        reportCount: 0
+      }
+    });
   };
 
   const handleRangeSelected = (value: string) => {
@@ -48,14 +78,14 @@ const ReviewForm = () => {
       <Icon id="arrow-back" />
       <div style={{ textAlign: "center" }}>
         <p>
-          {mock.userName}님, <br />
-          {mock.partnerName}님과의 거래는 어떠셨나요?
+          {product?.sellerInfo?.nickname}님, <br />
+          {product?.sellerInfo?.nickname}님과의 거래는 어떠셨나요?
         </p>
       </div>
       <ProductCard id={1}>
         <div className="flex justify-between items-center w-full border-t py-4">
           <ProductCard.CardImage
-            titleImage={mock.image}
+            titleImage={product?.imageUrls ? product.imageUrls[0] : ""}
             width={100}
             height={100}
             className="flex-none group-hover:[&_img]:scale-100"
@@ -63,15 +93,15 @@ const ReviewForm = () => {
           <div>
             <div>
               <ProductCard.CardTitle className="pl-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
-                {mock.name}
+                {product?.title}
               </ProductCard.CardTitle>
             </div>
             <p className="text-sm flex-none text-center">
-              <strong>{mock.price}원</strong>
+              <strong>{product?.currentBiddingPrice}원</strong>
             </p>
           </div>
           <p className="text-sm text-[#ABABAB] text-right">
-            {mock.date.toLocaleDateString()}
+            {product?.createdAt}
           </p>
         </div>
       </ProductCard>
@@ -80,14 +110,28 @@ const ReviewForm = () => {
       <SelectReview onSelected={handleReviewSelected} />
       <div>
         <p>남기고 싶은 후기가 있다면 적어주세요</p>
-        <textarea
-          {...register("feedback")}
-          style={{
-            backgroundColor: "#f8f8f8",
-            scrollbarColor: "#96E4FF #ffffff",
-            scrollbarWidth: "thin"
-          }}
-          className="w-full h-[150px] resize-none border-2 rounded-xl border-[#efefef] p-2 text-black"
+        <Controller
+          control={control}
+          name="feedback"
+          defaultValue=""
+          render={({ field }) => (
+            <textarea
+              {...field}
+              style={{
+                backgroundColor: "#f8f8f8",
+                scrollbarColor: "#96E4FF #ffffff",
+                scrollbarWidth: "thin"
+              }}
+              className="w-full h-[150px] resize-none border-2 rounded-xl border-[#efefef] p-2 text-black"
+            />
+          )}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="feedback"
+          render={({ message }) => (
+            <p className="text-red-600 mt-2">{message}</p>
+          )}
         />
       </div>
       <Button color="primary">후기 작성 완료하기</Button>
