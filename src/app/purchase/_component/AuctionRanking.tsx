@@ -1,20 +1,7 @@
-import { useEffect, useState } from "react";
-
 import { useBidders } from "../_hooks/useBidders";
 
 const AuctionRanking = () => {
   const { data: bidders, error } = useBidders();
-  const [updateTime, setUpdateTime] = useState("");
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentTime = new Date();
-      const formattedTime = `${currentTime.getFullYear()}.${currentTime.getMonth() + 1}.${currentTime.getDate()} ${currentTime.getHours()}:${currentTime.getMinutes()}:${currentTime.getSeconds()}`;
-      setUpdateTime(formattedTime);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   if (error) return <div> {error.message}</div>;
 
@@ -46,7 +33,7 @@ const AuctionRanking = () => {
         }}>
         <span>경매 진행중!</span>
         <span style={{ fontSize: "12px", color: "lightgray" }}>
-          업데이트 시간 {updateTime}
+          업데이트 시간 {new Date().toLocaleString()}
         </span>
       </div>
       <div
