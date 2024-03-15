@@ -18,7 +18,11 @@ const SignupForm = () => {
   const { show } = Toast();
   const { register, handleSubmit, watch } = useForm<LoginFormValues>();
   const [idStatus, setIdStatus] = useState<"None" | "Change" | "Ok">("Change");
+  const [checkPassWord, setCheckPassWord] = useState("");
+
   const email = watch("email");
+  const passWord = watch("password");
+
   const idDuplicateCheck = useIdDuplicateCheck(setIdStatus);
 
   const signUpMutation = useSignUp();
@@ -28,7 +32,9 @@ const SignupForm = () => {
   }, [email]);
 
   const onSubmit = async (data: LoginFormValues) => {
-    if (idStatus === "Ok") {
+    if (passWord !== checkPassWord) {
+      show("비밀번호가 일치하지 않습니다", "info-solid", 3000);
+    } else if (idStatus === "Ok") {
       signUpMutation.mutate(data);
     } else {
       show("사용하실 아이디, 비밀번호를 입력해주세요", "info-solid", 3000);
@@ -76,13 +82,14 @@ const SignupForm = () => {
             />
           </Input.InputInnerBox>
         </Input>
-        <h2>비밀번호 재검사</h2>
+        <h2>비밀번호 확인</h2>
         <Input>
           <Input.InputInnerBox className="w-[13rem] h-[2.6rem] my-1 text-black">
             <Input.InputForm
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요."
               className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
+              onChange={(event) => setCheckPassWord(event.target.value)}
             />
           </Input.InputInnerBox>
         </Input>
