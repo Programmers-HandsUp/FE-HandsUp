@@ -41,4 +41,4 @@ export type IconName =
   | "chevron-left"
   | "chevron-right"
   | "drop-down"
-  | "arrow-right";
+  | "notification-off";
