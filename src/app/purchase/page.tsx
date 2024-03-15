@@ -11,6 +11,7 @@ import ProductCard from "../_component/common/ProductCard";
 import Timer from "../_component/common/Timer";
 import AuctionBanner from "./_component/AuctionBanner";
 import AuctionRanking from "./_component/AuctionRanking";
+import { useBidPost } from "./_hooks/useBidPost";
 
 interface PurchaseProps {
   price: number;
@@ -46,8 +47,17 @@ const PurchasePage = () => {
     resolver: zodResolver(schema)
   });
 
+  const bidPostMutation = useBidPost();
+
   const onSubmit = (data: PurchaseProps) => {
-    console.log(data);
+    bidPostMutation.mutate({
+      biddingPrice: data.price,
+      bidderId: 0,
+      auctionId: 0,
+      bidderNickname: "string",
+      createdAt: "string",
+      imgUrl: "string"
+    });
   };
 
   return (
@@ -93,7 +103,7 @@ const PurchasePage = () => {
           </div>
         </ProductCard>
       </div>
-      <AuctionRanking maxPrice={MAX_PRICE} />
+      <AuctionRanking />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
