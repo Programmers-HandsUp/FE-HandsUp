@@ -22,15 +22,15 @@ export const useAuctionData = () => {
 };
 
 // AuctionBanner 컴포넌트
-const AuctionBanner = ({ startPrice, maxPrice }: AuctionData) => {
+const AuctionBanner = () => {
   const { data, isLoading } = useAuctionData();
 
   // 로딩 중이거나 에러 발생 시 처리
   if (isLoading) return <div>Loading...</div>;
 
-  // API 응답을 사용하여 경매 정보 표시
-  const commaStart = data?.startPrice.toLocaleString();
-  const commaMax = data?.maxPrice.toLocaleString();
+  // // API 응답을 사용하여 경매 정보 표시
+  // const commaStart = data?.startPrice;
+  // const commaMax = data?.maxPrice;
 
   return (
     <div
