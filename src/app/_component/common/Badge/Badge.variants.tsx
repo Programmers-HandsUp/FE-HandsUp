@@ -18,7 +18,8 @@ export const BadgeVariants = cva(
       },
       badgeType: {
         icon: "",
-        number: "bg-[#96E4FF] text-white"
+        number: "bg-[#96E4FF] text-white",
+        dot: "bg-[#6872FF]"
       }
     },
     defaultVariants: {
