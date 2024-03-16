@@ -1,12 +1,12 @@
-import { Top3BidResponse } from "@/utils/types/bid/top3Bid";
 import { BidResponse } from "@/utils/types/bid/bids";
+import { Top3BidResponse } from "@/utils/types/bid/top3Bid";
 export async function getTopThreeRank({
   auctionId
 }: {
   auctionId: number;
 }): Promise<Top3BidResponse> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/auctions/${auctionId}/bids/top3`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids/top3`,
     {
       next: {
         tags: ["top3"]
@@ -26,7 +26,7 @@ export async function getBids({
   auctionId: number;
 }): Promise<BidResponse> {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/auctions/${auctionId}/bids`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids`,
     {
       next: {
         tags: ["bids"]
