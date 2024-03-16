@@ -1,7 +1,7 @@
 export type IconName =
   | "user-alt-fill"
   | "bookmark"
-  | "book-mark-fill"
+  | "bookmark-fill"
   | "edit"
   | "pin-fill"
   | "bag"

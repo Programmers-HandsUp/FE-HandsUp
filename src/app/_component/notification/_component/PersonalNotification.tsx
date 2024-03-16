@@ -16,7 +16,12 @@ function PersonalNotification({
 }) {
   return (
     <Badge
-      content={<Icon id={type} />}
+      content={
+        <Icon
+          id={type}
+          className="text-[#96E4FF]"
+        />
+      }
       badgeType="icon">
       <UserCard.Avatar
         src={`${img}`}
