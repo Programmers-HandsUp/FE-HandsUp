@@ -5,7 +5,6 @@ import Link from "next/link";
 
 import SlideCarousel from "@/app/_component/common/SlideCarousel";
 import Timer from "@/app/_component/common/Timer";
-
 import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 interface DetailAuctionFeedProps {
