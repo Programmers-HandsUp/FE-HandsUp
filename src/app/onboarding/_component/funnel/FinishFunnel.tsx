@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 interface FinishFunnelProps {
   profileImage: File | undefined;
   category: string[];
-  address: string;
+  address: { si: string; dong: string; gu: string };
   nickName: string;
 }
 
