@@ -31,7 +31,7 @@ const Bookmark = ({
       {initialState ? (
         <div className="relative">
           <Icon
-            id="book-mark-fill"
+            id="bookmark-fill"
             className="animate-beat"
             size={ICON_SIZE[size!]}
           />
@@ -44,7 +44,7 @@ const Bookmark = ({
         </div>
       ) : (
         <Icon
-          id="book-mark"
+          id="bookmark"
           size={ICON_SIZE[size!]}
         />
       )}

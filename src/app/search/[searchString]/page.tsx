@@ -64,7 +64,7 @@ const SearchResultPage = () => {
                       <div className="flex mt-1">
                         <Icon
                           className="h-fit mr-1 mt-1"
-                          id="book-mark-fill"
+                          id="bookmark-fill"
                         />
                         <span className="text-[1rem]">10</span>
                       </div>
