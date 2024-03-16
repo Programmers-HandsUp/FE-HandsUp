@@ -2,7 +2,7 @@ import { PopularKeywordResponse } from "@/utils/types/search/popularKeyword";
 
 const getPopularKeyword = async (): Promise<PopularKeywordResponse> => {
   const request = await fetch(
-    "http://localhost:9090/api/search/popularkeyword"
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/search/popular`
   );
 
   if (!request.ok) {

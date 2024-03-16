@@ -22,7 +22,7 @@ export interface AuctionSearchResult {
   title: "string";
   currentBiddingPrice: 0;
   imageUrl: "string";
-  bookmarkCount: 0;
+  bookmarkCount?: 0;
   dong: "string";
-  createdAt: "string";
+  createdAt?: "string";
 }

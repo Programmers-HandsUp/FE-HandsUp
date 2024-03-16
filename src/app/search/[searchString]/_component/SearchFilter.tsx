@@ -53,7 +53,7 @@ const SearchFilterModal = ({
           Items={selectedCategory}
           setItems={(items: string[]) => {
             setSelectedCategory(items);
-            setValue("categories", items);
+            setValue("productCategory", items);
           }}>
           {CATEGORY_LIST.map((value) => (
             <Chip
@@ -93,7 +93,7 @@ const SearchFilterModal = ({
           <input
             type="checkbox"
             className="mr-2"
-            {...register("unOpenProduct")}
+            {...register("isNewProduct")}
           />
           <label>미개봉 상품</label>
         </div>
@@ -101,7 +101,7 @@ const SearchFilterModal = ({
           <input
             type="checkbox"
             className="mr-2"
-            {...register("onGoingAuction")}
+            {...register("isProgress")}
           />
           <label>진행 중인 경매만 보기</label>
         </div>
@@ -114,7 +114,9 @@ const SearchFilterModal = ({
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
-              {...register("minPrice")}
+              {...register("minPrice", {
+                setValueAs: (value) => parseInt(value)
+              })}
             />
             <label className="text-black my-auto text-2xl">원</label>
           </Input.InputInnerBox>
@@ -125,7 +127,9 @@ const SearchFilterModal = ({
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
-              {...register("maxPrice")}
+              {...register("maxPrice", {
+                setValueAs: (value) => parseInt(value)
+              })}
             />
             <label className="text-black my-auto text-2xl">원</label>
           </Input.InputInnerBox>
