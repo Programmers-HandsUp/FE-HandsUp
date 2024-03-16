@@ -16,13 +16,17 @@ interface CookieOptions {
 export const getCookie = ({ name }: getCookieParams) => {
   const cookies = document.cookie.split(";");
 
-  const cookie = cookies.find((cookieString) => {
+  const filteredCookies = cookies.filter((cookieString) => {
     const trimmedCookie = cookieString.trim();
     return trimmedCookie.startsWith(name + "=");
   });
+  const cookieValues = filteredCookies.map((cookie) =>
+    cookie.substring(name.length + 1).trim()
+  );
 
-  return cookie ? cookie.substring(name.length + 1) : null;
+  return cookieValues.join(", ");
 };
+
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
   const { expires, maxAge, path } = options || {};
   let cookieString = `${name}=${value}`;
