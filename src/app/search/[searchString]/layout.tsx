@@ -22,9 +22,6 @@ export default function MainPageLayout({
   const [alignOption, setAlignOption] = useState("마감 임박 순");
   const { open, isOpen, close } = useModalState();
 
-  const childrenWithProps = React.Children.map(children, (child) =>
-    React.cloneElement(child, { alignOption, filterOptions })
-  );
   const value = {
     alignOption,
     filterOptions
@@ -40,7 +37,7 @@ export default function MainPageLayout({
             alignOption={alignOption}
           />
         </header>
-        {childrenWithProps}
+        {children}
         <Modal
           className="bg-black"
           modalType="fullScreen"
