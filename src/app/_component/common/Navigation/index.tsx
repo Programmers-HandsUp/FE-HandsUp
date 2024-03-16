@@ -64,7 +64,7 @@ const Navigation = ({ userId }: NavigationProps) => {
         href="/bookmark">
         <div className="flex flex-col items-center">
           <Icon
-            id="book-mark"
+            id="bookmark"
             size={20}
             className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 rounded-full transition-colors"
           />
