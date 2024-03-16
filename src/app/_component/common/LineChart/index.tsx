@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-import { BidResponse } from "@/utils/types/bid/bids";
+import { BidsResponse } from "@/utils/types/bid/bids";
 
 ChartJS.register(
   CategoryScale,
@@ -39,15 +39,15 @@ export const options = {
 };
 
 interface LineChartProps {
-  bids: BidResponse;
+  bids: BidsResponse;
 }
 
 const LineChart = ({ bids }: LineChartProps) => {
   const { content } = bids;
 
-  const labels = content.map((item) =>
-    new Date(item.createdAt).toLocaleDateString()
-  );
+  const labels = content
+    .reverse()
+    .map((item) => new Date(item.createdAt).toLocaleDateString());
 
   const data = {
     labels,

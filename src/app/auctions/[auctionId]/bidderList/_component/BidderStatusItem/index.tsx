@@ -1,69 +1,82 @@
-import Image from "next/image";
-import Avatar from "../Avatar";
-import Button from "../Button";
+import Link from "next/link";
+
+import Avatar from "@/app/_component/common/Avatar";
 
 export interface BidderStatusItemProps {
   profileImage: string;
   nickName: string;
   biddingPrice: number;
-  status: "WAITING" | "PREPARING" | "PROGRESSING" | "CANCELED" | "COMPLETED";
+  status: "대기중" | "준비중" | "진행중" | "취소됨" | "완료됨";
   isSeller: boolean;
+  chatRoomId: number | undefined;
+  biddingId: number;
+  createChatRoom: ({ biddingId }: { biddingId: number }) => void;
+  patchComplete: () => void;
+  patchCompleteIsLoading: boolean;
 }
 
 const BidderStatusItem = ({
   profileImage,
   nickName,
+  biddingId,
+  chatRoomId,
   biddingPrice,
   status,
-  isSeller
+  isSeller,
+  createChatRoom,
+  patchComplete,
+  patchCompleteIsLoading
 }: BidderStatusItemProps) => {
   const renderStatus = () => {
     const baseClass = "bg-[#96E4FF] p-2 rounded-lg transition-colors";
     const hoverClass = "hover:opacity-60";
 
-    //TODO: 채팅방 생성하기 mutation 생성
-    //TODO: 채팅하기 Link 태그로 채팅방 이동
-    //TODO: 거래완료하기 mutation 생성
     if (isSeller) {
       switch (status) {
-        case "WAITING":
+        case "대기중":
           return <span className="text-slate-500 font-bold">대기중</span>;
-        case "PREPARING":
+        case "준비중":
           return (
-            <button className={`${baseClass} ${hoverClass}`}>
+            <button
+              onClick={() => createChatRoom({ biddingId })}
+              className={`${baseClass} ${hoverClass}`}>
               채팅방 생성하기
             </button>
           );
-        case "PROGRESSING":
+        case "진행중":
           return (
             <div className="flex gap-2">
-              <button className={`${baseClass} ${hoverClass}`}>채팅하기</button>
-              <button className={`${baseClass} ${hoverClass} bg-blue-500`}>
+              <Link
+                href={`/auctions/chat-room/biddings/${chatRoomId}`}
+                className={`${baseClass} ${hoverClass}`}>
+                채팅하기
+              </Link>
+              <button
+                onClick={patchComplete}
+                disabled={patchCompleteIsLoading}
+                className={`${baseClass} ${hoverClass} bg-blue-500`}>
                 완료 하기
-              </button>
-              <button className={`${baseClass} ${hoverClass} bg-red-500`}>
-                취소 하기
               </button>
             </div>
           );
-        case "CANCELED":
+        case "취소됨":
           return <span className="text-slate-500 font-bold">취소됨</span>;
-        case "COMPLETED":
+        case "완료됨":
           return <span className={`${baseClass} font-bold`}>거래 완료</span>;
         default:
           return null;
       }
     } else {
       switch (status) {
-        case "WAITING":
+        case "대기중":
           return <span className="text-slate-500 font-bold">대기중</span>;
-        case "PREPARING":
+        case "준비중":
           return <span className="text-slate-500 font-bold">거래 준비 중</span>;
-        case "PROGRESSING":
+        case "진행중":
           return <span className="text-slate-500 font-bold">얘기하는 중</span>;
-        case "CANCELED":
+        case "취소됨":
           return <span className="text-slate-500 font-bold">취소됨</span>;
-        case "COMPLETED":
+        case "완료됨":
           return <span className={`${baseClass} font-bold`}>거래 완료</span>;
         default:
           return null;
@@ -77,7 +90,7 @@ const BidderStatusItem = ({
         <span className="text-xs">{nickName}</span>
       </div>
       <div>
-        <span>{biddingPrice}</span>
+        <span>{biddingPrice}원</span>
       </div>
       <div className="grow flex justify-center">{renderStatus()}</div>
     </div>

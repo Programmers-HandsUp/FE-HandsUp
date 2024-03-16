@@ -106,8 +106,10 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         <Comment auctionId={auctionId} />
         <AuctionDetailFooterBar
           bidsData={bids}
+          sellerId={auction.sellerInfo.userId}
           auctionId={auctionId}
           bookmarkCount={auction.bookmarkCount}
+          auctionStatus={auction.auctionStatus}
         />
       </div>
     </>

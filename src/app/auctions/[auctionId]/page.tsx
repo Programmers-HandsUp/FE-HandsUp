@@ -19,19 +19,20 @@ interface AuctionProps {
 
 const Auction = async ({ params }: AuctionProps) => {
   const { auctionId } = params;
-
+  const numberOfAuctionId = Number(auctionId);
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId],
-    queryFn: () => getAuctionDetail({ auctionId: Number(auctionId) })
+    queryFn: () => getAuctionDetail({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "topThreeRank"],
-    queryFn: () => getTopThreeRankReverse({ auctionId: Number(auctionId) })
+    queryFn: () => getTopThreeRankReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: () => getBidsReverse({ auctionId: Number(auctionId) })
+    queryFn: () => getBidsReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchInfiniteQuery<
     CommentListData,
@@ -40,9 +41,9 @@ const Auction = async ({ params }: AuctionProps) => {
     [string, number, string],
     number
   >({
-    queryKey: ["auction", Number(auctionId), "comments"],
+    queryKey: ["auction", numberOfAuctionId, "comments"],
     queryFn: ({ pageParam = 0 }) =>
-      getComments({ pageParam, auctionId: Number(auctionId) }),
+      getComments({ pageParam, auctionId: numberOfAuctionId }),
     initialPageParam: 0
   });
   const dehydratedState = dehydrate(queryClient);
@@ -50,10 +51,12 @@ const Auction = async ({ params }: AuctionProps) => {
   return (
     <section>
       <HydrationBoundary state={dehydratedState}>
-        <DetailInfoSection auctionId={Number(auctionId)} />
+        <DetailInfoSection auctionId={numberOfAuctionId} />
       </HydrationBoundary>
     </section>
   );
 };
 
 export default Auction;
+
+//eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjExLCJpYXQiOjE3MTA1OTA1NjUsImV4cCI6MTcxMTQ1NDU2NX0.bmIP_BoJNZTX2OeKlMzNA52x6fT8jeVc9fg9UlTWjrI
