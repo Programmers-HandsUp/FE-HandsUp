@@ -1,26 +1,10 @@
-interface getCheckBookmarkParams {
-  auctionId: number;
-}
+import { BookMarkedAddResponse } from "@/utils/types/bookmark/add";
+import { BookMarkedAllCheckResponse } from "@/utils/types/bookmark/allCheck";
+import { BookMarkedDeleteResponse } from "@/utils/types/bookmark/delete";
+
+export type getCheckBookmarkParams = { auctionId: number };
 
 export type getCheckBookmarkResponse = { isBookmarked: boolean };
-
-interface BookmarkResponse {
-  bookmarkCount: number;
-}
-
-export interface BookmarkListContent {
-  auctionId: number;
-  title: string;
-  auctionStatus: string;
-  imageUrl: string;
-  createdDate: string;
-}
-
-export interface BookmarkListResponse {
-  content: BookmarkListContent[];
-  size: number;
-  hasNext: boolean;
-}
 
 //TODO: 토큰 없애기
 export const getCheckBookmark = async ({
@@ -44,7 +28,7 @@ export const getCheckBookmark = async ({
 
 export const addBookmark = async (
   auctionId: number
-): Promise<BookmarkResponse> => {
+): Promise<BookMarkedAddResponse> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
@@ -65,7 +49,7 @@ export const addBookmark = async (
 
 export const deleteBookmark = async (
   auctionId: number
-): Promise<BookmarkResponse> => {
+): Promise<BookMarkedDeleteResponse> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
@@ -84,21 +68,22 @@ export const deleteBookmark = async (
   return result;
 };
 
-export const getCheckBookmarkList = async (): Promise<BookmarkListResponse> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`,
-    {
-      headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+export const getCheckBookmarkList =
+  async (): Promise<BookMarkedAllCheckResponse> => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`,
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        }
       }
+    );
+    if (!res.ok) {
+      throw new Error("서버 에러 발생");
     }
-  );
-  if (!res.ok) {
-    throw new Error("서버 에러 발생");
-  }
 
-  const result = await res.json();
+    const result = await res.json();
 
-  return result;
-};
+    return result;
+  };
