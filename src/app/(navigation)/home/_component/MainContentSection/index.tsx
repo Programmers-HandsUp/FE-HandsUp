@@ -74,7 +74,7 @@ const MainContentSection = () => {
               divideNum={4}
             />
           ) : (
-            "지금은 경매가 없네요.."
+            "지금은 진행 중인 경매가 없네요.."
           )}
         </section>
       )}
