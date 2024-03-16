@@ -4,9 +4,9 @@ import {
   useSuspenseInfiniteQuery
 } from "@tanstack/react-query";
 
-import { getComments } from "../../_api/getComments";
-
 import { CommentListData } from "@/utils/types/comment/commentData";
+
+import { getComments } from "../../_api/getComments";
 
 const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
   const {

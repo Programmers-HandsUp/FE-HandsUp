@@ -34,7 +34,7 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
   return (
     <div
       className={cn(
-        "relative mx mb-2 flex h-16 items-center w-[220px] md:w-[400px]",
+        "relative mx mb-2 flex h-16 items-center w-[280px] md:w-[400px]",
         "overflow-hidden rounded bg-white p-4 shadow-md shadow-gray-700",
         show ? "animate-rightMove" : "animate-leftMove"
       )}>
@@ -51,7 +51,9 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
       </div>
       <div className="pl-2 pt-2">
         <h2 className="text-black font-bold">{iconHeader[iconId]}</h2>
-        <p className="text-black text-sm w-[170px] truncate">{message}</p>
+        <p className="text-black text-sm w-[230px] md:w-[350px] truncate">
+          {message}
+        </p>
       </div>
     </div>
   );

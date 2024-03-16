@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Line } from "react-chartjs-2";
 
-import { BidRequest } from "@/utils/types/bid/bids";
+import { BidResponse } from "@/utils/types/bid/bids";
 
 ChartJS.register(
   CategoryScale,
@@ -39,7 +39,7 @@ export const options = {
 };
 
 interface LineChartProps {
-  bids: BidRequest;
+  bids: BidResponse;
 }
 
 const LineChart = ({ bids }: LineChartProps) => {
@@ -60,15 +60,20 @@ const LineChart = ({ bids }: LineChartProps) => {
       }
     ]
   };
+
   return (
     <div>
       <div className="py-5">
         <h1>입찰 현황</h1>
       </div>
-      <Line
-        options={options}
-        data={data}
-      />
+      {content.length > 0 ? (
+        <Line
+          options={options}
+          data={data}
+        />
+      ) : (
+        <span className="text-gray-500 text-sm">입찰 내역이 안보이네요..</span>
+      )}
     </div>
   );
 };

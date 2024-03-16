@@ -18,9 +18,9 @@ export interface AuctionDetailResponse {
   description: string;
   tradeMethod: string;
   imageUrls: string[];
-  si: string;
-  gu: string;
-  dong: string;
+  tradeSi: string;
+  tradeGu: string;
+  tradeDong: string;
   bookmarkCount: number;
   createdAt: string;
 }
