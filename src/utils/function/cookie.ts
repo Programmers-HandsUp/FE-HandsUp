@@ -24,7 +24,7 @@ export const getCookie = ({ name }: getCookieParams) => {
     cookie.substring(name.length + 1).trim()
   );
 
-  return cookieValues.join(", ");
+  return cookieValues.join(", ").length <= 0 ? null : cookieValues.join(", ");
 };
 
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
