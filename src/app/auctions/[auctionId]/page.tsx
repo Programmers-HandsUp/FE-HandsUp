@@ -9,7 +9,7 @@ import {
 import { CommentListData } from "@/utils/types/comment/commentData";
 
 import { getAuctionDetail } from "./_api/getAuctionDetail";
-import { getBids, getTopThreeRank } from "./_api/getBids";
+import { getBidsReverse, getTopThreeRankReverse } from "./_api/getBids";
 import { getComments } from "./_api/getComments";
 import DetailInfoSection from "./_component/DetailInfoSection";
 
@@ -27,25 +27,11 @@ const Auction = async ({ params }: AuctionProps) => {
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "topThreeRank"],
-    queryFn: async () => {
-      const originalResponse = await getTopThreeRank({ auctionId });
-      // content 배열만 역순으로 뒤집기
-      return {
-        ...originalResponse,
-        content: [...originalResponse.content].reverse()
-      };
-    }
+    queryFn: () => getTopThreeRankReverse({ auctionId })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: async () => {
-      const originalResponse = await getBids({ auctionId });
-      // content 배열만 역순으로 뒤집기
-      return {
-        ...originalResponse,
-        content: [...originalResponse.content].reverse()
-      };
-    }
+    queryFn: () => getBidsReverse({ auctionId })
   });
   await queryClient.prefetchInfiniteQuery<
     CommentListData,
