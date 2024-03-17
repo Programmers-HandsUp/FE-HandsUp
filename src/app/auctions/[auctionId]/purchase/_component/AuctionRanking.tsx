@@ -15,9 +15,9 @@ const AuctionRanking = ({ auctionId }: AuctionRankingProps) => {
   }, []);
 
   if (isLoading) return <div>Loading...</div>;
-  if (top3) return <div>오류 발생</div>;
+  if (!top3) return <div>오류 발생</div>;
 
-  const bidderElements = top3.map((data, index) => (
+  const bidderElements = top3.content.map((data, index) => (
     <div
       key={index}
       style={{ display: "flex", gap: "10px" }}>

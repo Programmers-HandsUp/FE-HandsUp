@@ -2,45 +2,35 @@
 
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { AuctionDetail } from "@/utils/types/auction/registerAuction";
+import Button from "@/app/_component/common/Button";
+import InputPrice from "@/app/_component/common/InputPrice";
+import ProductCard from "@/app/_component/common/ProductCard";
+import Timer from "@/app/_component/common/Timer";
 
-import Button from "../_component/common/Button";
-import InputPrice from "../_component/common/InputPrice";
-import ProductCard from "../_component/common/ProductCard";
-import Timer from "../_component/common/Timer";
 import AuctionBanner from "./_component/AuctionBanner";
 import AuctionRanking from "./_component/AuctionRanking";
 import { useBidPost } from "./_hooks/useBidPost";
+import { useGetAuctionDetail } from "./_hooks/useGetAuctionDetail";
 
-interface PurchaseProps {
+interface PurchaseFormData {
   price: number;
   title: string;
   field: FieldValues;
 }
 
-const fetchAuctionData = async (): Promise<AuctionDetail> => {
-  const response = await fetch("http://13.209.236.54:8080/api/auctions/3");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+interface PurchaseProps {
+  params: { auctionId: string };
+}
 
-export const useAuctionData = () => {
-  const { data, isLoading } = useQuery({
-    queryFn: fetchAuctionData,
-    queryKey: ["auction"]
+const PurchasePage = ({ params }: PurchaseProps) => {
+  const { auctionId } = params;
+  const { data: auction, isLoading } = useGetAuctionDetail({
+    auctionId: Number(auctionId)
   });
-  return { data, isLoading };
-};
-
-const PurchasePage = () => {
-  const { data: auction, isLoading } = useAuctionData();
   const [initPrice, setInitPrice] = useState(0);
 
   useEffect(() => {
@@ -59,21 +49,14 @@ const PurchasePage = () => {
     handleSubmit,
     reset,
     formState: { errors }
-  } = useForm<PurchaseProps>({
+  } = useForm<PurchaseFormData>({
     resolver: zodResolver(schema)
   });
 
-  const bidPostMutation = useBidPost();
+  const bidPostMutation = useBidPost({ auctionId: Number(auctionId) });
 
-  const onSubmit = (data: PurchaseProps) => {
-    bidPostMutation.mutate({
-      biddingPrice: data.price,
-      bidderId: 0,
-      auctionId: 0,
-      bidderNickname: "string",
-      createdAt: "string",
-      imgUrl: "string"
-    });
+  const onSubmit = (data: PurchaseFormData) => {
+    bidPostMutation.mutate(data.price);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -93,7 +76,10 @@ const PurchasePage = () => {
           createdAt={auction.createdAt}
         />
       </div>
-      <AuctionBanner />
+      <AuctionBanner
+        initPrice={auction.initPrice}
+        currentBiddingPrice={auction.currentBiddingPrice}
+      />
       <div>
         <ProductCard id={3}>
           <div className="flex justify-evenly items-center w-full py-4">
@@ -119,14 +105,14 @@ const PurchasePage = () => {
           </div>
         </ProductCard>
       </div>
-      <AuctionRanking />
+      <AuctionRanking auctionId={Number(auctionId)} />
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
           name="price"
           defaultValue={0}
           render={({ field }) => (
-            <InputPrice<PurchaseProps, "price">
+            <InputPrice<PurchaseFormData, "price">
               title="제안가"
               price={field.value}
               field={field}

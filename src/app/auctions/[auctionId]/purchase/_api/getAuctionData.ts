@@ -1,10 +1,10 @@
-import { AuctionDetail } from "@/utils/types/auction/auctionDetail";
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 
 export const getAuctionData = async ({
   auctionId
 }: {
   auctionId: number;
-}): Promise<AuctionDetail> => {
+}): Promise<AuctionDetailResponse> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}`
   );
