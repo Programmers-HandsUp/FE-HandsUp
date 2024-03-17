@@ -8,7 +8,7 @@ import { z } from "zod";
 import Button from "../_component/common/Button";
 import Icon from "../_component/common/Icon";
 import ProductCard from "../_component/common/ProductCard";
-import { useBidData } from "../purchase/_hooks/useBidders";
+import { useBidData } from "../purchase/_hooks/useGetTopThreeRank";
 import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
 import { usePostReview } from "./_hooks/useProduct";

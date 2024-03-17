@@ -3,10 +3,11 @@
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { AuctionData } from "@/utils/types/auction/registerAuction";
+import { AuctionDetail } from "@/utils/types/auction/registerAuction";
 
 import Button from "../_component/common/Button";
 import InputPrice from "../_component/common/InputPrice";
@@ -22,7 +23,7 @@ interface PurchaseProps {
   field: FieldValues;
 }
 
-const fetchAuctionData = async (): Promise<AuctionData> => {
+const fetchAuctionData = async (): Promise<AuctionDetail> => {
   const response = await fetch("http://13.209.236.54:8080/api/auctions/3");
   if (!response.ok) {
     throw new Error("Network response was not ok");
@@ -31,21 +32,26 @@ const fetchAuctionData = async (): Promise<AuctionData> => {
 };
 
 export const useAuctionData = () => {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryFn: fetchAuctionData,
     queryKey: ["auction"]
   });
-  return { data };
+  return { data, isLoading };
 };
 
-const createdAt = new Date("2024-02-16T10:59:59");
-
 const PurchasePage = () => {
-  const { data: auction } = useAuctionData();
+  const { data: auction, isLoading } = useAuctionData();
+  const [initPrice, setInitPrice] = useState(0);
+
+  useEffect(() => {
+    if (!auction) return;
+    setInitPrice(auction.initPrice);
+  }, [auction]);
+
   const schema = z.object({
     price: z
       .number()
-      .min(auction?.initPrice + 1000, "제안가는 현재 최고가 보다 높아야 합니다")
+      .min(initPrice + 1000, "제안가는 현재 최고가 보다 높아야 합니다")
   });
 
   const {
@@ -70,6 +76,9 @@ const PurchasePage = () => {
     });
   };
 
+  if (isLoading) return <div>Loading...</div>;
+  if (!auction) return <div>오류 발생</div>;
+
   return (
     <div
       style={{
@@ -80,8 +89,8 @@ const PurchasePage = () => {
       }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Timer
-          deadline={auction?.endDate}
-          createdAt={auction?.createAt}
+          deadline={auction.endDate}
+          createdAt={auction.createdAt}
         />
       </div>
       <AuctionBanner />
@@ -101,11 +110,11 @@ const PurchasePage = () => {
                 </ProductCard.CardTitle>
               </div>
               <p className="text-sm flex-none text-center">
-                <strong>{auction?.initPrice}원</strong>
+                <strong>{auction.initPrice}원</strong>
               </p>
             </div>
             <p className="text-sm text-[#ABABAB] text-right">
-              {new Date(auction?.createdAt).toLocaleDateString()}
+              {new Date(auction.createdAt).toLocaleDateString()}
             </p>
           </div>
         </ProductCard>

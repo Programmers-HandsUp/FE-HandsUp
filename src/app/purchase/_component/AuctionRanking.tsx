@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
 
-import { useBidders } from "../_hooks/useBidders";
+import { useGetTopThreeRank } from "../_hooks/useGetTopThreeRank";
 
-const AuctionRanking = () => {
-  const { data: bidders, error } = useBidders();
+interface AuctionRankingProps {
+  auctionId: number;
+}
+
+const AuctionRanking = ({ auctionId }: AuctionRankingProps) => {
+  const { data: top3, isLoading } = useGetTopThreeRank({ auctionId });
   const [time, setTime] = useState("");
 
   useEffect(() => {
     setTime(new Date().toLocaleString());
   }, []);
 
-  if (error) return <div> {error.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (top3) return <div>오류 발생</div>;
 
-  const bidderElements = bidders?.map((bidder, index) => (
+  const bidderElements = top3.map((data, index) => (
     <div
       key={index}
       style={{ display: "flex", gap: "10px" }}>
-      <div>{bidder.bidderNickname}</div>
-      <div>{bidder.biddingPrice.toLocaleString()}원</div>
+      <div>{data.bidderNickname}</div>
+      <div>{data.biddingPrice.toLocaleString()}원</div>
     </div>
   ));
 

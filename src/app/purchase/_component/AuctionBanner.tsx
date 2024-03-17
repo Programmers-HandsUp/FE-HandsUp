@@ -2,20 +2,12 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { AuctionData } from "@/utils/types/auction/registerAuction";
-
-const fetchAuctionData = async (): Promise<AuctionData> => {
-  const response = await fetch("http://13.209.236.54:8080/api/auctions/3");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+import { getAuctionData } from "../_api/getAuctionData";
 
 export const useAuctionData = () => {
   const { data, isLoading } = useQuery({
-    queryFn: fetchAuctionData,
-    queryKey: ["auction"]
+    queryFn: getAuctionData,
+    queryKey: ["auction", auctionId]
   });
   return { data, isLoading };
 };
@@ -24,7 +16,7 @@ const AuctionBanner = () => {
   const { data: auction } = useAuctionData();
 
   const commaStart = auction?.initPrice;
-  const commaMax = auction?.initPrice;
+  const commaMax = auction?.currentBiddingPrice;
 
   return (
     <div
