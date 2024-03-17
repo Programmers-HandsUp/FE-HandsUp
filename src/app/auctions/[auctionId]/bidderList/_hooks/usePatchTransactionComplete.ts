@@ -2,10 +2,16 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import patchCompleteTransaction from "../_api/patchCompleteTransaction";
 
-const usePatchTransactionComplete = ({ auctionId }: { auctionId: number }) => {
+const usePatchTransactionComplete = ({
+  auctionId,
+  biddingId
+}: {
+  auctionId: number;
+  biddingId: number | undefined;
+}) => {
   const queryClient = useQueryClient();
   const completeTransactionMutation = useMutation({
-    mutationFn: patchCompleteTransaction,
+    mutationFn: () => patchCompleteTransaction({ biddingId }),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["auction", auctionId, "bids"]

@@ -47,10 +47,15 @@ const BidderStatusItem = ({
           return (
             <div className="flex gap-2">
               <Link
-                href={`/auctions/chat-room/biddings/${chatRoomId}`}
+                href={`/chatrooms/${chatRoomId}`}
                 className={`${baseClass} ${hoverClass}`}>
                 채팅하기
               </Link>
+              <button
+                onClick={() => createChatRoom({ biddingId })}
+                className={`${baseClass} ${hoverClass}`}>
+                채팅방 생성하기
+              </button>
               <button
                 onClick={patchComplete}
                 disabled={patchCompleteIsLoading}
