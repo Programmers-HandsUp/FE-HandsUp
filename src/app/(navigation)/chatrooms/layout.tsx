@@ -7,7 +7,7 @@ export default function ProductsDetail({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <main className="px-2">
       <Header
         left={
           <div>
