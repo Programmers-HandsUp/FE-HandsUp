@@ -4,7 +4,7 @@ import { TextVariants, ThemeVariants } from "./Reliability.variants";
 
 type Theme = "default" | "main" | "terrible" | "poor" | "good";
 
-function ReliabilityBar({ score = 100 }) {
+function ReliabilityBar({ score = 100, icons_padding = 2 }) {
   const width = Math.floor(score / 2);
   const text = score === 100 ? "첫 매너 100%" : `${score}% 선해요`;
 
@@ -24,7 +24,7 @@ function ReliabilityBar({ score = 100 }) {
 
   return (
     <div>
-      <div className="flex justify-between p-2">
+      <div className={cn(`flex justify-between p-${icons_padding}`)}>
         <span>😈</span>
         <span className={cn(TextVariants({ theme }))}>{text}</span>
         <span>😇</span>
