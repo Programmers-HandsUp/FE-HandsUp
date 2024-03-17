@@ -6,9 +6,13 @@ interface FinishFunnelProps {
   category: string[];
   address: { si: string; dong: string; gu: string };
   nickName: string;
+  id: string | null;
+  passWord: string | null;
 }
 
 const FinishFunnel = ({
+  id,
+  passWord,
   profileImage,
   category,
   address,
@@ -28,6 +32,7 @@ const FinishFunnel = ({
   useEffect(() => {
     setOnboardingPost();
   }, []);
+
 
   return (
     <div>
