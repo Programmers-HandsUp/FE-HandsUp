@@ -45,9 +45,9 @@ interface LineChartProps {
 const LineChart = ({ bids }: LineChartProps) => {
   const { content } = bids;
 
-  const labels = content
-    .reverse()
-    .map((item) => new Date(item.createdAt).toLocaleDateString());
+  const labels = content.map((item) =>
+    new Date(item.createdAt).toLocaleDateString()
+  );
 
   const data = {
     labels,

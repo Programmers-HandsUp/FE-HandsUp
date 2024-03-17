@@ -99,7 +99,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         />
         <hr />
         <LineChart bids={bids} />
-        <TopThreeRank content={top3.content.reverse()} />
+        <TopThreeRank content={top3.content} />
         <Comment auctionId={auctionId} />
         <AuctionDetailFooterBar
           bidsData={bids}

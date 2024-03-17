@@ -27,13 +27,25 @@ const Auction = async ({ params }: AuctionProps) => {
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "topThreeRank"],
-    queryFn: () => getTopThreeRank({ auctionId }),
-    staleTime: 60 * 1000
+    queryFn: async () => {
+      const originalResponse = await getTopThreeRank({ auctionId });
+      // content 배열만 역순으로 뒤집기
+      return {
+        ...originalResponse,
+        content: [...originalResponse.content].reverse()
+      };
+    }
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: () => getBids({ auctionId }),
-    staleTime: 60 * 1000
+    queryFn: async () => {
+      const originalResponse = await getBids({ auctionId });
+      // content 배열만 역순으로 뒤집기
+      return {
+        ...originalResponse,
+        content: [...originalResponse.content].reverse()
+      };
+    }
   });
   await queryClient.prefetchInfiniteQuery<
     CommentListData,
