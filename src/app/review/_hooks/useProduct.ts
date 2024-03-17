@@ -12,7 +12,7 @@ const fetchProduct = async (): Promise<Product> => {
 };
 
 const postReview = async (data: AuctionReviewEnrollRequest): Promise<void> => {
-  const response = await fetch("http://13.209.236.54:8080/api/auctions/3", {
+  const response = await fetch("http://13.209.236.54:8080/api/auctions/", {
     method: "GET",
     headers: {
       "Content-Type": "application/json"

@@ -8,9 +8,10 @@ import { z } from "zod";
 import Button from "../_component/common/Button";
 import Icon from "../_component/common/Icon";
 import ProductCard from "../_component/common/ProductCard";
+import { useBidData } from "../purchase/_hooks/useBidders";
 import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
-import { usePostReview, useProduct } from "./_hooks/useProduct";
+import { usePostReview } from "./_hooks/useProduct";
 
 interface ReviewInputProps {
   range: string;
@@ -20,7 +21,7 @@ interface ReviewInputProps {
 
 const ReviewForm = () => {
   const reviewPostMutation = usePostReview();
-  const { data: product } = useProduct();
+  const { data: product } = useBidData();
 
   const schema = z.object({
     range: z.string(),
@@ -39,27 +40,14 @@ const ReviewForm = () => {
 
   const onSubmit = (data: ReviewInputProps) => {
     reviewPostMutation.mutate({
-      request: {
-        evaluationScore: parseInt(data.range),
-        content: data.feedback,
-        reviewLabelIds: data.review.map(Number)
-      },
-      writer: {
-        createdAt: "",
-        updatedAt: "",
-        id: 0,
-        email: "",
-        password: "",
-        nickname: "",
-        score: 0,
-        address: {
-          si: "",
-          gu: "",
-          dong: ""
-        },
-        profileImageUrl: "",
-        reportCount: 0
-      }
+      biddingId: 0,
+      biddingPrice: 0,
+      auctionId: 0,
+      bidderId: 0,
+      bidderNickname: "string",
+      tradingStatus: "string",
+      imgUrl: "string",
+      createdAt: "string"
     });
   };
 
@@ -78,14 +66,14 @@ const ReviewForm = () => {
       <Icon id="arrow-back" />
       <div style={{ textAlign: "center" }}>
         <p>
-          {product?.sellerInfo?.nickname}님, <br />
-          {product?.sellerInfo?.nickname}님과의 거래는 어떠셨나요?
+          {product?.auctionId ? product?.auctionId : ""}님, <br />
+          {product?.bidderId ? product?.bidderId : ""}님과의 거래는 어떠셨나요?
         </p>
       </div>
       <ProductCard id={1}>
         <div className="flex justify-between items-center w-full border-t py-4">
           <ProductCard.CardImage
-            titleImage={product?.imageUrls ? product.imageUrls[0] : ""}
+            titleImage={product?.imageUrls ? product?.imageUrls : ""}
             width={100}
             height={100}
             className="flex-none group-hover:[&_img]:scale-100"

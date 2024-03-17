@@ -21,9 +21,7 @@ export const useAuctionData = () => {
 };
 
 const AuctionBanner = () => {
-  const { data: auction, isLoading } = useAuctionData();
-
-  if (isLoading) return <div>Loading...</div>;
+  const { data: auction } = useAuctionData();
 
   const commaStart = auction?.initPrice;
   const commaMax = auction?.initPrice;

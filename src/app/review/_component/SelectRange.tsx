@@ -48,7 +48,6 @@ const SelectRange = ({ onSelected }: SelectRangeProps) => {
 
   useEffect(() => {
     onSelected(selectedItem);
-    console.log(selectedItem);
   }, [selectedItem, onSelected]);
 
   return (

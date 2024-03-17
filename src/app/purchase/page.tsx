@@ -2,8 +2,11 @@
 
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQuery } from "@tanstack/react-query";
 import { Controller, FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
+
+import { AuctionData } from "@/utils/types/auction/registerAuction";
 
 import Button from "../_component/common/Button";
 import InputPrice from "../_component/common/InputPrice";
@@ -19,23 +22,30 @@ interface PurchaseProps {
   field: FieldValues;
 }
 
-const createdAt = new Date("2024-02-16T10:59:59");
-const deadline = new Date("2024-02-17T16:59:59");
-const START_PRICE = 10000;
-const MAX_PRICE = 30000;
-
-const mock = {
-  image: "/assets/images/logoIcon.png",
-  name: "상품 이름",
-  date: new Date("2024-02-07T13:11:20"),
-  price: 10000
+const fetchAuctionData = async (): Promise<AuctionData> => {
+  const response = await fetch("http://13.209.236.54:8080/api/auctions/3");
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
 };
 
+export const useAuctionData = () => {
+  const { data } = useQuery({
+    queryFn: fetchAuctionData,
+    queryKey: ["auction"]
+  });
+  return { data };
+};
+
+const createdAt = new Date("2024-02-16T10:59:59");
+
 const PurchasePage = () => {
+  const { data: auction } = useAuctionData();
   const schema = z.object({
     price: z
       .number()
-      .min(MAX_PRICE + 1000, "제안가는 현재 최고가 보다 높아야 합니다")
+      .min(auction?.initPrice + 1000, "제안가는 현재 최고가 보다 높아야 합니다")
   });
 
   const {
@@ -70,19 +80,16 @@ const PurchasePage = () => {
       }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Timer
-          deadline={deadline}
-          createdAt={createdAt}
+          deadline={auction?.endDate}
+          createdAt={auction?.createAt}
         />
       </div>
-      <AuctionBanner
-        startPrice={START_PRICE}
-        maxPrice={MAX_PRICE}
-      />
+      <AuctionBanner />
       <div>
-        <ProductCard id={1}>
+        <ProductCard id={3}>
           <div className="flex justify-evenly items-center w-full py-4">
             <ProductCard.CardImage
-              titleImage={mock.image}
+              titleImage={auction?.imageUrls[0]}
               width={100}
               height={100}
               className="group-hover:[&_img]:scale-100"
@@ -90,15 +97,15 @@ const PurchasePage = () => {
             <div>
               <div>
                 <ProductCard.CardTitle className="pl-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
-                  {mock.name}
+                  {auction?.title}
                 </ProductCard.CardTitle>
               </div>
               <p className="text-sm flex-none text-center">
-                <strong>{mock.price}원</strong>
+                <strong>{auction?.initPrice}원</strong>
               </p>
             </div>
             <p className="text-sm text-[#ABABAB] text-right">
-              {mock.date.toLocaleDateString()}
+              {new Date(auction?.createdAt).toLocaleDateString()}
             </p>
           </div>
         </ProductCard>
