@@ -14,8 +14,7 @@ export async function getSortedBookMarks(): Promise<RecommendAuctionsResponse> {
   );
   if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }
 
 export async function getSortedRecentlyCreated(): Promise<RecommendAuctionsResponse> {
@@ -30,8 +29,7 @@ export async function getSortedRecentlyCreated(): Promise<RecommendAuctionsRespo
   );
   if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }
 
 export async function getSortedDeadLine(): Promise<RecommendAuctionsResponse> {
@@ -46,8 +44,7 @@ export async function getSortedDeadLine(): Promise<RecommendAuctionsResponse> {
   );
   if (!res.ok) throw new Error("Failed to fetch data [deadLine] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }
 
 //
@@ -62,8 +59,8 @@ export async function getSortedBids(): Promise<RecommendAuctionsResponse> {
     }
   );
   if (!res.ok) throw new Error("Failed to fetch data [bids] ");
-  const jsonData = await res.json();
-  return jsonData;
+
+  return res.json();
 }
 
 export async function getSortedCategory(): Promise<RecommendAuctionsResponse | null> {
@@ -86,6 +83,5 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
   );
   if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }

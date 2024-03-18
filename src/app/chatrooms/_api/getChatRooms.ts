@@ -17,8 +17,7 @@ const getChatRooms = async (): Promise<ChatRoomsResponse> => {
   );
   if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 };
 
 export default getChatRooms;

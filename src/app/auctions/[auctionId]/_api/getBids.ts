@@ -16,8 +16,7 @@ export async function getTopThreeRank({
   );
   if (!res.ok) throw new Error("Failed to fetch data [Top3bids] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }
 
 export async function getBids({
@@ -36,8 +35,7 @@ export async function getBids({
   );
   if (!res.ok) throw new Error("Failed to fetch data [bids] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 }
 
 export async function getBidsReverse({
