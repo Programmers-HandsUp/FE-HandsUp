@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import { useSignUp } from "@/app/signup/_hooks/mutations/useSignup";
+
 interface FinishFunnelProps {
   profileImage: File | undefined;
   category: string[];
@@ -20,11 +22,19 @@ const FinishFunnel = ({
 }: FinishFunnelProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
+  const { mutate } = useSignUp();
   const setOnboardingPost = async () => {
-    console.log(profileImage, category, address, nickName); // 추후 사용 예정
     setTimeout(() => {
-      // api 통신 예정 (profileImage  / category / address / )
-      // 통신되는 척 딜레이
+      if (id && passWord) {
+        mutate({
+          email: id,
+          password: passWord,
+          nickname: nickName,
+          profileImageUrl: "",
+          ...address,
+          productCategoryIds: category
+        });
+      }
       setIsLoading(false);
     }, 1000);
   };
@@ -32,7 +42,6 @@ const FinishFunnel = ({
   useEffect(() => {
     setOnboardingPost();
   }, []);
-
 
   return (
     <div>
