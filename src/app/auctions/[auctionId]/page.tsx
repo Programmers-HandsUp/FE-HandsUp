@@ -5,12 +5,14 @@ import {
   InfiniteData,
   QueryClient
 } from "@tanstack/react-query";
+import { Suspense } from "react";
 
 import { CommentListData } from "@/utils/types/comment/commentData";
 
 import { getAuctionDetail } from "./_api/getAuctionDetail";
 import { getBidsReverse, getTopThreeRankReverse } from "./_api/getBids";
 import { getComments } from "./_api/getComments";
+import AuctionDetailLoading from "./_component/AuctionDetailLoading";
 import DetailInfoSection from "./_component/DetailInfoSection";
 
 interface AuctionProps {
@@ -51,7 +53,9 @@ const Auction = async ({ params }: AuctionProps) => {
   return (
     <section>
       <HydrationBoundary state={dehydratedState}>
-        <DetailInfoSection auctionId={numberOfAuctionId} />
+        <Suspense fallback={<AuctionDetailLoading />}>
+          <DetailInfoSection auctionId={numberOfAuctionId} />
+        </Suspense>
       </HydrationBoundary>
     </section>
   );
