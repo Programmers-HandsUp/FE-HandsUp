@@ -17,7 +17,7 @@ const postBid = async ({
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjExLCJpYXQiOjE3MTA2NzgzNzYsImV4cCI6MTcxMTU0MjM3Nn0.mSDS7NCjUKAe8YsxBpwpAtVMMA_fl-i8M8bWLbWGFfY"
+          "Bearer "
       },
       body: JSON.stringify({ biddingPrice })
     }
