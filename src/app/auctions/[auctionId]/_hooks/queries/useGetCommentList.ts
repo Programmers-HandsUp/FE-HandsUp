@@ -23,7 +23,7 @@ const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
     [string, number, string],
     number
   >({
-    queryKey: ["product", auctionId, "comments"],
+    queryKey: ["auction", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, _, lastPageParam) => {
