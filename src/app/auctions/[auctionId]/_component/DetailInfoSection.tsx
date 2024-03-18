@@ -29,13 +29,11 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
     auctionId
   });
 
-  //TODO: 현재 로그인 되어있는지 확인해야함
-  const isLogin = false;
-  const { data: bookmark } = useGetCheckBookmark({ auctionId, isLogin });
+  const { data: bookmark } = useGetCheckBookmark({ auctionId });
 
   const bookmarkMutation = useBookmark({
     auctionId,
-    remove: isLogin && bookmark?.isBookmarked
+    remove: bookmark?.isBookmarked
   });
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
