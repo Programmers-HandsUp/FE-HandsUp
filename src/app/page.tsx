@@ -2,6 +2,17 @@
 
 import React from "react";
 
+import { fetchInterceptor } from "./_hooks/useAuth";
+
 export default function Home() {
-  return <main className=""></main>;
+  async function onClickFetch() {
+    fetchInterceptor(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/chat-rooms/2`
+    );
+  }
+  return (
+    <main className="">
+      <button onClick={onClickFetch}>버튼</button>
+    </main>
+  );
 }
