@@ -121,7 +121,6 @@ const useDragScroll = ({
   const buttonScrollRight = () => {
     if (!isButtonScroll) {
       setIsButtonScroll(true);
-      console.log(isButtonScroll);
       setTimeout(() => {
         if (containerRef.current) {
           containerRef.current.scrollBy({

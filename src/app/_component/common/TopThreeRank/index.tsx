@@ -11,7 +11,7 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
 
   const maxYValue = maxBiddingPrice + maxBiddingPrice * 0.1;
 
-  const biddingPercentages = content.map((item, index) => ({
+  const biddingPercentages = content.reverse().map((item, index) => ({
     ...item,
     percentage: (item.biddingPrice / maxYValue) * 100,
     image:

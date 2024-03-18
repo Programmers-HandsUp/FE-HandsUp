@@ -8,12 +8,12 @@ const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
     useSuspenseQueries({
       queries: [
         {
-          queryKey: ["auction", auctionId, "topThreeRank"],
+          queryKey: ["auction", auctionId, "topThreeRank", "reverse"],
           queryFn: () => getTopThreeRankReverse({ auctionId }),
           staleTime: 60 * 1000
         },
         {
-          queryKey: ["auction", auctionId, "bids"],
+          queryKey: ["auction", auctionId, "bids", "reverse"],
           queryFn: () => getBidsReverse({ auctionId }),
           staleTime: 60 * 1000
         },
