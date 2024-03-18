@@ -22,7 +22,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     number | undefined
   >();
 
-  const loginId = "5";
+  const loginId = "10";
 
   const {
     data: bidsData,
@@ -47,12 +47,12 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
   const { data: chatRoomInfo } = useGetChatRoomInfo({
     biddingId: progressingBiddingId
   });
+
   useEffect(() => {
     setProgressingBiddingId(
       bidsData?.content.find((x) => x.tradingStatus === "진행중")?.biddingId
     );
   }, [bidsData]);
-
 
   if (bidsDataLoading) return <div>Loading...</div>;
   if (bidsDataError) return <div>에러 발생</div>;

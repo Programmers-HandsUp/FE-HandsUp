@@ -27,11 +27,11 @@ const Auction = async ({ params }: AuctionProps) => {
     queryFn: () => getAuctionDetail({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", auctionId, "topThreeRank"],
+    queryKey: ["auction", auctionId, "topThreeRank", "reverse"],
     queryFn: () => getTopThreeRankReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", auctionId, "bids"],
+    queryKey: ["auction", auctionId, "bids", "reverse"],
     queryFn: () => getBidsReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchInfiniteQuery<

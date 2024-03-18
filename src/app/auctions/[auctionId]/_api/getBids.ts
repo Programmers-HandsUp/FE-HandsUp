@@ -49,7 +49,7 @@ export async function getBidsReverse({
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids`,
     {
       next: {
-        tags: ["bids"]
+        tags: ["bids", "reverse"]
       },
       cache: "no-store"
     }
@@ -70,7 +70,7 @@ export async function getTopThreeRankReverse({
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids/top3`,
     {
       next: {
-        tags: ["top3"]
+        tags: ["top3", "reverse"]
       },
       cache: "no-store"
     }

@@ -52,11 +52,6 @@ const BidderStatusItem = ({
                 채팅하기
               </Link>
               <button
-                onClick={() => createChatRoom({ biddingId })}
-                className={`${baseClass} ${hoverClass}`}>
-                채팅방 생성하기
-              </button>
-              <button
                 onClick={patchComplete}
                 disabled={patchCompleteIsLoading}
                 className={`${baseClass} ${hoverClass} bg-blue-500`}>

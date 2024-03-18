@@ -1,3 +1,5 @@
+import { authCheck } from "@/utils/function/authCheck";
+
 export interface createChatRoomParams {
   auctionId: number;
   biddingId: number;
@@ -11,6 +13,12 @@ const createChatRoom = async ({
   auctionId,
   biddingId
 }: createChatRoomParams): Promise<createChatRoomResponse> => {
+  const isTokenValid = authCheck();
+
+  if (!isTokenValid) {
+    throw new Error("401");
+  }
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/chat-rooms?auctionId=${auctionId}&biddingId=${biddingId}`,
     {
@@ -19,8 +27,7 @@ const createChatRoom = async ({
         tags: ["chat", auctionId.toString(), biddingId.toString()]
       },
       headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        Authorization: `Bearer ${isTokenValid}`
       },
       cache: "no-store"
     }

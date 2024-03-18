@@ -1,9 +1,17 @@
+import { authCheck } from "@/utils/function/authCheck";
+
 const patchCancelBidder = async ({
   biddingId
 }: {
   biddingId: number | undefined;
 }) => {
-  if (biddingId === undefined) return;
+  if (biddingId === undefined) throw new Error("400");
+
+  const isTokenValid = authCheck();
+
+  if (!isTokenValid) {
+    throw new Error("401");
+  }
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bids/${biddingId}/cancel`,
@@ -11,8 +19,7 @@ const patchCancelBidder = async ({
       method: "PATCH",
       cache: "no-store",
       headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        Authorization: `Bearer ${isTokenValid}`
       }
     }
   );
