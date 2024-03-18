@@ -1,24 +1,17 @@
-import React from "react";
-
 import { ImageUrl } from "@/utils/types/image";
-import { NotificationType } from "@/utils/types/notification";
+import { Type } from "@/utils/types/notification";
 
 import Badge from "../../common/Badge";
 import Icon from "../../common/Icon";
+import { IconName } from "../../common/Icon/type";
 import UserCard from "../../common/UserCard";
 
-function PersonalNotification({
-  type,
-  img
-}: {
-  type: NotificationType;
-  img: ImageUrl;
-}) {
+function PersonalNotification({ type, img }: { type: Type; img: ImageUrl }) {
   return (
     <Badge
       content={
         <Icon
-          id={type}
+          id={type.toLowerCase() as IconName}
           className="text-[#96E4FF]"
         />
       }
