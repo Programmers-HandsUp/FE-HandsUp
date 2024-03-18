@@ -58,5 +58,3 @@ const Auction = async ({ params }: AuctionProps) => {
 };
 
 export default Auction;
-
-//eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjExLCJpYXQiOjE3MTA1OTA1NjUsImV4cCI6MTcxMTQ1NDU2NX0.bmIP_BoJNZTX2OeKlMzNA52x6fT8jeVc9fg9UlTWjrI
