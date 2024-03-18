@@ -8,13 +8,10 @@ import Icon from "../Icon";
 import ThemeButton from "../ThemeButton";
 import LoginLink from "./LoginLink";
 
-interface NavigationProps {
-  userId?: string;
-}
-
-const Navigation = ({ userId }: NavigationProps) => {
+const Navigation = () => {
   const isVisible = useVisibilityOnScroll();
-
+  //TODO: 유저아이디 가져오는 함수 구현 후 추가
+  const userId = "sfasfasf";
   return (
     <div
       className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"
@@ -35,7 +32,7 @@ const Navigation = ({ userId }: NavigationProps) => {
       </Link>
       <LoginLink
         userId={userId}
-        href="/chat">
+        href="/chatrooms">
         <div className="flex flex-col items-center">
           <Icon
             id="chat"
