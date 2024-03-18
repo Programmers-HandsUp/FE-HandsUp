@@ -12,7 +12,7 @@ const useBookmark = ({
   remove,
   auctionId
 }: {
-  remove: boolean;
+  remove: boolean | undefined;
   auctionId: number;
 }) => {
   const queryClient = useQueryClient();
@@ -50,7 +50,6 @@ const useBookmark = ({
       return { previousData };
     },
     onError: (err, newData, context) => {
-      console.log(err.message === "401");
       if (err.message === "401") {
         toast.show("로그인 후 이용해주세요.", "warn-solid", 2000);
       } else if (err.message === "500") {

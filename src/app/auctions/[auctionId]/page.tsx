@@ -14,7 +14,7 @@ import { getComments } from "./_api/getComments";
 import DetailInfoSection from "./_component/DetailInfoSection";
 
 interface AuctionProps {
-  params: { auctionId: number };
+  params: { auctionId: string };
 }
 
 const Auction = async ({ params }: AuctionProps) => {
@@ -23,15 +23,15 @@ const Auction = async ({ params }: AuctionProps) => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId],
-    queryFn: () => getAuctionDetail({ auctionId })
+    queryFn: () => getAuctionDetail({ auctionId: Number(auctionId) })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "topThreeRank"],
-    queryFn: () => getTopThreeRankReverse({ auctionId })
+    queryFn: () => getTopThreeRankReverse({ auctionId: Number(auctionId) })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: () => getBidsReverse({ auctionId })
+    queryFn: () => getBidsReverse({ auctionId: Number(auctionId) })
   });
   await queryClient.prefetchInfiniteQuery<
     CommentListData,
@@ -40,8 +40,9 @@ const Auction = async ({ params }: AuctionProps) => {
     [string, number, string],
     number
   >({
-    queryKey: ["auction", auctionId, "comments"],
-    queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
+    queryKey: ["auction", Number(auctionId), "comments"],
+    queryFn: ({ pageParam = 0 }) =>
+      getComments({ pageParam, auctionId: Number(auctionId) }),
     initialPageParam: 0
   });
   const dehydratedState = dehydrate(queryClient);
@@ -49,7 +50,7 @@ const Auction = async ({ params }: AuctionProps) => {
   return (
     <section>
       <HydrationBoundary state={dehydratedState}>
-        <DetailInfoSection auctionId={auctionId} />
+        <DetailInfoSection auctionId={Number(auctionId)} />
       </HydrationBoundary>
     </section>
   );

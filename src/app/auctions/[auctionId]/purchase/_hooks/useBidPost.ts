@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import Toast from "@/app/_component/common/Toast";
+import { authCheck } from "@/utils/function/authCheck";
 
 const postBid = async ({
   auctionId,
@@ -9,15 +10,18 @@ const postBid = async ({
 }: {
   auctionId: number;
   biddingPrice: number;
-}): Promise<void> => {
+}): Promise<void | null> => {
+  const isTokenValid = authCheck();
+
+  if (!isTokenValid) return null;
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer "
+        Authorization: `Bearer ${isTokenValid}`
       },
       body: JSON.stringify({ biddingPrice })
     }

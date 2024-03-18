@@ -18,19 +18,22 @@ import UserCard from "@/app/_component/common/UserCard";
 import useBookmark from "@/app/_hooks/mutations/useBookmark";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
+import useGetCheckBookmark from "../_hooks/queries/useGetCheckBookmark";
 
 interface DetailInfoSectionProps {
   auctionId: number;
 }
 
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
-  const { top3, bids, auction, bookmark } = useGetAuctionDetail({
+  const { top3, bids, auction } = useGetAuctionDetail({
     auctionId
   });
 
+  const { data: bookmark } = useGetCheckBookmark({ auctionId });
+
   const bookmarkMutation = useBookmark({
     auctionId,
-    remove: bookmark.isBookmarked
+    remove: bookmark?.isBookmarked
   });
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -62,7 +65,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         />
         <div className="flex justify-end">
           <Bookmark
-            initialState={bookmark.isBookmarked}
+            initialState={bookmark?.isBookmarked}
             onClick={handleClick}
           />
         </div>

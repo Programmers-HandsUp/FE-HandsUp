@@ -11,7 +11,7 @@ import { shadowSizeVariants } from "./ShadowSize.variants";
 interface BookmarkProps
   extends VariantProps<typeof shadowSizeVariants>,
     ComponentProps<"button"> {
-  initialState: boolean;
+  initialState: boolean | undefined;
   size?: "xsmall" | "small" | "medium" | "large" | "xlarge";
 }
 
