@@ -18,19 +18,24 @@ import UserCard from "@/app/_component/common/UserCard";
 import useBookmark from "@/app/_hooks/mutations/useBookmark";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
+import useGetCheckBookmark from "../_hooks/queries/useGetCheckBookmark";
 
 interface DetailInfoSectionProps {
   auctionId: number;
 }
 
 const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
-  const { top3, bids, auction, bookmark } = useGetAuctionDetail({
+  const { top3, bids, auction } = useGetAuctionDetail({
     auctionId
   });
 
+  //TODO: 현재 로그인 되어있는지 확인해야함
+  const isLogin = false;
+  const { data: bookmark } = useGetCheckBookmark({ auctionId, isLogin });
+
   const bookmarkMutation = useBookmark({
     auctionId,
-    remove: bookmark.isBookmarked
+    remove: isLogin && bookmark?.isBookmarked
   });
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -62,7 +67,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         />
         <div className="flex justify-end">
           <Bookmark
-            initialState={bookmark.isBookmarked}
+            initialState={bookmark?.isBookmarked}
             onClick={handleClick}
           />
         </div>
