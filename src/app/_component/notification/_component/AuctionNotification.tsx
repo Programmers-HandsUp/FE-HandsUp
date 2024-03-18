@@ -1,13 +1,11 @@
-import React from "react";
+import { Type } from "@/utils/types/notification";
 
-import { NotificationType } from "@/utils/types/notification";
+import { IconName } from "../../common/Icon/type";
 
-import Icon from "../../common/Icon";
-
-function AuctionNotification({ type }: { type: NotificationType }) {
+function AuctionNotification({ type }: { type: Type }) {
   return (
     <p className="w-12 h-12 rounded-full bg-[#96E4FF] flex justify-center items-center">
-      <Icon id={type} />
+      id={type.toLowerCase() as IconName}
     </p>
   );
 }
