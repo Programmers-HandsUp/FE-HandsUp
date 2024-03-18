@@ -12,31 +12,31 @@ interface SelectRangeProps {
 const IMAGE_SIZE = 48;
 const CHIP_ITEMS = [
   {
-    value: "bad",
+    value: "1",
     src: "/assets/images/bad.webp",
     alt: "별로였어요",
     label: "별로였어요"
   },
   {
-    value: "soso",
+    value: "2",
     src: "/assets/images/soso.webp",
     alt: "아쉬웠어요",
     label: "아쉬웠어요"
   },
   {
-    value: "normal",
+    value: "3",
     src: "/assets/images/normal.webp",
     alt: "보통이에요",
     label: "보통이에요"
   },
   {
-    value: "good",
+    value: "4",
     src: "/assets/images/good.webp",
     alt: "만족했어요",
     label: "만족했어요"
   },
   {
-    value: "veryGood",
+    value: "5",
     src: "/assets/images/veryGood.webp",
     alt: "최고예요",
     label: "최고예요"

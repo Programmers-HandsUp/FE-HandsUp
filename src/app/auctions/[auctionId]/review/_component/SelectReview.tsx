@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Chip, Chips } from "../../_component/common/Chips";
-
+import { Chip, Chips } from "@/app/_component/common/Chips";
 interface SelectedReviewProps {
   onSelected: (value: string[]) => void;
 }
@@ -18,7 +17,7 @@ const SelectReview = ({ onSelected }: SelectedReviewProps) => {
       Items={selectedItems}
       setItems={setSelectedItems}
       multiple={true}>
-      <Chip value="quickResponse">응답이 빨라요</Chip>
+      <Chip value="응답이 빨라요">응답이 빨라요</Chip>
       <Chip value="keepPromise">약속을 잘 지켜요</Chip>
       <Chip value="kindMannered">친절하고 매너 있어요</Chip>
       <Chip value="directTrade">직접 와서 거래해요</Chip>
