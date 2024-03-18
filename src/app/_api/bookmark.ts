@@ -14,8 +14,7 @@ export const getCheckBookmark = async ({
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
       headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        Authorization: "Bearer "
       }
     }
   );
@@ -34,8 +33,7 @@ export const addBookmark = async (
     {
       method: "POST",
       headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        Authorization: "Bearer "
       }
     }
   );
@@ -55,8 +53,7 @@ export const deleteBookmark = async (
     {
       method: "DELETE",
       headers: {
-        Authorization:
-          "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+        Authorization: "Bearer "
       }
     }
   );
@@ -74,8 +71,7 @@ export const getCheckBookmarkList =
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`,
       {
         headers: {
-          Authorization:
-            "Bearer eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjUsImlhdCI6MTcxMDMyNzk2MCwiZXhwIjoxNzExMTkxOTYwfQ.8IjNQwUpFplOcmUQO6LbtDk2Z8owwUiIGiO3f46rieM"
+          Authorization: "Bearer "
         }
       }
     );
