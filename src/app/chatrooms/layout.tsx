@@ -1,7 +1,7 @@
-export default function ProductsDetail({
+export default function AuctionDetailLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
-  return <main className="px-2">{children}</main>;
+  return <main>{children}</main>;
 }
