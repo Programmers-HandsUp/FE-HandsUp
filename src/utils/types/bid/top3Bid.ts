@@ -5,6 +5,7 @@ export interface Top3BidResponse {
 }
 
 export interface Top3BidData {
+  biddingId: number;
   biddingPrice: number;
   auctionId: number;
   bidderId: number;

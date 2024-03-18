@@ -5,6 +5,7 @@ export interface BidResponse {
 }
 
 export interface BidsData {
+  biddingId: number;
   biddingPrice: number;
   auctionId: number;
   bidderId: number;

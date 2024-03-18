@@ -9,7 +9,7 @@ import {
 import { CommentListData } from "@/utils/types/comment/commentData";
 
 import { getAuctionDetail } from "./_api/getAuctionDetail";
-import { getBids, getTopThreeRank } from "./_api/getBids";
+import { getBidsReverse, getTopThreeRankReverse } from "./_api/getBids";
 import { getComments } from "./_api/getComments";
 import DetailInfoSection from "./_component/DetailInfoSection";
 
@@ -27,13 +27,11 @@ const Auction = async ({ params }: AuctionProps) => {
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "topThreeRank"],
-    queryFn: () => getTopThreeRank({ auctionId }),
-    staleTime: 60 * 1000
+    queryFn: () => getTopThreeRankReverse({ auctionId })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: () => getBids({ auctionId }),
-    staleTime: 60 * 1000
+    queryFn: () => getBidsReverse({ auctionId })
   });
   await queryClient.prefetchInfiniteQuery<
     CommentListData,

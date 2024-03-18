@@ -1,12 +1,9 @@
-interface AuctionBannerProps {
-  startPrice: number;
-  maxPrice: number;
+interface AuctionBanner {
+  initPrice: number;
+  currentBiddingPrice: number;
 }
 
-const AuctionBanner = (props: AuctionBannerProps) => {
-  const commaStart = props.startPrice.toLocaleString();
-  const commaMax = props.maxPrice.toLocaleString();
-
+const AuctionBanner = ({ initPrice, currentBiddingPrice }: AuctionBanner) => {
   return (
     <div
       style={{
@@ -19,11 +16,11 @@ const AuctionBanner = (props: AuctionBannerProps) => {
       }}>
       <div style={{ display: "flex", gap: "10px" }}>
         <div>시작가</div>
-        <div>₩{commaStart}</div>
+        <div>₩{initPrice}</div>
       </div>
       <div style={{ display: "flex", gap: "10px" }}>
         <div>최고가</div>
-        <div>₩{commaMax}</div>
+        <div>₩{currentBiddingPrice}</div>
       </div>
     </div>
   );

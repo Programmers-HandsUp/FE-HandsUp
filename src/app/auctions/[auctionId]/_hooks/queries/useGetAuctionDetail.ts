@@ -3,7 +3,7 @@ import { useSuspenseQueries } from "@tanstack/react-query";
 import { getCheckBookmark } from "@/app/_api/bookmark";
 
 import { getAuctionDetail } from "../../_api/getAuctionDetail";
-import { getBids, getTopThreeRank } from "../../_api/getBids";
+import { getBidsReverse, getTopThreeRankReverse } from "../../_api/getBids";
 
 const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
   const [
@@ -15,12 +15,12 @@ const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
     queries: [
       {
         queryKey: ["auction", auctionId, "topThreeRank"],
-        queryFn: () => getTopThreeRank({ auctionId }),
+        queryFn: () => getTopThreeRankReverse({ auctionId }),
         staleTime: 60 * 1000
       },
       {
         queryKey: ["auction", auctionId, "bids"],
-        queryFn: () => getBids({ auctionId }),
+        queryFn: () => getBidsReverse({ auctionId }),
         staleTime: 60 * 1000
       },
       {
