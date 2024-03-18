@@ -1,3 +1,5 @@
+import { Notifications } from "@/utils/types/notification";
+
 export const sendFCMToken = async (fcmToken: string) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/fcm-tokens`,
@@ -10,6 +12,19 @@ export const sendFCMToken = async (fcmToken: string) => {
         fcmToken
       })
     }
+  );
+
+  if (!res.ok) {
+    const errData = await res.json();
+    throw new Error(errData.message);
+  }
+
+  return res.json();
+};
+
+export const notificationList = async (): Promise<Notifications> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications`
   );
 
   if (!res.ok) {
