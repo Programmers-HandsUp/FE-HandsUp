@@ -12,6 +12,7 @@
     "mock": "npx tsx watch ./src/utils/mocks/http.ts"
   },
   "dependencies": {
+    "@dotlottie/react-player": "^1.6.18",
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.18.1",
@@ -33,7 +34,6 @@
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18",
     "react-hook-form": "^7.50.1",
-    "react-lottie-player": "^1.5.6",
     "react-tailwindcss-datepicker": "^1.6.6",
     "tailwind-scrollbar-hide": "^1.1.7",
     "uuid": "^9.0.1",
