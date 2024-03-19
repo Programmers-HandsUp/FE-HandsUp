@@ -1714,7 +1714,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-
 "@firebase/firestore@npm:4.5.0":
   version: 4.5.0
   resolution: "@firebase/firestore@npm:4.5.0"
@@ -8296,7 +8295,6 @@ __metadata:
   checksum: 10c0/200b5ab25b5b8b7113f9901bfe3afc347e19bb7475b267d55ad0eb86a62a46d77510cb0f232507c9e5d497ebda569a08a9867d0d14f57a82ad5564d991588b39
   languageName: node
   linkType: hard
-
 
 "safe-array-concat@npm:^1.1.0, safe-array-concat@npm:^1.1.2":
   version: 1.1.2

@@ -35,7 +35,7 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
                   height: `${item.percentage}%`
                 }}>
                 <div
-                  className="relative animate-chartUp"
+                  className="relative h-full"
                   style={{
                     backgroundColor: item.color
                   }}>
