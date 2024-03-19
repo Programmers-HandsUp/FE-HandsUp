@@ -1,21 +1,21 @@
 "use client";
 
-import BoxLayout from "./_components/BoxLayout";
-import Profile from "./_components/Profile";
-import ReviewItem from "./_components/ReviewItem";
-import TransactionStatus from "./_components/TransactionStatus";
-import usePurchaseList from "./_hooks/queries/usePurchaseList";
-import useReviewLabelList from "./_hooks/queries/useReviewLabelList";
-import useReviewList from "./_hooks/queries/useReviewList";
-import useSaleList from "./_hooks/queries/useSaleList";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
+
+import Loading from "../_component/common/Loading";
+import useSession from "../_hooks/queries/useSession";
 
 function MyPage() {
-  // 사용자 정보 받아오는 API 필요
-  // 해당 정보를 통해서 userId 사용하기
-  const { data: reviewLabelList } = useReviewLabelList(5);
-  const { data: reviewList } = useReviewList(5);
-  const { data: purchaseStatusCounts } = usePurchaseList();
-  const { data: saleStatusCounts } = useSaleList(5);
+  const { data: user, isLoading } = useSession();
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!user) {
+    redirect("/signin");
+  }
 
   return (
     <div>
