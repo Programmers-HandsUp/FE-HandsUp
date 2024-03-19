@@ -1,4 +1,4 @@
-import { Purchase, Review, ReviewLabel, Sale } from "@/app/my/types";
+import { Purchase, Review, ReviewLabel, Sale } from "@/utils/types/user/mypage";
 
 export const purchaseList: Purchase[] = [
   {

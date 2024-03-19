@@ -48,7 +48,7 @@ function ReviewComplete() {
           className="flex flex-col w-72 h-[500px] bg-gray-100 drop-shadow-xl rounded-b-md dark:text-black">
           <div className="flex justify-center mb-7">
             <Image
-              src="~/images/logo.webp"
+              src="/assets/images/textLogo.webp"
               width={100}
               height={100}
               alt="app logo"

@@ -3,8 +3,8 @@
 import useReviewList from "../../_hooks/queries/useReviewList";
 import ReviewItem from "../ReviewItem";
 
-function AllReviews() {
-  const { data: reviewList } = useReviewList(5);
+function AllReviews({ userId }: { userId: number }) {
+  const { data: reviewList } = useReviewList(userId);
 
   return (
     <>

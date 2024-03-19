@@ -1,7 +1,8 @@
-import { HttpResponse, http } from "msw";
+import { http, HttpResponse } from "msw";
+
 import {
-  reviewLabelList,
   purchaseList,
+  reviewLabelList,
   reviewList,
   saleList
 } from "./data/mypageData";

@@ -12,12 +12,16 @@ import Tab from "../Tab";
 
 export type TradeMethod = "구매" | "판매";
 
-function TransactionList({ tradeMethod }: { tradeMethod: TradeMethod }) {
+interface TransactionListProps {
+  tradeMethod: TradeMethod;
+  userId: number;
+}
+function TransactionList({ tradeMethod, userId }: TransactionListProps) {
   const searchParams = useSearchParams();
   const status = searchParams.get("status") as Status;
 
   const { data: purchaseList } = usePurchaseStatusList(status);
-  const { data: saleList } = useSaleStatusList(5, status);
+  const { data: saleList } = useSaleStatusList(userId, status);
 
   return (
     <>
