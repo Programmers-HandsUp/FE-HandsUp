@@ -1,10 +1,8 @@
-import React from "react";
-
 import UserCard from "@/app/_component/common/UserCard";
 import { Review } from "@/utils/types/user/mypage";
 
 function ReviewItem({ review }: { review: Review }) {
-  const { reviewId, profileImageUrl, nickname, content } = review;
+  const { reviewId, nickname, content } = review;
 
   return (
     <>
@@ -12,7 +10,7 @@ function ReviewItem({ review }: { review: Review }) {
         className="gap-4 items-center pb-2 border-b"
         key={reviewId}>
         <UserCard.Avatar
-          src={`${profileImageUrl}`}
+          src="/assets/images/normal.webp"
           size="small"
           rounded={"full"}
           className="bg-slate-100"
