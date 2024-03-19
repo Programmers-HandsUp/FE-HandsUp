@@ -19,8 +19,7 @@ const usePurchaseList = () => {
         acc[item.auctionStatus]++;
         return acc;
       }, initCounts);
-    },
-    staleTime: 60 * 1000
+    }
   });
 };
 

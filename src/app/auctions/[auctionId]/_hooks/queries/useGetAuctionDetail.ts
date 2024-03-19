@@ -9,13 +9,11 @@ const useGetAuctionDetail = ({ auctionId }: { auctionId: number }) => {
       queries: [
         {
           queryKey: ["auction", auctionId, "topThreeRank", "reverse"],
-          queryFn: () => getTopThreeRankReverse({ auctionId }),
-          staleTime: 60 * 1000
+          queryFn: () => getTopThreeRankReverse({ auctionId })
         },
         {
           queryKey: ["auction", auctionId, "bids", "reverse"],
-          queryFn: () => getBidsReverse({ auctionId }),
-          staleTime: 60 * 1000
+          queryFn: () => getBidsReverse({ auctionId })
         },
         {
           queryKey: ["auction", auctionId],

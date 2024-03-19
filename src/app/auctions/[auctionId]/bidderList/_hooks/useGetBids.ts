@@ -7,8 +7,7 @@ import { getBids } from "../../_api/getBids";
 const useGetBids = ({ auctionId }: { auctionId: number }) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["auction", auctionId, "bids"],
-    queryFn: () => getBids({ auctionId }),
-    staleTime: 60 * 1000
+    queryFn: () => getBids({ auctionId })
   });
 
   return { data, isLoading, isError };
