@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import useSession from "@/app/_hooks/queries/useSession";
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { cn } from "@/utils/function/cn";
 
@@ -13,8 +14,11 @@ import LoginLink from "./LoginLink";
 const Navigation = () => {
   const isVisible = useVisibilityOnScroll();
   const pathname = usePathname();
-  //TODO: 유저아이디 가져오는 함수 구현 후 추가
-  const userId = "sfasfasf";
+
+  const { data, isLoading } = useSession();
+  if (isLoading) return <div>로딩 중</div>;
+  const userId = data?.userId;
+
   return (
     <div
       className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"

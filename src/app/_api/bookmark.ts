@@ -7,7 +7,6 @@ export type getCheckBookmarkParams = { auctionId: number };
 
 export type getCheckBookmarkResponse = { isBookmarked: boolean };
 
-//TODO: 토큰 없애기
 export const getCheckBookmark = async ({
   auctionId
 }: getCheckBookmarkParams): Promise<getCheckBookmarkResponse | null> => {
