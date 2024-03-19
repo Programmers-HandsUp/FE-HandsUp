@@ -1,6 +1,9 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
-export const getLoginUserInfo = async () => {
+export const getLoginUserInfo = async (): Promise<
+  CheckLoginUserResponse | undefined
+> => {
   const isTokenValid = authCheck();
 
   try {
@@ -22,4 +25,5 @@ export const getLoginUserInfo = async () => {
   } catch (error: any) {
     console.error(error.message);
   }
+  return undefined;
 };
