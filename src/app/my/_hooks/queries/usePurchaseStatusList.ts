@@ -7,8 +7,7 @@ import { purchaseList } from "../../_api/mypage";
 const usePurchaseStatusList = (status: Status) => {
   return useQuery({
     queryKey: ["purchaseList", status],
-    queryFn: () => purchaseList(status),
-    staleTime: 60 * 1000
+    queryFn: () => purchaseList(status)
   });
 };
 
