@@ -19,7 +19,6 @@ const AuctionBidsSection = ({
           ₩ {setMoneyUnitString(currentBiddingPrice)}원
         </span>
       </div>
-      {/*TODO 구매페이지 이동 추가 */}
       <Link
         href={`/auctions/${auctionId}/purchase`}
         className="bg-[#96E4FF] p-2 rounded-lg hover:bg-[#55d4ff]">
