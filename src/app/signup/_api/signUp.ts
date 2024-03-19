@@ -1,11 +1,11 @@
-import { LoginRequest } from "@/utils/types/authorization/login";
-import { TokenResponse } from "@/utils/types/authorization/token";
+import { SignUpRequest } from "@/utils/types/user/signup";
+import { SignUpResponse } from "@/utils/types/user/signup";
 
 export const signUp = async (
-  authData: LoginRequest
-): Promise<TokenResponse> => {
+  authData: SignUpRequest
+): Promise<SignUpResponse> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/signup`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
     {
       method: "POST",
       headers: {

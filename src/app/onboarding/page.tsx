@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import Toast from "../_component/common/Toast";
 import useFunnel from "../_hooks/useFunnel";
@@ -13,10 +14,15 @@ import useProfileImageStore from "./_component/store/store";
 
 const OnBoarding = () => {
   const { show } = Toast();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
+  const id = searchParams.get("id");
+  const passWord = searchParams.get("password");
   const profileImage = useProfileImageStore((state) => state.profileImage);
   const category = useProfileImageStore((state) => state.category);
   const [address, setAddress] = useState({ si: "", gu: "", dong: "" });
+
   const [nickName, setNickName] = useState("");
 
   const { topComponent, topFunnelPage, pushFunnel } = useFunnel([
@@ -25,10 +31,7 @@ const OnBoarding = () => {
       key="1"
     />,
     <SelectResidence
-      setAddress={() => {
-        pushFunnel();
-        return setAddress;
-      }}
+      setAddress={setAddress}
       key="2"
     />,
     <SelectCategory key="3" />,
@@ -37,9 +40,22 @@ const OnBoarding = () => {
       category={category}
       nickName={nickName}
       address={address}
+      id={id}
+      passWord={passWord}
       key="4"
     />
   ]);
+  useEffect(() => {
+    if (!id || !passWord || id?.length <= 4 || passWord?.length <= 6) {
+      router.push("/signup");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (address.dong) {
+      pushFunnel();
+    }
+  }, [address]);
 
   const onClickNextButton = () => {
     switch (topFunnelPage) {
@@ -53,7 +69,7 @@ const OnBoarding = () => {
         }
         break;
       case 1:
-        if (address.length > 0) {
+        if (address.dong) {
           pushFunnel();
         } else {
           show("거주지를 등록해주세요!", "warn-solid", 3000);
