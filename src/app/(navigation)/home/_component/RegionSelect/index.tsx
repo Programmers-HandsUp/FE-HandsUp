@@ -6,27 +6,38 @@ import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import useModalState from "@/app/_hooks/useModalState";
 import { cn } from "@/utils/function/cn";
-import { setCookie } from "@/utils/function/cookie";
 
 interface RegionSelectProps {
+  si: string;
+  gu: string;
+  dong: string;
   currentRegion: string;
+  setState: (data: string) => void;
 }
 
-const RegionSelect = ({ currentRegion }: RegionSelectProps) => {
+const RegionSelect = ({
+  si,
+  gu,
+  dong,
+  currentRegion,
+  setState
+}: RegionSelectProps) => {
   const { open, close, isOpen } = useModalState();
 
   const handleClickStore = (e: MouseEvent<HTMLUListElement>) => {
     if (!e.target || !(e.target instanceof HTMLLIElement)) return;
     const targetValue = e.target.id;
-    setCookie({ name: "region", value: targetValue });
+    setState(targetValue);
     close();
   };
+
   return (
     <div
       id="modal-select"
       className="relative">
       <div className="flex items-center">
         <div>{currentRegion}</div>
+
         <button
           onClick={open}
           disabled={isOpen}>
@@ -48,12 +59,10 @@ const RegionSelect = ({ currentRegion }: RegionSelectProps) => {
         <ul
           className="text-black [&_li]:cursor-pointer hover:[&_li]:opacity-60 [&_li]:transition-opacity"
           onClick={handleClickStore}>
-          <li id={currentRegion}>{currentRegion}</li>
-          <div
-            id="Nationwide"
-            className="text-gray-500 cursor-not-allowed">
-            전국(준비중)
-          </div>
+          <li id="전국">전국</li>
+          <li id={si}>{si}</li>
+          <li id={gu}>{gu}</li>
+          <li id={dong}>{dong}</li>
         </ul>
       </Modal>
     </div>
