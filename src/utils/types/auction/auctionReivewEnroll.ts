@@ -1,7 +1,7 @@
 export interface AuctionReviewEnrollRequest {
   evaluationScore: number;
   content: string;
-  reviewLabelIds: string[];
+  reviewLabelIds: number[];
 }
 
 export interface AuctionReviewEnrollResponse {

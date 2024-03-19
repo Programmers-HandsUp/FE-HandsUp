@@ -12,31 +12,31 @@ interface SelectRangeProps {
 const IMAGE_SIZE = 48;
 const CHIP_ITEMS = [
   {
-    value: "1",
+    value: "-2",
     src: "/assets/images/bad.webp",
     alt: "별로였어요",
     label: "별로였어요"
   },
   {
-    value: "2",
+    value: "-1",
     src: "/assets/images/soso.webp",
     alt: "아쉬웠어요",
     label: "아쉬웠어요"
   },
   {
-    value: "3",
+    value: "0",
     src: "/assets/images/normal.webp",
     alt: "보통이에요",
     label: "보통이에요"
   },
   {
-    value: "4",
+    value: "1",
     src: "/assets/images/good.webp",
     alt: "만족했어요",
     label: "만족했어요"
   },
   {
-    value: "5",
+    value: "2",
     src: "/assets/images/veryGood.webp",
     alt: "최고예요",
     label: "최고예요"
@@ -44,23 +44,23 @@ const CHIP_ITEMS = [
 ];
 
 const SelectRange = ({ onSelected }: SelectRangeProps) => {
-  const [selectedItem, setSelectedItem] = useState<string>("");
+  const [selectedScoreItem, setSelectedScoreItem] = useState<string>("");
 
   useEffect(() => {
-    onSelected(selectedItem);
-  }, [selectedItem, onSelected]);
+    onSelected(selectedScoreItem);
+  }, [selectedScoreItem, onSelected]);
 
   return (
     <main className="">
       <Chips
-        Items={selectedItem}
-        setItems={setSelectedItem}
+        Items={selectedScoreItem}
+        setItems={setSelectedScoreItem}
         className="text-xs">
         {CHIP_ITEMS.map((item) => (
           <Chip
             key={item.value}
             value={item.value}
-            className={`p-0 grayscale hover:grayscale-0 border-none ${selectedItem === item.value ? "grayscale-0" : ""}`}
+            className={`p-0 grayscale hover:grayscale-0 border-none ${selectedScoreItem === item.value ? "grayscale-0" : ""}`}
             selectedStyle="grayscale-0">
             <Image
               src={item.src}

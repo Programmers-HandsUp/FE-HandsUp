@@ -19,7 +19,7 @@ export const createReview = async ({ auctionId, data }: createReviewParams) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${isTokenValid}`
       },
-      body: JSON.stringify({ data })
+      body: JSON.stringify(data)
     }
   );
 
