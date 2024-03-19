@@ -4,13 +4,16 @@ import { TokenResponse } from "@/utils/types/authorization/token";
 export const signIn = async (
   authData: LoginRequest
 ): Promise<TokenResponse> => {
-  const response = await fetch("http://localhost:9090/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(authData)
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(authData)
+    }
+  );
   if (response.ok) {
     const token = await response.json();
     return token;

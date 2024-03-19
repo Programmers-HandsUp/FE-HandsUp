@@ -10,7 +10,7 @@ interface DefaultCardProps {
 
 export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
   return (
-    <div className={cn("flex gap-2 w-full", className)}>
+    <div className={cn("relative flex gap-2 w-full", className)}>
       <ProductCard.CardImage
         width={128}
         height={128}
@@ -34,9 +34,10 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
     </div>
   );
 };
+
 export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
   return (
-    <div className={cn("flex flex-col gap-2", className)}>
+    <div className={cn("relative flex flex-col gap-2", className)}>
       <ProductCard.CardImage
         titleImage={auction.imgUrl}
         width={154}

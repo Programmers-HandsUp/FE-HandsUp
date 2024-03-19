@@ -1,6 +1,4 @@
 const setSearchRecordInLocalStorage = (keyword: string) => {
-  console.log(keyword);
-
   const record = localStorage.getItem("searchKeyword");
   if (record) {
     const recordList = [...JSON.parse(record)];

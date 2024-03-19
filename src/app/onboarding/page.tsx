@@ -16,7 +16,7 @@ const OnBoarding = () => {
 
   const profileImage = useProfileImageStore((state) => state.profileImage);
   const category = useProfileImageStore((state) => state.category);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState({ si: "", gu: "", dong: "" });
   const [nickName, setNickName] = useState("");
 
   const { topComponent, topFunnelPage, pushFunnel } = useFunnel([

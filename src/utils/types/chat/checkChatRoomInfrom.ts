@@ -1,4 +1,4 @@
-export interface CheckChatRoomInformRequest {
+export interface CheckChatRoomInfoResponse {
   chatRoomId: number;
   auctionId: number;
   auctionTitle: string;

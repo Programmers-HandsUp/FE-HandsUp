@@ -4,9 +4,9 @@ import {
   useSuspenseInfiniteQuery
 } from "@tanstack/react-query";
 
-import { getComments } from "../../_api/getComments";
-
 import { CommentListData } from "@/utils/types/comment/commentData";
+
+import { getComments } from "../../_api/getComments";
 
 const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
   const {
@@ -23,7 +23,7 @@ const useGetCommentList = ({ auctionId }: { auctionId: number }) => {
     [string, number, string],
     number
   >({
-    queryKey: ["product", auctionId, "comments"],
+    queryKey: ["auction", auctionId, "comments"],
     queryFn: ({ pageParam = 0 }) => getComments({ pageParam, auctionId }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, _, lastPageParam) => {

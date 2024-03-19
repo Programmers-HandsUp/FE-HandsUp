@@ -7,6 +7,7 @@ import {
 import {
   getSortedBids,
   getSortedBookMarks,
+  getSortedCategory,
   getSortedDeadLine,
   getSortedRecentlyCreated
 } from "./_api/getAuctionRecommends";
@@ -29,6 +30,10 @@ const MainPage = async () => {
   await queryClient.prefetchQuery({
     queryKey: ["auction", "bids"],
     queryFn: getSortedBids
+  });
+  await queryClient.prefetchQuery({
+    queryKey: ["auction", "category"],
+    queryFn: getSortedCategory
   });
   const dehydratedState = dehydrate(queryClient);
 

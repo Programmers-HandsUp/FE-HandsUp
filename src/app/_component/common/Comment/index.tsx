@@ -7,13 +7,13 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
-import { createComment } from "@/app/auctions/[auctionId]/_api/createComment";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
+import { createComment } from "@/app/auctions/[auctionId]/_api/createComment";
 import useGetCommentList from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
+import { CommentListData } from "@/utils/types/comment/commentData";
 
 import ChatMessage from "../ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
-import { CommentListData } from "@/utils/types/comment/commentData";
 
 export interface CreateComment {
   comment: string;
@@ -68,7 +68,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
   const onSubmit = (data: FormDataType) => {
     mutation.mutate({ comment: data.comment, auctionId });
     const exMessages = queryClient.getQueryData([
-      "product",
+      "auction",
       auctionId,
       "comments"
     ]) as InfiniteData<CommentListData>;

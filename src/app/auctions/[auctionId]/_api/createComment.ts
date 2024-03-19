@@ -8,7 +8,7 @@ export const createComment = async ({
   auctionId
 }: CreateCommentRequest) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_END_POINT}/api/comment/create`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/comment/create`,
     {
       method: "POST",
       headers: {

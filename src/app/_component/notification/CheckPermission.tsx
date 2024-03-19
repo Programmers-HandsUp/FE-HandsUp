@@ -1,9 +1,11 @@
+"use client";
+
 import { useEffect } from "react";
 
 import useModalState from "@/app/_hooks/useModalState";
 
 import Modal from "../common/Modal";
-import PermissionDenied from "./_component/PermissionDenied";
+import PermissionMessage from "./_component/PermissionMessage";
 import useCheckPermission from "./_hooks/useCheckPermission";
 
 function CheckPermission() {
@@ -16,7 +18,14 @@ function CheckPermission() {
 
   return (
     <div id="modal-select">
-      {permissionStatus === "denied" && <PermissionDenied />}
+      {permissionStatus === "denied" && (
+        <PermissionMessage type="notification-off">
+          <p className="">휴대폰의 앱 알림이 꺼져있어요</p>
+          <p className="text-[#96E4FF]">
+            설정 → 알림 → HandsUp 알림 허용해주세요 : )
+          </p>
+        </PermissionMessage>
+      )}
       {permissionStatus === "default" && (
         <Modal
           elementId="modal-select"
@@ -38,6 +47,11 @@ function CheckPermission() {
             알림 설정하기
           </button>
         </Modal>
+      )}
+      {permissionStatus === "granted" && (
+        <PermissionMessage type="bell">
+          <p className="">휴대폰의 앱 알림이 켜져있어요</p>
+        </PermissionMessage>
       )}
     </div>
   );

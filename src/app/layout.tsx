@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   title: "Hands Up",
   description: "Used goods traded at auction",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/assets/icons/favicon.ico"
+  },
   viewport:
     "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
 };

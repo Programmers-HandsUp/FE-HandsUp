@@ -1,12 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useState } from "react";
+
+import { throttle } from "@/utils/function/throttle";
 
 const useVisibilityOnScroll = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const currentScrollTop =
         window.scrollY || document.documentElement.scrollTop;
 
@@ -15,8 +18,7 @@ const useVisibilityOnScroll = () => {
 
         return currentScrollTop <= 0 ? 0 : currentScrollTop;
       });
-    };
-
+    }, 500);
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);

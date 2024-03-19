@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 
-import Icon from "../Icon";
-import LoginLink from "./LoginLink";
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
+
+import Icon from "../Icon";
+import ThemeButton from "../ThemeButton";
+import LoginLink from "./LoginLink";
 
 interface NavigationProps {
   userId?: string;
@@ -17,7 +19,7 @@ const Navigation = ({ userId }: NavigationProps) => {
     <div
       className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"
       style={{
-        transform: isVisible ? "translateY(0)" : "translateY(100%)",
+        transform: isVisible ? "translateY(0)" : "translateY(200%)",
         transition: "transform 0.3s ease-in-out"
       }}>
       <Link href="/">
@@ -62,7 +64,7 @@ const Navigation = ({ userId }: NavigationProps) => {
         href="/bookmark">
         <div className="flex flex-col items-center">
           <Icon
-            id="book-mark"
+            id="bookmark"
             size={20}
             className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 rounded-full transition-colors"
           />
@@ -81,6 +83,9 @@ const Navigation = ({ userId }: NavigationProps) => {
           <span className="text-[11px]">마이페이지</span>
         </div>
       </LoginLink>
+      <div className="absolute -top-12 right-0">
+        <ThemeButton />
+      </div>
     </div>
   );
 };

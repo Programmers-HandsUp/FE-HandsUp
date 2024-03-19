@@ -1,4 +1,5 @@
 export interface BidEnrollResponse {
+  biddingId: number;
   biddingPrice: number;
   auctionId: number;
   bidderId: number;

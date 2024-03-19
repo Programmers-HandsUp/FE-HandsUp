@@ -1,7 +1,7 @@
-import { HttpResponse, http } from "msw";
+import { http, HttpResponse } from "msw";
 
-import { postListData } from "./data/postListData";
 import { popularSearchData } from "./data/popularSearchData";
+import { postListData } from "./data/postListData";
 
 const handler = [
   http.get("/api/search/popularkeyword", async () => {
