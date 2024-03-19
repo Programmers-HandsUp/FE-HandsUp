@@ -65,6 +65,7 @@ export const CardTitle = ({ children, className, width }: CardTitleProps) => {
     </div>
   );
 };
+
 export const CardPrice = ({ children, className, price }: CardIPriceProps) => {
   return (
     <p className={cn("text-base text-left", className)}>

@@ -16,6 +16,5 @@ export const getAuctionDetail = async ({
   );
   if (!res.ok) throw new Error("Failed to fetch data [AuctionDetail] ");
 
-  const jsonData = await res.json();
-  return jsonData;
+  return res.json();
 };

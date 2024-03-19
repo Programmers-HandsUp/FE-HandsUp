@@ -1,21 +1,15 @@
-"use client";
-
 import Link from "next/link";
 
 import Avatar from "@/app/_component/common/Avatar";
 import Icon from "@/app/_component/common/Icon";
 
-import useGetChatRooms from "./_hooks/useGetChatRooms";
+import useGetChatRooms from "../_hooks/useGetChatRooms";
 
-const ChatRooms = () => {
-  const { data, isError, isLoading } = useGetChatRooms();
-
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>Error</div>;
-  if (!data) return <div>얘기 중인 채팅방이 없네요..</div>;
+const ChatRoomList = () => {
+  const { data } = useGetChatRooms();
 
   return (
-    <section>
+    <div>
       {data.content.map((content) => (
         <div
           className="relative w-full h-full group"
@@ -44,8 +38,8 @@ const ChatRooms = () => {
           </div>
         </div>
       ))}
-    </section>
+    </div>
   );
 };
 
-export default ChatRooms;
+export default ChatRoomList;

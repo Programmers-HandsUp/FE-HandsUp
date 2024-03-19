@@ -1,6 +1,6 @@
 import Navigation from "../_component/common/Navigation";
 
-export default function DashboardLayout({
+export default function HomeLayout({
   children
 }: {
   children: React.ReactNode;

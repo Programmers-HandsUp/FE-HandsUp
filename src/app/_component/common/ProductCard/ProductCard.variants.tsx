@@ -5,9 +5,11 @@ export const productStateVariants = cva(
   {
     variants: {
       tradeState: {
-        bidding: "bg-[#6DD43C]",
-        finished: "bg-[#8B8B8B]",
-        pending: "bg-[#96E4FF]"
+        대기중: "bg-[#fdcc83]",
+        준비중: "bg-[#6DD43C]",
+        완료됨: "bg-[#9189ff]",
+        취소됨: "bg-[#8B8B8B]",
+        진행중: "bg-[#96E4FF]"
       }
     },
     defaultVariants: {}
