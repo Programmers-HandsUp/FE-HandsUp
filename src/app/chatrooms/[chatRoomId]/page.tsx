@@ -1,11 +1,16 @@
+"use client";
+
+import { useParams } from "next/navigation";
+
 import ChatRoomInfoHeader from "./_component/ChatRoomInfoHeader";
 
-const chatRoomPage = () => {
+const ChatRoomPage = () => {
+  const params = useParams<{ chatRoomId: string }>();
   return (
     <section>
-      <ChatRoomInfoHeader />
+      <ChatRoomInfoHeader chatRoomId={Number(params.chatRoomId)} />
     </section>
   );
 };
 
-export default chatRoomPage;
+export default ChatRoomPage;
