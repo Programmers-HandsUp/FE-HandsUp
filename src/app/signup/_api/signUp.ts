@@ -5,7 +5,7 @@ export const signUp = async (
   authData: SignUpRequest
 ): Promise<SignUpResponse> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/signup`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
     {
       method: "POST",
       headers: {

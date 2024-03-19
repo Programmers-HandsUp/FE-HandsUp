@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import Input from "@/app/_component/common/Input";
@@ -8,7 +8,6 @@ import { cn } from "@/utils/function/cn";
 
 import Toast from "../../_component/common/Toast";
 import { useIdDuplicateCheck } from "../_hooks/mutations/useIdDuplicateCheck";
-import { useSignUp } from "../_hooks/mutations/useSignup";
 
 type LoginFormValues = {
   email: string;
@@ -19,7 +18,7 @@ const SignupForm = () => {
   const { show } = Toast();
   const router = useRouter();
   const { register, handleSubmit, watch } = useForm<LoginFormValues>();
-  const [idStatus, setIdStatus] = useState<"None" | "Change" | "Ok">("Ok");
+  const [idStatus, setIdStatus] = useState<"None" | "Change" | "Ok">("None");
   const [checkPassWord, setCheckPassWord] = useState("");
 
   const email = watch("email");
@@ -27,22 +26,22 @@ const SignupForm = () => {
 
   const idDuplicateCheck = useIdDuplicateCheck(setIdStatus);
 
-  const signUpMutation = useSignUp();
-
-  // useEffect(() => {
-  //   setIdStatus("Change");
-  // }, [email]);
+  useEffect(() => {
+    setIdStatus("Change");
+  }, [email]);
 
   const onSubmit = async (userAuthData: LoginFormValues) => {
-    if (passWord !== checkPassWord) {
+    if (idStatus === "None") {
+      show("이메일 중복검사를 해주세요", "info-solid", 3000);
+    } else if (email.length < 6) {
+      show("이메일을 입력해주세요.", "info-solid", 3000);
+    } else if (passWord !== checkPassWord) {
       show("비밀번호가 일치하지 않습니다", "info-solid", 3000);
     } else if (idStatus === "Ok") {
       // signUpMutation.mutate(data);     @notice : 현재 회원가입 & 온보딩 api가 통합되어있어 분리되기전까지 회원가입 폼 전부 입력시 온보딩 페이지로 이동
       router.push(
         `/onboarding?id=${userAuthData.email}&password=${userAuthData.password}`
       );
-    } else {
-      show("사용하실 아이디, 비밀번호를 입력해주세요", "info-solid", 3000);
     }
   };
   const getInputBorderColor = () => {
@@ -58,7 +57,7 @@ const SignupForm = () => {
     <div className="mx-auto w-fit mt-[8rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="ml-4">
-          <label>아이디</label>
+          <label>이메일</label>
           <Input className="gap-1">
             <Input.InputInnerBox
               className={cn(
@@ -66,6 +65,7 @@ const SignupForm = () => {
                 "w-[13rem] h-[2.6rem] text-black"
               )}>
               <Input.InputForm
+                type="email"
                 placeholder="사용하실 아이디를 입력해주세요."
                 className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
                 {...register("email", { required: true })}
@@ -103,14 +103,6 @@ const SignupForm = () => {
         <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
           <button
             type="submit"
-            onClick={() =>
-              idStatus !== "Ok" &&
-              show(
-                "사용하실 아이디, 비밀번호를 입력해주세요",
-                "info-solid",
-                3000
-              )
-            }
             className="bg-blue-200 px-2 py-1 rounded-md">
             다음으로
           </button>

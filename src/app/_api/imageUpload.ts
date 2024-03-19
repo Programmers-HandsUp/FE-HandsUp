@@ -1,7 +1,7 @@
 import { ImageUrl } from "@/utils/types/image";
 
 export const imageUpload = async (formData: FormData): Promise<ImageUrl[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/images`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/images`, {
     method: "POST",
     body: formData
   });

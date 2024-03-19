@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
+import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
 import { useSignUp } from "@/app/signup/_hooks/mutations/useSignup";
 
 interface FinishFunnelProps {
@@ -20,23 +21,34 @@ const FinishFunnel = ({
   address,
   nickName
 }: FinishFunnelProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const { mutate } = useSignUp();
+  const { mutateImageUpload } = useImageUpload();
+  const { mutate, isPending } = useSignUp();
   const setOnboardingPost = async () => {
-    setTimeout(() => {
-      if (id && passWord) {
+    if (id && passWord) {
+      try {
+        const newImgForm = new FormData();
+        if (profileImage) {
+          newImgForm.append("images", profileImage);
+        }
+        const imgUrl = await mutateImageUpload(newImgForm);
+        const newArr: number[] = [];
+        category.map((item) => {
+          newArr.push(parseInt(item));
+        });
         mutate({
           email: id,
           password: passWord,
           nickname: nickName,
-          profileImageUrl: "",
-          ...address,
-          productCategoryIds: category
+          profileImageUrl: imgUrl[0],
+          si: address.si,
+          gu: address.gu,
+          dong: address.dong,
+          productCategoryIds: [...newArr]
         });
+      } catch (e) {
+        console.log(e);
       }
-      setIsLoading(false);
-    }, 1000);
+    }
   };
 
   useEffect(() => {
@@ -45,7 +57,7 @@ const FinishFunnel = ({
 
   return (
     <div>
-      {isLoading ? (
+      {isPending ? (
         <div className="flex justify-center items-center my-[8rem]">
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
         </div>
