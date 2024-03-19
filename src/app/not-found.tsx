@@ -1,6 +1,7 @@
 "use client";
 
 import { DotLottiePlayer } from "@dotlottie/react-player";
+import Link from "next/link";
 
 function NotFound() {
   return (
@@ -23,9 +24,11 @@ function NotFound() {
           다시 한번 확인해 주세요.
         </p>
       </div>
-      <button className="text-[#96E4FF] underline underline-offset-2">
+      <Link
+        href="/home"
+        className="text-[#96E4FF] underline underline-offset-2">
         홈으로 돌아가기
-      </button>
+      </Link>
     </div>
   );
 }
