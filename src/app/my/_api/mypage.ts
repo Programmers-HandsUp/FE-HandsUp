@@ -1,3 +1,4 @@
+import { authCheck } from "@/utils/function/authCheck";
 import {
   Purchase,
   Review,
@@ -6,11 +7,17 @@ import {
   Status
 } from "@/utils/types/user/mypage";
 
+const isTokenValid = authCheck();
+
 export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buy`;
   const url = status ? `${baseUrl}?status=${status}` : baseUrl;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${isTokenValid}`
+    }
+  });
 
   if (!res.ok) throw new Error("Fail!");
 
@@ -24,7 +31,11 @@ export const saleList = async (
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/sales`;
   const url = status ? `${baseUrl}?status=${status}` : baseUrl;
 
-  const res = await fetch(url);
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${isTokenValid}`
+    }
+  });
 
   if (!res.ok) throw new Error("Fail!");
 
@@ -35,7 +46,12 @@ export const reviewLabelList = async (
   userId: number
 ): Promise<ReviewLabel[]> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews/labels`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews/labels`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
 
   if (!res.ok) throw new Error("Fail");
@@ -45,7 +61,12 @@ export const reviewLabelList = async (
 
 export const reviewList = async (userId: number): Promise<Review[]> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
 
   if (!res.ok) throw new Error("Fail");
