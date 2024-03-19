@@ -30,11 +30,15 @@ function ReliabilityBar({ score = 100, icons_padding = 2 }) {
         <span>😇</span>
       </div>
 
-      <div className="relative w-full h-3 rounded-full bg-gray-100 z-10">
-        <div
-          className="absolute h-3 z-100"
-          style={{ width: `${width}%` }}>
-          <div className={cn(ThemeVariants({ theme }))}></div>
+      <div className="relative w-full h-3 rounded-full bg-gray-100">
+        <div className="absolute top-0 left-0 overflow-hidden bg-transparent rounded-full w-full h-full">
+          <div
+            className={cn(
+              ThemeVariants({ theme }),
+              "absolute h-full animate-fill origin-left -translate-x-full"
+            )}
+            style={{ width: `${width}%` }}
+          />
         </div>
       </div>
     </div>
