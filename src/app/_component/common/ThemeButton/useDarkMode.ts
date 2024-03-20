@@ -9,7 +9,7 @@ const useDarkMode = () => {
     if (typeof window !== "undefined") {
       const savedDarkMode = getCookie({ name: "theme" });
 
-      return savedDarkMode === null ? true : savedDarkMode === "dark";
+      return savedDarkMode === null ? false : savedDarkMode === "dark";
     }
   });
 
