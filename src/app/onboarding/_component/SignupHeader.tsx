@@ -15,6 +15,7 @@ const SignupHeader = ({ nowPage, onClickRightButton }: SignupHeaderProps) => {
     <header className="w-full h-[4rem]">
       <ProgressBar
         className="mx-auto mt-6 b-4"
+        round={"little"}
         width={300}
         height={15}
         percent={PAGE_PERCENTAGES[nowPage]}
