@@ -1,11 +1,17 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 
 import { notificationList } from "../../_api/notification";
 
 const useNotificationList = () => {
-  return useSuspenseQuery({
+  return useSuspenseInfiniteQuery({
     queryKey: ["notifications"],
-    queryFn: notificationList
+    queryFn: notificationList,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage.hasNext) return undefined;
+      return lastPageParam + 1;
+    },
+    select: (data) => data.pages.map((item) => item.content).flat()
   });
 };
 

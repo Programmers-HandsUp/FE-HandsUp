@@ -26,12 +26,19 @@ export const sendFCMToken = async (fcmToken: string) => {
   return res.json();
 };
 
-export const notificationList = async (): Promise<Notifications> => {
-  const res = await fetch("https://handssup.shop/api/notifications", {
-    headers: {
-      Authorization: `Bearer ${isTokenValid}`
+export const notificationList = async ({
+  pageParam
+}: {
+  pageParam: number;
+}): Promise<Notifications> => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications?page=${pageParam}&size=10`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
     }
-  });
+  );
 
   if (!res.ok) {
     const errData = await res.json();
