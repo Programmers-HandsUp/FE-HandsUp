@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import ChatMessage from "@/app/_component/common/ChatMessage";
@@ -29,6 +30,8 @@ const ChatRoomContent = ({
     fetchNextPage,
     hasNextPage
   } = useGetChatData({ chatRoomId });
+  const router = useRouter();
+
   const { data: currentUser, isLoading: userLoading } = useSession();
 
   const { messageList, stompClientRef } = useWebSocketConnection({
@@ -37,6 +40,8 @@ const ChatRoomContent = ({
   const sendMessage = useSendMessage({ stompClientRef, chatRoomId });
 
   const { show } = Toast();
+
+  const { data: currentUser, isLoading: userIsLoading } = useSession();
 
   const refetch = () => {
     if (isScroll) return;
@@ -79,7 +84,7 @@ const ChatRoomContent = ({
 
   if (!currentUser) {
     show("잠시 후 다시 이용해주세요.", "warn-solid");
-    return;
+    router.back();
   }
 
   const senderId = currentUser.userId;

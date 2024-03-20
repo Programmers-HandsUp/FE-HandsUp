@@ -33,7 +33,8 @@ const config: Config = {
         slideOut: "slideOut ease 0.3s forwards",
         shaking: "shaking ease 3s Infinite",
         pumping: "pumping ease 3s Infinite",
-        slideDown: "slideDown 1s ease-in-out forwards"
+        slideDown: "slideDown 1s ease-in-out forwards",
+        bounce: "pumping ease 5s Infinite"
       },
       fontFamily: {
         sans: ["Yeongdeok"]

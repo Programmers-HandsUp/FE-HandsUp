@@ -62,7 +62,7 @@ const LineChart = ({ bids }: LineChartProps) => {
   };
 
   return (
-    <div>
+    <div className="px-2">
       <div className="py-5">
         <h1>입찰 현황</h1>
       </div>
