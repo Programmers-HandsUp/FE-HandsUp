@@ -11,6 +11,7 @@ const useSession = () => {
     queryFn: getLoginUserInfo,
     enabled: isTokenValid === undefined
   });
+
   return { data, isLoading };
 };
 

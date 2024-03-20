@@ -1,28 +1,54 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
+import { useSignUp } from "@/app/signup/_hooks/mutations/useSignup";
 
 interface FinishFunnelProps {
   profileImage: File | undefined;
   category: string[];
   address: { si: string; dong: string; gu: string };
   nickName: string;
+  id: string | null;
+  passWord: string | null;
 }
 
 const FinishFunnel = ({
+  id,
+  passWord,
   profileImage,
   category,
   address,
   nickName
 }: FinishFunnelProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-
+  const { mutateImageUpload } = useImageUpload();
+  const { mutate, isPending } = useSignUp();
   const setOnboardingPost = async () => {
-    console.log(profileImage, category, address, nickName); // 추후 사용 예정
-    setTimeout(() => {
-      // api 통신 예정 (profileImage  / category / address / )
-      // 통신되는 척 딜레이
-      setIsLoading(false);
-    }, 1000);
+    if (id && passWord) {
+      try {
+        const newImgForm = new FormData();
+        if (profileImage) {
+          newImgForm.append("images", profileImage);
+        }
+        const imgUrl = await mutateImageUpload(newImgForm);
+        const newArr: number[] = [];
+        category.map((item) => {
+          newArr.push(parseInt(item));
+        });
+        mutate({
+          email: id,
+          password: passWord,
+          nickname: nickName,
+          profileImageUrl: imgUrl[0],
+          si: address.si,
+          gu: address.gu,
+          dong: address.dong,
+          productCategoryIds: [...newArr]
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   useEffect(() => {
@@ -31,7 +57,7 @@ const FinishFunnel = ({
 
   return (
     <div>
-      {isLoading ? (
+      {isPending ? (
         <div className="flex justify-center items-center my-[8rem]">
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
         </div>
