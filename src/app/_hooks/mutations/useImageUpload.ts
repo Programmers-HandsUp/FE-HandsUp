@@ -6,7 +6,7 @@ import Toast from "@/app/_component/common/Toast";
 export const useImageUpload = () => {
   const { show } = Toast();
 
-  const imageUploadMutation = useMutation({
+  const { mutateAsync, ...rest } = useMutation({
     mutationFn: imageUpload,
     onSuccess: (data) => {
       return data;
@@ -17,6 +17,7 @@ export const useImageUpload = () => {
   });
 
   return {
-    mutateImageUpload: imageUploadMutation.mutateAsync
+    mutateImageUpload: mutateAsync,
+    ...rest
   };
 };
