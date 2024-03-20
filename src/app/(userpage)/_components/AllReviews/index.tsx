@@ -1,6 +1,6 @@
 "use client";
 
-import useReviewList from "../../_hooks/queries/useReviewList";
+import useReviewList from "../../../(userpage)/_hooks/queries/useReviewList";
 import ReviewItem from "../ReviewItem";
 
 function AllReviews({ userId }: { userId: number }) {
