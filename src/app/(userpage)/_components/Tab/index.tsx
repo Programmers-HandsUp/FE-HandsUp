@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
-import usePurchaseList from "@/app/my/_hooks/queries/usePurchaseList";
-import useSaleList from "@/app/my/_hooks/queries/useSaleList";
+import usePurchaseList from "@/app/(userpage)/_hooks/queries/usePurchaseList";
+import useSaleList from "@/app/(userpage)/_hooks/queries/useSaleList";
 import { cn } from "@/utils/function/cn";
 import { Status } from "@/utils/types/user/mypage";
 

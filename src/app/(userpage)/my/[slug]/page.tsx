@@ -5,10 +5,10 @@ import { redirect } from "next/navigation";
 import useSession from "@/app/_hooks/queries/useSession";
 import Loading from "@/app/search/loading";
 
-import AllReviews from "../_components/AllReviews";
+import AllReviews from "../../_components/AllReviews";
+import ProfileEdit from "../../_components/ProfileEdit";
+import TransactionList from "../../_components/TransactionList";
 import Layout from "../_components/Layout";
-import ProfileEdit from "../_components/ProfileEdit";
-import TransactionList from "../_components/TransactionList";
 
 type Slug = "review" | "buying" | "selling" | "profile-edit";
 export type Title =
@@ -36,7 +36,7 @@ function MyPage({ params }: { params: { slug: Slug } }) {
     review: "거래 후기 상세",
     buying: "구매 내역",
     selling: "판매 내역",
-    "profile-edit": "거래 후기 상세"
+    "profile-edit": "프로필 편집"
   };
 
   const componentMap: Record<Slug, JSX.Element> = {

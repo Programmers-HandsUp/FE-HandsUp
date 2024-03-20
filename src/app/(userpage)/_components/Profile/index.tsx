@@ -1,11 +1,14 @@
-import Link from "next/link";
-
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import UserCard from "@/app/_component/common/UserCard";
-import { CheckLoginUserResponse } from "@/utils/types/user/users";
+import { CheckLoginUserResponse, UserProfile } from "@/utils/types/user/users";
 
-function Profile({ user }: { user: CheckLoginUserResponse }) {
-  const { nickname, address, profileImageUrl, score } = user;
+interface ProfileProps {
+  user: CheckLoginUserResponse | UserProfile;
+  children: React.ReactNode;
+}
+
+function Profile({ user, children }: ProfileProps) {
+  const { nickname, profileImageUrl, score } = user;
 
   return (
     <>
@@ -19,14 +22,7 @@ function Profile({ user }: { user: CheckLoginUserResponse }) {
         <UserCard.ContentArea className="my-1">
           <div className="flex flex-col">
             <p className="text-lg">{nickname}</p>
-            <p className="text-sm">{address.dong}</p>
-            <Link href="/my/profile-edit">
-              <button
-                type="button"
-                className="border py-1 px-3 rounded-lg text-sm mt-2">
-                프로필 관리
-              </button>
-            </Link>
+            {children}
           </div>
         </UserCard.ContentArea>
       </UserCard>

@@ -1,33 +1,35 @@
-import { CheckLoginUserResponse } from "@/utils/types/user/users";
+import { Review, ReviewLabel, Status } from "@/utils/types/user/mypage";
 
-import useUserInfo from "../../_hooks/queries/useUserInfo";
 import BoxLayout from "../BoxLayout";
-import Profile from "../Profile";
 import ReviewItem from "../ReviewItem";
 import TransactionStatus from "../TransactionStatus";
 
-function UserInfo({ user }: { user: CheckLoginUserResponse }) {
-  const {
-    purchaseStatusCounts,
-    saleStatusCounts,
-    reviewLabels: reviewLabelList,
-    reviews: reviewList
-  } = useUserInfo(user.userId);
+interface InfoProps {
+  saleStatusCounts: Record<Status, number>;
+  reviewLabelList: ReviewLabel[];
+  reviewList: Review[];
+  children: React.ReactNode;
+  userId?: number;
+}
+
+function Info({
+  children,
+  saleStatusCounts,
+  reviewLabelList,
+  reviewList,
+  userId
+}: InfoProps) {
+  const sellingUrl = userId
+    ? `/user/${userId}/selling?status=bidding`
+    : "/my/selling?status=bidding";
+  const reviewUrl = userId ? `/user/${userId}/review` : "/my/review";
 
   return (
     <>
-      <Profile user={user} />
-      <BoxLayout
-        title="구매 내역"
-        url="buying?status=bidding">
-        <TransactionStatus
-          type="구매"
-          statusCounts={purchaseStatusCounts}
-        />
-      </BoxLayout>
+      {children}
       <BoxLayout
         title="판매 내역"
-        url="selling?status=bidding">
+        url={sellingUrl}>
         <TransactionStatus
           type="판매"
           statusCounts={saleStatusCounts}
@@ -54,7 +56,7 @@ function UserInfo({ user }: { user: CheckLoginUserResponse }) {
             <p className="text-[#96E4FF]">{reviewList?.length}</p>
           </div>
         }
-        url="review">
+        url={reviewUrl}>
         <div className="my-2 flex flex-col gap-2">
           {reviewList &&
             reviewList.slice(0, 3).map((review) => (
@@ -69,4 +71,4 @@ function UserInfo({ user }: { user: CheckLoginUserResponse }) {
   );
 }
 
-export default UserInfo;
+export default Info;

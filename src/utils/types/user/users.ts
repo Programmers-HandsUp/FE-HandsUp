@@ -11,14 +11,17 @@ export interface UserReviewResponse {
   hasNext: boolean;
 }
 
-export interface CheckLoginUserResponse {
+interface DefaultUser {
   userId: number;
-  email: string;
-  password: string;
+  profileImageUrl: string;
   nickname: string;
   score: number;
+}
+
+export interface CheckLoginUserResponse extends DefaultUser {
+  email: string;
+  password: string;
   address: Address;
-  profileImageUrl: string;
   reportCount: number;
   readNotificationCount: number;
 }
@@ -27,4 +30,9 @@ export interface Address {
   si: string;
   gu: string;
   dong: string;
+}
+
+export interface UserProfile extends DefaultUser {
+  dong: string;
+  preferredProductCategories: number[]
 }

@@ -3,9 +3,9 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
-import Loading from "../_component/common/Loading";
-import useSession from "../_hooks/queries/useSession";
-import UserInfo from "./_components/UserInfo";
+import Loading from "../../_component/common/Loading";
+import useSession from "../../_hooks/queries/useSession";
+import MyInfo from "./_components/MyInfo";
 
 function MyPage() {
   const { data: user, isLoading } = useSession();
@@ -20,7 +20,7 @@ function MyPage() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <UserInfo user={user} />
+      <MyInfo user={user} />
     </Suspense>
   );
 }

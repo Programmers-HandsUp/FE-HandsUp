@@ -5,14 +5,14 @@ import Icon from "@/app/_component/common/Icon";
 
 interface LayoutProps {
   title: React.ReactNode;
-  url?: "buying?status=bidding" | "selling?status=bidding" | "review";
+  url?: string;
 }
 
 function BoxLayout({ title, url, children }: PropsWithChildren<LayoutProps>) {
   return (
     <div className="my-6">
       {url ? (
-        <Link href={`/my/${url}`}>
+        <Link href={`${url}`}>
           <div className="flex justify-between items-center text-lg font-semibold">
             <div>{title}</div>
             <Icon id="arrow-right" />

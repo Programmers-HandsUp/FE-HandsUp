@@ -1,40 +1,24 @@
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { Purchase, Sale } from "@/utils/types/user/mypage";
-import { Status } from "@/utils/types/user/mypage";
-
 import {
-  purchaseList,
   reviewLabelList,
   reviewList,
-  saleList
+  saleList,
+  userProfile
 } from "../../_api/mypage";
-
-export const calculateCounts = (data: Purchase[] | Sale[]) => {
-  const initCounts: Record<Status, number> = {
-    bidding: 0,
-    pending: 0,
-    finished: 0
-  };
-
-  return data.reduce((acc, item) => {
-    acc[item.auctionStatus]++;
-    return acc;
-  }, initCounts);
-};
+import { calculateCounts } from "../../_utils/calculateCounts";
 
 const useUserInfo = (userId: number) => {
   const [
-    { data: purchaseStatusCounts },
+    { data: profile },
     { data: saleStatusCounts },
     { data: reviewLabels },
     { data: reviews }
   ] = useSuspenseQueries({
     queries: [
       {
-        queryKey: ["purchaseList"],
-        queryFn: () => purchaseList(),
-        select: calculateCounts
+        queryKey: ["profile", userId],
+        queryFn: () => userProfile(userId)
       },
       {
         queryKey: ["saleList", userId],
@@ -53,7 +37,7 @@ const useUserInfo = (userId: number) => {
   });
 
   return {
-    purchaseStatusCounts,
+    profile,
     saleStatusCounts,
     reviewLabels,
     reviews
