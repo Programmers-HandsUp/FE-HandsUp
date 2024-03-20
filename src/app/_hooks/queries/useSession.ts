@@ -9,7 +9,7 @@ const useSession = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getLoginUserInfo,
-    enabled: !!isTokenValid
+    enabled: isTokenValid === undefined
   });
 
   return { data, isLoading };

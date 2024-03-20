@@ -8,6 +8,7 @@ import { z } from "zod";
 import Button from "@/app/_component/common/Button";
 import Icon from "@/app/_component/common/Icon";
 import ProductCard from "@/app/_component/common/ProductCard";
+import useSession from "@/app/_hooks/queries/useSession";
 import formatReadableDate from "@/utils/function/formatReadableDate";
 import { AuctionReviewEnrollRequest } from "@/utils/types/auction/auctionReivewEnroll";
 
@@ -29,7 +30,7 @@ const ReviewForm = ({ params }: ReviewPageProps) => {
 
   const schema = z.object({
     evaluationScore: z.number(),
-    reviewLabelIds: z.array(z.string()),
+    reviewLabelIds: z.array(z.number()),
     content: z.string()
   });
 
@@ -43,6 +44,7 @@ const ReviewForm = ({ params }: ReviewPageProps) => {
   });
 
   const onSubmit = (data: AuctionReviewEnrollRequest) => {
+    console.log(data);
     reviewPostMutation.mutate({ auctionId: Number(auctionId), data });
   };
 
@@ -51,16 +53,18 @@ const ReviewForm = ({ params }: ReviewPageProps) => {
   };
 
   const handleReviewSelected = (value: string[]) => {
-    setValue("reviewLabelIds", value);
+    setValue(
+      "reviewLabelIds",
+      value.map((x) => Number(x.slice(0, 1)))
+    );
   };
 
-  if (isLoading) return <div>Loading..</div>;
-  if (!auction) return <div>오류 발생</div>;
+  const { data: userInfo, isLoading: userLoading } = useSession();
 
-  //TODO: 현재 로그인한 유저 아이디 가져와야 함
-  //TODO: SelectionRange 부분 value 회의 후 변경
-  //TODO: _api 내의 요청에 토큰 삽입해줘야 함 ->
-  const currentUser = "오리";
+  if (isLoading || userLoading) return <div>Loading..</div>;
+  if (!auction || !userInfo) return <div>오류 발생</div>;
+
+  const currentUser = userInfo.nickname;
 
   return (
     <form

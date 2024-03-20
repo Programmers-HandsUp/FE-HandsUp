@@ -1,10 +1,6 @@
-export default function Loading() {
+export default function MainSectionLoading() {
   return (
     <div className="flex flex-col gap-10">
-      <div className="animate-pulse flex flex-col gap-10">
-        <div className="h-[22px] w-full shrink-0 rounded-full bg-gray-500" />
-        <div className="h-[358px] w-full shrink-0 rounded-lg bg-gray-500" />
-      </div>
       <div className="animate-pulse flex flex-col gap-10">
         <div className="h-[22px] w-full shrink-0 rounded-full bg-gray-500" />
         <div className="flex gap-2">

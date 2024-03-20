@@ -10,11 +10,14 @@ import Icon from "../Icon";
 import ThemeButton from "../ThemeButton";
 import LoginLink from "./LoginLink";
 
-const Navigation = () => {
+interface NavigationProps {
+  userId: number | undefined;
+}
+
+const Navigation = ({ userId }: NavigationProps) => {
   const isVisible = useVisibilityOnScroll();
   const pathname = usePathname();
-  //TODO: 유저아이디 가져오는 함수 구현 후 추가
-  const userId = "sfasfasf";
+
   return (
     <div
       className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"

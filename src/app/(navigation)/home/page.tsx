@@ -4,6 +4,9 @@ import {
   QueryClient
 } from "@tanstack/react-query";
 
+import { getLoginUserInfo } from "@/app/_api/user";
+import { CheckLoginUserResponse } from "@/utils/types/user/users";
+
 import {
   getSortedBids,
   getSortedBookMarks,
@@ -15,21 +18,30 @@ import MainContentSection from "./_component/MainContentSection";
 
 const MainPage = async () => {
   const queryClient = new QueryClient();
+
   await queryClient.prefetchQuery({
-    queryKey: ["auction", "bookmark"],
-    queryFn: getSortedBookMarks
+    queryKey: ["user"],
+    queryFn: getLoginUserInfo
+  });
+
+  const user = queryClient.getQueryData<CheckLoginUserResponse>(["user"]);
+  const address = user ? user.address : { si: "", gu: "", dong: "" };
+
+  await queryClient.prefetchQuery({
+    queryKey: ["auction", "bookmark", address],
+    queryFn: () => getSortedBookMarks({ address })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", "recently"],
-    queryFn: getSortedRecentlyCreated
+    queryKey: ["auction", "recently", address],
+    queryFn: () => getSortedRecentlyCreated({ address })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", "deadline"],
-    queryFn: getSortedDeadLine
+    queryKey: ["auction", "deadline", address],
+    queryFn: () => getSortedDeadLine({ address })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", "bids"],
-    queryFn: getSortedBids
+    queryKey: ["auction", "bids", address],
+    queryFn: () => getSortedBids({ address })
   });
   await queryClient.prefetchQuery({
     queryKey: ["auction", "category"],
@@ -40,7 +52,11 @@ const MainPage = async () => {
   return (
     <section className="px-4">
       <HydrationBoundary state={dehydratedState}>
-        <MainContentSection />
+        <MainContentSection
+          userSi={address.si}
+          userGu={address.gu}
+          userDong={address.dong}
+        />
       </HydrationBoundary>
     </section>
   );

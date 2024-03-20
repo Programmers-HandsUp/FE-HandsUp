@@ -17,13 +17,12 @@ const SelectReview = ({ onSelected }: SelectedReviewProps) => {
       Items={selectedItems}
       setItems={setSelectedItems}
       multiple={true}>
-      <Chip value="응답이 빨라요">응답이 빨라요</Chip>
-      <Chip value="약속을 잘 지켜요">약속을 잘 지켜요</Chip>
-      <Chip value="친절하고 매너 있어요">친절하고 매너 있어요</Chip>
-      <Chip value="직접 와서 거래해요">직접 와서 거래해요</Chip>
-      <Chip value="설명을 잘 해줘요">설명을 잘 해줘요</Chip>
-      <Chip value="물품 상태 사진과 같아요">물품 상태 사진과 같아요</Chip>
-      <Chip value="가격이 착해요">가격이 착해요</Chip>
+      <Chip value="1R">응답이 빨라요</Chip>
+      <Chip value="2R">저렴하게 구매했어요</Chip>
+      <Chip value="3R">친절하고 매너 있어요</Chip>
+      <Chip value="4R">시간 약속을 잘 지켜요</Chip>
+      <Chip value="5R">물품 설명이 자세해요</Chip>
+      <Chip value="6R">물품 상태가 설명한 것과 같아요</Chip>
     </Chips>
   );
 };
