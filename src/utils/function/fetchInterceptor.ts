@@ -1,7 +1,6 @@
-//import { getCookie } from "@/utils/function/cookie";
-//const token = getCookie({ name: "token" });
-
 import reissueAccessToken from "@/app/_api/reIssueAccessToken";
+
+import { getCookie } from "./cookie";
 
 interface FetchOptions {
   method?: string;
@@ -13,26 +12,25 @@ const fetchInterceptor = async (
   url: string,
   options: FetchOptions = {}
 ): Promise<Response> => {
+  const accessToken = getCookie({ name: "accessToken" }).slice(0);
   options.headers = {
     ...options.headers,
-    Authorization:
-      "Bearer aeyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJ1c2VySWQiOjgsImlhdCI6MTcxMDcyOTc1NywiZXhwIjoxNzExNTkzNzU3fQ.DuApV3unLc_ndHrABqbJNJ4N63U4FhcyOU5lZSlhD-4"
+    Authorization: `Bearer ${accessToken}`
   };
+  console.log(accessToken);
+  console.log(url);
   let response: Response;
-  try {
-    response = await fetch(url, options);
-  } catch (error) {
-    let newToken;
-    switch (error) {
-      default: // 토큰 만료
-        newToken = reissueAccessToken();
-        break;
+  response = await fetch(url, options);
+  console.log(response);
+  if (!response.ok) {
+    const newToken = await reissueAccessToken();
+    if (newToken) {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${newToken}`
+      };
+      response = await fetch(url, options);
     }
-    options.headers = {
-      ...options.headers,
-      Authorization: `Bearer ${newToken}`
-    };
-    response = await fetch(url, options);
   }
   return response;
 };

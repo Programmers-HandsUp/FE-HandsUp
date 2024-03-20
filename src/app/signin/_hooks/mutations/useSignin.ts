@@ -13,8 +13,8 @@ export function useSignIn() {
   return useMutation({
     mutationFn: (authForm: LoginRequest) => signIn(authForm),
     onSuccess: (data) => {
-      setCookie({ name: "AccessToken", value: data.accessToken });
-      show("회원가입에 성공했습니다", "check-solid", 2000);
+      setCookie({ name: "accessToken", value: data.accessToken });
+      show("fhrmd에 성공했습니다", "check-solid", 2000);
       router.push("/");
     },
     onError: () => {

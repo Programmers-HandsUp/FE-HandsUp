@@ -12,7 +12,7 @@ export function useSignUp() {
   return useMutation({
     mutationFn: (authForm: LoginRequest) => signUp(authForm),
     onSuccess: (data) => {
-      localStorage.setItem("AccessToken", data.accessToken);
+      localStorage.setItem("accessToken", data.accessToken);
       router.push("/");
     },
     onError: (error: Error) => {

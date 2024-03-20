@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { fetchInterceptor } from "./_hooks/useAuth";
+import { fetchInterceptor } from "@/utils/function/fetchInterceptor";
 
 export default function Home() {
   async function onClickFetch() {
