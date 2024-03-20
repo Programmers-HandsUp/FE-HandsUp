@@ -17,19 +17,19 @@ interface ModalProps extends VariantProps<typeof modalTypeVariants> {
   animate?: "grow" | "slide" | "raise";
   children: ReactNode;
   className?: string;
-  isOpen?: boolean;
+  isOpen: boolean;
   close: () => void;
 }
 
 const animateIn = {
   grow: "scale-100 mx-auto",
-  slide: "fixed translate-x-[calc(100vw-360px)]",
-  raise: "fixed translate-y-[calc(50vh-70%)]"
+  slide: "translate-x-0",
+  raise: "translate-y-[calc(50vh-70%)]"
 };
 const animateOut = {
   grow: "scale-0 mx-auto",
-  slide: "fixed translate-x-[100vw]",
-  raise: "fixed translate-y-[100vh]"
+  slide: "translate-x-[100vw]",
+  raise: "translate-y-[100vh]"
 };
 
 const Modal = ({
@@ -56,7 +56,7 @@ const Modal = ({
       <div
         onClick={close}
         className={cn(
-          "fixed top-0 left-0 bottom-0 right-0 w-screen h-[100vh] dark:bg-gray-100/50 bg-black/50 transition-opacity",
+          "fixed top-0 left-0 bottom-0 right-0 w-screen h-[100vh] dark:bg-gray-100/50 bg-black/50 transition-opacity duration-700",
           isOpen ? "opacity-100 z-10" : "opacity-0 -z-10"
         )}
       />
