@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const OnBoardingSuccess = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full mt-[2rem]">
       <h1 className="text-2xl mt-[8rem] w-fit mx-auto text-center h-fit">
         등록이 완료되었습니다.
       </h1>
