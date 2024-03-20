@@ -27,6 +27,7 @@ const NotificationComponent: Record<Type, FunctionComponent<Props>> = {
   COMMENT: PersonalComponent,
   CHAT: PersonalComponent,
   BOOKMARK: PersonalComponent,
+  COMPLETED_PURCHASE_TRADING: PersonalComponent,
   PURCHASE_WINNING: AuctionComponent,
   CANCELD_PURCHASE_WINNING: AuctionComponent
 };
