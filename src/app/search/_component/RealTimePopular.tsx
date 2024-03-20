@@ -25,8 +25,9 @@ const RealTimePopular = () => {
       {popularKeywords?.length ? (
         <>
           <div className="grid grid-rows-5 grid-flow-col my-1">
-            {popularKeywords?.map(
-              ({ keyword }: PopularKeyword, index: number) => (
+            {popularKeywords
+              .slice(0, 10)
+              ?.map(({ keyword }: PopularKeyword, index: number) => (
                 <Link
                   onClick={() => setSearchRecordInLocalStorage(keyword)}
                   href={`/search/${keyword}`}
@@ -37,8 +38,7 @@ const RealTimePopular = () => {
                     {keyword}
                   </p>
                 </Link>
-              )
-            )}
+              ))}
           </div>
         </>
       ) : (
