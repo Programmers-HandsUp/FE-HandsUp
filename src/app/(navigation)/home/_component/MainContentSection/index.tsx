@@ -5,6 +5,9 @@ import { Suspense, useEffect, useState } from "react";
 
 import Header from "@/app/_component/common/Header";
 import Icon from "@/app/_component/common/Icon";
+import Modal from "@/app/_component/common/Modal";
+import Notification from "@/app/_component/notification";
+import useModalState from "@/app/_hooks/useModalState";
 
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
@@ -33,6 +36,7 @@ const MainContentSection = ({
     gu: "",
     dong: ""
   });
+  const { open, close, isOpen } = useModalState();
 
   useEffect(() => {
     const updateAddress = (region: string): AddressState => {
@@ -64,9 +68,17 @@ const MainContentSection = ({
           fill="black"
         />
       </Link>
-      <Link href="/notification">
+      <button onClick={open}>
         <Icon id="bell-fill" />
-      </Link>
+      </button>
+      <Modal
+        modalType="fullScreen"
+        isOpen={isOpen}
+        close={close}
+        animate="slide"
+        className="dark:bg-black">
+        <Notification close={close} />
+      </Modal>
     </div>
   );
 

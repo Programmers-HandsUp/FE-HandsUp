@@ -1,4 +1,7 @@
+import { authCheck } from "@/utils/function/authCheck";
 import { Notifications } from "@/utils/types/notification";
+
+const isTokenValid = authCheck();
 
 export const sendFCMToken = async (fcmToken: string) => {
   const res = await fetch(
@@ -6,7 +9,8 @@ export const sendFCMToken = async (fcmToken: string) => {
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${isTokenValid}`
       },
       body: JSON.stringify({
         fcmToken
@@ -22,9 +26,18 @@ export const sendFCMToken = async (fcmToken: string) => {
   return res.json();
 };
 
-export const notificationList = async (): Promise<Notifications> => {
+export const notificationList = async ({
+  pageParam
+}: {
+  pageParam: number;
+}): Promise<Notifications> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications?page=${pageParam}&size=10`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
 
   if (!res.ok) {
@@ -35,9 +48,14 @@ export const notificationList = async (): Promise<Notifications> => {
   return res.json();
 };
 
-export const notificationBadge = async (): Promise<number> => {
+export const notificationBadge = async (): Promise<{ count: number }> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/count`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/count`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
 
   if (!res.ok) {

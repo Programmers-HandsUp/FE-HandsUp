@@ -3,9 +3,15 @@ import { FunctionComponent } from "react";
 import { ImageUrl } from "@/utils/types/image";
 import { Notification, Type } from "@/utils/types/notification";
 
+import Badge from "../../common/Badge";
 import ProductCard from "../../common/ProductCard";
 import AuctionNotification from "./AuctionNotification";
 import PersonalNotification from "./PersonalNotification";
+
+interface NotificationItemProps {
+  notification: Notification;
+  isBadgeVisible: boolean;
+}
 
 interface Props {
   type: Type;
@@ -27,11 +33,15 @@ const NotificationComponent: Record<Type, FunctionComponent<Props>> = {
   COMMENT: PersonalComponent,
   CHAT: PersonalComponent,
   BOOKMARK: PersonalComponent,
+  COMPLETED_PURCHASE_TRADING: PersonalComponent,
   PURCHASE_WINNING: AuctionComponent,
   CANCELD_PURCHASE_WINNING: AuctionComponent
 };
 
-function NotificationItem({ notification }: { notification: Notification }) {
+function NotificationItem({
+  notification,
+  isBadgeVisible
+}: NotificationItemProps) {
   const {
     notificationType,
     content,
@@ -46,10 +56,24 @@ function NotificationItem({ notification }: { notification: Notification }) {
     <ProductCard
       id={auctionId}
       className="flex justify-between items-center py-2 gap-2">
-      <NotificationContent
-        type={notificationType}
-        profileImg={senderProfileImageUrl}
-      />
+      {isBadgeVisible ? (
+        <Badge
+          content=""
+          size="xs"
+          badgeType="dot"
+          position="top-left"
+          className="bg-[#80B3FF]">
+          <NotificationContent
+            type={notificationType}
+            profileImg={senderProfileImageUrl}
+          />
+        </Badge>
+      ) : (
+        <NotificationContent
+          type={notificationType}
+          profileImg={senderProfileImageUrl}
+        />
+      )}
       <p className="flex-1 text-left ml-4">{content}</p>
       <ProductCard.CardImage
         titleImage={auctionImageUrl}

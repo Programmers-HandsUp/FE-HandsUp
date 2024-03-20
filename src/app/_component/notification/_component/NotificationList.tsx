@@ -1,24 +1,40 @@
-import { v4 as uuidv4 } from "uuid";
+import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 
+import useNotificationBadge from "../_hooks/queries/useNotificationBadge";
 import useNotificationList from "../_hooks/queries/useNotificationList";
 import EmptyNotification from "./EmptyNotification";
 import NotificationItem from "./NotificationItem";
 
 function NotificationList() {
-  const { data } = useNotificationList();
+  const {
+    data: notifications,
+    fetchNextPage,
+    hasNextPage,
+    isFetched
+  } = useNotificationList();
 
-  if (data.content.length === 0) {
+  const { data: isRead } = useNotificationBadge();
+
+  const refetch = () => {
+    if (hasNextPage && isFetched) fetchNextPage();
+  };
+
+  const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
+
+  if (notifications.length === 0) {
     return <EmptyNotification />;
   }
 
   return (
     <>
-      {data.content.map((notification) => (
+      {notifications.map((notification, index) => (
         <NotificationItem
           notification={notification}
-          key={uuidv4()}
+          key={notification.notificationId}
+          isBadgeVisible={index <= isRead.count}
         />
       ))}
+      <div ref={ref}></div>
     </>
   );
 }

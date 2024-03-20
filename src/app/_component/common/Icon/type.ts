@@ -47,4 +47,5 @@ export type IconName =
   | "canceld_purchase_winning"
   | "notification-off"
   | "circle"
-  | "dot";
+  | "dot"
+  | "completed_purchase_trading";
