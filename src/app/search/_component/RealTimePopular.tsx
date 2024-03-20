@@ -5,18 +5,14 @@ import { PopularKeyword } from "@/utils/types/search/popularKeyword";
 
 import useGetPopularKeywordQuery from "../_hooks/queries/useGetPopularKeyword";
 import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStorage";
+import RealTimePopularLoading from "./RealTimePopularLoading";
 
 const RealTimePopular = () => {
   const { data: { keywords: popularKeywords } = {}, isFetching } =
     useGetPopularKeywordQuery();
 
   if (isFetching) {
-    return (
-      <div className="h-[12rem]">
-        <h1 className="text-xl">실시간 인기</h1>
-        <div className="h-[7.5rem] w-[90%] ml-1 my-3 rounded-md animate-pulse bg-gray-500"></div>
-      </div>
-    );
+    return <RealTimePopularLoading />;
   }
   return (
     <div className="h-[12rem]">
