@@ -15,10 +15,11 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
   const setProfileImage = useOnboardingStore((state) => state.setProfileImage);
 
   return (
-    <div>
-      <form className="w-[300px] mx-auto flex flex-col">
-        <h1 className="text-xl font-semibold mt-2 mb-6">유저 정보 등록</h1>
-        <label className="mb-4 text-xl">프로필 사진</label>
+    <div className="w-[320px] mx-auto">
+      <h1 className="text-xl font-semibold mt-2 mb-6">유저 정보 등록</h1>
+
+      <form className="w-[290px] mx-auto flex flex-col">
+        <label className="mb-4 text-lg">프로필 사진 등록</label>
         <button
           className="rounded-full w-[7rem] h-[7rem] bg-slate-400"
           onClick={(event) => {
@@ -36,7 +37,7 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
           ) : null}
         </button>
 
-        <label className="mt-8 text-xl">닉네임</label>
+        <label className="mt-8 text-lg">닉네임</label>
         <input
           className="border-b-2 border-black mt-4 h-10 px-2"
           onChange={(event) => setNickName(event.target.value)}
