@@ -1,3 +1,4 @@
+"use client";
 import { useSuspenseQueries } from "@tanstack/react-query";
 
 import {

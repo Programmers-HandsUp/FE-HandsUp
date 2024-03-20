@@ -1,11 +1,11 @@
 import { authCheck } from "@/utils/function/authCheck";
-import { CheckChatRoomInfoResponse } from "@/utils/types/chat/checkChatRoomInfrom";
+import { ChatRoomInfoResponse } from "@/utils/types/chat/checkChatRoomInfrom";
 
 const getChatRoomInfo = async ({
   biddingId
 }: {
   biddingId: number | undefined;
-}): Promise<CheckChatRoomInfoResponse> => {
+}): Promise<ChatRoomInfoResponse> => {
   if (biddingId === undefined) {
     throw new Error("400");
   }

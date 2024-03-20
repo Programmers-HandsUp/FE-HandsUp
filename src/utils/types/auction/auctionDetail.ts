@@ -9,7 +9,7 @@ export interface AuctionDetailResponse {
   };
   title: string;
   productCategory: string;
-  auctionStatus: "입찰중" | "거래중" | "거래완료";
+  auctionStatus: "입찰 중" | "거래 중" | "거래 완료";
   initPrice: number;
   currentBiddingPrice: number;
   endDate: string;

@@ -15,6 +15,7 @@ import Timer from "@/app/_component/common/Timer";
 import TopThreeRank from "@/app/_component/common/TopThreeRank";
 import UserCard from "@/app/_component/common/UserCard";
 import useBookmark from "@/app/_hooks/mutations/useBookmark";
+import useSession from "@/app/_hooks/queries/useSession";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
 import useGetCheckBookmark from "../_hooks/queries/useGetCheckBookmark";
@@ -31,6 +32,8 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
 
   const { data: bookmark } = useGetCheckBookmark({ auctionId });
 
+  const { data: user, isLoading: userLoading } = useSession();
+
   const bookmarkMutation = useBookmark({
     auctionId,
     remove: bookmark?.isBookmarked
@@ -41,7 +44,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   };
 
   return (
-    <div>
+    <div className="mb-[58px]">
       <header>
         <Header
           left={<ArrowBackButton />}
@@ -58,6 +61,9 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         <AuctionBidsSection
           auctionId={auction.auctionId}
           currentBiddingPrice={auction.currentBiddingPrice}
+          isLoginLoading={userLoading}
+          isLogin={user ? true : false}
+          auctionStatus={auction.auctionStatus}
         />
         <CarouselDetailImage
           imageUrls={auction.imageUrls}
@@ -102,10 +108,13 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         />
         <hr />
         <LineChart bids={bids} />
-        <TopThreeRank content={top3.content.reverse()} />
+        <TopThreeRank content={top3.content} />
         <Comment
+          auctionStatus={auction.auctionStatus}
           auctionId={auctionId}
           sellerId={auction.sellerInfo.userId}
+          user={user}
+          userLoading={userLoading}
         />
       </div>
       <AuctionDetailFooterBar

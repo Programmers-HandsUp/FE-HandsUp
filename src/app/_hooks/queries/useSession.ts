@@ -5,11 +5,10 @@ import { authCheck } from "@/utils/function/authCheck";
 
 const useSession = () => {
   const isTokenValid = authCheck();
-
   const { data, isLoading } = useQuery({
     queryKey: ["user"],
     queryFn: getLoginUserInfo,
-    enabled: isTokenValid !== undefined
+    enabled: isTokenValid ? true : false
   });
 
   return { data, isLoading };

@@ -1,5 +1,6 @@
 import { BidsResponse } from "@/utils/types/bid/bids";
 import { Top3BidResponse } from "@/utils/types/bid/top3Bid";
+
 export async function getTopThreeRank({
   auctionId
 }: {

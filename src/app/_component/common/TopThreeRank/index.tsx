@@ -10,12 +10,9 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
   const maxBiddingPrice = Math.max(...content.map((item) => item.biddingPrice));
 
   const maxYValue = maxBiddingPrice + maxBiddingPrice * 0.1;
-
-  const biddingPercentages = content.reverse().map((item, index) => ({
+  const biddingPercentages = content.map((item, index) => ({
     ...item,
     percentage: (item.biddingPrice / maxYValue) * 100,
-    image:
-      "https://image.idus.com/image/files/e73b6a43a167418c9409d04ae49874e3_512.jpg",
     color: index === 0 ? "#9f63ff" : index === 1 ? "#6569FF" : "#96E4FF"
   }));
 
@@ -28,7 +25,7 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
         <div className="relative border-b-2 w-full h-[200px] flex items-end justify-around">
           {biddingPercentages.map((item, idx) => (
             <div
-              key={item.bidderId + idx}
+              key={item.biddingId}
               className="w-[45px] flex items-end"
               style={{
                 height: `${item.percentage}%`
@@ -39,14 +36,16 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
                   backgroundColor: item.color
                 }}>
                 <div className="relative bottom-[66px]">
-                  <div className="absolute w-full bottom-[70px] text-[10px] flex justify-center px-2">
+                  <div className="absolute w-full bottom-[70px] text-[10px] flex justify-center">
                     <span className="text-[8px] absolute -translate-y-1/2 translate-x-full rotate-12 animate-pumping">
                       {idx === 2 && "현재 1등!"}
                     </span>
                     <span className="text-[10px] absolute -translate-y-1/2 -translate-x-full -rotate-[20deg] animate-shaking">
                       {idx === 2 && "👑"}
                     </span>
-                    <span>{item.bidderNickname}</span>
+                    <div className=" whitespace-nowrap text-ellipsis overflow-hidden">
+                      <span>{item.bidderNickname}</span>
+                    </div>
                   </div>
                   <div className="relative top-1">
                     <Image
@@ -58,7 +57,7 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
                     <Avatar
                       rounded="full"
                       size="small"
-                      src={item.image}
+                      src={item.imgUrl}
                     />
                   </div>
                   <div className="absolute left-12 text-[0.5rem]">

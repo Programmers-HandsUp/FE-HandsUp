@@ -22,15 +22,15 @@ const AuctionPage = async ({ params }: AuctionProps) => {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["auction", auctionId],
+    queryKey: ["auction", numberOfAuctionId],
     queryFn: () => getAuctionDetail({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", auctionId, "topThreeRank", "reverse"],
+    queryKey: ["auction", numberOfAuctionId, "topThreeRank", "reverse"],
     queryFn: () => getTopThreeRankReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchQuery({
-    queryKey: ["auction", auctionId, "bids", "reverse"],
+    queryKey: ["auction", numberOfAuctionId, "bids", "reverse"],
     queryFn: () => getBidsReverse({ auctionId: numberOfAuctionId })
   });
   await queryClient.prefetchInfiniteQuery<

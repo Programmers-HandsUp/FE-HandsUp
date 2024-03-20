@@ -17,7 +17,7 @@
     min-height: 100dvh;
     transition: color 0.3s;
     transition: background-color 0.3s;
-    @apply text-black dark:bg-black dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
+    @apply text-black dark:bg-[#181818] dark:text-white dark:[&_input]:text-black dark:[&_svg]:fill-white dark:[&_textarea]:bg-transparent;
 
     overflow-y: overlay;
   }
@@ -51,6 +51,37 @@
 
   main > section {
     height: calc(100% - var(--header-height) - var(--bottom-height));
+  }
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  svg.spinner {
+    animation: rotate 2s linear infinite;
+  }
+
+  svg.spinner circle {
+    stroke: #96e4ff;
+    stroke-linecap: round;
+    stroke-width: 5;
+    animation: dash 1.5s ease-in-out infinite;
   }
 
   @keyframes watch {

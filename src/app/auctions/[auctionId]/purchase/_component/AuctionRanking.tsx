@@ -1,62 +1,44 @@
 import { useEffect, useState } from "react";
 
-import { useGetTopThreeRank } from "../_hooks/useGetTopThreeRank";
+import { Top3BidResponse } from "@/utils/types/bid/top3Bid";
 
 interface AuctionRankingProps {
-  auctionId: number;
+  top3: Top3BidResponse;
 }
 
-const AuctionRanking = ({ auctionId }: AuctionRankingProps) => {
-  const { data: top3, isLoading } = useGetTopThreeRank({ auctionId });
+const AuctionRanking = ({ top3 }: AuctionRankingProps) => {
   const [time, setTime] = useState("");
 
   useEffect(() => {
     setTime(new Date().toLocaleString());
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (!top3) return <div>오류 발생</div>;
-
   const bidderElements = top3.content.map((data, index) => (
     <div
       key={index}
-      style={{ display: "flex", gap: "10px" }}>
-      <div>{data.bidderNickname}</div>
-      <div>{data.biddingPrice.toLocaleString()}원</div>
+      className="flex justify-between">
+      <div className="w-[100px] whitespace-nowrap overflow-hidden text-ellipsis">
+        <span>{data.bidderNickname}</span>
+      </div>
+      <div className="text-[#96c0ff]">
+        {index === 0 && "🔥"}
+        {data.biddingPrice.toLocaleString()}원
+      </div>
     </div>
   ));
 
   return (
-    <div
-      style={{
-        padding: "20px",
-        border: "1px solid",
-        borderColor: "lightgray transparent lightgray transparent",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "stretch",
-        alignContent: "space-between"
-      }}>
+    <div className="p-[20px] border-t-2 border-b-2 border-t-gray-400 border-b-gray-400 flex flex-col justify-between">
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center"
         }}>
-        <span>경매 진행중!</span>
-        <span style={{ fontSize: "12px", color: "lightgray" }}>
-          업데이트 시간 {time}
-        </span>
+        <span className="font-bold text-lg">경매 진행중!</span>
+        <span className="text-[12px] text-gray-500">업데이트 시간 {time}</span>
       </div>
-      <div
-        style={{
-          width: "80%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "stretch"
-        }}>
-        {bidderElements}
-      </div>
+      <div className="w-full flex flex-col">{bidderElements}</div>
     </div>
   );
 };

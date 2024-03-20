@@ -7,11 +7,12 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
-import useSession from "@/app/_hooks/queries/useSession";
+import Spinner from "@/app/_component/common/Spinner";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 import { createComment } from "@/app/auctions/[auctionId]/_api/createComment";
 import useGetCommentList from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
 import { CommentListResponse } from "@/utils/types/comment/commentData";
+import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
 import ChatMessage from "../../../../_component/common/ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
@@ -24,9 +25,18 @@ export interface CreateComment {
 interface CommentProps {
   auctionId: number;
   sellerId: number;
+  user: CheckLoginUserResponse | undefined;
+  userLoading: boolean;
+  auctionStatus: "입찰 중" | "거래 중" | "거래 완료";
 }
 
-const Comment = ({ auctionId, sellerId }: CommentProps) => {
+const Comment = ({
+  auctionId,
+  sellerId,
+  user,
+  userLoading,
+  auctionStatus
+}: CommentProps) => {
   const mutation = useMutation({
     mutationFn: ({ content, auctionId }: CreateComment) =>
       createComment({ content, auctionId })
@@ -61,8 +71,6 @@ const Comment = ({ auctionId, sellerId }: CommentProps) => {
       });
     }
   };
-
-  const { data: user, isLoading: userLoading } = useSession();
 
   const [isScroll, setIsScroll] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -99,7 +107,7 @@ const Comment = ({ auctionId, sellerId }: CommentProps) => {
     if (isFetched) {
       scrollToBottom();
     }
-  }, [isFetched]);
+  }, [isFetched, userLoading]);
 
   useEffect(() => {
     if (mutation.isPending) {
@@ -107,7 +115,21 @@ const Comment = ({ auctionId, sellerId }: CommentProps) => {
     }
   }, [mutation.isPending]);
 
-  if (isLoading || userLoading) return <div>Loading</div>;
+  if (isLoading || userLoading)
+    return (
+      <div>
+        <div>
+          <div className="text-xl p-2">
+            <h1>경매에 대해서 얘기를 나눠봐요!</h1>
+          </div>
+          <div
+            ref={messagesEndRef}
+            className="bg-[#96e5ff8f] rounded-lg p-2 h-[300px] overflow-auto">
+            <Spinner />
+          </div>
+        </div>
+      </div>
+    );
   return (
     <div>
       <div className="text-xl p-2">
@@ -138,7 +160,8 @@ const Comment = ({ auctionId, sellerId }: CommentProps) => {
         ))}
       </div>
       <CommentInput
-        isLogin={user !== undefined ? true : false}
+        auctionStatus={auctionStatus}
+        isLogin={user ? true : false}
         onSubmit={onSubmit}
       />
     </div>
