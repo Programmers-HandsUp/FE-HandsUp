@@ -30,7 +30,7 @@ const ChatRoomContent = ({
     console.log(data);
   };
 
-  const { data: currentUser } = useSession();
+  const { data: currentUser, isLoading: userIsLoading } = useSession();
 
   const refetch = () => {
     if (isScroll) return;
@@ -69,7 +69,8 @@ const ChatRoomContent = ({
     }
   }, [isFetched]);
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading || userIsLoading) return <div>Loading</div>;
+  if (!currentUser) return <div>다시 로그인 해주세요.</div>;
 
   return (
     <div>

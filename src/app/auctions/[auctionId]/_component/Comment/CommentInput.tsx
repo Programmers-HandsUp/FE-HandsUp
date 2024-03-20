@@ -6,9 +6,10 @@ export interface FormDataType {
 
 interface CommentProps {
   onSubmit: (data: FormDataType) => void;
+  isLogin: boolean;
 }
 
-const CommentInput = ({ onSubmit }: CommentProps) => {
+const CommentInput = ({ onSubmit, isLogin }: CommentProps) => {
   const { register, handleSubmit, reset } = useForm<FormDataType>({
     mode: "onSubmit"
   });
@@ -25,14 +26,16 @@ const CommentInput = ({ onSubmit }: CommentProps) => {
         className="flex">
         <input
           type="text"
-          placeholder="댓글을 입력해주세요"
+          placeholder={
+            isLogin ? "댓글을 입력해주세요" : "로그인 후 이용해주세요"
+          }
           {...register("comment", { required: true })}
           className="rounded-lg border-2 border-gray-300 grow py px"
         />
         <button
-          color="primary"
+          disabled={!isLogin}
           className="disabled:bg-gray-500 bg-[#96E4FF] rounded-lg px-2">
-          제출
+          입력
         </button>
       </form>
     </div>

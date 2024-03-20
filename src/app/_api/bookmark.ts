@@ -12,8 +12,7 @@ export const getCheckBookmark = async ({
 }: getCheckBookmarkParams): Promise<getCheckBookmarkResponse | null> => {
   const isTokenValid = authCheck();
 
-  if (!isTokenValid) return null;
-
+  if (!isTokenValid) throw new Error("401");
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {

@@ -8,7 +8,6 @@ import AuctionDetailFooterBar from "@/app/_component/common/AuctionDetailFooterB
 import { DefaultAuctionDetailInfo } from "@/app/_component/common/AuctionDetailInfo/DefaultCase";
 import Bookmark from "@/app/_component/common/Bookmark";
 import CarouselDetailImage from "@/app/_component/common/CarouselDetailImage";
-import Comment from "@/app/_component/common/Comment";
 import Header from "@/app/_component/common/Header";
 import LineChart from "@/app/_component/common/LineChart";
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
@@ -19,6 +18,7 @@ import useBookmark from "@/app/_hooks/mutations/useBookmark";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
 import useGetCheckBookmark from "../_hooks/queries/useGetCheckBookmark";
+import Comment from "./Comment";
 
 interface DetailInfoSectionProps {
   auctionId: number;
@@ -41,7 +41,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   };
 
   return (
-    <>
+    <div>
       <header>
         <Header
           left={<ArrowBackButton />}
@@ -70,7 +70,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           />
         </div>
 
-        <div>
+        <div className="px-2">
           <UserCard className="gap-4 items-center">
             <UserCard.Avatar
               src={auction.sellerInfo.profileImageUrl}
@@ -103,16 +103,19 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         <hr />
         <LineChart bids={bids} />
         <TopThreeRank content={top3.content.reverse()} />
-        <Comment auctionId={auctionId} />
-        <AuctionDetailFooterBar
-          bidsData={bids}
-          sellerId={auction.sellerInfo.userId}
+        <Comment
           auctionId={auctionId}
-          bookmarkCount={auction.bookmarkCount}
-          auctionStatus={auction.auctionStatus}
+          sellerId={auction.sellerInfo.userId}
         />
       </div>
-    </>
+      <AuctionDetailFooterBar
+        bidsData={bids}
+        sellerId={auction.sellerInfo.userId}
+        auctionId={auctionId}
+        bookmarkCount={auction.bookmarkCount}
+        auctionStatus={auction.auctionStatus}
+      />
+    </div>
   );
 };
 

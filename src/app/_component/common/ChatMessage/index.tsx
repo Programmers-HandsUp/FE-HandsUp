@@ -18,6 +18,7 @@ interface Props
   previousSender: "me" | "you" | null;
   nickname: string;
   createdAt: Date;
+  isSeller?: boolean;
 }
 
 const ChatMessage = ({
@@ -27,6 +28,7 @@ const ChatMessage = ({
   nickname,
   createdAt,
   previousSender,
+  isSeller = false,
   ...props
 }: Props) => {
   return (
@@ -42,9 +44,18 @@ const ChatMessage = ({
                 alt="Avatar"
                 rounded="full"
               />
-              <span className="w-[48px] overflow-hidden text-ellipsis whitespace-nowrap">
-                {nickname}
-              </span>
+              <div className="w-[48px]">
+                {isSeller ? (
+                  <div className="flex flex-col items-center">
+                    <strong className="text-[13px]">👑주인장</strong>
+                    <span className="w-[48px] text-[12px] overflow-hidden text-ellipsis whitespace-nowrap text-center">
+                      {nickname}
+                    </span>
+                  </div>
+                ) : (
+                  nickname
+                )}
+              </div>
             </div>
           )}
         </div>

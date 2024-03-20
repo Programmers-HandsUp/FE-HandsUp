@@ -32,7 +32,10 @@ const AuctionDetailFooterBar = ({
       }}>
       <div className="flex">
         <div className="flex">
-          <Icon id="book-mark" />
+          <Icon
+            id="bookmark"
+            className="text-transparent"
+          />
           {bookmarkCount}
         </div>
         <div className="flex">

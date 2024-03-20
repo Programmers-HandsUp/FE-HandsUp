@@ -24,7 +24,7 @@ export const DefaultAuctionDetailInfo = ({
   tradeMethod
 }: DefaultAuctionDetailInfoProps) => {
   return (
-    <AuctionDetailInfo>
+    <AuctionDetailInfo className="px-2">
       <AuctionDetailInfo.Title>{title}</AuctionDetailInfo.Title>
 
       <AuctionDetailInfo.Category>{productCategory}</AuctionDetailInfo.Category>
