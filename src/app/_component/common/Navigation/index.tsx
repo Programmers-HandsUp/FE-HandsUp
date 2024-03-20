@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import useSession from "@/app/_hooks/queries/useSession";
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { cn } from "@/utils/function/cn";
 
@@ -11,13 +10,13 @@ import Icon from "../Icon";
 import ThemeButton from "../ThemeButton";
 import LoginLink from "./LoginLink";
 
-const Navigation = () => {
+interface NavigationProps {
+  userId: number | undefined;
+}
+
+const Navigation = ({ userId }: NavigationProps) => {
   const isVisible = useVisibilityOnScroll();
   const pathname = usePathname();
-
-  const { data, isLoading } = useSession();
-  if (isLoading) return <div>로딩 중</div>;
-  const userId = data?.userId;
 
   return (
     <div

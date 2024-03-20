@@ -7,7 +7,6 @@ export const authCheck = () => {
       : getClientSideAuthCheck;
 
   const isTokenValid = authCheckFunction();
-
   return isTokenValid;
 };
 

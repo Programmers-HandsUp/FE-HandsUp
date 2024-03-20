@@ -25,10 +25,7 @@ const MainPage = async () => {
   });
 
   const user = queryClient.getQueryData<CheckLoginUserResponse>(["user"]);
-
-  const address = { si: "", gu: "", dong: "" };
-
-  const region = user ? user.address : address;
+  const address = user ? user.address : { si: "", gu: "", dong: "" };
 
   await queryClient.prefetchQuery({
     queryKey: ["auction", "bookmark", address],
@@ -56,9 +53,9 @@ const MainPage = async () => {
     <section className="px-4">
       <HydrationBoundary state={dehydratedState}>
         <MainContentSection
-          userSi={region.si}
-          userGu={region.gu}
-          userDong={region.dong}
+          userSi={address.si}
+          userGu={address.gu}
+          userDong={address.dong}
         />
       </HydrationBoundary>
     </section>
