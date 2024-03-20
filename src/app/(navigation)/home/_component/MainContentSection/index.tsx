@@ -8,6 +8,7 @@ import Icon from "@/app/_component/common/Icon";
 
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
+import MainSectionLoading from "./MainSectionLoading";
 
 export interface AddressState {
   si: string | null;
@@ -85,7 +86,7 @@ const MainContentSection = ({
           right={HeaderRightSection}
         />
       </header>
-      <Suspense fallback={<div>로딩~~</div>}>
+      <Suspense fallback={<MainSectionLoading />}>
         <AuctionListSection address={address} />
       </Suspense>
     </>
