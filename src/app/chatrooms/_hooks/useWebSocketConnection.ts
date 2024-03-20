@@ -4,6 +4,7 @@ import { CompatClient, Stomp } from "@stomp/stompjs";
 import { useEffect, useRef, useState } from "react";
 import SockJS from "sockjs-client";
 
+
 interface Message {
   chatRoomId: number;
   senderId: number;
@@ -11,7 +12,7 @@ interface Message {
   createdAt: Date;
 }
 
-const useWebSocketConnection = ({ chatId }: { chatId: number }) => {
+const useWebSocketConnection = ({ chatRoomId }: { chatRoomId: number }) => {
   const stompClientRef = useRef<CompatClient>();
   const [messageList, setMessageList] = useState<Message[]>([]);
 
@@ -23,16 +24,14 @@ const useWebSocketConnection = ({ chatId }: { chatId: number }) => {
     stompClient.connect(
       {},
       () => {
-        const destination = `/sub/chat-rooms/${chatId}`;
+        const destination = `/sub/chat-rooms/${chatRoomId}`;
         stompClient.subscribe(destination, (message) => {
           const newMessage = JSON.parse(message.body);
           setMessageList((currentList) => [...currentList, newMessage]);
-
-          console.log("Received message:", newMessage);
         });
       },
       (error: unknown) => {
-        console.log("Connection error:", error);
+        console.error("Connection error:", error);
       }
     );
 
@@ -43,7 +42,7 @@ const useWebSocketConnection = ({ chatId }: { chatId: number }) => {
         });
       }
     };
-  }, [chatId]);
+  }, [chatRoomId]);
 
   return { messageList, stompClientRef };
 };

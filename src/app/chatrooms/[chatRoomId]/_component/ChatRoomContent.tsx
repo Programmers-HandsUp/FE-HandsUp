@@ -1,9 +1,14 @@
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import ChatMessage from "@/app/_component/common/ChatMessage";
+import Loading from "@/app/_component/common/Loading";
+import Toast from "@/app/_component/common/Toast";
 import useSession from "@/app/_hooks/queries/useSession";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 
+import { useSendMessage } from "../../_hooks/useSendMessage";
+import useWebSocketConnection from "../../_hooks/useWebSocketConnection";
 import useGetChatData from "../_hooks/useGetChatData";
 import ChatMessageInput, { FormDataType } from "./ChatMessageInput";
 
@@ -25,10 +30,16 @@ const ChatRoomContent = ({
     fetchNextPage,
     hasNextPage
   } = useGetChatData({ chatRoomId });
+  const router = useRouter();
 
-  const onSubmit = (data: FormDataType) => {
-    console.log(data);
-  };
+  const { data: currentUser, isLoading: userLoading } = useSession();
+
+  const { messageList, stompClientRef } = useWebSocketConnection({
+    chatRoomId
+  });
+  const sendMessage = useSendMessage({ stompClientRef, chatRoomId });
+
+  const { show } = Toast();
 
   const { data: currentUser, isLoading: userIsLoading } = useSession();
 
@@ -67,10 +78,23 @@ const ChatRoomContent = ({
     if (isFetched) {
       scrollToBottom();
     }
-  }, [isFetched]);
+  }, [isFetched, messageList]);
 
-  if (isLoading || userIsLoading) return <div>Loading</div>;
-  if (!currentUser) return <div>다시 로그인 해주세요.</div>;
+  if (isLoading || userLoading) return <Loading />;
+
+  if (!currentUser) {
+    show("잠시 후 다시 이용해주세요.", "warn-solid");
+    router.back();
+  }
+
+  const senderId = currentUser.userId;
+
+  const onSubmit = (data: FormDataType) => {
+    sendMessage({
+      content: data.message,
+      senderId
+    });
+  };
 
   return (
     <div>
@@ -85,6 +109,24 @@ const ChatRoomContent = ({
               nickname={receiverNickName}
               message={item.content}
               createdAt={new Date(item.createdAt)}
+              sender={item.senderId === currentUser?.userId ? "me" : "you"}
+              previousSender={
+                idx > 0
+                  ? chatData[idx - 1].senderId === item.senderId
+                    ? "me"
+                    : "you"
+                  : null
+              }
+            />
+          </div>
+        ))}
+        {messageList.map((item, idx) => (
+          <div key={item.chatRoomId + idx}>
+            <ChatMessage
+              avatar={receiverImageUrl}
+              nickname={receiverNickName}
+              message={item.content}
+              createdAt={new Date()}
               sender={item.senderId === currentUser?.userId ? "me" : "you"}
               previousSender={
                 idx > 0

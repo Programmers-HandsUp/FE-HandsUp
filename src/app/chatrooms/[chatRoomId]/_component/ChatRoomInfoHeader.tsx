@@ -5,7 +5,7 @@ import ArrowBackButton from "@/app/_component/common/ArrowBackButton";
 import Header from "@/app/_component/common/Header";
 import ProductCard from "@/app/_component/common/ProductCard";
 
-import getChatRoomInfo from "../_api/getChatRoomInfo";
+import getChatRoomInfo from "../_api/getchatRoomInfo";
 import ChatRoomContent from "./ChatRoomContent";
 
 interface ChatRoomInfoHeaderProps {

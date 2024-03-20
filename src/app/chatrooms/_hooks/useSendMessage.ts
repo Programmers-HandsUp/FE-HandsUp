@@ -5,7 +5,7 @@ import { MutableRefObject } from "react";
 
 interface SendMessageProps {
   stompClientRef: MutableRefObject<CompatClient | undefined>;
-  chatId: number;
+  chatRoomId: number;
 }
 
 interface MessageProps {
@@ -15,10 +15,10 @@ interface MessageProps {
 
 export const useSendMessage = ({
   stompClientRef,
-  chatId
+  chatRoomId
 }: SendMessageProps) => {
   const sendMessage = ({ content, senderId }: MessageProps) => {
-    const destination = `/pub/chat-rooms/${chatId}`;
+    const destination = `/pub/chat-rooms/${chatRoomId}`;
     if (stompClientRef.current && stompClientRef.current.connected) {
       stompClientRef.current.publish({
         destination,
@@ -28,7 +28,7 @@ export const useSendMessage = ({
         })
       });
     } else {
-      console.log("Stomp client is not connected.");
+      console.error("Stomp client is not connected.");
     }
   };
 

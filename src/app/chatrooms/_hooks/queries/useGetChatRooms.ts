@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-import getChatRooms from "../_api/getChatRooms";
+import getChatRooms from "../../_api/getChatRooms";
 
 const useGetChatRooms = () => {
   const { data } = useSuspenseQuery({
