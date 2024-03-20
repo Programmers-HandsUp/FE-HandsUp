@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Icon from "@/app/_component/common/Icon";
 
 export interface FormDataType {
-  comment: string;
+  message: string;
 }
 
 interface ChatMessageInputProps {
@@ -27,9 +27,8 @@ const ChatMessageInput = ({ onSubmit }: ChatMessageInputProps) => {
           <input
             type="text"
             placeholder="메시지 입력해주세요"
-            {...register("comment", { required: true })}
-            className=" py-2 px-2 w-full bg-transparent"
-            style={{ color: "white" }}
+            {...register("message", { required: true })}
+            className=" py-2 px-2 w-full"
           />
           <button>
             <Icon id="message-send" />
