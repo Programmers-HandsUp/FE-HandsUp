@@ -8,14 +8,14 @@ import { SignUpRequest } from "@/utils/types/user/signup";
 import { signUp } from "../../_api/signUp";
 
 export function useSignUp() {
-  const [isSignUpSuccess, setIsSignUpSuccesss] = useState("none");
+  const [isSignUpSuccess, setIsSignUpSuccess] = useState("none");
   const { mutate, ...rest } = useMutation({
     mutationFn: (authForm: SignUpRequest) => signUp(authForm),
     onSuccess: () => {
-      setIsSignUpSuccesss("success");
+      setIsSignUpSuccess("success");
     },
     onError: (error: Error) => {
-      setIsSignUpSuccesss("fail");
+      setIsSignUpSuccess("fail");
     }
   });
   return { isSignUpSuccess, mutate, ...rest };
