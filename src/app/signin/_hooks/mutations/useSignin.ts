@@ -14,11 +14,11 @@ export function useSignIn() {
     mutationFn: (authForm: LoginRequest) => signIn(authForm),
     onSuccess: (data) => {
       setCookie({ name: "accessToken", value: data.accessToken });
-      show("fhrmd에 성공했습니다", "check-solid", 2000);
+      show("로그인 성공했습니다", "check-solid", 2000);
       router.push("/");
     },
     onError: () => {
-      show("회원가입에 실패했습니다", "warn-solid", 2000);
+      show("로그인 실패했습니다", "warn-solid", 2000);
     }
   });
 }
