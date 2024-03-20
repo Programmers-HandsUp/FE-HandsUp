@@ -1,14 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import React from "react";
 
-import { fetchInterceptor } from "@/utils/function/fetchInterceptor";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 
 export default function Home() {
+  const router = useRouter();
+
   async function onClickFetch() {
-    fetchInterceptor(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/chat-rooms/2`
-    );
+    fetchWithTokenRenewal({
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/chat-rooms/2`,
+      router: router
+    });
   }
   return (
     <main className="">
