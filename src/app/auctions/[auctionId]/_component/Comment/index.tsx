@@ -7,27 +7,29 @@ import {
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
 
+import useSession from "@/app/_hooks/queries/useSession";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 import { createComment } from "@/app/auctions/[auctionId]/_api/createComment";
 import useGetCommentList from "@/app/auctions/[auctionId]/_hooks/queries/useGetCommentList";
-import { CommentListData } from "@/utils/types/comment/commentData";
+import { CommentListResponse } from "@/utils/types/comment/commentData";
 
-import ChatMessage from "../ChatMessage";
+import ChatMessage from "../../../../_component/common/ChatMessage";
 import CommentInput, { FormDataType } from "./CommentInput";
 
 export interface CreateComment {
-  comment: string;
+  content: string;
   auctionId: number;
 }
 
 interface CommentProps {
   auctionId: number;
+  sellerId: number;
 }
 
-const Comment = ({ auctionId = 12342 }: CommentProps) => {
+const Comment = ({ auctionId, sellerId }: CommentProps) => {
   const mutation = useMutation({
-    mutationFn: ({ comment, auctionId }: CreateComment) =>
-      createComment({ comment, auctionId })
+    mutationFn: ({ content, auctionId }: CreateComment) =>
+      createComment({ content, auctionId })
   });
 
   const {
@@ -59,29 +61,27 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
       });
     }
   };
-  const MY_ID = 12342; //더미데이터
+
+  const { data: user, isLoading: userLoading } = useSession();
 
   const [isScroll, setIsScroll] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
   const onSubmit = (data: FormDataType) => {
-    mutation.mutate({ comment: data.comment, auctionId });
+    mutation.mutate({ content: data.comment, auctionId });
     const exMessages = queryClient.getQueryData([
       "auction",
       auctionId,
       "comments"
-    ]) as InfiniteData<CommentListData>;
+    ]) as InfiniteData<CommentListResponse>;
 
-    //더미데이터
     const newComment = {
-      messageId: 12412412,
+      writerId: user!.userId,
+      nickname: user!.nickname,
+      profileImageUrl: user!.profileImageUrl,
       content: data.comment,
-      auctionId: 353256236,
-      userId: 12342,
-      userNickname: "도리도리",
-      userProfileImage: "",
-      createdAt: new Date("2024-03-05")
+      isSeller: user!.userId === sellerId
     };
 
     exMessages.pages[0].content.unshift(newComment);
@@ -107,8 +107,7 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
     }
   }, [mutation.isPending]);
 
-  if (isLoading) return <div>Loading</div>;
-
+  if (isLoading || userLoading) return <div>Loading</div>;
   return (
     <div>
       <div className="text-xl p-2">
@@ -119,16 +118,17 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
         className="bg-[#96e5ff8f] rounded-lg p-2 h-[300px] overflow-auto">
         <div ref={ref}></div>
         {commentsData.reverse().map((item, idx) => (
-          <div key={item.userId + idx}>
+          <div key={item.writerId + idx}>
             <ChatMessage
-              avatar={item.userProfileImage}
-              nickname={item.userNickname}
+              avatar={item.profileImageUrl}
+              nickname={item.nickname}
               message={item.content}
-              createdAt={item.createdAt}
-              sender={item.userId === MY_ID ? "me" : "you"}
+              createdAt={new Date("2024-03-20")}
+              sender={item.writerId === user?.userId ? "me" : "you"}
+              isSeller={item.isSeller}
               previousSender={
                 idx > 0
-                  ? commentsData[idx - 1].userId === item.userId
+                  ? commentsData[idx - 1].writerId === item.writerId
                     ? "me"
                     : "you"
                   : null
@@ -137,7 +137,10 @@ const Comment = ({ auctionId = 12342 }: CommentProps) => {
           </div>
         ))}
       </div>
-      <CommentInput onSubmit={onSubmit} />
+      <CommentInput
+        isLogin={user !== undefined ? true : false}
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };

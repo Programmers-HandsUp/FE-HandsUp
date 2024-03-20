@@ -18,11 +18,11 @@ export interface AuctionSearchResultResponse {
 }
 
 export interface AuctionSearchResult {
-  auctionId: 0;
-  title: "string";
-  currentBiddingPrice: 0;
-  imageUrl: "string";
-  bookmarkCount?: 0;
-  dong: "string";
-  createdAt?: "string";
+  auctionId: number;
+  title: string;
+  currentBiddingPrice: number;
+  imageUrl: string;
+  bookmarkCount: number;
+  dong: string;
+  createdAt: string;
 }

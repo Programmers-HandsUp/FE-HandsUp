@@ -1,15 +1,21 @@
-export interface CommentData {
-  messageId: number;
-  auctionId: number;
-  userId: number;
-  userNickname: string;
-  userProfileImage: string;
-  content: string;
-  createdAt: Date;
+export interface CommentListResponse {
+  content: CommentContent[];
+  size: number;
+  hasNext: boolean;
 }
 
-export interface CommentListData {
-  content: CommentData[];
-  size: number;
-  hasNext: number;
+export interface CommentContent {
+  writerId: number;
+  nickname: string;
+  profileImageUrl: string;
+  content: string;
+  isSeller: boolean;
+}
+
+export interface CreateCommentResponse {
+  writerId: number;
+  nickname: string;
+  profileImageUrl: string;
+  content: string;
+  isSeller: boolean;
 }

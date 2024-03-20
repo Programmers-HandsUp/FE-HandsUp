@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 
+import useSession from "@/app/_hooks/queries/useSession";
+
 import DefaultComponent from "./_component/DefaultComponent";
 import useGetSuccessfulData from "./_hooks/useGetSuccessfulData";
 
@@ -16,16 +18,19 @@ const SuccessfulBidPage = ({ params }: SuccessFulBidPageProps) => {
     auctionId: Number(auctionId)
   });
 
-  const loginNickname = "오리";
+  const { data: user, isLoading: userIsLoading } = useSession();
 
   const currentBidding = bids.content.find((x) => x.tradingStatus === "진행중");
+
+  if (userIsLoading) return <div>로딩중...</div>;
+  if (!user) return <div>다시 로그인 해주세요.</div>;
 
   return (
     <div className="flex flex-col gap-16">
       <DefaultComponent
         biddingCount={bids.content.length}
         bookmarkCount={auction.bookmarkCount}
-        buyerNickName={loginNickname}
+        buyerNickName={user.nickname}
         currentBiddingPrice={currentBidding?.biddingPrice}
         initialBiddingPrice={auction.initPrice}
         sellerNickName={auction.sellerInfo.nickname}

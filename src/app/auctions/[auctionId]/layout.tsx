@@ -1,4 +1,4 @@
-export default function ProductsDetail({
+export default function AuctionDetailLayout({
   children
 }: {
   children: React.ReactNode;
