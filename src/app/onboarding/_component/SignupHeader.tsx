@@ -12,24 +12,23 @@ const PAGE_PERCENTAGES = [20, 50, 75, 100];
 
 const SignupHeader = ({ nowPage, onClickRightButton }: SignupHeaderProps) => {
   return (
-    <header className="w-full h-[4rem]">
+    <header className="w-[325px] h-[4rem] flex mx-[1.5rem] justify-between ">
       <ProgressBar
-        className="mx-auto mt-6 b-4"
+        className="mt-6"
+        round={"little"}
         width={300}
-        height={15}
+        height={18}
         percent={PAGE_PERCENTAGES[nowPage]}
       />
-      <div className="flex justify-end w-[300px] mx-auto my-4">
-        {nowPage < 3 && (
-          <button onClick={onClickRightButton}>
-            <Icon
-              id="arrow-back"
-              className="rotate-180"
-              size={20}
-            />
-          </button>
-        )}
-      </div>
+      {nowPage < 3 && (
+        <button onClick={onClickRightButton}>
+          <Icon
+            id="arrow-back"
+            className="rotate-180"
+            size={20}
+          />
+        </button>
+      )}
     </header>
   );
 };

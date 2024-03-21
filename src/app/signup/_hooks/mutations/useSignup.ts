@@ -1,7 +1,6 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { SignUpRequest } from "@/utils/types/user/signup";
@@ -9,17 +8,15 @@ import { SignUpRequest } from "@/utils/types/user/signup";
 import { signUp } from "../../_api/signUp";
 
 export function useSignUp() {
-  const [signupStatus, setSignupStatus] = useState("");
-  const router = useRouter();
+  const [isSignUpSuccess, setIsSignUpSuccess] = useState("none");
   const { mutate, ...rest } = useMutation({
     mutationFn: (authForm: SignUpRequest) => signUp(authForm),
     onSuccess: () => {
-      setSignupStatus("success");
-      router.push("/");
+      setIsSignUpSuccess("success");
     },
     onError: (error: Error) => {
-      setSignupStatus("fail");
+      setIsSignUpSuccess("fail");
     }
   });
-  return { signupStatus, mutate, ...rest };
+  return { isSignUpSuccess, mutate, ...rest };
 }

@@ -1,8 +1,11 @@
-import Link from "next/link";
 import { useEffect } from "react";
 
+import Loading from "@/app/_component/common/Loading";
 import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
 import { useSignUp } from "@/app/signup/_hooks/mutations/useSignup";
+
+import OnBoardingFail from "./_component/OnBoardingFail";
+import OnBoardingSuccess from "./_component/OnBoardingSuccess";
 
 interface FinishFunnelProps {
   profileImage: File | undefined;
@@ -22,7 +25,7 @@ const FinishFunnel = ({
   nickName
 }: FinishFunnelProps) => {
   const { mutateImageUpload } = useImageUpload();
-  const { mutate, isPending } = useSignUp();
+  const { isSignUpSuccess, mutate } = useSignUp();
   const setOnboardingPost = async () => {
     if (id && passWord) {
       try {
@@ -57,24 +60,9 @@ const FinishFunnel = ({
 
   return (
     <div>
-      {isPending ? (
-        <div className="flex justify-center items-center my-[8rem]">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
-        </div>
-      ) : (
-        <div className="w-full h-full">
-          <h1 className="text-2xl mt-[8rem] w-fit mx-auto text-center h-fit">
-            등록이 완료되었습니다.
-          </h1>
-          <div className="mt-[6rem] h-fit w-fit mx-auto">
-            <Link
-              className="rounded-md border-2 text-center mx-auto w-fit h-fit px-2 py-1 border-white bg-[#96E4FF]"
-              href="/">
-              홈으로 가기
-            </Link>
-          </div>
-        </div>
-      )}
+      {isSignUpSuccess === "success" && <OnBoardingSuccess />}
+      {isSignUpSuccess === "fail" && <OnBoardingFail />}
+      {isSignUpSuccess === "none" && <Loading className="pb-[10rem]" />}
     </div>
   );
 };

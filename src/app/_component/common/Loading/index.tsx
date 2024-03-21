@@ -1,8 +1,18 @@
 import Image from "next/image";
 
-function Loading() {
+import { cn } from "@/utils/function/cn";
+
+interface LoadingProps {
+  className?: string;
+}
+
+function Loading({ className }: LoadingProps) {
   return (
-    <div className="flex flex-col justify-center items-center gap-3 h-svh m-auto ">
+    <div
+      className={cn(
+        "flex flex-col justify-center items-center gap-3 h-svh m-auto",
+        className
+      )}>
       <div className="animate-bounce">
         <Image
           src="/assets/images/logo.webp"
