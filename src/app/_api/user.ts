@@ -1,4 +1,5 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
 export const getLoginUserInfo = async (): Promise<CheckLoginUserResponse> => {
@@ -6,13 +7,8 @@ export const getLoginUserInfo = async (): Promise<CheckLoginUserResponse> => {
   try {
     if (!isTokenValid) throw new Error("유저 토큰이 비어있습니다.");
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
-      {
-        headers: {
-          Authorization: `Bearer ${isTokenValid}`
-        }
-      }
+    const res = await fetchWithTokenRenewal(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`
     );
 
     if (!res.ok) {

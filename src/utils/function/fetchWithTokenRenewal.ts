@@ -1,8 +1,6 @@
-"use client";
-
 import reissueAccessToken from "@/app/_api/reIssueAccessToken";
 
-import { getCookie } from "./cookie";
+import { authCheck } from "./authCheck";
 
 interface FetchOptions {
   method?: string;
@@ -15,7 +13,8 @@ const fetchWithTokenRenewal = async (
   options: FetchOptions = {}
 ): Promise<Response> => {
   let response: Response = new Response();
-  const accessToken = getCookie({ name: "accessToken" })?.slice(0);
+
+  const accessToken = authCheck();
   if (accessToken) {
     options.headers = {
       ...options.headers,
