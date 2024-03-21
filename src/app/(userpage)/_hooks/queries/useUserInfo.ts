@@ -1,5 +1,7 @@
 import { useSuspenseQueries } from "@tanstack/react-query";
 
+import { Review, ReviewLabel } from "@/utils/types/user/mypage";
+
 import {
   reviewLabelList,
   reviewList,
@@ -27,11 +29,13 @@ const useUserInfo = (userId: number) => {
       },
       {
         queryKey: ["reviewLabelList", userId],
-        queryFn: () => reviewLabelList(userId)
+        queryFn: () => reviewLabelList(userId),
+        select: (data: ReviewLabel) => data.content
       },
       {
         queryKey: ["reviewList", userId],
-        queryFn: () => reviewList(userId)
+        queryFn: () => reviewList(userId),
+        select: (data: Review) => data.content
       }
     ]
   });
