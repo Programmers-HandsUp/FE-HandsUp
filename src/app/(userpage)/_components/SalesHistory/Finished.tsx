@@ -1,3 +1,4 @@
+import EmptyList from "../EmptyList";
 import Transaction from "../Transaction/Transaction";
 import { SaleList } from "./SalesHistory";
 
@@ -8,14 +9,18 @@ export function Finished({ saleList }: SaleList) {
         firstLabel="낙찰가"
         secondLabel="날짜"
       />
-      {saleList?.map((sale) => (
-        <Transaction
-          transaction={sale}
-          key={sale.auctionId}>
-          <Transaction.Price>{sale.completeBiddingPrice}</Transaction.Price>
-          <Transaction.Date date={sale.auctionCompleteTime} />
-        </Transaction>
-      ))}
+      {saleList.length === 0 ? (
+        <EmptyList type="판매" />
+      ) : (
+        saleList.map((sale) => (
+          <Transaction
+            transaction={sale}
+            key={sale.auctionId}>
+            <Transaction.Price>{sale.winningPrice}</Transaction.Price>
+            <Transaction.Date date={sale.auctionCreatedAt} />
+          </Transaction>
+        ))
+      )}
     </>
   );
 }
