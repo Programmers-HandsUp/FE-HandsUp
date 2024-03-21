@@ -11,6 +11,7 @@ import getPastTime from "@/utils/function/getPastTime";
 import { AuctionSearchResult } from "@/utils/types/search/search";
 import tempLogoImage from "~/images/logoIcon.png";
 
+import NotSearchResult from "./_component/NotSearchResult";
 import { SearchOptionContext } from "./layout";
 
 const SearchResultPage = () => {
@@ -32,7 +33,7 @@ const SearchResultPage = () => {
   return (
     <main className="w-[90%] mx-auto bg-blue">
       <div className="pb-6">
-        {searchResults ? (
+        {searchResults.length ? (
           searchResults.map(
             ({
               title,
@@ -55,7 +56,7 @@ const SearchResultPage = () => {
                     <div className="text-2xl">{title}</div>
                     <div className="flex gap-4 text-[0.85rem]">
                       <span>{dong}</span>
-                      <span>{getPastTime(new Date())}</span>
+                      <span>{getPastTime("2024-03-21T13:58:43.381320")}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-bold text-[1.1rem]">
@@ -76,9 +77,7 @@ const SearchResultPage = () => {
             )
           )
         ) : (
-          <p className="text-xl mx-auto w-fit my-[11rem]">
-            검색결과가 없습니다.
-          </p>
+          <NotSearchResult />
         )}
         <div ref={ref}></div>
       </div>
