@@ -1,13 +1,10 @@
 import { authCheck } from "@/utils/function/authCheck";
 import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
-export const getLoginUserInfo = async (): Promise<
-  CheckLoginUserResponse | undefined
-> => {
+export const getLoginUserInfo = async (): Promise<CheckLoginUserResponse> => {
   const isTokenValid = authCheck();
-
   try {
-    if (!isTokenValid) throw new Error("401");
+    if (!isTokenValid) throw new Error("유저 토큰이 비어있습니다.");
 
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
@@ -25,5 +22,5 @@ export const getLoginUserInfo = async (): Promise<
   } catch (error: any) {
     console.error(error.message);
   }
-  return undefined;
+  throw new Error("토큰 오류");
 };

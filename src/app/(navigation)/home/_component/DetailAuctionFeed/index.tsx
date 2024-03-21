@@ -16,14 +16,14 @@ const DetailAuctionFeed = ({ data }: DetailAuctionFeedProps) => {
     <div>
       <SlideCarousel
         childSize={328}
-        groupGap={15}
+        groupGap={16}
         className="py-5"
         itemsToShow={1}
         height={360}
         useNav>
         {data.content?.slice(0, 6).map((auction) => (
           <Link
-            href={`auction/${auction.auctionId}`}
+            href={`auctions/${auction.auctionId}`}
             key={auction.auctionId}
             className="group">
             <div className="relative w-full h-full border rounded-lg overflow-hidden">

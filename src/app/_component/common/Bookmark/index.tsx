@@ -46,7 +46,6 @@ const Bookmark = ({
         <Icon
           id="bookmark"
           size={ICON_SIZE[size!]}
-          className="text-transparent"
         />
       )}
     </button>

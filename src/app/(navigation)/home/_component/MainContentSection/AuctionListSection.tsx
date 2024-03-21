@@ -27,7 +27,7 @@ const AuctionListSection = ({ address }: AuctionListSectionProps) => {
         <div className="text-2xl">
           <h1>많은 사람들이 눈여겨보고있는 경매</h1>
         </div>
-        {result[2].data.content.length !== 0 ? (
+        {result[3].data.content.length !== 0 ? (
           <AuctionFeedList
             data={result[3].data}
             divideNum={4}

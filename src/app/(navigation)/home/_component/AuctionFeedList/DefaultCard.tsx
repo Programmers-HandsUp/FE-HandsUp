@@ -1,3 +1,4 @@
+"use client";
 import ProductCard from "@/app/_component/common/ProductCard";
 import Timer from "@/app/_component/common/Timer";
 import { cn } from "@/utils/function/cn";

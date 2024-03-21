@@ -68,11 +68,6 @@ const useBookmark = ({
           context.previousData
         );
       }
-    },
-    onSettled: () => {
-      // queryClient.invalidateQueries({
-      //   queryKey: ["auction", auctionId, "bookmark"]
-      // });
     }
   });
 

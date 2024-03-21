@@ -5,10 +5,10 @@ import Link from "next/link";
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { BidsResponse } from "@/utils/types/bid/bids";
 
-import Icon from "../Icon";
+import Icon from "../../../../_component/common/Icon";
 
 interface AuctionDetailDataProps {
-  auctionStatus: "입찰중" | "거래중" | "거래완료";
+  auctionStatus: "입찰 중" | "거래 중" | "거래 완료";
   bookmarkCount: number;
   auctionId: number;
   bidsData: BidsResponse;
@@ -32,10 +32,7 @@ const AuctionDetailFooterBar = ({
       }}>
       <div className="flex">
         <div className="flex">
-          <Icon
-            id="bookmark"
-            className="text-transparent"
-          />
+          <Icon id="bookmark" />
           {bookmarkCount}
         </div>
         <div className="flex">
@@ -44,7 +41,7 @@ const AuctionDetailFooterBar = ({
         </div>
       </div>
       <div>
-        {auctionStatus !== "입찰중" && (
+        {auctionStatus !== "입찰 중" && (
           <Link
             href={`${auctionId}/bidderList?sellerId=${sellerId}`}
             className="bg-[#96E4FF] rounded-lg px-2 hover:bg-[#55d4ff]">

@@ -6,12 +6,12 @@ import { authCheck } from "@/utils/function/authCheck";
 const useGetBookmarkList = () => {
   const isCheckValid = authCheck();
 
-  const { data } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["bookmarkList"],
     queryFn: () => getCheckBookmarkList,
     enabled: isCheckValid !== undefined
   });
-  return { data };
+  return { data, isLoading, isError };
 };
 
 export default useGetBookmarkList;

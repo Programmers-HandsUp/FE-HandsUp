@@ -1,3 +1,5 @@
+import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
+
 interface AuctionBanner {
   initPrice: number;
   currentBiddingPrice: number;
@@ -14,13 +16,15 @@ const AuctionBanner = ({ initPrice, currentBiddingPrice }: AuctionBanner) => {
         border: "4px solid red",
         padding: "10px"
       }}>
-      <div style={{ display: "flex", gap: "10px" }}>
+      <div className="flex gap-3 text-sm">
         <div>시작가</div>
-        <div>₩{initPrice}</div>
+        <div>₩{setMoneyUnitString(initPrice)}</div>
       </div>
-      <div style={{ display: "flex", gap: "10px" }}>
-        <div>최고가</div>
-        <div>₩{currentBiddingPrice}</div>
+      <div className="flex gap-3 text-xl">
+        <div>현재 최고가</div>
+        <div className="text-red-400">
+          <strong>₩{setMoneyUnitString(currentBiddingPrice)}</strong>
+        </div>
       </div>
     </div>
   );

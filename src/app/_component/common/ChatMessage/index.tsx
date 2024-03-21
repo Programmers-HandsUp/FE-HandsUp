@@ -17,7 +17,7 @@ interface Props
   sender: "me" | "you";
   previousSender: "me" | "you" | null;
   nickname: string;
-  createdAt: Date;
+  createdAt: string;
   isSeller?: boolean;
 }
 
@@ -33,6 +33,7 @@ const ChatMessage = ({
 }: Props) => {
   return (
     <>
+      {previousSender !== "me" && sender !== "me" && <div className="mt-10" />}
       <div
         {...props}
         className="relative flex flex-col text-black">
@@ -44,16 +45,16 @@ const ChatMessage = ({
                 alt="Avatar"
                 rounded="full"
               />
-              <div className="w-[48px]">
+              <div className="w-[48px] text-center">
                 {isSeller ? (
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center mb-4 w-[48px] text-[12px] overflow-hidden text-ellipsis whitespace-nowrap">
                     <strong className="text-[13px]">👑주인장</strong>
-                    <span className="w-[48px] text-[12px] overflow-hidden text-ellipsis whitespace-nowrap text-center">
-                      {nickname}
-                    </span>
+                    <span>{nickname}</span>
                   </div>
                 ) : (
-                  nickname
+                  <div className="w-[48px] text-[12px] overflow-hidden text-ellipsis whitespace-nowrap">
+                    <span className="">{nickname}</span>
+                  </div>
                 )}
               </div>
             </div>

@@ -19,8 +19,8 @@ export const getServerSideAuthCheck = (): string | undefined => {
   if (typeof window === "undefined") {
     const { cookies } = require("next/headers");
     const cookieStore = cookies();
-    return cookieStore.get("token") === undefined || !!cookieStore.get("token")
-      ? undefined
-      : cookieStore.get("token").value;
+    return cookieStore.get("token")
+      ? cookieStore.get("token").value
+      : undefined;
   }
 };
