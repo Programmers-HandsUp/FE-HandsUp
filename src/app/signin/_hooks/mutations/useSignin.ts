@@ -15,7 +15,7 @@ export function useSignIn() {
     onSuccess: (data) => {
       setCookie({ name: "accessToken", value: data.accessToken });
       show("로그인 성공했습니다", "check-solid", 2000);
-      router.push("/");
+      router.push("/home");
     },
     onError: () => {
       show("로그인 실패했습니다", "warn-solid", 2000);

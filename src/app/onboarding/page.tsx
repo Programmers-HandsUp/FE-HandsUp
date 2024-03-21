@@ -47,14 +47,16 @@ const OnBoarding = () => {
   ]);
   useEffect(() => {
     if (!id || !passWord || id?.length <= 4 || passWord?.length <= 6) {
-      router.push("/signup");
+      router.push("/signin");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (address.dong) {
       pushFunnel();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   const onClickNextButton = () => {

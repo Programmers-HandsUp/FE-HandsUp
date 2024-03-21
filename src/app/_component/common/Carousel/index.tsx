@@ -54,7 +54,7 @@ const Carousel = ({
     return () => {
       clearInterval(intervalRef);
     };
-  }, []);
+  }, [changeDelay, imageNum]);
 
   return (
     <div className={cn(carouselVariants({ size }), className)}>
