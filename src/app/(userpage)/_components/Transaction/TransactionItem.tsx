@@ -27,7 +27,7 @@ export function TransactionHeader({ firstLabel, secondLabel }: HeaderProps) {
   );
 }
 
-export function TransactionPrice({ children }: { children: number }) {
+export function TransactionPrice({ children }: { children: number | string }) {
   return (
     <p className="text-sm col-span-2 text-center">
       <strong>{setMoneyUnitString(children)}원</strong>

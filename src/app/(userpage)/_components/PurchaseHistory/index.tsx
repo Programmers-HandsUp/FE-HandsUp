@@ -21,7 +21,9 @@ function PurchaseHistory({ purchaseList }: PurchaseHistoryProps) {
           <Transaction
             transaction={purchase}
             key={purchase.auctionId}>
-            <Transaction.Price>{purchase.winningPrice}</Transaction.Price>
+            <Transaction.Price>
+              {purchase.winningPrice || "-"}
+            </Transaction.Price>
             <Transaction.Date date={purchase.auctionCreatedAt} />
           </Transaction>
         ))
