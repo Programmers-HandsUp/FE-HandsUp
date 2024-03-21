@@ -56,6 +56,7 @@ const FinishFunnel = ({
 
   useEffect(() => {
     setOnboardingPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
