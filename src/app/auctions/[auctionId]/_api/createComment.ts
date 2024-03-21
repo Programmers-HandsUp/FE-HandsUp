@@ -1,4 +1,5 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { CommentContent } from "@/utils/types/comment/commentData";
 
 export interface CreateCommentRequest {
@@ -14,13 +15,12 @@ export const createComment = async ({
 
   if (!isTokenValid) throw new Error("401");
 
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/comments`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${isTokenValid}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         content

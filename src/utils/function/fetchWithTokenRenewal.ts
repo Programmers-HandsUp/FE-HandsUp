@@ -6,11 +6,17 @@ interface FetchOptions {
   method?: string;
   headers?: Record<string, string>;
   body?: BodyInit | null;
+  next?: {
+    tags: string[];
+  };
+  cache?: RequestCache;
 }
 
 const fetchWithTokenRenewal = async (
   url: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {
+    cache: "no-store"
+  }
 ): Promise<Response> => {
   let response: Response = new Response();
 
