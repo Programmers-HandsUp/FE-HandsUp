@@ -8,10 +8,12 @@ const useNotificationList = () => {
     queryFn: notificationList,
     initialPageParam: 0,
     getNextPageParam: (lastPage, _, lastPageParam) => {
+      if (!lastPage) return;
       if (!lastPage.hasNext) return undefined;
       return lastPageParam + 1;
     },
-    select: (data) => data.pages.map((item) => item.content).flat()
+    select: (data) => data.pages.map((item) => item.content).flat(),
+    retry: 0
   });
 };
 

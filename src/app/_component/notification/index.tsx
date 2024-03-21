@@ -27,12 +27,13 @@ function Notification({ close }: NotificationProps) {
       />
 
       <CheckPermission />
+ 
+        <Suspense fallback={<Loading />}>
+          <div className="px-2 w-full max-w-screen mx-auto mt-4">
+            <NotificationList />
+          </div>
+        </Suspense>
 
-      <Suspense fallback={<Loading />}>
-        <div className="px-2 w-full max-w-screen mx-auto mt-4">
-          <NotificationList />
-        </div>
-      </Suspense>
     </>
   );
 }
