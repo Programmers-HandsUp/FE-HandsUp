@@ -3,7 +3,7 @@ import { AuctionSearchResultResponse } from "@/utils/types/search/search";
 const SORT_OPTION: { [key: string]: string } = {
   최신순: "최신순",
   "북마크 많은순": "북마크수",
-  "마감일 임박순": "마감일",
+  "마감 임박순": "마감일",
   "입찰수 많은순": "입찰수"
 };
 
