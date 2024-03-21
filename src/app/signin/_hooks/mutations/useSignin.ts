@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import Toast from "@/app/_component/common/Toast";
+import { setCookie } from "@/utils/function/cookie";
 import { LoginRequest } from "@/utils/types/authorization/login";
 
 import { signIn } from "../../_api/login";
@@ -12,12 +13,12 @@ export function useSignIn() {
   return useMutation({
     mutationFn: (authForm: LoginRequest) => signIn(authForm),
     onSuccess: (data) => {
-      localStorage.setItem("AccessToken", data.accessToken);
-      show("회원가입에 성공했습니다", "check-solid", 2000);
+      setCookie({ name: "accessToken", value: data.accessToken });
+      show("로그인 성공했습니다", "check-solid", 2000);
       router.push("/");
     },
     onError: () => {
-      show("회원가입에 실패했습니다", "warn-solid", 2000);
+      show("로그인 실패했습니다", "warn-solid", 2000);
     }
   });
 }
