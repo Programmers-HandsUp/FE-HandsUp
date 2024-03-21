@@ -4,8 +4,8 @@ import { useSearchParams } from "next/navigation";
 
 import { StatusEn } from "@/utils/types/user/mypage";
 
-import usePurchaseStatusList from "../../../(userpage)/_hooks/queries/usePurchaseStatusList";
-import useSaleStatusList from "../../../(userpage)/_hooks/queries/useSaleStatusList";
+import usePurchaseStatusList from "../../_hooks/queries/usePurchaseStatusList";
+import useSaleStatusList from "../../_hooks/queries/useSaleStatusList";
 import PurchaseHistory from "../PurchaseHistory";
 import SalesHistory from "../SalesHistory/SalesHistory";
 import Tab from "../Tab";
