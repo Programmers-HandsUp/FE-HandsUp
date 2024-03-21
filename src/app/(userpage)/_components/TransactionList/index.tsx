@@ -27,9 +27,21 @@ function TransactionList({ tradeMethod, userId }: TransactionListProps) {
     <>
       <div className="w-[360px] z-10 backdrop-blur-md opacity-80">
         <div className="grid grid-cols-3 items-center h-14 border-b">
-          <Tab status="BIDDING">{tradeMethod} 입찰</Tab>
-          <Tab status="TRADING">거래 진행 중</Tab>
-          <Tab status="COMPLETED">종료</Tab>
+          <Tab
+            status="BIDDING"
+            userId={userId}>
+            {tradeMethod} 입찰
+          </Tab>
+          <Tab
+            status="TRADING"
+            userId={userId}>
+            거래 진행 중
+          </Tab>
+          <Tab
+            status="COMPLETED"
+            userId={userId}>
+            종료
+          </Tab>
         </div>
       </div>
 

@@ -12,17 +12,18 @@ import { TabVariants } from "./Tab.variants";
 interface TabProps {
   children: React.ReactNode;
   status: StatusEn;
+  userId: number;
 }
 
 type Path = "/my/buying" | "/my/selling";
 
-function Tab({ children, status }: TabProps) {
+function Tab({ children, status, userId }: TabProps) {
   const basePath = usePathname() as Path;
   const searchParams = useSearchParams();
   const selectStatus = searchParams.get("status")?.toUpperCase() as StatusEn;
 
   const { data: purchaseCounts } = usePurchaseList();
-  const { data: saleCounts } = useSaleList(5);
+  const { data: saleCounts } = useSaleList(userId);
 
   const selectTab = selectStatus === status;
   const count = basePath === "/my/buying" ? purchaseCounts : saleCounts;
