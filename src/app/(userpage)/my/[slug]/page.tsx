@@ -58,7 +58,12 @@ function MyPage({ params }: { params: { slug: Slug } }) {
     "profile-edit": <ProfileEdit />
   };
 
-  return <Layout title={titleMap[slug]}>{componentMap[slug]}</Layout> || null;
+  if (!(slug in titleMap) || !(slug in componentMap)) {
+    router.push("/404");
+    return null;
+  }
+
+  return <Layout title={titleMap[slug]}>{componentMap[slug]}</Layout>;
 }
 
 export default MyPage;
