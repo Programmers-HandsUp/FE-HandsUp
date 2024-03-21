@@ -1,6 +1,6 @@
 import { useSuspenseQueries } from "@tanstack/react-query";
 
-import { Review, ReviewLabel } from "@/utils/types/user/mypage";
+import { Review, ReviewLabel, Sale } from "@/utils/types/user/mypage";
 
 import {
   reviewLabelList,
@@ -25,7 +25,7 @@ const useUserInfo = (userId: number) => {
       {
         queryKey: ["saleList", userId],
         queryFn: () => saleList(userId),
-        select: calculateCounts
+        select: (data: Sale) => calculateCounts(data.content)
       },
       {
         queryKey: ["reviewLabelList", userId],
