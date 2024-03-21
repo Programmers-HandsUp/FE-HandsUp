@@ -1,9 +1,10 @@
-import { Purchase } from "@/utils/types/user/mypage";
+import { PurchaseContent } from "@/utils/types/user/mypage";
 
+import EmptyList from "../EmptyList";
 import Transaction from "../Transaction/Transaction";
 
 interface PurchaseHistoryProps {
-  purchaseList: Purchase[] | undefined;
+  purchaseList: PurchaseContent[];
 }
 
 function PurchaseHistory({ purchaseList }: PurchaseHistoryProps) {
@@ -13,14 +14,20 @@ function PurchaseHistory({ purchaseList }: PurchaseHistoryProps) {
         firstLabel="구매 희망가"
         secondLabel="날짜"
       />
-      {purchaseList?.map((purchase) => (
-        <Transaction
-          transaction={purchase}
-          key={purchase.auctionId}>
-          <Transaction.Price>{purchase.biddingPrice}</Transaction.Price>
-          <Transaction.Date date={purchase.tradeTime} />
-        </Transaction>
-      ))}
+      {purchaseList.length === 0 ? (
+        <EmptyList type="구매" />
+      ) : (
+        purchaseList.map((purchase) => (
+          <Transaction
+            transaction={purchase}
+            key={purchase.auctionId}>
+            <Transaction.Price>
+              {purchase.winningPrice || "-"}
+            </Transaction.Price>
+            <Transaction.Date date={purchase.auctionCreatedAt} />
+          </Transaction>
+        ))
+      )}
     </>
   );
 }

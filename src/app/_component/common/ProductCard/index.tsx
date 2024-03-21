@@ -24,7 +24,7 @@ const ProductCardWrapper = ({
 }: ProductWrapperProps) => {
   return (
     <Link
-      href={`auctions/${id}`}
+      href={`/auctions/${id}`}
       className={cn("flex group", className)}
       shallow={true}>
       {children}

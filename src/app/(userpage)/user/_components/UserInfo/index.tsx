@@ -1,8 +1,8 @@
 "use client";
 
-import Info from "../../_components/Info";
-import Profile from "../../_components/Profile";
-import useUserInfo from "../../_hooks/queries/useUserInfo";
+import Info from "@/app/(userpage)/_components/Info";
+import Profile from "@/app/(userpage)/_components/Profile";
+import useUserInfo from "@/app/(userpage)/_hooks/queries/useUserInfo";
 
 function UserInfo({ userId }: { userId: number }) {
   const {

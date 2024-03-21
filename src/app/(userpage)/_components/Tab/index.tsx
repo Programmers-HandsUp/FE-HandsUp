@@ -4,24 +4,26 @@ import { usePathname, useSearchParams } from "next/navigation";
 import usePurchaseList from "@/app/(userpage)/_hooks/queries/usePurchaseList";
 import useSaleList from "@/app/(userpage)/_hooks/queries/useSaleList";
 import { cn } from "@/utils/function/cn";
-import { Status } from "@/utils/types/user/mypage";
+import { statusMap } from "@/utils/mocks/api/mypageApis";
+import { StatusEn } from "@/utils/types/user/mypage";
 
 import { TabVariants } from "./Tab.variants";
 
 interface TabProps {
   children: React.ReactNode;
-  status: Status;
+  status: StatusEn;
+  userId: number;
 }
 
 type Path = "/my/buying" | "/my/selling";
 
-function Tab({ children, status }: TabProps) {
+function Tab({ children, status, userId }: TabProps) {
   const basePath = usePathname() as Path;
   const searchParams = useSearchParams();
-  const selectStatus = searchParams.get("status") as Status;
+  const selectStatus = searchParams.get("status")?.toUpperCase() as StatusEn;
 
   const { data: purchaseCounts } = usePurchaseList();
-  const { data: saleCounts } = useSaleList(5);
+  const { data: saleCounts } = useSaleList(userId);
 
   const selectTab = selectStatus === status;
   const count = basePath === "/my/buying" ? purchaseCounts : saleCounts;
@@ -31,7 +33,7 @@ function Tab({ children, status }: TabProps) {
       href={`${basePath}?status=${status}`}
       className="flex flex-col items-center relative">
       <p className={selectTab ? cn(TabVariants({ basePath })) : ""}>
-        {count ? count[status] : 0}
+        {count ? count[statusMap[status]] : 0}
       </p>
       <p className="pb-2">{children}</p>
       <p className={cn(TabVariants({ selectTab }))}></p>

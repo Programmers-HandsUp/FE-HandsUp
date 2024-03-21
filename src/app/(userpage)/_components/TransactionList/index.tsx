@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 
-import { Status } from "@/utils/types/user/mypage";
+import { StatusEn } from "@/utils/types/user/mypage";
 
 import usePurchaseStatusList from "../../../(userpage)/_hooks/queries/usePurchaseStatusList";
 import useSaleStatusList from "../../../(userpage)/_hooks/queries/useSaleStatusList";
@@ -18,7 +18,7 @@ interface TransactionListProps {
 }
 function TransactionList({ tradeMethod, userId }: TransactionListProps) {
   const searchParams = useSearchParams();
-  const status = searchParams.get("status") as Status;
+  const status = searchParams.get("status")?.toUpperCase() as StatusEn;
 
   const { data: purchaseList } = usePurchaseStatusList(status);
   const { data: saleList } = useSaleStatusList(userId, status);
@@ -27,9 +27,21 @@ function TransactionList({ tradeMethod, userId }: TransactionListProps) {
     <>
       <div className="w-[360px] z-10 backdrop-blur-md opacity-80">
         <div className="grid grid-cols-3 items-center h-14 border-b">
-          <Tab status="bidding">{tradeMethod} 입찰</Tab>
-          <Tab status="pending">거래 진행 중</Tab>
-          <Tab status="finished">종료</Tab>
+          <Tab
+            status="BIDDING"
+            userId={userId}>
+            {tradeMethod} 입찰
+          </Tab>
+          <Tab
+            status="TRADING"
+            userId={userId}>
+            거래 진행 중
+          </Tab>
+          <Tab
+            status="COMPLETED"
+            userId={userId}>
+            종료
+          </Tab>
         </div>
       </div>
 

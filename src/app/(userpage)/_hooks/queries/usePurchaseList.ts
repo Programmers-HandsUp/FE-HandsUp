@@ -1,13 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+
+import { Purchase } from "@/utils/types/user/mypage";
 
 import { purchaseList } from "../../_api/mypage";
 import { calculateCounts } from "../../_utils/calculateCounts";
 
 const usePurchaseList = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ["purchaseList"],
     queryFn: () => purchaseList(),
-    select: calculateCounts
+    select: (data: Purchase) => calculateCounts(data.content)
   });
 };
 

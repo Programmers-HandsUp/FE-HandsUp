@@ -1,22 +1,32 @@
-export type Status = "pending" | "bidding" | "finished";
-
+import { ImageUrl } from "../image";
+export type StatusEn = "BIDDING" | "TRADING" | "COMPLETED";
+export type Status = "입찰 중" | "거래 중" | "거래 완료";
 export interface Transaction {
   auctionId: number;
   auctionTitle: string;
-  auctionImageUrl: File[] | null | string;
+  auctionImageUrl: ImageUrl;
   auctionStatus: Status;
+  auctionEndDateTime: string | Date;
+  auctionCreatedAt: string | Date;
+  winningPrice: number;
 }
 
-export interface Purchase extends Transaction {
-  tradeTime: string;
-  biddingPrice: number;
+export interface Purchase {
+  content: PurchaseContent[];
+  size: number;
+  hasNext: boolean;
 }
 
-export interface Sale extends Transaction {
-  auctionLeftTime: string;
-  auctionCompleteTime: string;
-  maxBiddingPrice: number;
-  completeBiddingPrice: number;
+export interface PurchaseContent extends Transaction {}
+
+export interface Sale {
+  content: SaleContent[];
+  size: number;
+  hasNext: boolean;
+}
+
+export interface SaleContent extends Transaction {
+  maxBiddingPrice: number; // 최고 입찰가
 }
 
 export interface ReviewLabel {

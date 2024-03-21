@@ -1,13 +1,17 @@
-import { Purchase, Sale, Status } from "@/utils/types/user/mypage";
+import {
+  PurchaseContent,
+  SaleContent,
+  Status
+} from "@/utils/types/user/mypage";
 
-export const calculateCounts = (data: Purchase[] | Sale[]) => {
+export const calculateCounts = (content: PurchaseContent[] | SaleContent[]) => {
   const initCounts: Record<Status, number> = {
-    bidding: 0,
-    pending: 0,
-    finished: 0
+    "입찰 중": 0,
+    "거래 중": 0,
+    "거래 완료": 0
   };
 
-  return data.reduce((acc, item) => {
+  return content.reduce((acc, item) => {
     acc[item.auctionStatus]++;
     return acc;
   }, initCounts);

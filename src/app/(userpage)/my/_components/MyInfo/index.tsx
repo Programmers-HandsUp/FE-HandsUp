@@ -1,12 +1,11 @@
 import Link from "next/link";
 
+import BoxLayout from "@/app/(userpage)/_components/BoxLayout";
+import Info from "@/app/(userpage)/_components/Info";
+import Profile from "@/app/(userpage)/_components/Profile";
+import TransactionStatus from "@/app/(userpage)/_components/TransactionStatus";
+import useMyInfo from "@/app/(userpage)/_hooks/queries/useMyInfo";
 import { CheckLoginUserResponse } from "@/utils/types/user/users";
-
-import BoxLayout from "../../_components/BoxLayout";
-import Info from "../../_components/Info";
-import Profile from "../../_components/Profile";
-import TransactionStatus from "../../_components/TransactionStatus";
-import useMyInfo from "../../_hooks/queries/useMyInfo";
 
 function MyInfo({ user }: { user: CheckLoginUserResponse }) {
   const {
@@ -34,7 +33,7 @@ function MyInfo({ user }: { user: CheckLoginUserResponse }) {
         </Profile>
         <BoxLayout
           title="구매 내역"
-          url="/my/buying?status=bidding">
+          url="/my/buying?status=BIDDING">
           <TransactionStatus
             type="구매"
             statusCounts={purchaseStatusCounts}

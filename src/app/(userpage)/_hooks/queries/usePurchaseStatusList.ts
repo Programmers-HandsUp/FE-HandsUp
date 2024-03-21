@@ -1,13 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
-import { Status } from "@/utils/types/user/mypage";
+import { StatusEn } from "@/utils/types/user/mypage";
 
 import { purchaseList } from "../../_api/mypage";
 
-const usePurchaseStatusList = (status: Status) => {
-  return useQuery({
+const usePurchaseStatusList = (status: StatusEn) => {
+  return useSuspenseQuery({
     queryKey: ["purchaseList", status],
-    queryFn: () => purchaseList(status)
+    queryFn: () => purchaseList(status),
+    select: (data) => data.content
   });
 };
 

@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 import ProductCard from "@/app/_component/common/ProductCard";
-import { Purchase, Sale } from "@/utils/types/user/mypage";
+import { PurchaseContent, SaleContent } from "@/utils/types/user/mypage";
 
 import {
   TransactionDate,
@@ -12,7 +12,7 @@ import {
 function TransactionWrapper({
   children,
   transaction
-}: PropsWithChildren<{ transaction: Purchase | Sale }>) {
+}: PropsWithChildren<{ transaction: PurchaseContent | SaleContent }>) {
   return (
     <>
       <ProductCard
@@ -20,7 +20,7 @@ function TransactionWrapper({
         id={transaction.auctionId}>
         <div className="grid grid-cols-6 items-center w-full border-t py-4">
           <ProductCard.CardImage
-            titleImage="/assets/images/logo.webp"
+            titleImage={transaction.auctionImageUrl}
             width={60}
             height={60}
           />
