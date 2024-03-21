@@ -1,6 +1,6 @@
 import { ImageUrl } from "../image";
 export type StatusEn = "BIDDING" | "TRADING" | "COMPLETED";
-export type Status = "입찰중" | "거래중" | "거래완료";
+export type Status = "입찰 중" | "거래 중" | "거래 완료";
 export interface Transaction {
   auctionId: number;
   auctionTitle: string;

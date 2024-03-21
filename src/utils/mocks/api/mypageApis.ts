@@ -10,9 +10,9 @@ import {
 } from "./data/mypageData";
 
 export const statusMap: Record<StatusEn, Status> = {
-  TRADING: "거래중",
-  BIDDING: "입찰중",
-  COMPLETED: "거래완료"
+  TRADING: "거래 중",
+  BIDDING: "입찰 중",
+  COMPLETED: "거래 완료"
 };
 
 const handlers = [

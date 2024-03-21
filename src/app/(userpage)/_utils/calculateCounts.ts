@@ -6,9 +6,9 @@ import {
 
 export const calculateCounts = (content: PurchaseContent[] | SaleContent[]) => {
   const initCounts: Record<Status, number> = {
-    입찰중: 0,
-    거래중: 0,
-    거래완료: 0
+    "입찰 중": 0,
+    "거래 중": 0,
+    "거래 완료": 0
   };
 
   return content.reduce((acc, item) => {
