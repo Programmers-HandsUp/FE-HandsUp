@@ -31,13 +31,10 @@ export const addBookmark = async (
 
   if (!isTokenValid) throw new Error("401");
 
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
+      method: "POST"
     }
   );
   if (!res.ok) {
@@ -55,13 +52,10 @@ export const deleteBookmark = async (
 
   if (!isTokenValid) throw new Error("401");
 
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
+      method: "DELETE"
     }
   );
   if (!res.ok) {
@@ -78,13 +72,8 @@ export const getCheckBookmarkList =
 
     if (!isTokenValid) throw new Error("401 토큰 오류");
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`,
-      {
-        headers: {
-          Authorization: `Bearer ${isTokenValid}`
-        }
-      }
+    const res = await fetchWithTokenRenewal(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`
     );
     if (!res.ok) {
       throw new Error("서버 에러 발생");
