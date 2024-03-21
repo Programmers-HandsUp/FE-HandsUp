@@ -7,7 +7,7 @@ import { MouseEvent, ReactNode } from "react";
 import Toast from "../Toast";
 
 interface LoginLinkProps {
-  userId: string | undefined;
+  userId: number | undefined;
   href: string;
   children: ReactNode;
 }

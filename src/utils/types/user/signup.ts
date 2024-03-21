@@ -6,10 +6,9 @@ export interface SignUpRequest {
   gu: string;
   dong: string;
   profileImageUrl: string;
-  productCategoryIds: string[];
+  productCategoryIds: number[];
 }
 
 export interface SignUpResponse {
   userId: number;
 }
-

@@ -13,11 +13,15 @@ import {
 
 export interface InfoComponentProps {
   children: ReactNode;
+  className?: string;
 }
 
-const AuctionDetailInfoWrapper = ({ children }: InfoComponentProps) => {
+const AuctionDetailInfoWrapper = ({
+  children,
+  className
+}: InfoComponentProps) => {
   return (
-    <div>
+    <div className={className}>
       {children}
       <div className="flex justify-end py-2">
         <button className="text-gray-500 underline">게시글 신고하기</button>

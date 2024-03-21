@@ -1,6 +1,6 @@
 import "./globals.css";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
@@ -9,8 +9,11 @@ import Providers from "@/utils/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const viewport = {
-  themeColor: "#ffffff"
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: "cover"
 };
 
 export const metadata: Metadata = {
@@ -19,9 +22,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: "/assets/icons/favicon.ico"
-  },
-  viewport:
-    "minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, viewport-fit=cover"
+  }
 };
 
 export default async function RootLayout({
@@ -33,7 +34,7 @@ export default async function RootLayout({
   const savedDarkMode = cookieStore.get("theme");
 
   const initialDarkMode =
-    savedDarkMode === undefined ? "dark" : savedDarkMode.value;
+    savedDarkMode === undefined ? "light" : savedDarkMode.value;
 
   return (
     <html

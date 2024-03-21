@@ -3,7 +3,7 @@ import {
   PURCHASE_TIME_VALUE,
   STATE_LIST,
   TRADEMETHOD_LIST
-} from "@/app/products/new/_utils/constants";
+} from "@/app/auctions/new/_utils/constants";
 
 import { ImageUrl } from "../image";
 

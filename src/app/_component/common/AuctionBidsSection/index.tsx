@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 
 interface AuctionBidsSectionProps {
@@ -17,10 +19,11 @@ const AuctionBidsSection = ({
           ₩ {setMoneyUnitString(currentBiddingPrice)}원
         </span>
       </div>
-      {/*TODO 구매페이지 이동 추가 */}
-      <button className="bg-[#96E4FF] p-2 rounded-lg hover:bg-[#55d4ff]">
+      <Link
+        href={`/auctions/${auctionId}/purchase`}
+        className="bg-[#96E4FF] p-2 rounded-lg hover:bg-[#55d4ff]">
         입찰 하기
-      </button>
+      </Link>
     </div>
   );
 };

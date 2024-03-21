@@ -20,11 +20,13 @@ export const getCookie = ({ name }: getCookieParams) => {
     const trimmedCookie = cookieString.trim();
     return trimmedCookie.startsWith(name + "=");
   });
-  const cookieValues = filteredCookies.map((cookie) =>
-    cookie.substring(name.length + 1).trim()
-  );
 
-  return cookieValues.join(", ");
+  const cookieValues = filteredCookies
+    .join("")
+    .trim()
+    .substring(name.length + 1);
+
+  return cookieValues.length <= 0 ? null : cookieValues;
 };
 
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {

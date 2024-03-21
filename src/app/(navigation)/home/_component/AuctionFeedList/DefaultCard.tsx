@@ -23,7 +23,7 @@ export const HorizontalCard = ({ auction, className }: DefaultCardProps) => {
         </ProductCard.CardTitle>
 
         <ProductCard.CardPrice price={auction.currentBiddingPrice} />
-        <div className="flex justify-between my-1">
+        <div className="flex justify-between items-center my-1">
           <ProductCard.CardDate date={auction.createdAt} />
           <Timer
             createdAt={new Date(auction.createdAt)}
@@ -50,7 +50,7 @@ export const VerticalCard = ({ auction, className }: DefaultCardProps) => {
         </ProductCard.CardTitle>
 
         <ProductCard.CardPrice price={auction.currentBiddingPrice} />
-        <div className="flex justify-between my-1">
+        <div className="flex justify-between items-center my-1">
           <ProductCard.CardDate date={auction.createdAt} />
           <Timer
             createdAt={new Date(auction.createdAt)}

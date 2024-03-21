@@ -8,12 +8,8 @@ const useDarkMode = () => {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
       const savedDarkMode = getCookie({ name: "theme" });
-      const prefersDarkMode = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      return savedDarkMode === null
-        ? prefersDarkMode
-        : savedDarkMode === "dark";
+
+      return savedDarkMode === null ? false : savedDarkMode === "dark";
     }
   });
 

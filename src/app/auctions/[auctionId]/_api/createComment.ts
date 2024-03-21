@@ -1,25 +1,33 @@
+import { authCheck } from "@/utils/function/authCheck";
+import { CommentContent } from "@/utils/types/comment/commentData";
+
 export interface CreateCommentRequest {
-  comment: string;
+  content: string;
   auctionId: number;
 }
 
 export const createComment = async ({
-  comment,
+  content,
   auctionId
-}: CreateCommentRequest) => {
+}: CreateCommentRequest): Promise<CommentContent> => {
+  const isTokenValid = authCheck();
+
+  if (!isTokenValid) throw new Error("401");
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/comment/create`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/comments`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${isTokenValid}`
       },
       body: JSON.stringify({
-        comment,
-        auctionId
+        content
       })
     }
   );
+  if (!res.ok) throw new Error("Failed to fetch data [CreateComment] ");
 
-  return await res.json();
+  return res.json();
 };

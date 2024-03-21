@@ -38,14 +38,16 @@ const ToastItem = ({ message, iconId, duration, onDone }: ToastItemProps) => {
         "overflow-hidden rounded bg-white p-4 shadow-md shadow-gray-700",
         show ? "animate-rightMove" : "animate-leftMove"
       )}>
-      <div
-        className={cn(
-          "absolute left-0 top-0 h-1 w-0 rounded",
-          "animate-progress",
-          iconColor[iconId]
-        )}
-        style={{ animationDuration: `${duration}ms` }}
-      />
+      <div className="absolute top-0 left-0 overflow-hidden bg-transparent rounded-full w-full h-[4px]">
+        <div
+          className={cn(
+            "h-full w-full rounded origin-left -translate-x-full",
+            "animate-progress",
+            iconColor[iconId]
+          )}
+          style={{ animationDuration: `${duration}ms` }}
+        />
+      </div>
       <div className={`${iconColor[iconId]} rounded-full`}>
         <Icon id={iconId} />
       </div>

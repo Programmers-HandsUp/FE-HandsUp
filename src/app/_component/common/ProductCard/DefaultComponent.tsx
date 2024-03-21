@@ -65,6 +65,7 @@ export const CardTitle = ({ children, className, width }: CardTitleProps) => {
     </div>
   );
 };
+
 export const CardPrice = ({ children, className, price }: CardIPriceProps) => {
   return (
     <p className={cn("text-base text-left", className)}>
@@ -89,7 +90,7 @@ export const CardTag = ({ children, className, tradeState }: CardTagProps) => {
 
 export const CardDate = ({ children, date }: CardDateProps) => {
   return (
-    <p className="text-sm text-[#ABABAB] text-right">
+    <p className="text-[11px] text-[#ABABAB] text-left">
       {getPastTime(date)}
       {children}
     </p>

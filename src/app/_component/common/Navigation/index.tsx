@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
+import { cn } from "@/utils/function/cn";
 
 import Icon from "../Icon";
 import ThemeButton from "../ThemeButton";
 import LoginLink from "./LoginLink";
 
 interface NavigationProps {
-  userId?: string;
+  userId: number | undefined;
 }
 
 const Navigation = ({ userId }: NavigationProps) => {
   const isVisible = useVisibilityOnScroll();
+  const pathname = usePathname();
 
   return (
     <div
@@ -22,25 +25,33 @@ const Navigation = ({ userId }: NavigationProps) => {
         transform: isVisible ? "translateY(0)" : "translateY(200%)",
         transition: "transform 0.3s ease-in-out"
       }}>
-      <Link href="/">
-        <div className="flex flex-col items-center">
+      <Link href="/home">
+        <div
+          className={cn(
+            "flex flex-col items-center",
+            `${pathname.includes("home") ? "text-[#96E4FF]" : "text-inherit"}`
+          )}>
           <Icon
             id="home"
             fill="none"
             size={20}
-            className="hover:bg-[#72dbfe] hover:text-gray-200 rounded-full transition-colors"
+            className="hover:bg-[#72dbfe]rounded-full transition-colors"
           />
           <span className="text-[11px]">홈</span>
         </div>
       </Link>
       <LoginLink
         userId={userId}
-        href="/chat">
-        <div className="flex flex-col items-center">
+        href="/chatrooms">
+        <div
+          className={cn(
+            "flex flex-col items-center",
+            `${pathname.includes("chatrooms") ? "text-[#96E4FF]" : "text-inherit"}`
+          )}>
           <Icon
-            id="chat"
+            id="chat-comment"
             size={20}
-            className="hover:bg-[#72dbfe] hover:text-gray-200 hover:stroke-gray-200 rounded-full transition-colors"
+            className="hover:bg-[#72dbfe] rounded-full transition-colors fill-white"
           />
           <span className="text-[11px]">채팅</span>
         </div>
@@ -49,11 +60,15 @@ const Navigation = ({ userId }: NavigationProps) => {
       <LoginLink
         userId={userId}
         href="/create">
-        <div className="flex flex-col items-center">
+        <div
+          className={cn(
+            "flex flex-col items-center",
+            `${pathname.includes("create") ? "text-[#96E4FF]" : "text-inherit"}`
+          )}>
           <Icon
             id="box-add"
             size={20}
-            className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 dark:fill-white rounded-full transition-colors fill-black"
+            className="hover:bg-[#72dbfe] dark:fill-white rounded-full transition-colors fill-black"
           />
           <span className="text-[11px]">상품 등록</span>
         </div>
@@ -62,11 +77,15 @@ const Navigation = ({ userId }: NavigationProps) => {
       <LoginLink
         userId={userId}
         href="/bookmark">
-        <div className="flex flex-col items-center">
+        <div
+          className={cn(
+            "flex flex-col items-center",
+            `${pathname.includes("bookmark") ? "text-[#96E4FF]" : "text-inherit"}`
+          )}>
           <Icon
             id="bookmark"
             size={20}
-            className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 rounded-full transition-colors"
+            className="hover:bg-[#72dbfe]  rounded-full transition-colors"
           />
           <span className="text-[11px]">북마크</span>
         </div>
@@ -74,11 +93,15 @@ const Navigation = ({ userId }: NavigationProps) => {
       <LoginLink
         userId={userId}
         href={`/account/${userId}`}>
-        <div className="flex flex-col items-center">
+        <div
+          className={cn(
+            "flex flex-col items-center",
+            `${pathname.includes("account") ? "text-[#96E4FF]" : "text-inherit"}`
+          )}>
           <Icon
             id="user-alt-fill"
             size={20}
-            className="hover:bg-[#72dbfe] hover:fill-gray-200 hover:stroke-gray-200 rounded-full transition-colors fill-black"
+            className="hover:bg-[#72dbfe] rounded-full transition-colors fill-black"
           />
           <span className="text-[11px]">마이페이지</span>
         </div>

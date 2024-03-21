@@ -11,16 +11,16 @@ export const useIdDuplicateCheck = (
 
   return useMutation({
     mutationFn: (id: string) => idDuplicateCheck(id),
-    onSuccess: () => {
-      setIdStatus("Ok");
+    onSuccess: (data) => {
+      if (data.isAvailable) {
+        setIdStatus("Ok");
+      } else {
+        setIdStatus("None");
+        show("해당 이메일은 사용이 불가능합니다", "warn-solid", 3000);
+      }
     },
     onError: (error: Error) => {
-      switch (Number(error.message)) {
-        case 401:
-          setIdStatus("None");
-          show("중복된 아이디가 존재합니다!", "warn-solid", 2000);
-          break;
-      }
+      setIdStatus("None");
     }
   });
 };

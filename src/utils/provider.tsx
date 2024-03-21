@@ -1,9 +1,9 @@
 "use client";
 
-import React, { ReactNode } from "react";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
+import React, { ReactNode } from "react";
 
 function makeQueryClient() {
   return new QueryClient({

@@ -20,6 +20,12 @@ export interface Sale extends Transaction {
 }
 
 export interface ReviewLabel {
+  content: LabelContent[];
+  size: number;
+  hasNext: boolean;
+}
+
+export interface LabelContent {
   label:
     | "응답이 빨라요"
     | "시간 약속을 잘 지켜요"
@@ -32,8 +38,14 @@ export interface ReviewLabel {
 }
 
 export interface Review {
+  content: ReviewContent[];
+  size: number;
+  hasNext: boolean;
+}
+
+export interface ReviewContent {
   reviewId: number;
-  nickname: string;
-  profileImageUrl: string;
+  writerNickName: string;
+  writerProfileImageUrl: string;
   content: string;
 }

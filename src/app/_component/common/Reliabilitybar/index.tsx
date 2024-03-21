@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { cn } from "@/utils/function/cn";
 
 import { TextVariants, ThemeVariants } from "./Reliability.variants";
@@ -25,16 +27,30 @@ function ReliabilityBar({ score = 100, icons_padding = 2 }) {
   return (
     <div>
       <div className={cn(`flex justify-between p-${icons_padding}`)}>
-        <span>😈</span>
+        <Image
+          src="/assets/images/devil.webp"
+          width={25}
+          height={25}
+          alt="슬픈 로고"
+        />
         <span className={cn(TextVariants({ theme }))}>{text}</span>
-        <span>😇</span>
+        <Image
+          src="/assets/images/angel.webp"
+          width={25}
+          height={25}
+          alt="슬픈 로고"
+        />
       </div>
 
-      <div className="relative w-full h-3 rounded-full bg-gray-100 z-10">
-        <div
-          className="absolute h-3 z-100"
-          style={{ width: `${width}%` }}>
-          <div className={cn(ThemeVariants({ theme }))}></div>
+      <div className="relative w-full h-3 rounded-full bg-gray-100">
+        <div className="absolute top-0 left-0 overflow-hidden bg-transparent rounded-full w-full h-full">
+          <div
+            className={cn(
+              ThemeVariants({ theme }),
+              "absolute h-full animate-fill origin-left -translate-x-full"
+            )}
+            style={{ width: `${width}%` }}
+          />
         </div>
       </div>
     </div>

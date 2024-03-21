@@ -1,21 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
-import { BidRequest } from "@/utils/types/bid/bids";
+import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
+import { BidsResponse } from "@/utils/types/bid/bids";
 
 import Icon from "../Icon";
-import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 
 interface AuctionDetailDataProps {
+  auctionStatus: "입찰중" | "거래중" | "거래완료";
   bookmarkCount: number;
   auctionId: number;
-  bidsData: BidRequest;
+  bidsData: BidsResponse;
+  sellerId: number;
 }
 
 const AuctionDetailFooterBar = ({
+  auctionStatus,
   bidsData,
   auctionId,
+  sellerId,
   bookmarkCount
 }: AuctionDetailDataProps) => {
   const isVisible = useVisibilityOnScroll();
@@ -28,8 +32,10 @@ const AuctionDetailFooterBar = ({
       }}>
       <div className="flex">
         <div className="flex">
-          <Icon id="book-mark" />
-          {/*TODO: 좋아요 클릭 가능하게 구현 */}
+          <Icon
+            id="bookmark"
+            className="text-transparent"
+          />
           {bookmarkCount}
         </div>
         <div className="flex">
@@ -38,10 +44,13 @@ const AuctionDetailFooterBar = ({
         </div>
       </div>
       <div>
-        {/* TODO: 입찰자 목록 페이지 이동 Link 태그 추가 */}
-        <button className="bg-[#96E4FF] rounded-lg px-2 hover:bg-[#55d4ff]">
-          입찰자 목록으로 이동
-        </button>
+        {auctionStatus !== "입찰중" && (
+          <Link
+            href={`${auctionId}/bidderList?sellerId=${sellerId}`}
+            className="bg-[#96E4FF] rounded-lg px-2 hover:bg-[#55d4ff]">
+            입찰자 목록으로 이동
+          </Link>
+        )}
       </div>
     </div>
   );

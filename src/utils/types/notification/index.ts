@@ -1,17 +1,24 @@
 import { ImageUrl } from "../image";
 
-export type NotificationType =
-  | "chat"
-  | "comment"
-  | "bookmark"
-  | "purchase_winning"
-  | "canceld_purchase_winning";
+export type Type =
+  | "CHAT"
+  | "COMMENT"
+  | "BOOKMARK"
+  | "PURCHASE_WINNING"
+  | "CANCELD_PURCHASE_WINNING"
+  | "COMPLETED_PURCHASE_TRADING";
 
 export interface Notification {
-  notification_Id: number;
-  profileImg: ImageUrl;
+  notificationId: number;
+  senderProfileImageUrl: ImageUrl;
   content: string;
   auctionId: number;
-  auctionImg: ImageUrl;
-  type: NotificationType;
+  auctionImageUrl: ImageUrl;
+  notificationType: Type;
+}
+
+export interface Notifications {
+  content: Notification[];
+  size: number;
+  hasNext: boolean;
 }
