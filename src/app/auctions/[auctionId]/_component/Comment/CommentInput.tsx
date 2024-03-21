@@ -22,7 +22,7 @@ const CommentInput = ({ onSubmit, isLogin, auctionStatus }: CommentProps) => {
 
   return (
     <div>
-      {auctionStatus ? (
+      {auctionStatus === "거래 완료" ? (
         <div>경매가 끝나버려서 얘기를 할 수 없어요!</div>
       ) : (
         <form

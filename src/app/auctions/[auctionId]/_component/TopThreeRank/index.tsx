@@ -4,7 +4,7 @@ import TransparentMan from "/public/assets/images/transparentMan.png";
 import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 import { Top3BidData } from "@/utils/types/bid/top3Bid";
 
-import Avatar from "../Avatar";
+import Avatar from "../../../../_component/common/Avatar";
 //@TODO: map으로 뿌릴 때 id 오류 생김
 const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
   const maxBiddingPrice = Math.max(...content.map((item) => item.biddingPrice));

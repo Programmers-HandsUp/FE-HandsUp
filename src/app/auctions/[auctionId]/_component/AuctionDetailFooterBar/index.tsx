@@ -5,7 +5,7 @@ import Link from "next/link";
 import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { BidsResponse } from "@/utils/types/bid/bids";
 
-import Icon from "../Icon";
+import Icon from "../../../../_component/common/Icon";
 
 interface AuctionDetailDataProps {
   auctionStatus: "입찰 중" | "거래 중" | "거래 완료";

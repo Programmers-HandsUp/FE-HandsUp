@@ -3,19 +3,19 @@
 import { MouseEvent } from "react";
 
 import ArrowBackButton from "@/app/_component/common/ArrowBackButton";
-import AuctionBidsSection from "@/app/_component/common/AuctionBidsSection";
-import AuctionDetailFooterBar from "@/app/_component/common/AuctionDetailFooterBar";
-import { DefaultAuctionDetailInfo } from "@/app/_component/common/AuctionDetailInfo/DefaultCase";
 import Bookmark from "@/app/_component/common/Bookmark";
-import CarouselDetailImage from "@/app/_component/common/CarouselDetailImage";
 import Header from "@/app/_component/common/Header";
-import LineChart from "@/app/_component/common/LineChart";
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
-import TopThreeRank from "@/app/_component/common/TopThreeRank";
 import UserCard from "@/app/_component/common/UserCard";
 import useBookmark from "@/app/_hooks/mutations/useBookmark";
 import useSession from "@/app/_hooks/queries/useSession";
+import AuctionBidsSection from "@/app/auctions/[auctionId]/_component/AuctionBidsSection";
+import AuctionDetailFooterBar from "@/app/auctions/[auctionId]/_component/AuctionDetailFooterBar";
+import { DefaultAuctionDetailInfo } from "@/app/auctions/[auctionId]/_component/AuctionDetailInfo/DefaultCase";
+import CarouselDetailImage from "@/app/auctions/[auctionId]/_component/CarouselDetailImage";
+import LineChart from "@/app/auctions/[auctionId]/_component/LineChart";
+import TopThreeRank from "@/app/auctions/[auctionId]/_component/TopThreeRank";
 
 import useGetAuctionDetail from "../_hooks/queries/useGetAuctionDetail";
 import useGetCheckBookmark from "../_hooks/queries/useGetCheckBookmark";

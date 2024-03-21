@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import setMoneyUnitString from "@/utils/function/setMoneyUnitString";
 
-import Spinner from "../Spinner";
+import Spinner from "../../../../_component/common/Spinner";
 
 interface AuctionBidsSectionProps {
   currentBiddingPrice: number;

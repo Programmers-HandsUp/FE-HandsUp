@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import SlideCarousel from "../SlideCarousel";
+import SlideCarousel from "../../../../_component/common/SlideCarousel";
 
 interface CarouselDetailImageProps {
   imageUrls: string[];
