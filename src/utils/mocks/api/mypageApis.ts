@@ -1,5 +1,7 @@
 import { http, HttpResponse } from "msw";
 
+import { Status, StatusEn } from "@/utils/types/user/mypage";
+
 import {
   purchaseList,
   reviewLabelList,
@@ -7,44 +9,56 @@ import {
   saleList
 } from "./data/mypageData";
 
-const handlers = [
-  http.get("/api/users/buy", ({ request }) => {
-    const url = new URL(request.url);
-    const status = url.searchParams.get("status");
+export const statusMap: Record<StatusEn, Status> = {
+  TRADING: "거래중",
+  BIDDING: "입찰중",
+  COMPLETED: "거래완료"
+};
 
-    let responseList;
+const handlers = [
+  http.get("/api/users/buys", ({ request }) => {
+    const url = new URL(request.url);
+    const status = url.searchParams.get("auctionStatus") as StatusEn;
 
     switch (status) {
-      case "finished":
-      case "bidding":
-      case "pending":
-        responseList = purchaseList.filter(
-          (item) => item.auctionStatus === status
+      case "TRADING":
+      case "BIDDING":
+      case "COMPLETED":
+        const responseList = purchaseList.content.filter(
+          (item) => item.auctionStatus === statusMap[status]
         );
-        break;
-      default:
-        responseList = purchaseList;
-    }
 
-    return HttpResponse.json(responseList);
+        const result = {
+          content: responseList,
+          size: 10,
+          hasNext: false
+        };
+        return HttpResponse.json(result);
+      default:
+        return HttpResponse.json(purchaseList);
+    }
   }),
   http.get("/api/users/:userId/sales", ({ request }) => {
     const url = new URL(request.url);
-    const status = url.searchParams.get("status");
-
-    let responseList;
+    const status = url.searchParams.get("auctionStatus") as StatusEn;
 
     switch (status) {
-      case "finished":
-      case "bidding":
-      case "pending":
-        responseList = saleList.filter((item) => item.auctionStatus === status);
-        break;
-      default:
-        responseList = saleList;
-    }
+      case "TRADING":
+      case "BIDDING":
+      case "COMPLETED":
+        const responseList = saleList.content.filter(
+          (item) => item.auctionStatus === statusMap[status]
+        );
 
-    return HttpResponse.json(responseList);
+        const result = {
+          content: responseList,
+          size: 10,
+          hasNext: false
+        };
+        return HttpResponse.json(result);
+      default:
+        return HttpResponse.json(saleList);
+    }
   }),
   http.get("/api/users/:userId/reviews/labels", () => {
     return HttpResponse.json(reviewLabelList);
