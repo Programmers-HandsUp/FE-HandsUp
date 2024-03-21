@@ -14,7 +14,7 @@ function Layout({ title, children }: LayoutProps) {
       <div className="flex items-center py-3">
         <Link
           href="/my"
-          className="absolute left-0">
+          className="absolute text-left">
           <Icon id="arrow-back" />
         </Link>
         <p className="mx-auto text-semibold  text-lg">{title}</p>

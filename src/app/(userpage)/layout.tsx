@@ -23,7 +23,7 @@ export default async function UserPageLayout({
 
   return (
     <section>
-      {children}
+      <div className="px-2">{children}</div>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
         <Navigation
           userId={userId}

@@ -13,7 +13,7 @@ function UserInfo({ userId }: { userId: number }) {
   } = useUserInfo(userId);
 
   return (
-    <>
+    <div className="py-3">
       <Info
         saleStatusCounts={saleStatusCounts}
         reviewLabelList={reviewLabelList}
@@ -23,7 +23,7 @@ function UserInfo({ userId }: { userId: number }) {
           <p className="text-sm">{user.dong}</p>
         </Profile>
       </Info>
-    </>
+    </div>
   );
 }
 
