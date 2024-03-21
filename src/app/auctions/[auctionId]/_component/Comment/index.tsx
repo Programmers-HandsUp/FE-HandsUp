@@ -6,6 +6,7 @@ import {
   useQueryClient
 } from "@tanstack/react-query";
 import { useEffect, useRef, useState } from "react";
+import { v4 } from "uuid";
 
 import Spinner from "@/app/_component/common/Spinner";
 import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
@@ -140,7 +141,7 @@ const Comment = ({
         className="bg-[#96e5ff8f] rounded-lg p-2 h-[300px] overflow-auto">
         <div ref={ref}></div>
         {commentsData.reverse().map((item, idx) => (
-          <div key={item.writerId + idx}>
+          <div key={v4()}>
             <ChatMessage
               avatar={item.profileImageUrl}
               nickname={item.nickname}
