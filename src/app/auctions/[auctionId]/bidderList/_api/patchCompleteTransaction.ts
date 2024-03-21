@@ -1,4 +1,5 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 
 const patchCompleteTransaction = async ({
   biddingId
@@ -13,14 +14,10 @@ const patchCompleteTransaction = async ({
     throw new Error("401");
   }
 
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bids/${biddingId}/complete`,
     {
-      method: "PATCH",
-      cache: "no-store",
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
+      method: "PATCH"
     }
   );
   if (!res.ok) throw new Error("Failed to fetch data [AuctionDetail] ");
