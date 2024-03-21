@@ -4,23 +4,23 @@ export const STATE_LIST = ["미개봉", "깨끗해요", "사용감 있음"] as c
 export const PURCHASE_TIME_LIST = [
   {
     value: "1개월 이하",
-    title: "1개월 ⬇"
+    title: "1개월 ▼"
   },
   {
     value: "3개월 이하",
-    title: "3개월 ⬇️"
+    title: "3개월 ▼"
   },
   {
     value: "6개월 이하",
-    title: "6개월 ⬇️"
+    title: "6개월 ▼"
   },
   {
     value: "1년 이하",
-    title: "1년 ⬇️"
+    title: "1년 ▼"
   },
   {
     value: "1년 이상",
-    title: "1년 ⬆️"
+    title: "1년 ▲"
   },
   {
     value: "모름",
