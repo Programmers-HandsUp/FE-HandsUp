@@ -16,7 +16,7 @@ export function Finished({ saleList }: SaleList) {
           <Transaction
             transaction={sale}
             key={sale.auctionId}>
-            <Transaction.Price>{sale.winningPrice}</Transaction.Price>
+            <Transaction.Price>{sale.maxBiddingPrice}</Transaction.Price>
             <Transaction.Date date={sale.auctionCreatedAt} />
           </Transaction>
         ))
