@@ -20,7 +20,7 @@ function TransactionWrapper({
         id={transaction.auctionId}>
         <div className="grid grid-cols-6 items-center w-full border-t py-4">
           <ProductCard.CardImage
-            titleImage="/assets/images/logo.webp"
+            titleImage={transaction.auctionImageUrl}
             width={60}
             height={60}
           />
