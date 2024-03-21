@@ -1,4 +1,4 @@
-import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 import { AddressState } from "../_component/MainContentSection";
@@ -85,19 +85,12 @@ export async function getSortedBids({
 }
 
 export async function getSortedCategory(): Promise<RecommendAuctionsResponse | null> {
-  const isTokenValid = authCheck();
-
   try {
-    if (!isTokenValid) throw new Error("401");
-
-    const res = await fetch(
+    const res = await fetchWithTokenRenewal(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend/category?&page=0&size=10&sort=북마크수`,
       {
         next: {
           tags: ["auction", "bids"]
-        },
-        headers: {
-          Authorization: `Bearer ${isTokenValid}`
         },
         cache: "no-store"
       }

@@ -1,26 +1,33 @@
-"use client";
-
 import reissueAccessToken from "@/app/_api/reIssueAccessToken";
 
-import { getCookie } from "./cookie";
+import { authCheck } from "./authCheck";
 
 interface FetchOptions {
   method?: string;
   headers?: Record<string, string>;
   body?: BodyInit | null;
+  next?: {
+    tags: string[];
+  };
+  cache?: RequestCache;
 }
 
 const fetchWithTokenRenewal = async (
   url: string,
-  options: FetchOptions = {}
+  options: FetchOptions = {
+    cache: "no-store"
+  }
 ): Promise<Response> => {
-  const accessToken = getCookie({ name: "accessToken" }).slice(0);
-  options.headers = {
-    ...options.headers,
-    Authorization: `Bearer ${accessToken}`
-  };
-  let response: Response;
-  response = await fetch(url, options);
+  let response: Response = new Response();
+
+  const accessToken = authCheck();
+  if (accessToken) {
+    options.headers = {
+      ...options.headers,
+      Authorization: `Bearer ${accessToken}`
+    };
+    response = await fetch(url, options);
+  }
   if (!response.ok) {
     const newToken = await reissueAccessToken();
     if (newToken) {

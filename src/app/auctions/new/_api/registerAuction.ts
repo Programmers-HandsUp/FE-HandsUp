@@ -1,19 +1,19 @@
-import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { Auction, AuctionData } from "@/utils/types/auction/registerAuction";
 
 export const registerAction = async (
   auctionData: AuctionData
 ): Promise<Auction> => {
-  const isValidToken = authCheck();
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${isValidToken}`
-    },
-    body: JSON.stringify(auctionData)
-  });
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(auctionData)
+    }
+  );
 
   if (!res.ok) {
     const errData = await res.json();

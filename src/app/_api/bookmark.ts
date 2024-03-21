@@ -1,4 +1,4 @@
-import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { BookMarkedAddResponse } from "@/utils/types/bookmark/add";
 import { BookMarkedAllCheckResponse } from "@/utils/types/bookmark/allCheck";
 import { BookMarkedDeleteResponse } from "@/utils/types/bookmark/delete";
@@ -10,16 +10,8 @@ export type getCheckBookmarkResponse = { isBookmarked: boolean };
 export const getCheckBookmark = async ({
   auctionId
 }: getCheckBookmarkParams): Promise<getCheckBookmarkResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`
   );
   if (!res.ok) {
     throw new Error("서버 에러 발생");
@@ -31,17 +23,10 @@ export const getCheckBookmark = async ({
 export const addBookmark = async (
   auctionId: number
 ): Promise<BookMarkedAddResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
+      method: "POST"
     }
   );
   if (!res.ok) {
@@ -55,17 +40,10 @@ export const addBookmark = async (
 export const deleteBookmark = async (
   auctionId: number
 ): Promise<BookMarkedDeleteResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
-  const res = await fetch(
+  const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
+      method: "DELETE"
     }
   );
   if (!res.ok) {
@@ -78,17 +56,8 @@ export const deleteBookmark = async (
 
 export const getCheckBookmarkList =
   async (): Promise<BookMarkedAllCheckResponse> => {
-    const isTokenValid = authCheck();
-
-    if (!isTokenValid) throw new Error("401 토큰 오류");
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`,
-      {
-        headers: {
-          Authorization: `Bearer ${isTokenValid}`
-        }
-      }
+    const res = await fetchWithTokenRenewal(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`
     );
     if (!res.ok) {
       throw new Error("서버 에러 발생");

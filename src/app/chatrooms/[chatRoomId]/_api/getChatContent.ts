@@ -1,4 +1,4 @@
-import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { ChatContentResponse } from "@/utils/types/chat/chatRooms";
 
 const getChatContent = async ({
@@ -8,18 +8,8 @@ const getChatContent = async ({
   pageParam: number;
   chatRoomId: number;
 }): Promise<ChatContentResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/chat-rooms/${chatRoomId}/messages?page=${pageParam}&size=20`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      },
-      cache: "no-store"
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/chat-rooms/${chatRoomId}/messages?page=${pageParam}&size=20`
   );
   if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
