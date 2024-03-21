@@ -1,4 +1,3 @@
-import { authCheck } from "@/utils/function/authCheck";
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { BookMarkedAddResponse } from "@/utils/types/bookmark/add";
 import { BookMarkedAllCheckResponse } from "@/utils/types/bookmark/allCheck";
@@ -11,9 +10,6 @@ export type getCheckBookmarkResponse = { isBookmarked: boolean };
 export const getCheckBookmark = async ({
   auctionId
 }: getCheckBookmarkParams): Promise<getCheckBookmarkResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
   const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`
   );
@@ -27,10 +23,6 @@ export const getCheckBookmark = async ({
 export const addBookmark = async (
   auctionId: number
 ): Promise<BookMarkedAddResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
   const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
@@ -48,10 +40,6 @@ export const addBookmark = async (
 export const deleteBookmark = async (
   auctionId: number
 ): Promise<BookMarkedDeleteResponse> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
   const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
     {
@@ -68,10 +56,6 @@ export const deleteBookmark = async (
 
 export const getCheckBookmarkList =
   async (): Promise<BookMarkedAllCheckResponse> => {
-    const isTokenValid = authCheck();
-
-    if (!isTokenValid) throw new Error("401 토큰 오류");
-
     const res = await fetchWithTokenRenewal(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`
     );
