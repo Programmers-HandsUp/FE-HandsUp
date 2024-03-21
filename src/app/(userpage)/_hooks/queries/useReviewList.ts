@@ -1,11 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { reviewList } from "../../_api/mypage";
 
 const useReviewList = (userId: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ["reviewList", userId],
-    queryFn: () => reviewList(userId)
+    queryFn: () => reviewList(userId),
+    select: (data) => data.content
   });
 };
 

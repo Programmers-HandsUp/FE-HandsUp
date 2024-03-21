@@ -43,9 +43,7 @@ export const saleList = async (
   return res.json();
 };
 
-export const reviewLabelList = async (
-  userId: number
-): Promise<ReviewLabel[]> => {
+export const reviewLabelList = async (userId: number): Promise<ReviewLabel> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews/labels`,
     {
@@ -60,7 +58,7 @@ export const reviewLabelList = async (
   return res.json();
 };
 
-export const reviewList = async (userId: number): Promise<Review[]> => {
+export const reviewList = async (userId: number): Promise<Review> => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`,
     {

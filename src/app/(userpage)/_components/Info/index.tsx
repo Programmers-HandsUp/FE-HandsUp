@@ -1,4 +1,4 @@
-import { Review, ReviewLabel, Status } from "@/utils/types/user/mypage";
+import { LabelContent, ReviewContent, Status } from "@/utils/types/user/mypage";
 
 import BoxLayout from "../BoxLayout";
 import ReviewItem from "../ReviewItem";
@@ -6,8 +6,8 @@ import TransactionStatus from "../TransactionStatus";
 
 interface InfoProps {
   saleStatusCounts: Record<Status, number>;
-  reviewLabelList: ReviewLabel[];
-  reviewList: Review[];
+  reviewLabelList: LabelContent[];
+  reviewList: ReviewContent[];
   children: React.ReactNode;
   userId?: number;
 }

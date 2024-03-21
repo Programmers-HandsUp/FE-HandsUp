@@ -1,8 +1,8 @@
 import UserCard from "@/app/_component/common/UserCard";
-import { Review } from "@/utils/types/user/mypage";
+import { ReviewContent } from "@/utils/types/user/mypage";
 
-function ReviewItem({ review }: { review: Review }) {
-  const { reviewId, nickname, content } = review;
+function ReviewItem({ review }: { review: ReviewContent }) {
+  const { reviewId, writerNickName, writerProfileImageUrl, content } = review;
 
   return (
     <>
@@ -10,14 +10,14 @@ function ReviewItem({ review }: { review: Review }) {
         className="gap-4 items-center pb-2 border-b"
         key={reviewId}>
         <UserCard.Avatar
-          src="/assets/images/normal.webp"
+          src={writerProfileImageUrl}
           size="small"
           rounded={"full"}
           className="bg-slate-100"
         />
         <div>
           <UserCard.ContentArea className="my-1">
-            <p className="text-sm">{nickname}</p>
+            <p className="text-sm">{writerNickName}</p>
           </UserCard.ContentArea>
           <p className="">{content}</p>
         </div>

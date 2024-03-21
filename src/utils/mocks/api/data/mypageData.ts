@@ -75,7 +75,8 @@ export const purchaseList: Purchase[] = [
   }
 ];
 
-export const reviewLabelList: ReviewLabel[] = [
+export const reviewLabelList: ReviewLabel = {
+  content: [
   {
     label: "응답이 빨라요",
     count: 5
@@ -104,34 +105,45 @@ export const reviewLabelList: ReviewLabel[] = [
     label: "물품설명이 자세해요",
     count: 5
   }
-];
+  ],
+  size: 0,
+  hasNext: false
+};
 
-export const reviewList: Review[] = [
+export const reviewList: Review = {
+  content: [
   {
     reviewId: 1,
-    nickname: "세인",
-    profileImageUrl: "/images/logoicon.png",
+      writerNickName: "세인",
+      writerProfileImageUrl:
+        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
     content: "감사해요 잘 쓸게요!"
   },
   {
     reviewId: 2,
-    nickname: "준혁",
-    profileImageUrl: "/images/logoicon.png",
+      writerNickName: "준혁",
+      writerProfileImageUrl:
+        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
     content: "아주 좋은 물건이네요!"
   },
   {
     reviewId: 3,
-    nickname: "지호",
-    profileImageUrl: "/images/logoicon.png",
+      writerNickName: "지호",
+      writerProfileImageUrl:
+        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
     content: "완전 좋아요"
   },
   {
     reviewId: 3,
-    nickname: "장권",
-    profileImageUrl: "/images/logoicon.png",
+      writerNickName: "장권",
+      writerProfileImageUrl:
+        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
     content: "좋은 물건 잘쓸게요~~"
   }
-];
+  ],
+  size: 0,
+  hasNext: false
+};
 
 export const saleList: Sale[] = [
   {
