@@ -1,6 +1,6 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 import useSession from "@/app/_hooks/queries/useSession";
 import Loading from "@/app/search/loading";
@@ -20,12 +20,15 @@ function UserPage({ params }: { params: { slug: [string, Slug] } }) {
 
   const { data: user, isLoading } = useSession();
 
+  const router = useRouter();
+
   if (isLoading) {
     return <Loading />;
   }
 
   if (!user) {
-    redirect("/signin");
+    router.push("/signin");
+    return null;
   }
 
   if (id === user.userId) {

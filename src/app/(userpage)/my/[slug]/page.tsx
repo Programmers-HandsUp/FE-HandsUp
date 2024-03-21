@@ -1,9 +1,9 @@
 "use client";
 
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
+import Loading from "@/app/_component/common/Loading";
 import useSession from "@/app/_hooks/queries/useSession";
-import Loading from "@/app/search/loading";
 
 import AllReviews from "../../_components/AllReviews";
 import ProfileEdit from "../../_components/ProfileEdit";
@@ -21,13 +21,15 @@ function MyPage({ params }: { params: { slug: Slug } }) {
   const { slug } = params;
 
   const { data: user, isLoading } = useSession();
+  const router = useRouter();
 
   if (isLoading) {
     return <Loading />;
   }
 
   if (!user) {
-    redirect("/signin");
+    router.push("/signin");
+    return null;
   }
 
   const { userId } = user;
