@@ -30,7 +30,7 @@ export const getCookie = ({ name }: getCookieParams) => {
 };
 
 export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
-  const { expires, maxAge, path } = options || {};
+  const { expires, maxAge } = options || {};
   let cookieString = `${name}=${value}`;
   if (expires) {
     cookieString += `; expires=${expires.toUTCString()}`;
@@ -38,8 +38,6 @@ export const setCookie = ({ name, value, options = {} }: setCookieParams) => {
   if (maxAge) {
     cookieString += `; max-age=${maxAge}`;
   }
-  if (path) {
-    cookieString += `; path=${path}`;
-  }
+  cookieString += "; path=/";
   document.cookie = cookieString;
 };

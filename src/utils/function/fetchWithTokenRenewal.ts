@@ -12,7 +12,7 @@ interface FetchOptions {
   cache?: RequestCache;
 }
 
-const fetchWithTokenRenewal  = async (
+const fetchWithTokenRenewal = async (
   url: string,
   options: FetchOptions = {
     cache: "no-store"
