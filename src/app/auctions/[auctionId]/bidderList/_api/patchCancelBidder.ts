@@ -1,4 +1,3 @@
-import { authCheck } from "@/utils/function/authCheck";
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 
 const patchCancelBidder = async ({
@@ -7,12 +6,6 @@ const patchCancelBidder = async ({
   biddingId: number | undefined;
 }) => {
   if (biddingId === undefined) throw new Error("400");
-
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) {
-    throw new Error("401");
-  }
 
   const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bids/${biddingId}/cancel`,

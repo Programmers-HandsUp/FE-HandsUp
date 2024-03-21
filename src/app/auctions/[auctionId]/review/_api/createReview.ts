@@ -1,4 +1,3 @@
-import { authCheck } from "@/utils/function/authCheck";
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { AuctionReviewEnrollRequest } from "@/utils/types/auction/auctionReivewEnroll";
 
@@ -8,10 +7,6 @@ interface createReviewParams {
 }
 
 export const createReview = async ({ auctionId, data }: createReviewParams) => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) return null;
-
   const response = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/reviews`,
     {

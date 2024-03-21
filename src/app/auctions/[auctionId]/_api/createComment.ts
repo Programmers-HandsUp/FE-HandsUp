@@ -1,4 +1,3 @@
-import { authCheck } from "@/utils/function/authCheck";
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { CommentContent } from "@/utils/types/comment/commentData";
 
@@ -11,10 +10,6 @@ export const createComment = async ({
   content,
   auctionId
 }: CreateCommentRequest): Promise<CommentContent> => {
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) throw new Error("401");
-
   const res = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/comments`,
     {

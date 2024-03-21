@@ -1,4 +1,3 @@
-import { authCheck } from "@/utils/function/authCheck";
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { ChatRoomInfoResponse } from "@/utils/types/chat/checkChatRoomInfrom";
 
@@ -9,12 +8,6 @@ const getChatRoomInfo = async ({
 }): Promise<ChatRoomInfoResponse> => {
   if (biddingId === undefined) {
     throw new Error("400");
-  }
-
-  const isTokenValid = authCheck();
-
-  if (!isTokenValid) {
-    throw new Error("401");
   }
 
   const res = await fetchWithTokenRenewal(
