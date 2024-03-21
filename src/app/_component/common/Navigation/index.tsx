@@ -84,7 +84,7 @@ const Navigation = ({ userId, initialVisible = false }: NavigationProps) => {
             `${pathname.includes("bookmark") ? "text-[#96E4FF]" : "text-inherit"}`
           )}>
           <Icon
-            id="bookmark"
+            id="bookmark-fill-none"
             size={20}
             className="hover:bg-[#72dbfe]  rounded-full transition-colors"
           />
