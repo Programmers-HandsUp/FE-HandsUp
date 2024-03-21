@@ -17,7 +17,7 @@ interface Props
   sender: "me" | "you";
   previousSender: "me" | "you" | null;
   nickname: string;
-  createdAt: string;
+  createdAt: Date;
   isSeller?: boolean;
 }
 

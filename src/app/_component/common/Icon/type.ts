@@ -48,4 +48,5 @@ export type IconName =
   | "notification-off"
   | "circle"
   | "dot"
-  | "completed_purchase_trading";
+  | "completed_purchase_trading"
+  | "bookmark-fill-none";

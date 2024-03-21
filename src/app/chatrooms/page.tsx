@@ -5,9 +5,12 @@ import { Suspense } from "react";
 import ArrowBackButton from "../_component/common/ArrowBackButton";
 import Header from "../_component/common/Header";
 import Navigation from "../_component/common/Navigation";
+import useSession from "../_hooks/queries/useSession";
 import ChatRoomList from "./_component/ChatRoomList";
 
 const ChatRooms = () => {
+  const { data: user } = useSession();
+
   return (
     <>
       <Header
@@ -24,7 +27,7 @@ const ChatRooms = () => {
         </Suspense>
       </section>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
-        <Navigation />
+        <Navigation userId={user?.userId} />
       </nav>
     </>
   );

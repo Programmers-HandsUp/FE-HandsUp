@@ -12,17 +12,18 @@ import LoginLink from "./LoginLink";
 
 interface NavigationProps {
   userId: number | undefined;
+  initialVisible?: boolean;
 }
 
-const Navigation = ({ userId }: NavigationProps) => {
+const Navigation = ({ userId, initialVisible = false }: NavigationProps) => {
   const isVisible = useVisibilityOnScroll();
   const pathname = usePathname();
-
   return (
     <div
       className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"
       style={{
-        transform: isVisible ? "translateY(0)" : "translateY(200%)",
+        transform:
+          initialVisible || isVisible ? "translateY(0)" : "translateY(200%)",
         transition: "transform 0.3s ease-in-out"
       }}>
       <Link href="/home">
@@ -59,7 +60,7 @@ const Navigation = ({ userId }: NavigationProps) => {
 
       <LoginLink
         userId={userId}
-        href="/create">
+        href="auctions/new">
         <div
           className={cn(
             "flex flex-col items-center",
@@ -70,7 +71,7 @@ const Navigation = ({ userId }: NavigationProps) => {
             size={20}
             className="hover:bg-[#72dbfe] dark:fill-white rounded-full transition-colors fill-black"
           />
-          <span className="text-[11px]">상품 등록</span>
+          <span className="text-[11px]">경매 등록</span>
         </div>
       </LoginLink>
 
@@ -83,7 +84,7 @@ const Navigation = ({ userId }: NavigationProps) => {
             `${pathname.includes("bookmark") ? "text-[#96E4FF]" : "text-inherit"}`
           )}>
           <Icon
-            id="bookmark"
+            id="bookmark-fill-none"
             size={20}
             className="hover:bg-[#72dbfe]  rounded-full transition-colors"
           />
@@ -92,7 +93,7 @@ const Navigation = ({ userId }: NavigationProps) => {
       </LoginLink>
       <LoginLink
         userId={userId}
-        href={`/account/${userId}`}>
+        href={"/my"}>
         <div
           className={cn(
             "flex flex-col items-center",

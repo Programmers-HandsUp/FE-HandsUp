@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MouseEvent } from "react";
 
 import ArrowBackButton from "@/app/_component/common/ArrowBackButton";
@@ -77,21 +78,23 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
         </div>
 
         <div className="px-2">
-          <UserCard className="gap-4 items-center">
-            <UserCard.Avatar
-              src={auction.sellerInfo.profileImageUrl}
-              size="medium"
-              rounded="full"
-              className="bg-slate-100"
-              alt="판매자 프로필 이미지"
-            />
-            <UserCard.ContentArea className="my-1">
-              <div className="flex flex-col">
-                <p className="text-lg">{auction.sellerInfo.nickname}</p>
-                <p className="text-sm">{auction.sellerInfo.dong}</p>
-              </div>
-            </UserCard.ContentArea>
-          </UserCard>
+          <Link href={`/user/${auction.sellerInfo.userId}`}>
+            <UserCard className="gap-4 items-center">
+              <UserCard.Avatar
+                src={auction.sellerInfo.profileImageUrl}
+                size="medium"
+                rounded="full"
+                className="bg-slate-100"
+                alt="판매자 프로필 이미지"
+              />
+              <UserCard.ContentArea className="my-1">
+                <div className="flex flex-col">
+                  <p className="text-lg">{auction.sellerInfo.nickname}</p>
+                  <p className="text-sm">{auction.sellerInfo.dong}</p>
+                </div>
+              </UserCard.ContentArea>
+            </UserCard>
+          </Link>
           <ReliabilityBar score={auction.sellerInfo.score} />
         </div>
         <hr />

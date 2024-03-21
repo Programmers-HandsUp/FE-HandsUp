@@ -1,5 +1,3 @@
-import { userAuthType } from "../types";
-
 export const popularSearchData: String[] = [
   "아이폰 25",
   "프로그래머스",

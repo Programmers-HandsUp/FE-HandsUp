@@ -147,7 +147,7 @@ const Comment = ({
               avatar={item.profileImageUrl}
               nickname={item.nickname}
               message={item.content}
-              createdAt={item.createdAt}
+              createdAt={new Date(item.createdAt)}
               sender={item.writerId === user?.userId ? "me" : "you"}
               isSeller={item.isSeller}
               previousSender={
