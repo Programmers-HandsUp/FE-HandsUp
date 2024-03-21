@@ -3,7 +3,7 @@ import Link from "next/link";
 import Avatar from "@/app/_component/common/Avatar";
 import Icon from "@/app/_component/common/Icon";
 
-import useGetChatRooms from "../_hooks/useGetChatRooms";
+import useGetChatRooms from "../_hooks/queries/useGetChatRooms";
 
 const ChatRoomList = () => {
   const { data } = useGetChatRooms();
