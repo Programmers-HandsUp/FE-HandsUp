@@ -1,9 +1,9 @@
 "use client";
-
 import saveAs from "file-saver";
 import html2canvas from "html2canvas";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useRef } from "react";
 
 import Icon from "@/app/_component/common/Icon";
@@ -38,6 +38,15 @@ function ReviewComplete() {
     }
   };
 
+  useEffect(() => {
+    const originalLineHeight = document.body.style.lineHeight;
+    document.body.style.lineHeight = "0";
+
+    return () => {
+      document.body.style.lineHeight = originalLineHeight;
+    };
+  }, []);
+
   return (
     <main className="h-dvh flex flex-col items-center">
       <div className="w-80 h-7 bg-[#96E4FF] border rounded-xl flex justify-center z-10 "></div>
@@ -46,7 +55,7 @@ function ReviewComplete() {
         <div
           ref={reviewRef}
           className="flex flex-col w-72 h-[500px] bg-gray-100 drop-shadow-xl rounded-b-md dark:text-black">
-          <div className="flex justify-center mb-7">
+          <div className="flex justify-center py-11">
             <Image
               src="/assets/images/textLogo.webp"
               width={100}
