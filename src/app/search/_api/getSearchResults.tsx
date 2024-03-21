@@ -16,7 +16,7 @@ export const getSearchResults = async (
   const newRecord = searchRecord ? { ...searchRecord } : {};
   newRecord["keyword"] = keyword.slice(8);
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/searfch?page=${pageParam.toString()}&size=5&sort=${SORT_OPTION[sortOption]}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/search?page=${pageParam.toString()}&size=5&sort=${SORT_OPTION[sortOption]}`,
     {
       method: "POST",
       body: JSON.stringify(newRecord),
