@@ -1,4 +1,4 @@
-import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import {
   Purchase,
   Review,
@@ -8,17 +8,11 @@ import {
 } from "@/utils/types/user/mypage";
 import { UserProfile } from "@/utils/types/user/users";
 
-const isTokenValid = authCheck();
-
 export const purchaseList = async (status?: StatusEn): Promise<Purchase> => {
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buys`;
   const url = status ? `${baseUrl}?auctionStatus=${status}` : baseUrl;
 
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${isTokenValid}`
-    }
-  });
+  const res = await fetchWithTokenRenewal(url);
 
   if (!res.ok) throw new Error("Fail!");
 
@@ -32,11 +26,7 @@ export const saleList = async (
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/sales`;
   const url = status ? `${baseUrl}?auctionStatus=${status}` : baseUrl;
 
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${isTokenValid}`
-    }
-  });
+  const res = await fetchWithTokenRenewal(url);
 
   if (!res.ok) throw new Error("Fail!");
 
@@ -44,13 +34,8 @@ export const saleList = async (
 };
 
 export const reviewLabelList = async (userId: number): Promise<ReviewLabel> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews/labels`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews/labels`
   );
 
   if (!res.ok) throw new Error("Fail");
@@ -59,13 +44,8 @@ export const reviewLabelList = async (userId: number): Promise<ReviewLabel> => {
 };
 
 export const reviewList = async (userId: number): Promise<Review> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/reviews`
   );
 
   if (!res.ok) throw new Error("Fail");
@@ -74,13 +54,8 @@ export const reviewList = async (userId: number): Promise<Review> => {
 };
 
 export const userProfile = async (userId: number): Promise<UserProfile> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/profiles`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/profiles`
   );
 
   if (!res.ok) {
