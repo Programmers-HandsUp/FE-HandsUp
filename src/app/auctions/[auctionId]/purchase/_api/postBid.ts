@@ -1,4 +1,5 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 
 const postBid = async ({
   auctionId,
@@ -11,13 +12,12 @@ const postBid = async ({
 
   if (!isTokenValid) throw new Error("401");
 
-  const response = await fetch(
+  const response = await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/bids`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${isTokenValid}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({ biddingPrice })
     }
