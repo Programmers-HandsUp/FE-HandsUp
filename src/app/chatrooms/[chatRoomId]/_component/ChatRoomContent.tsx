@@ -41,8 +41,6 @@ const ChatRoomContent = ({
 
   const { show } = Toast();
 
-  const { data: currentUser, isLoading: userIsLoading } = useSession();
-
   const refetch = () => {
     if (isScroll) return;
     if (hasNextPage) {
@@ -85,6 +83,7 @@ const ChatRoomContent = ({
   if (!currentUser) {
     show("잠시 후 다시 이용해주세요.", "warn-solid");
     router.back();
+    return null;
   }
 
   const senderId = currentUser.userId;
