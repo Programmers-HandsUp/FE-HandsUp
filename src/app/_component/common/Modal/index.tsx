@@ -56,16 +56,18 @@ const Modal = ({
       <div
         onClick={close}
         className={cn(
-          "fixed top-0 left-0 bottom-0 right-0 w-screen h-[100vh] dark:bg-gray-100/50 bg-black/50 transition-opacity duration-700",
-          isOpen ? "opacity-100 z-10" : "opacity-0 -z-10"
+          "fixed top-0 left-0 bottom-0 right-0 w-screen h-[100vh] dark:bg-gray-100/50 bg-black/50 transition-opacity duration-500",
+          isOpen
+            ? "opacity-100 translate-x-0 z-50"
+            : "opacity-0 translate-x-[100vw]"
         )}
       />
       <div
         className={cn(
           modalTypeVariants({ modalType }),
           isOpen
-            ? `z-10 ${animateIn[animate]}`
-            : `-z-10 ${animateOut[animate]}`,
+            ? `z-50 ${animateIn[animate]}`
+            : `-z-50 ${animateOut[animate]}`,
           className
         )}
         style={{
