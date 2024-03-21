@@ -4,23 +4,23 @@ export const STATE_LIST = ["미개봉", "깨끗해요", "사용감 있음"] as c
 export const PURCHASE_TIME_LIST = [
   {
     value: "1개월 이하",
-    title: "1개월 ⬇"
+    title: "1개월 ▼"
   },
   {
     value: "3개월 이하",
-    title: "3개월 ⬇️"
+    title: "3개월 ▼"
   },
   {
     value: "6개월 이하",
-    title: "6개월 ⬇️"
+    title: "6개월 ▼"
   },
   {
     value: "1년 이하",
-    title: "1년 ⬇️"
+    title: "1년 ▼"
   },
   {
     value: "1년 이상",
-    title: "1년 ⬆️"
+    title: "1년 ▲"
   },
   {
     value: "모름",
@@ -64,6 +64,6 @@ export const ERRORS = {
   PRICE_UNIT: "금액은 100원 단위로 입력 가능해요",
   TRADE_METHOD_REQUIRED: "상품 거래 방식을 선택해주세요",
   AUCTION_DATE_REQUIRED: "경매 마감일을 선택해주세요.",
-  DESCRIPTION_LENGTH: "상세 설명은 5자 이상 1000자 이하로 입력해주세요",
+  DESCRIPTION_LENGTH: "상세 설명은 10자 이상 1000자 이하로 입력해주세요",
   ADDRESS_REQUIRED: "직거래를 선택하셨다면, 거래 희망 장소를 선택해주세요."
 } as const;

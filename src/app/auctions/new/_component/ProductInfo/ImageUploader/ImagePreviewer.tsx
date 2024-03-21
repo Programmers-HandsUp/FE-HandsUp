@@ -17,7 +17,7 @@ export function ImagePreviewer({ fields, onRemove }: ImagePreviewerProps) {
   const { control } = useFormContext<RegisterAuction>();
 
   return (
-    <div className="flex gap-2 whitespace-nowrap overflow-x-auto overflow-scroll">
+    <div className="flex gap-2 whitespace-nowrap overflow-x-auto overflow-y-hidden">
       {fields.map(({ imagesId, file }, index) => (
         <div key={imagesId}>
           <Controller
