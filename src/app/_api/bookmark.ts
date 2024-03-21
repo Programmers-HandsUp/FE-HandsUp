@@ -1,4 +1,5 @@
 import { authCheck } from "@/utils/function/authCheck";
+import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { BookMarkedAddResponse } from "@/utils/types/bookmark/add";
 import { BookMarkedAllCheckResponse } from "@/utils/types/bookmark/allCheck";
 import { BookMarkedDeleteResponse } from "@/utils/types/bookmark/delete";
@@ -13,13 +14,8 @@ export const getCheckBookmark = async ({
   const isTokenValid = authCheck();
 
   if (!isTokenValid) throw new Error("401");
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${isTokenValid}`
-      }
-    }
+  const res = await fetchWithTokenRenewal(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`
   );
   if (!res.ok) {
     throw new Error("서버 에러 발생");

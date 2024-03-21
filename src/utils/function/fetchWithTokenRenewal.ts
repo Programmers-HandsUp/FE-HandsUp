@@ -14,13 +14,15 @@ const fetchWithTokenRenewal = async (
   url: string,
   options: FetchOptions = {}
 ): Promise<Response> => {
-  const accessToken = getCookie({ name: "accessToken" }).slice(0);
-  options.headers = {
-    ...options.headers,
-    Authorization: `Bearer ${accessToken}`
-  };
-  let response: Response;
-  response = await fetch(url, options);
+  let response: Response = new Response();
+  const accessToken = getCookie({ name: "accessToken" })?.slice(0);
+  if (accessToken) {
+    options.headers = {
+      ...options.headers,
+      Authorization: `Bearer ${accessToken}`
+    };
+    response = await fetch(url, options);
+  }
   if (!response.ok) {
     const newToken = await reissueAccessToken();
     if (newToken) {
