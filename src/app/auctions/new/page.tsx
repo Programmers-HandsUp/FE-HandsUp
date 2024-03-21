@@ -2,9 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 
+import Loading from "@/app/_component/common/Loading";
 import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
 import { AuctionData } from "@/utils/types/auction/registerAuction";
 
@@ -25,12 +27,20 @@ function RegisterAuctionPage() {
     resolver: zodResolver(AuctionSchema)
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const { mutateImageUpload } = useImageUpload();
   const { mutateRegisterAuction } = useRegisterAuction();
   const router = useRouter();
   const setActive = useBeforeUnload();
 
   const onSubmit: SubmitHandler<RegisterAuction> = async (data) => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 6000);
+
     const { images, address, dateRangeTime, ...rest } = data;
     const imageData = new FormData();
 
@@ -62,6 +72,7 @@ function RegisterAuctionPage() {
 
   return (
     <main>
+      {isLoading && <Loading />}
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <ProductInfo />
