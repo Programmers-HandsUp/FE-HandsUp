@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 
 import ProductCard from "@/app/_component/common/ProductCard";
-import { Purchase, Sale } from "@/utils/types/user/mypage";
+import { PurchaseContent, SaleContent } from "@/utils/types/user/mypage";
 
 import {
   TransactionDate,
@@ -12,7 +12,7 @@ import {
 function TransactionWrapper({
   children,
   transaction
-}: PropsWithChildren<{ transaction: Purchase | Sale }>) {
+}: PropsWithChildren<{ transaction: PurchaseContent | SaleContent }>) {
   return (
     <>
       <ProductCard

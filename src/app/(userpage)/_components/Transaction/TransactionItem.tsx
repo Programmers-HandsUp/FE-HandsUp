@@ -7,11 +7,14 @@ interface HeaderProps {
   secondLabel: "날짜" | "남은 시간" | "-";
 }
 
-const formatDate = (dateString?: string) => {
-  if (dateString) {
-    const date = dateString.split("-");
-    const year = date[0].substring(2);
-    return `${year}/${date[1]}/${date[2]}`;
+const formatDate = (date?: Date | string) => {
+  if (date) {
+    const tempDate = new Date(date);
+    const year = tempDate.getFullYear().toString().substring(2);
+    const month = (tempDate.getMonth() + 1).toString().padStart(2, "0");
+    const day = tempDate.getDate().toString().padStart(2, "0");
+
+    return `${year}/${month}/${day}`;
   }
 };
 
@@ -35,7 +38,7 @@ export function TransactionPrice({ children }: { children: number }) {
 export function TransactionDate({
   children,
   date
-}: PropsWithChildren<{ date?: string }>) {
+}: PropsWithChildren<{ date?: Date | string }>) {
   return (
     <div className="text-sm text-[#ABABAB] text-right">
       {formatDate(date)}

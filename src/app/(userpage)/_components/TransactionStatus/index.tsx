@@ -10,9 +10,9 @@ interface TransactionListProps {
 }
 
 function TransactionStatus({ type, statusCounts }: TransactionListProps) {
-  const bidding = statusCounts ? statusCounts["bidding"] : 0;
-  const pending = statusCounts ? statusCounts["pending"] : 0;
-  const finished = statusCounts ? statusCounts["finished"] : 0;
+  const bidding = statusCounts ? statusCounts["입찰중"] : 0;
+  const pending = statusCounts ? statusCounts["거래중"] : 0;
+  const finished = statusCounts ? statusCounts["거래완료"] : 0;
   const total = bidding + pending + finished;
 
   return (

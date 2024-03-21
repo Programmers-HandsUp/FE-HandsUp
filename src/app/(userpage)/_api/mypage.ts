@@ -4,15 +4,15 @@ import {
   Review,
   ReviewLabel,
   Sale,
-  Status
+  StatusEn
 } from "@/utils/types/user/mypage";
 import { UserProfile } from "@/utils/types/user/users";
 
 const isTokenValid = authCheck();
 
-export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
-  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buy`;
-  const url = status ? `${baseUrl}?status=${status}` : baseUrl;
+export const purchaseList = async (status?: StatusEn): Promise<Purchase> => {
+  const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buys`;
+  const url = status ? `${baseUrl}?auctionStatus=${status}` : baseUrl;
 
   const res = await fetch(url, {
     headers: {
@@ -27,10 +27,10 @@ export const purchaseList = async (status?: Status): Promise<Purchase[]> => {
 
 export const saleList = async (
   userId: number,
-  status?: Status
-): Promise<Sale[]> => {
+  status?: StatusEn
+): Promise<Sale> => {
   const baseUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/${userId}/sales`;
-  const url = status ? `${baseUrl}?status=${status}` : baseUrl;
+  const url = status ? `${baseUrl}?auctionStatus=${status}` : baseUrl;
 
   const res = await fetch(url, {
     headers: {

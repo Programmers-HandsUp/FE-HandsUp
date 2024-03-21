@@ -20,8 +20,8 @@ function Info({
   userId
 }: InfoProps) {
   const sellingUrl = userId
-    ? `/user/${userId}/selling?status=bidding`
-    : "/my/selling?status=bidding";
+    ? `/user/${userId}/selling?status=BIDDING`
+    : "/my/selling?status=BIDDING";
   const reviewUrl = userId ? `/user/${userId}/review` : "/my/review";
 
   return (

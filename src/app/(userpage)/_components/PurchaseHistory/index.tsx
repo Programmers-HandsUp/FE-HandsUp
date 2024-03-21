@@ -1,9 +1,9 @@
-import { Purchase } from "@/utils/types/user/mypage";
+import { PurchaseContent } from "@/utils/types/user/mypage";
 
 import Transaction from "../Transaction/Transaction";
 
 interface PurchaseHistoryProps {
-  purchaseList: Purchase[] | undefined;
+  purchaseList: PurchaseContent[];
 }
 
 function PurchaseHistory({ purchaseList }: PurchaseHistoryProps) {
