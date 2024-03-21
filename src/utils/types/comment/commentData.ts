@@ -10,6 +10,7 @@ export interface CommentContent {
   profileImageUrl: string;
   content: string;
   isSeller: boolean;
+  createdAt: string;
 }
 
 export interface CreateCommentResponse {

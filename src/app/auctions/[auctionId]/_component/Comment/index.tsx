@@ -90,7 +90,8 @@ const Comment = ({
       nickname: user!.nickname,
       profileImageUrl: user!.profileImageUrl,
       content: data.comment,
-      isSeller: user!.userId === sellerId
+      isSeller: user!.userId === sellerId,
+      createdAt: new Date().toString()
     };
 
     exMessages.pages[0].content.unshift(newComment);
@@ -146,7 +147,7 @@ const Comment = ({
               avatar={item.profileImageUrl}
               nickname={item.nickname}
               message={item.content}
-              createdAt={new Date("2024-03-20")}
+              createdAt={item.createdAt}
               sender={item.writerId === user?.userId ? "me" : "you"}
               isSeller={item.isSeller}
               previousSender={
