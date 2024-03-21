@@ -12,9 +12,9 @@ import useSession from "@/app/_hooks/queries/useSession";
 import formatReadableDate from "@/utils/function/formatReadableDate";
 import { AuctionReviewEnrollRequest } from "@/utils/types/auction/auctionReivewEnroll";
 
-import { useGetAuctionDetail } from "../purchase/_hooks/useGetAuctionDetail";
 import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
+import { useGetAuctionInfo } from "./_hooks/useGetAuctionInfo";
 import { usePostReview } from "./_hooks/useProduct";
 
 interface ReviewPageProps {
@@ -24,7 +24,7 @@ interface ReviewPageProps {
 const ReviewForm = ({ params }: ReviewPageProps) => {
   const { auctionId } = params;
   const reviewPostMutation = usePostReview();
-  const { data: auction, isLoading } = useGetAuctionDetail({
+  const { data: auction, isLoading } = useGetAuctionInfo({
     auctionId: Number(auctionId)
   });
 
