@@ -6,7 +6,7 @@ import { throttle } from "@/utils/function/throttle";
 
 const useVisibilityOnScroll = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
+  const [, setLastScrollTop] = useState(0);
 
   useEffect(() => {
     const handleScroll = throttle(() => {
