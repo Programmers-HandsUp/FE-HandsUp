@@ -116,7 +116,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           auctionStatus={auction.auctionStatus}
           auctionId={auctionId}
           sellerId={auction.sellerInfo.userId}
-          user={user}
+          user={user ? user : undefined}
           userLoading={userLoading}
         />
       </div>
