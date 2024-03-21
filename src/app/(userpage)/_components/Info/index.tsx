@@ -37,35 +37,39 @@ function Info({
       </BoxLayout>
       <BoxLayout title="이런 점이 좋았어요">
         <div className="my-2 flex flex-wrap gap-2">
-          {reviewLabelList &&
-            reviewLabelList.map(({ label, count }, index) =>
-              count > 0 ? (
-                <span
-                  key={index}
-                  className="rounded-3xl px-2 border border-[#96E4FF] ">
-                  {label} {count}
-                </span>
-              ) : null
-            )}
+          {reviewLabelList.length === 0 ? (
+            <div>받은 거래 후기가 아직 없어요. </div>
+          ) : (
+            reviewLabelList.map(({ label, count }, index) => (
+              <span
+                key={index}
+                className="rounded-3xl px-2 border border-[#96E4FF] ">
+                {label} {count}
+              </span>
+            ))
+          )}
         </div>
       </BoxLayout>
       <BoxLayout
         title={
           <div className="flex gap-2">
             <p>상세한후기도 있어요</p>
-            <p className="text-[#96E4FF]">{reviewList?.length}</p>
+            <p className="text-[#96E4FF]">{reviewList.length}</p>
           </div>
         }
         url={reviewUrl}>
-        <div className="my-2 flex flex-col gap-2">
-          {reviewList &&
-            reviewList.slice(0, 3).map((review) => (
+        {reviewList.length === 0 ? (
+          <div className="my-2">받은 거래 후기가 아직 없어요.</div>
+        ) : (
+          <div className="my-2 flex flex-col gap-2">
+            {reviewList.slice(0, 3).map((review) => (
               <ReviewItem
                 key={review.reviewId}
                 review={review}
               />
             ))}
-        </div>
+          </div>
+        )}
       </BoxLayout>
     </>
   );
