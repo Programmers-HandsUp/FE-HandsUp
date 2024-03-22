@@ -19,13 +19,11 @@ export default async function UserPageLayout({
 
   const user = queryClient.getQueryData<CheckLoginUserResponse>(["user"]);
 
-  const userId = user ? user.userId : undefined;
-
   return (
     <section>
       <div className="px-2">{children}</div>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
-        <Navigation userId={userId} />
+        <Navigation user={user} />
       </nav>
     </section>
   );
