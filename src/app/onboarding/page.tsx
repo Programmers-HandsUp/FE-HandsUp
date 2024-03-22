@@ -49,9 +49,8 @@ const OnBoarding = () => {
     if (!id || !passWord || id?.length <= 4 || passWord?.length <= 6) {
       router.push("/signin");
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  }, [id, passWord, router]);
+  
   useEffect(() => {
     if (address.dong) {
       pushFunnel();
