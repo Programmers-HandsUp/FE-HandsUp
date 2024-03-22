@@ -8,8 +8,8 @@ import BidderStatusItem from "./_component/BidderStatusItem";
 import useCreateChatRoom from "./_hooks/useCreateChatRoom";
 import useGetBids from "./_hooks/useGetBids";
 import useGetChatRoomInfo from "./_hooks/useGetChatRoomInfo";
+import usePatchTransactionCancel from "./_hooks/usePatchTransactionCancel";
 import usePatchTransactionComplete from "./_hooks/usePatchTransactionComplete";
-import usePatchTransactionCancel from "./_hooks/usePatchTranscationCancel";
 
 interface BidderListPageProps {
   params: { auctionId: string };
