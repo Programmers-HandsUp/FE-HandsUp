@@ -56,6 +56,7 @@ const MainPage = async () => {
           userSi={address.si}
           userGu={address.gu}
           userDong={address.dong}
+          user={user ? user : null}
         />
       </HydrationBoundary>
     </section>

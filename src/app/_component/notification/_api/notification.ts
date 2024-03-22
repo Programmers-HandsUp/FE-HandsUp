@@ -1,5 +1,4 @@
 import { authCheck } from "@/utils/function/authCheck";
-import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { Notifications } from "@/utils/types/notification";
 
 export const sendFCMToken = async (fcmToken: string) => {
@@ -7,12 +6,13 @@ export const sendFCMToken = async (fcmToken: string) => {
 
   if (!isTokenValid) return "";
 
-  const res = await fetchWithTokenRenewal(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/fcm-tokens`,
     {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${isTokenValid}`
       },
       body: JSON.stringify({
         fcmToken
@@ -37,10 +37,14 @@ export const notificationList = async ({
 
   if (!isTokenValid) return { content: [], size: 0, hasNext: false };
 
-  const res = await fetchWithTokenRenewal(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications?page=${pageParam}&size=10`
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications?page=${pageParam}&size=10`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
-
   if (!res.ok) {
     const errData = await res.json();
     throw new Error(errData.message);
@@ -53,8 +57,13 @@ export const notificationBadge = async (): Promise<{ count: number }> => {
   const isTokenValid = authCheck();
 
   if (!isTokenValid) return { count: 0 };
-  const res = await fetchWithTokenRenewal(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/count`
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/count`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
 
   if (!res.ok) {
