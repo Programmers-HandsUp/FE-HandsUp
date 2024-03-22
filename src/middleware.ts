@@ -7,7 +7,7 @@ import { getLoginUserInfo } from "./app/_api/user";
 export async function middleware(request: NextRequest) {
   const auth = await getLoginUserInfo();
   if (!auth) {
-    return NextResponse.redirect("http://localhost:3000/signin");
+    return NextResponse.redirect(new URL("/signin", request.url));
   }
 }
 
