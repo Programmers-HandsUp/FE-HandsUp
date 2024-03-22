@@ -23,28 +23,41 @@ const EmailLoginForm = () => {
     <div className="mx-auto w-fit mt-[6rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input>
-          <Input.InputInnerBox className="w-[13.2rem] h-[2.6rem] text-black">
-            <label className="my-auto w-[3.5rem] ml-1"> 아이디 </label>
+          <Input.InputInnerBox className="w-[15rem] h-[2.6rem] text-black">
+            <label className="my-auto w-[4rem] text-center ml-1">이메일</label>
 
             <Input.InputForm
-              className="my-1 w-[8rem] pt-1"
+              className="my-1 w-[10rem] pt-1 text-[0.9rem]"
               {...register("email", { required: true })}
             />
           </Input.InputInnerBox>
         </Input>
         <Input>
-          <Input.InputInnerBox className="w-[13.2rem] h-[2.6rem] my-1 text-black">
-            <label className="my-auto w-[3.5rem] ml-1"> 비밀번호 </label>
+          <Input.InputInnerBox className="w-[15rem] h-[2.6rem] my-1 text-black">
+            <label className="my-auto w-[4rem] ml-1 text-center">
+              비밀번호
+            </label>
             <Input.InputForm
               type="password"
-              className="my-1"
+              className="my-1 pl-[0.1rem] w-[10rem] text-2xl"
               {...register("password", { required: true })}
             />
           </Input.InputInnerBox>
         </Input>
-        <div className="flex gap-4 w-fit mx-auto mb-3">
-          <button type="submit">로그인</button>
-          <Link href="/signup">회원가입</Link>
+        <div className="flex flex-col mt-[2.3rem] text-lg">
+          <button
+            type="submit"
+            className="bg-blue-300 text-white rounded-sm h-[2.2rem]">
+            로그인
+          </button>
+          <div className="flex gap-2 text-[0.75rem] justify-end">
+            <p>아직 회원이 아니신가요?</p>
+            <Link
+              href="/signup"
+              className="font-bold text-blue-600 mr-1">
+              회원가입
+            </Link>
+          </div>
         </div>
       </form>
     </div>
