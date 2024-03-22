@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { cn } from "@/utils/function/cn";
 
 import Icon from "../Icon";
@@ -16,16 +15,9 @@ interface NavigationProps {
 }
 
 const Navigation = ({ userId, initialVisible = false }: NavigationProps) => {
-  const isVisible = useVisibilityOnScroll();
   const pathname = usePathname();
   return (
-    <div
-      className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl"
-      style={{
-        transform:
-          initialVisible || isVisible ? "translateY(0)" : "translateY(200%)",
-        transition: "transform 0.3s ease-in-out"
-      }}>
+    <div className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl">
       <Link href="/home">
         <div
           className={cn(
