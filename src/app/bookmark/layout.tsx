@@ -25,10 +25,7 @@ export default async function UserPageLayout({
     <section>
       {children}
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
-        <Navigation
-          userId={userId}
-          initialVisible={true}
-        />
+        <Navigation userId={userId} />
       </nav>
     </section>
   );
