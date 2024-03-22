@@ -11,10 +11,9 @@ import LoginLink from "./LoginLink";
 
 interface NavigationProps {
   userId: number | undefined;
-  initialVisible?: boolean;
 }
 
-const Navigation = ({ userId, initialVisible = false }: NavigationProps) => {
+const Navigation = ({ userId }: NavigationProps) => {
   const pathname = usePathname();
   return (
     <div className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl">
