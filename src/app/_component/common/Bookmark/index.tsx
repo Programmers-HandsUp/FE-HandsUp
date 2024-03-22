@@ -44,7 +44,7 @@ const Bookmark = ({
         </div>
       ) : (
         <Icon
-          id="bookmark"
+          id="bookmark-fill-none"
           size={ICON_SIZE[size!]}
         />
       )}
