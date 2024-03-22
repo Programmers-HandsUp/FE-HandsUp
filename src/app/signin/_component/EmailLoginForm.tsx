@@ -11,13 +11,21 @@ type LoginFormValues = {
   password: string;
 };
 
-const EmailLoginForm = () => {
+interface EmailLoginForm {
+  setHansHandsAnimate: React.Dispatch<
+    React.SetStateAction<"raiseUpHands" | "raiseDownHands" | "none">
+  >;
+}
+
+const EmailLoginForm = ({ setHansHandsAnimate }: EmailLoginForm) => {
   const signInMutation = useSignIn();
 
   const { register, handleSubmit } = useForm<LoginFormValues>();
   const onSubmit = async (authForm: LoginFormValues) => {
     signInMutation.mutate(authForm);
   };
+
+  const passwordRegister = register("password", { required: true });
 
   return (
     <div className="mx-auto w-fit mt-[6rem]">
@@ -38,9 +46,14 @@ const EmailLoginForm = () => {
               비밀번호
             </label>
             <Input.InputForm
+              {...passwordRegister}
               type="password"
               className="my-1 pl-[0.1rem] w-[10rem] text-2xl"
-              {...register("password", { required: true })}
+              onBlur={(e) => {
+                setHansHandsAnimate("raiseDownHands");
+                passwordRegister.onBlur(e);
+              }}
+              onFocus={() => setHansHandsAnimate("raiseUpHands")}
             />
           </Input.InputInnerBox>
         </Input>

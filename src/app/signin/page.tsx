@@ -1,16 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
-import homeLogo from "~/images/normal.webp";
 import HandsUpLogo from "~/images/textLogo.webp";
 
 import EmailLoginForm from "./_component/EmailLoginForm";
+import Hans from "./_component/Hans";
 
 const SignIn = () => {
+  const [hansHandsAnimate, setHansHandsAnimate] = useState<
+    "raiseUpHands" | "raiseDownHands" | "none"
+  >("none");
   return (
     <div>
-      <div className="w-[310px] mx-auto mt-6 mb-2">
+      <div className="w-[310px] mx-auto mt-6 mb-[4rem]">
         <Image
           width={150}
           height={150}
@@ -21,14 +25,8 @@ const SignIn = () => {
           다양한 중고 물품 경매에 참여하고 싶다면 Hands up을 찾아주세요.
         </h2>
       </div>
-      <Image
-        className="mx-auto mt-[6rem] rounded-md"
-        src={homeLogo}
-        alt="logo"
-        width={100}
-        height={100}
-      />
-      <EmailLoginForm />
+      <Hans hansHandsAnimate={hansHandsAnimate} />
+      <EmailLoginForm setHansHandsAnimate={setHansHandsAnimate} />
     </div>
   );
 };
