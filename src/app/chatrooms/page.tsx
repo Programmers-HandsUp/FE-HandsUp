@@ -5,11 +5,19 @@ import { Suspense } from "react";
 import ArrowBackButton from "../_component/common/ArrowBackButton";
 import Header from "../_component/common/Header";
 import Navigation from "../_component/common/Navigation";
+import Spinner from "../_component/common/Spinner";
 import useSession from "../_hooks/queries/useSession";
 import ChatRoomList from "./_component/ChatRoomList";
 
 const ChatRooms = () => {
-  const { data: user } = useSession();
+  const { data: user, isLoading } = useSession();
+
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
 
   return (
     <>
@@ -27,7 +35,7 @@ const ChatRooms = () => {
         </Suspense>
       </section>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
-        <Navigation userId={user?.userId} />
+        <Navigation user={user} />
       </nav>
     </>
   );
