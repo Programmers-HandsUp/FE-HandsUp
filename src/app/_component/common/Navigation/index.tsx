@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import useSession from "@/app/_hooks/queries/useSession";
 import { cn } from "@/utils/function/cn";
 import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
@@ -17,6 +18,8 @@ interface NavigationProps {
 
 const Navigation = ({ user }: NavigationProps) => {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const userData = user || session;
 
   return (
     <div className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl">
@@ -36,7 +39,7 @@ const Navigation = ({ user }: NavigationProps) => {
         </div>
       </Link>
       <LoginLink
-        userId={user?.userId}
+        userId={userData?.userId}
         href="/chatrooms">
         <div
           className={cn(
@@ -53,7 +56,7 @@ const Navigation = ({ user }: NavigationProps) => {
       </LoginLink>
 
       <LoginLink
-        userId={user?.userId}
+        userId={userData?.userId}
         href="auctions/new">
         <div
           className={cn(
@@ -70,7 +73,7 @@ const Navigation = ({ user }: NavigationProps) => {
       </LoginLink>
 
       <LoginLink
-        userId={user?.userId}
+        userId={userData?.userId}
         href="/bookmark">
         <div
           className={cn(
@@ -86,17 +89,17 @@ const Navigation = ({ user }: NavigationProps) => {
         </div>
       </LoginLink>
       <LoginLink
-        userId={user?.userId}
+        userId={userData?.userId}
         href={"/my"}>
         <div
           className={cn(
             "flex flex-col items-center",
             `${pathname.includes("account") ? "text-[#96E4FF]" : "text-inherit"}`
           )}>
-          {user ? (
+          {userData ? (
             <div className="w-[25px] h-[25px] relative rounded-full overflow-hidden">
               <Image
-                src={user.profileImageUrl}
+                src={userData.profileImageUrl}
                 fill
                 alt="프로필이미지"
               />
