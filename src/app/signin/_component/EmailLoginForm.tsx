@@ -20,14 +20,14 @@ const EmailLoginForm = () => {
   };
 
   return (
-    <div className="mx-auto w-fit mt-[12rem]">
+    <div className="mx-auto w-fit mt-[6rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input>
           <Input.InputInnerBox className="w-[13.2rem] h-[2.6rem] text-black">
             <label className="my-auto w-[3.5rem] ml-1"> 아이디 </label>
 
             <Input.InputForm
-              className="my-1 w-[8rem]"
+              className="my-1 w-[8rem] pt-1"
               {...register("email", { required: true })}
             />
           </Input.InputInnerBox>
