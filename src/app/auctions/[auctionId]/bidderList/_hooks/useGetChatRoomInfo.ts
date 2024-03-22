@@ -9,13 +9,13 @@ const useGetChatRoomInfo = ({
 }: {
   biddingId: number | undefined;
 }) => {
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery({
     queryKey: ["chat", "chat-room-info"],
     queryFn: () => getChatRoomInfo({ biddingId }),
     enabled: biddingId !== undefined
   });
 
-  return { data, refetch };
+  return { data, refetch, isLoading };
 };
 
 export default useGetChatRoomInfo;

@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+import useSession from "@/app/_hooks/queries/useSession";
+
 import BidderStatusItem from "./_component/BidderStatusItem";
 import useCreateChatRoom from "./_hooks/useCreateChatRoom";
 import useGetBids from "./_hooks/useGetBids";
 import useGetChatRoomInfo from "./_hooks/useGetChatRoomInfo";
+import usePatchTransactionCancel from "./_hooks/usePatchTransactionCancel";
 import usePatchTransactionComplete from "./_hooks/usePatchTransactionComplete";
-import usePatchTransactionCancel from "./_hooks/usePatchTranscationCancel";
 
 interface BidderListPageProps {
   params: { auctionId: string };
@@ -22,7 +24,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     number | undefined
   >();
 
-  const loginId = "10";
+  const { data: user, isLoading: userLoading } = useSession();
 
   const {
     data: bidsData,
@@ -31,6 +33,10 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
   } = useGetBids({
     auctionId: numberOfAuctionId
   });
+  const { data: chatRoomInfo, isLoading: chatRoomInfoLoading } =
+    useGetChatRoomInfo({
+      biddingId: progressingBiddingId
+    });
 
   const { mutation: completeMutation } = usePatchTransactionComplete({
     auctionId: numberOfAuctionId,
@@ -44,19 +50,18 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     auctionId: numberOfAuctionId
   });
 
-  const { data: chatRoomInfo } = useGetChatRoomInfo({
-    biddingId: progressingBiddingId
-  });
-
   useEffect(() => {
     setProgressingBiddingId(
       bidsData?.content.find((x) => x.tradingStatus === "진행중")?.biddingId
     );
   }, [bidsData]);
 
-  if (bidsDataLoading) return <div>Loading...</div>;
-  if (bidsDataError) return <div>에러 발생</div>;
-  if (!bidsData) return <div>입찰자가 없음</div>;
+  if (bidsDataLoading || userLoading || chatRoomInfoLoading)
+    return <div>Loading...</div>;
+  if (bidsDataError) return <div>에러가 발생했어요.</div>;
+  if (!bidsData) return <div>입찰자가 없어요.</div>;
+  if (!chatRoomInfo) return <div>채팅방을 가져올 수 없어요.</div>;
+  if (!user) return <div>로그인을 해주세요.</div>;
 
   return (
     <main className="">
@@ -68,7 +73,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
           biddingPrice={data.biddingPrice}
           nickName={data.bidderNickname}
           status={data.tradingStatus}
-          isSeller={sellerId === loginId}
+          isSeller={Number(sellerId) === user.userId}
           chatRoomId={chatRoomInfo?.chatRoomId}
           createChatRoom={createChatRoomMutation.mutate}
           patchComplete={completeMutation.mutate}
