@@ -20,7 +20,7 @@ const LoginLink = ({ userId, href, children }: LoginLinkProps) => {
     if (!userId) {
       e.preventDefault();
       show("로그인이 필요한 서비스입니다.", "warn-solid");
-      if (href.includes("my")) router.push("/login");
+      if (href.includes("my")) router.push("/signin");
     }
   };
 
