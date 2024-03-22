@@ -40,7 +40,8 @@ const SearchResultPage = () => {
               auctionId,
               currentBiddingPrice,
               dong,
-              imageUrl
+              imageUrl,
+              createdAt
             }: AuctionSearchResult) => (
               <div key={auctionId}>
                 <ProductCard
@@ -56,7 +57,7 @@ const SearchResultPage = () => {
                     <div className="text-2xl">{title}</div>
                     <div className="flex gap-4 text-[0.85rem]">
                       <span>{dong}</span>
-                      <span>{getPastTime("2024-03-21T13:58:43.381320")}</span>
+                      <span>{getPastTime(createdAt)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="font-bold text-[1.1rem]">
