@@ -1,5 +1,4 @@
 import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
-import { CommentContent } from "@/utils/types/comment/commentData";
 
 export interface CreateCommentRequest {
   content: string;
@@ -9,8 +8,8 @@ export interface CreateCommentRequest {
 export const createComment = async ({
   content,
   auctionId
-}: CreateCommentRequest): Promise<CommentContent> => {
-  const res = await fetchWithTokenRenewal(
+}: CreateCommentRequest) => {
+  await fetchWithTokenRenewal(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/${auctionId}/comments`,
     {
       method: "POST",
@@ -22,7 +21,4 @@ export const createComment = async ({
       })
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch data [CreateComment] ");
-
-  return res.json();
 };

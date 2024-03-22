@@ -8,6 +8,7 @@ import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import Notification from "@/app/_component/notification";
 import useModalState from "@/app/_hooks/useModalState";
+import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
@@ -23,12 +24,14 @@ interface MainContentSectionProps {
   userSi: string;
   userGu: string;
   userDong: string;
+  user: CheckLoginUserResponse | null;
 }
 
 const MainContentSection = ({
   userSi,
   userGu,
-  userDong
+  userDong,
+  user
 }: MainContentSectionProps) => {
   const [currentRegion, setCurrentRegion] = useState("전국");
   const [address, setAddress] = useState<AddressState>({
@@ -68,17 +71,22 @@ const MainContentSection = ({
           fill="black"
         />
       </Link>
-      <button onClick={open}>
-        <Icon id="bell-fill" />
-      </button>
-      <Modal
-        modalType="fullScreen"
-        isOpen={isOpen}
-        close={close}
-        animate="slide"
-        className="dark:bg-black">
-        <Notification close={close} />
-      </Modal>
+
+      {user && (
+        <>
+          <button onClick={open}>
+            <Icon id="bell-fill" />
+          </button>
+          <Modal
+            modalType="fullScreen"
+            isOpen={isOpen}
+            close={close}
+            animate="slide"
+            className="dark:bg-black">
+            <Notification close={close} />
+          </Modal>
+        </>
+      )}
     </div>
   );
 

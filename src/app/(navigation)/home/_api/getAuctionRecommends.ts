@@ -95,6 +95,10 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
         cache: "no-store"
       }
     );
+    if (res === null) {
+      return null;
+    }
+
     if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
     return res.json();
   } catch (error) {
