@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import Loading from "@/app/_component/common/Loading";
 import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
@@ -26,7 +26,8 @@ const FinishFunnel = ({
 }: FinishFunnelProps) => {
   const { mutateImageUpload } = useImageUpload();
   const { isSignUpSuccess, mutate } = useSignUp();
-  const setOnboardingPost = async () => {
+
+  const setOnboardingPost = useCallback(async () => {
     if (id && passWord) {
       try {
         const newImgForm = new FormData();
@@ -52,12 +53,20 @@ const FinishFunnel = ({
         console.log(e);
       }
     }
-  };
+  }, [
+    id,
+    passWord,
+    profileImage,
+    category,
+    address,
+    nickName,
+    mutateImageUpload,
+    mutate
+  ]);
 
   useEffect(() => {
     setOnboardingPost();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setOnboardingPost]);
 
   return (
     <div>
