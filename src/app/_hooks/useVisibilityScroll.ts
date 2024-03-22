@@ -11,7 +11,10 @@ const useVisibilityOnScroll = () => {
   useEffect(() => {
     const handleScroll = throttle(() => {
       const currentScrollTop =
-        window.scrollY || document.documentElement.scrollTop;
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0;
 
       setLastScrollTop((prevScrollTop) => {
         setIsVisible(currentScrollTop < prevScrollTop);
