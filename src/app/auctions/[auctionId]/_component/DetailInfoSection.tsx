@@ -74,6 +74,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           currentBiddingPrice={auction.currentBiddingPrice}
           isLoginLoading={userLoading}
           isLogin={user ? true : false}
+          isSeller={user?.userId === auction.sellerInfo.userId}
           auctionStatus={auction.auctionStatus}
         />
         <CarouselDetailImage
