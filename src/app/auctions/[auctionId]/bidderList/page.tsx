@@ -59,7 +59,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
 
   useEffect(() => {
     invalidateChatRoomInfo();
-  }, [invalidateChatRoomInfo]);
+  }, [invalidateChatRoomInfo, progressingBiddingId]);
 
   useEffect(() => {
     setProgressingBiddingId(
@@ -72,7 +72,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
   if (bidsDataError) return <div>에러가 발생했어요.</div>;
   if (!bidsData) return <div>입찰자가 없어요.</div>;
   if (!user) return <div>로그인을 해주세요.</div>;
-
+  console.log(user.userId);
   return (
     <main className="">
       {bidsData.content.map((data) => (
@@ -82,6 +82,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
           profileImage={data.imgUrl}
           biddingPrice={data.biddingPrice}
           nickName={data.bidderNickname}
+          userId={user.userId}
           status={data.tradingStatus}
           isSeller={Number(sellerId) === user.userId}
           chatRoomId={chatRoomInfo?.chatRoomId}
