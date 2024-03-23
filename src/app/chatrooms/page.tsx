@@ -18,7 +18,7 @@ const ChatRooms = () => {
         <Spinner />
       </div>
     );
-
+  if (!user) return <div>다시 로그인을 해주세요.</div>;
   return (
     <>
       <Header
@@ -31,7 +31,7 @@ const ChatRooms = () => {
       />
       <section>
         <Suspense fallback={<div>Loading...</div>}>
-          <ChatRoomList />
+          <ChatRoomList userId={user?.userId} />
         </Suspense>
       </section>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
