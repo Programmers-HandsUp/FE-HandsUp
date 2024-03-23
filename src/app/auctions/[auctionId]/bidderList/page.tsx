@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect, useState } from "react";
 
 import useSession from "@/app/_hooks/queries/useSession";
 
@@ -26,6 +27,12 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
 
   const { data: user, isLoading: userLoading } = useSession();
 
+  const queryClient = useQueryClient();
+
+  const invalidateChatRoomInfo = useCallback(() => {
+    queryClient.invalidateQueries({ queryKey: ["chat", "chat-room-info"] });
+  }, [queryClient]);
+
   const {
     data: bidsData,
     isLoading: bidsDataLoading,
@@ -49,6 +56,10 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
   const { mutation: createChatRoomMutation } = useCreateChatRoom({
     auctionId: numberOfAuctionId
   });
+
+  useEffect(() => {
+    invalidateChatRoomInfo();
+  }, [invalidateChatRoomInfo]);
 
   useEffect(() => {
     setProgressingBiddingId(
