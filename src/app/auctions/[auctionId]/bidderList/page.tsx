@@ -54,7 +54,8 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     biddingId: progressingBiddingId
   });
   const { mutation: createChatRoomMutation } = useCreateChatRoom({
-    auctionId: numberOfAuctionId
+    auctionId: numberOfAuctionId,
+    userId: user?.userId
   });
 
   useEffect(() => {
@@ -65,14 +66,15 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     setProgressingBiddingId(
       bidsData?.content.find((x) => x.tradingStatus === "진행중")?.biddingId
     );
-  }, [bidsData]);
+    invalidateChatRoomInfo();
+  }, [bidsData, invalidateChatRoomInfo]);
 
   if (bidsDataLoading || userLoading || chatRoomInfoLoading)
     return <div>Loading...</div>;
   if (bidsDataError) return <div>에러가 발생했어요.</div>;
   if (!bidsData) return <div>입찰자가 없어요.</div>;
-  if (!user) return <div>로그인을 해주세요.</div>;
-  console.log(user.userId);
+  if (!user) return <div>다시 로그인을 해주세요.</div>;
+
   return (
     <main className="">
       {bidsData.content.map((data) => (
