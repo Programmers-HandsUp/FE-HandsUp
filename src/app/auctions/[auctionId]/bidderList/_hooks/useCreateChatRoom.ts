@@ -5,7 +5,13 @@ import Toast from "@/app/_component/common/Toast";
 
 import createChatRoom from "../_api/createChatRoom";
 
-const useCreateChatRoom = ({ auctionId }: { auctionId: number }) => {
+const useCreateChatRoom = ({
+  auctionId,
+  userId
+}: {
+  auctionId: number;
+  userId: number | undefined;
+}) => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const toast = Toast();
@@ -14,7 +20,7 @@ const useCreateChatRoom = ({ auctionId }: { auctionId: number }) => {
     mutationFn: ({ biddingId }: { biddingId: number }) =>
       createChatRoom({ auctionId, biddingId }),
     onSuccess: (data) => {
-      router.push(`/chatrooms/${data.chatRoomId}`);
+      router.push(`/chatrooms/${data.chatRoomId}/?senderId=${userId}`);
       queryClient.invalidateQueries({
         queryKey: ["auction", auctionId, "bids"]
       });

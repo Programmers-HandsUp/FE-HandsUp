@@ -6,6 +6,7 @@ import ChatRoomInfoHeader from "./_component/ChatRoomInfoHeader";
 
 const ChatRoomPage = () => {
   const params = useParams<{ chatRoomId: string }>();
+
   return (
     <section>
       <ChatRoomInfoHeader chatRoomId={Number(params.chatRoomId)} />

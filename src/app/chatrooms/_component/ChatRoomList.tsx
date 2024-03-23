@@ -5,7 +5,11 @@ import Icon from "@/app/_component/common/Icon";
 
 import useGetChatRooms from "../_hooks/queries/useGetChatRooms";
 
-const ChatRoomList = () => {
+interface ChatRoomListProps {
+  userId: number;
+}
+
+const ChatRoomList = ({ userId }: ChatRoomListProps) => {
   const { data } = useGetChatRooms();
 
   return (
@@ -30,7 +34,7 @@ const ChatRoomList = () => {
             </span>
             <div className="absolute right-5 opacity-0 group-hover:opacity-90 transition-opacity text-white">
               <Link
-                href={`/chatrooms/${content.chatRoomId}`}
+                href={`/chatrooms/${content.chatRoomId}?senderId=${userId}`}
                 className="hover:text-[#96E4ff] px-2 rounded-xl">
                 <Icon id="arrow-right" />
               </Link>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useCallback, useEffect, useState } from "react";
 
 import useSession from "@/app/_hooks/queries/useSession";
 
@@ -26,6 +27,12 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
 
   const { data: user, isLoading: userLoading } = useSession();
 
+  const queryClient = useQueryClient();
+
+  const invalidateChatRoomInfo = useCallback(() => {
+    queryClient.invalidateQueries({ queryKey: ["chat", "chat-room-info"] });
+  }, [queryClient]);
+
   const {
     data: bidsData,
     isLoading: bidsDataLoading,
@@ -47,21 +54,26 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     biddingId: progressingBiddingId
   });
   const { mutation: createChatRoomMutation } = useCreateChatRoom({
-    auctionId: numberOfAuctionId
+    auctionId: numberOfAuctionId,
+    userId: user?.userId
   });
+
+  useEffect(() => {
+    invalidateChatRoomInfo();
+  }, [invalidateChatRoomInfo, progressingBiddingId]);
 
   useEffect(() => {
     setProgressingBiddingId(
       bidsData?.content.find((x) => x.tradingStatus === "진행중")?.biddingId
     );
-  }, [bidsData]);
+    invalidateChatRoomInfo();
+  }, [bidsData, invalidateChatRoomInfo]);
 
   if (bidsDataLoading || userLoading || chatRoomInfoLoading)
     return <div>Loading...</div>;
   if (bidsDataError) return <div>에러가 발생했어요.</div>;
   if (!bidsData) return <div>입찰자가 없어요.</div>;
-  if (!chatRoomInfo) return <div>채팅방을 가져올 수 없어요.</div>;
-  if (!user) return <div>로그인을 해주세요.</div>;
+  if (!user) return <div>다시 로그인을 해주세요.</div>;
 
   return (
     <main className="">
@@ -72,6 +84,7 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
           profileImage={data.imgUrl}
           biddingPrice={data.biddingPrice}
           nickName={data.bidderNickname}
+          userId={user.userId}
           status={data.tradingStatus}
           isSeller={Number(sellerId) === user.userId}
           chatRoomId={chatRoomInfo?.chatRoomId}

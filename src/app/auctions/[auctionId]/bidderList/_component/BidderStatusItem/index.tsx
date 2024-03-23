@@ -13,12 +13,14 @@ export interface BidderStatusItemProps {
   createChatRoom: ({ biddingId }: { biddingId: number }) => void;
   patchComplete: () => void;
   patchCompleteIsLoading: boolean;
+  userId: number;
 }
 
 const BidderStatusItem = ({
   profileImage,
   nickName,
   biddingId,
+  userId,
   chatRoomId,
   biddingPrice,
   status,
@@ -47,7 +49,7 @@ const BidderStatusItem = ({
           return (
             <div className="flex gap-2">
               <Link
-                href={`/chatrooms/${chatRoomId}`}
+                href={`/chatrooms/${chatRoomId}/?senderId=${userId}`}
                 className={`${baseClass} ${hoverClass}`}>
                 채팅하기
               </Link>

@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import ChatMessage from "@/app/_component/common/ChatMessage";
@@ -31,6 +31,8 @@ const ChatRoomContent = ({
     hasNextPage
   } = useGetChatData({ chatRoomId });
   const router = useRouter();
+
+  const searchParams = useSearchParams();
 
   const { data: currentUser, isLoading: userLoading } = useSession();
 
@@ -85,8 +87,7 @@ const ChatRoomContent = ({
     router.back();
     return null;
   }
-
-  const senderId = currentUser.userId;
+  const senderId = Number(searchParams.get("senderId"));
 
   const onSubmit = (data: FormDataType) => {
     sendMessage({

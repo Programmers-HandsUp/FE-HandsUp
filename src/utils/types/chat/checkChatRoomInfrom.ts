@@ -3,6 +3,7 @@ export interface ChatRoomInfoResponse {
   auctionId: number;
   currentBiddingId: number;
   currentBiddingPrice: number;
+  auctionImageUrl: string;
   tradingStatus: "대기중" | "준비중" | "진행중" | "취소됨" | "완료됨";
   auctionTitle: string;
   receiverId: number;

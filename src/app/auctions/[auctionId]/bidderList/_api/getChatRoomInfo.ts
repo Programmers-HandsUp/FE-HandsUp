@@ -5,9 +5,9 @@ const getChatRoomInfo = async ({
   biddingId
 }: {
   biddingId: number | undefined;
-}): Promise<ChatRoomInfoResponse> => {
+}): Promise<ChatRoomInfoResponse | undefined> => {
   if (biddingId === undefined) {
-    throw new Error("400");
+    return undefined;
   }
 
   const isTokenValid = authCheck();
@@ -15,7 +15,6 @@ const getChatRoomInfo = async ({
   if (!isTokenValid) {
     throw new Error("401");
   }
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/chat-rooms/biddings/${biddingId}`,
     {
