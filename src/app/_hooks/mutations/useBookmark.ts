@@ -52,12 +52,6 @@ const useBookmark = ({
     onError: (err, newData, context) => {
       if (err.message === "401") {
         toast.show("로그인 후 이용해주세요.", "warn-solid", 2000);
-      } else if (err.message === "500") {
-        toast.show(
-          "자신의 게시글에는 북마크를 할 수 없습니다.",
-          "warn-solid",
-          2000
-        );
       } else {
         toast.show("오류 발생", "warn-solid", 2000);
       }
