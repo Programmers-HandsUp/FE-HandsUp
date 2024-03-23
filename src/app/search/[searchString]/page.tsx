@@ -41,7 +41,8 @@ const SearchResultPage = () => {
               currentBiddingPrice,
               dong,
               imageUrl,
-              createdAt
+              createdAt,
+              bookmarkCount
             }: AuctionSearchResult) => (
               <div key={auctionId}>
                 <ProductCard
@@ -68,7 +69,7 @@ const SearchResultPage = () => {
                           className="h-fit mr-1 mt-1"
                           id="bookmark-fill"
                         />
-                        <span className="text-[1rem]">10</span>
+                        <span className="text-[1rem]">{bookmarkCount}</span>
                       </div>
                     </div>
                   </ProductCard.CardTitle>
