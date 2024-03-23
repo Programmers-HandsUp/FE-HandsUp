@@ -9,6 +9,7 @@ interface AuctionBidsSectionProps {
   auctionId: number;
   isLogin: boolean;
   isLoginLoading: boolean;
+  isSeller: boolean;
   auctionStatus: "입찰 중" | "거래 중" | "거래 완료";
 }
 
@@ -16,6 +17,7 @@ const AuctionBidsSection = ({
   currentBiddingPrice,
   auctionId,
   isLogin,
+  isSeller,
   isLoginLoading,
   auctionStatus
 }: AuctionBidsSectionProps) => {
@@ -29,6 +31,8 @@ const AuctionBidsSection = ({
       </div>
       {isLoginLoading ? (
         <Spinner />
+      ) : isSeller ? (
+        <div></div>
       ) : auctionStatus === "입찰 중" && isLogin ? (
         <Link
           href={`/auctions/${auctionId}/purchase`}

@@ -8,6 +8,7 @@ import Bookmark from "@/app/_component/common/Bookmark";
 import Header from "@/app/_component/common/Header";
 import ReliabilityBar from "@/app/_component/common/Reliabilitybar";
 import Timer from "@/app/_component/common/Timer";
+import Toast from "@/app/_component/common/Toast";
 import UserCard from "@/app/_component/common/UserCard";
 import useBookmark from "@/app/_hooks/mutations/useBookmark";
 import useSession from "@/app/_hooks/queries/useSession";
@@ -30,6 +31,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   const { top3, bids, auction } = useGetAuctionDetail({
     auctionId
   });
+  const toast = Toast();
 
   const { data: bookmark } = useGetCheckBookmark({ auctionId });
 
@@ -41,6 +43,14 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
   });
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    if (!user) {
+      toast.show("로그인 후 이용해주세요.", "warn-solid");
+      return;
+    }
+    if (auction.sellerInfo.userId === user.userId) {
+      toast.show("자신의 게시글에는 북마크를 할 수 없습니다.", "warn-solid");
+      return;
+    }
     bookmarkMutation.mutate();
   };
 
@@ -64,6 +74,7 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           currentBiddingPrice={auction.currentBiddingPrice}
           isLoginLoading={userLoading}
           isLogin={user ? true : false}
+          isSeller={user?.userId === auction.sellerInfo.userId}
           auctionStatus={auction.auctionStatus}
         />
         <CarouselDetailImage
