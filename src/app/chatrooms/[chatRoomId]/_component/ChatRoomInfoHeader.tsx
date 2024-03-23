@@ -39,7 +39,7 @@ const ChatRoomInfoHeader = ({ chatRoomId }: ChatRoomInfoHeaderProps) => {
         <ProductCard id={data.auctionId}>
           <div className="overflow-hidden rounded-xl">
             <ProductCard.CardImage
-              titleImage="https://cdn.eyesmag.com/content/uploads/sliderImages/2020/12/24/air-jordan-1-ko-chicago-01-406abe1e-0ef2-4b71-b479-7716fdb60630.jpg"
+              titleImage={data.auctionImageUrl}
               width={50}
               height={50}
             />
