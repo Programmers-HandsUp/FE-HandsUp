@@ -60,9 +60,8 @@ const BidderListPage = ({ params, searchParams }: BidderListPageProps) => {
     return <div>Loading...</div>;
   if (bidsDataError) return <div>에러가 발생했어요.</div>;
   if (!bidsData) return <div>입찰자가 없어요.</div>;
-  if (!chatRoomInfo) return <div>채팅방을 가져올 수 없어요.</div>;
   if (!user) return <div>로그인을 해주세요.</div>;
-
+  console.log(chatRoomInfo);
   return (
     <main className="">
       {bidsData.content.map((data) => (

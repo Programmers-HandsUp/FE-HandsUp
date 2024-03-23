@@ -11,8 +11,7 @@ const useGetChatRoomInfo = ({
 }) => {
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["chat", "chat-room-info"],
-    queryFn: () => getChatRoomInfo({ biddingId }),
-    enabled: biddingId !== undefined
+    queryFn: () => getChatRoomInfo({ biddingId })
   });
 
   return { data, refetch, isLoading };
