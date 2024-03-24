@@ -39,7 +39,7 @@ export default function MainPageLayout({
         </header>
         {children}
         <Modal
-          className="bg-black"
+          className="dark:bg-black"
           modalType="fullScreen"
           animate="slide"
           isOpen={isOpen}
