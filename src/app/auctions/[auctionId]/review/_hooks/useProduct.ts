@@ -12,7 +12,6 @@ export const usePostReview = () => {
     mutationFn: createReview,
     onSuccess: () => {
       toast.show("리뷰 등록이 완료되었어요!", "check-solid", 2000);
-      router.push("/home");
     }
   });
   return mutate;
