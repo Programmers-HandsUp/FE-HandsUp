@@ -1,5 +1,4 @@
 import { authCheck } from "@/utils/function/authCheck";
-import { fetchWithTokenRenewal } from "@/utils/function/fetchWithTokenRenewal";
 import { BookMarkedAddResponse } from "@/utils/types/bookmark/add";
 import { BookMarkedAllCheckResponse } from "@/utils/types/bookmark/allCheck";
 import { BookMarkedDeleteResponse } from "@/utils/types/bookmark/delete";
@@ -11,12 +10,19 @@ export type getCheckBookmarkResponse = { isBookmarked: boolean };
 export const getCheckBookmark = async ({
   auctionId
 }: getCheckBookmarkParams): Promise<getCheckBookmarkResponse | null> => {
-  const res = await fetchWithTokenRenewal(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`
+  const isTokenValid = authCheck();
+
+  if (!isTokenValid) return null;
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks/${auctionId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${isTokenValid}`
+      }
+    }
   );
-  if (res === null) {
-    return null;
-  }
+
   if (!res.ok) {
     throw new Error("서버 에러 발생");
   }
@@ -75,12 +81,14 @@ export const deleteBookmark = async (
 
 export const getCheckBookmarkList =
   async (): Promise<BookMarkedAllCheckResponse | null> => {
-    const res = await fetchWithTokenRenewal(
+    const isTokenValid = authCheck();
+
+    if (!isTokenValid) return null;
+
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/bookmarks`
     );
-    if (res === null) {
-      return null;
-    }
+
     if (!res.ok) {
       throw new Error("서버 에러 발생");
     }
