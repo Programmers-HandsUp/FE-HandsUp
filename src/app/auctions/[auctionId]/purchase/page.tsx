@@ -82,7 +82,7 @@ const PurchasePage = ({ params }: PurchaseProps) => {
         />
         <div>
           <ProductCard id={3}>
-            <div className="flex justify-evenly items-center w-full py-4">
+            <div className="flex justify-between items-center w-full py-4">
               <ProductCard.CardImage
                 titleImage={auction?.imageUrls[0]}
                 width={100}
@@ -91,7 +91,7 @@ const PurchasePage = ({ params }: PurchaseProps) => {
               />
               <div>
                 <div>
-                  <ProductCard.CardTitle className="pl-2 text-base overflow-hidden whitespace-nowrap text-ellipsis">
+                  <ProductCard.CardTitle className="pl-2 w-[130px] text-base overflow-hidden whitespace-nowrap text-ellipsis">
                     {auction?.title}
                   </ProductCard.CardTitle>
                 </div>
