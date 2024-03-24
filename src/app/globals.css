@@ -51,6 +51,7 @@
 
   main > section {
     height: calc(100% - var(--header-height) - var(--bottom-height));
+    margin-bottom: 80px;
   }
   @keyframes rotate {
     100% {

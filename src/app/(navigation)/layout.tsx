@@ -20,11 +20,11 @@ export default async function HomeLayout({
   const user = queryClient.getQueryData<CheckLoginUserResponse>(["user"]);
 
   return (
-    <section>
+    <main>
       {children}
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
         <Navigation user={user} />
       </nav>
-    </section>
+    </main>
   );
 }

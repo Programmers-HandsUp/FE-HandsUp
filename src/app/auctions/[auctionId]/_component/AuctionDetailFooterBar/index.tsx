@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 
-import useVisibilityOnScroll from "@/app/_hooks/useVisibilityScroll";
 import { BidsResponse } from "@/utils/types/bid/bids";
 
 import Icon from "../../../../_component/common/Icon";
@@ -22,14 +21,8 @@ const AuctionDetailFooterBar = ({
   sellerId,
   bookmarkCount
 }: AuctionDetailDataProps) => {
-  const isVisible = useVisibilityOnScroll();
   return (
-    <div
-      className="fixed flex justify-between bottom-0 border-t-2 border-t-gray-400 min-w-[360px] py-4 dark:bg-black bg-white"
-      style={{
-        transform: isVisible ? "translateY(0)" : "translateY(100%)",
-        transition: "transform 0.3s ease-in-out"
-      }}>
+    <div className="fixed flex justify-between bottom-0 border-t-2 border-t-gray-400 min-w-[360px] py-4 dark:bg-[#181818] bg-white">
       <div className="flex">
         <div className="flex">
           <Icon id="bookmark-fill-none" />

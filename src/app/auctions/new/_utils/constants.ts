@@ -1,5 +1,5 @@
-export const TRADEMETHOD_LIST = ["직거래", "택배"] as const;
-export const STATE_LIST = ["미개봉", "깨끗해요", "사용감 있음"] as const;
+export const TRADEMETHOD_LIST = ["직거래", "택배", ""] as const;
+export const STATE_LIST = ["미개봉", "깨끗해요", "사용감 있음", ""] as const;
 
 export const PURCHASE_TIME_LIST = [
   {
@@ -34,7 +34,8 @@ export const PURCHASE_TIME_VALUE = [
   "6개월 이하",
   "1년 이하",
   "1년 이상",
-  "모름"
+  "모름",
+  ""
 ] as const;
 
 export const CATEGORY_LIST = [
@@ -50,7 +51,8 @@ export const CATEGORY_LIST = [
   "티켓/교환권",
   "도서",
   "유아도서",
-  "기타중고물품"
+  "기타중고물품",
+  ""
 ] as const;
 
 export const ERRORS = {
