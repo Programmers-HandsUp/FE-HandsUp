@@ -171,17 +171,17 @@
 
   @keyframes shaking {
     0% {
-      transform: translate(-100%, -50%) rotate(-20deg);
+      transform: rotate(-20deg);
     }
     10% {
-      transform: translate(-100%, -50%) rotate(-8deg);
+      transform: rotate(-8deg);
     }
     30% {
-      transform: translate(-100%, -50%) rotate(-35deg);
+      transform: rotate(-35deg);
     }
 
     50% {
-      transform: translate(-100%, -50%) rotate(-8deg);
+      transform: rotate(-8deg);
     }
   }
 

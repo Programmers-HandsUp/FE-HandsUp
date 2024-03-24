@@ -40,11 +40,13 @@ const TopThreeRank = ({ content }: { content: Top3BidData[] }) => {
                     <span className="text-[8px] absolute -translate-y-1/2 translate-x-full rotate-12 animate-pumping">
                       {idx === 2 && "현재 1등!"}
                     </span>
-                    <span className="text-[10px] absolute -translate-y-1/2 -translate-x-full -rotate-[20deg] animate-shaking">
-                      {idx === 2 && "👑"}
-                    </span>
-                    <div className=" whitespace-nowrap text-ellipsis overflow-hidden">
-                      <span>{item.bidderNickname}</span>
+                    <div className="relative">
+                      <span className="absolute -left-[9px] -top-[9px] -rotate-[20deg] animate-shaking">
+                        {idx === 2 && "👑"}
+                      </span>
+                      <div className="whitespace-nowrap text-ellipsis overflow-hidden">
+                        <span>{item.bidderNickname}</span>
+                      </div>
                     </div>
                   </div>
                   <div className="relative top-1">
