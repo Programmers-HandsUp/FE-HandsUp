@@ -1,12 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 
 import Toast from "@/app/_component/common/Toast";
 
 import { createReview } from "../_api/createReview";
 
 export const usePostReview = () => {
-  const router = useRouter();
   const toast = Toast();
   const mutate = useMutation({
     mutationFn: createReview,
