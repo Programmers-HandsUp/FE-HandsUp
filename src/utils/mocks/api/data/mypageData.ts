@@ -100,31 +100,31 @@ export const purchaseList: Purchase = {
 export const reviewLabelList: ReviewLabel = {
   content: [
     {
-      label: "응답이 빨라요",
+      reviewLabelValue: "응답이 빨라요",
       count: 5
     },
     {
-      label: "시간 약속을 잘 지켜요",
+      reviewLabelValue: "시간 약속을 잘 지켜요",
       count: 4
     },
     {
-      label: "제가 있는 곳 까지 와서 거래했어요",
+      reviewLabelValue: "제가 있는 곳 까지 와서 거래했어요",
       count: 7
     },
     {
-      label: "친절하고 매너있어요",
+      reviewLabelValue: "친절하고 매너있어요",
       count: 2
     },
     {
-      label: "물품상태가 설명한 것과 같아요",
+      reviewLabelValue: "물품상태가 설명한 것과 같아요",
       count: 2
     },
     {
-      label: "저렴하게 구매했어요",
+      reviewLabelValue: "저렴하게 구매했어요",
       count: 3
     },
     {
-      label: "물품설명이 자세해요",
+      reviewLabelValue: "물품설명이 자세해요",
       count: 5
     }
   ],

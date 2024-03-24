@@ -24,6 +24,7 @@ function RegisterAuctionPage() {
       initPrice: 0,
       images: []
     },
+    mode: "onChange",
     resolver: zodResolver(AuctionSchema)
   });
 

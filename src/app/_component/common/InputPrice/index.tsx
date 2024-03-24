@@ -1,10 +1,5 @@
 import { ChangeEvent } from "react";
-import {
-  ControllerRenderProps,
-  FieldPath,
-  FieldValues,
-  UseFormReset
-} from "react-hook-form";
+import { ControllerRenderProps, FieldPath, FieldValues } from "react-hook-form";
 
 import { formatPriceWithUnits } from "./formatPrice";
 import PriceButton from "./PriceButton";
@@ -16,7 +11,7 @@ interface InputPriceProps<
   title: "입찰 시작가" | "제안가";
   price: number;
   field: ControllerRenderProps<TField, TFieldName>;
-  reset: UseFormReset<TField>;
+  reset: () => void;
 }
 
 type onChangeType = (price: number) => void;
@@ -46,23 +41,21 @@ function InputPrice<
 
   return (
     <>
-      <div className="flex justify-between items-center">
-        <p>{title}</p>
+      <div>
+        <span>{title}</span>
         <div className="flex justify-end items-center">
-          <div>
-            <input
-              {...field}
-              autoComplete="off"
-              className="h-7 text-right text-lg font-bold px-2 bg-transparent dark:text-white"
-              placeholder={`${title} 입력`}
-              value={price ? price.toLocaleString() : ""}
-              onChange={(e) => handleInputChange(e, field.onChange)}
-            />
-            <span className="text-lg">원</span>
-            <span className="flex justify-end text-sm text-left text-gray-400">
-              {price ? `${formatPriceWithUnits(price)}원` : ""}
-            </span>
-          </div>
+          <input
+            {...field}
+            autoComplete="off"
+            className="h-7 text-right px-2 text-lg font-bold bg-transparent dark:text-white"
+            placeholder={`${title} 입력`}
+            value={price ? price.toLocaleString() : ""}
+            onChange={(e) => handleInputChange(e, field.onChange)}
+          />
+          <span className="text-lg">원</span>
+        </div>
+        <div className="flex justify-end text-sm text-left text-gray-400">
+          {price ? `${formatPriceWithUnits(price)}원` : ""}
         </div>
       </div>
 
