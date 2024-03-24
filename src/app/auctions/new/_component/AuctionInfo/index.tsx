@@ -90,6 +90,7 @@ function AuctionInfo() {
         <Controller
           control={control}
           name="tradeMethod"
+          defaultValue=""
           render={({ field }) => (
             <Chips
               Items={field.value}

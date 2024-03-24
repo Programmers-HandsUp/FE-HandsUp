@@ -74,6 +74,7 @@ function ProductInfo() {
         <Controller
           control={control}
           name="productStatus"
+          defaultValue=""
           render={({ field }) => (
             <Chips
               Items={field.value}
@@ -97,7 +98,7 @@ function ProductInfo() {
         <Controller
           control={control}
           name="purchaseTime"
-          defaultValue={undefined}
+          defaultValue=""
           render={({ field }) => (
             <Chips
               Items={field.value}
