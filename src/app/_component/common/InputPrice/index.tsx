@@ -1,10 +1,5 @@
 import { ChangeEvent } from "react";
-import {
-  ControllerRenderProps,
-  FieldPath,
-  FieldValues,
-  UseFormReset
-} from "react-hook-form";
+import { ControllerRenderProps, FieldPath, FieldValues } from "react-hook-form";
 
 import { formatPriceWithUnits } from "./formatPrice";
 import PriceButton from "./PriceButton";

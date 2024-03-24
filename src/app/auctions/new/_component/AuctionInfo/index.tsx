@@ -16,7 +16,6 @@ function AuctionInfo() {
     control,
     setValue,
     register,
-    reset,
     formState: { errors }
   } = useFormContext<RegisterAuction>();
 
