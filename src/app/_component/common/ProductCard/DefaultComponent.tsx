@@ -75,13 +75,12 @@ export const CardPrice = ({ children, className, price }: CardIPriceProps) => {
   );
 };
 
-export const CardTag = ({ children, className, tradeState }: CardTagProps) => {
+export const CardTag = ({ className, tradeState }: CardTagProps) => {
   return (
     <>
       {tradeState && (
         <span className={cn(productStateVariants({ tradeState }), className)}>
           {tradeState}
-          {children}
         </span>
       )}
     </>
