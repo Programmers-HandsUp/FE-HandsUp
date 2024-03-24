@@ -16,7 +16,7 @@ interface InputPriceProps<
   title: "입찰 시작가" | "제안가";
   price: number;
   field: ControllerRenderProps<TField, TFieldName>;
-  reset: UseFormReset<TField>;
+  reset: () => void;
 }
 
 type onChangeType = (price: number) => void;
