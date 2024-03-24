@@ -23,19 +23,23 @@ function SearchAddressBtn({
   };
 
   return (
-    <main className="flex flex-col dark:text-black">
+    <div className="relative flex flex-col dark:text-black w-full">
       {address && address.dong ? (
-        <button
-          type="button"
-          className="p-2 rounded-lg bg-gray-100">
-          <div className="flex w-full justify-between items-center">
-            <div className="flex gap-2">
-              <Icon
-                id="pin-fill"
-                stroke="black"
-              />
-              <p>{address.dong}</p>
-            </div>
+        <div className="flex">
+          <div className="w-full relative">
+            <button
+              type="button"
+              className="p-2 rounded-lg bg-gray-100 w-full">
+              <div className="flex gap-2">
+                <Icon
+                  id="pin-fill"
+                  stroke="black"
+                />
+                <p>{address.dong}</p>
+              </div>
+            </button>
+          </div>
+          <div className="absolute right-[2px] top-[7px]">
             <button onClick={handleClose}>
               <Icon
                 id="close-square"
@@ -43,7 +47,7 @@ function SearchAddressBtn({
               />
             </button>
           </div>
-        </button>
+        </div>
       ) : (
         <>
           <button
@@ -72,7 +76,7 @@ function SearchAddressBtn({
           </Modal>
         </>
       )}
-    </main>
+    </div>
   );
 }
 
