@@ -14,6 +14,7 @@ const useGetChatData = ({ chatRoomId }: { chatRoomId: number }) => {
     isRefetching,
     isLoading,
     hasNextPage,
+    isFetching,
     fetchNextPage,
     isFetched
   } = useInfiniteQuery<
@@ -38,6 +39,7 @@ const useGetChatData = ({ chatRoomId }: { chatRoomId: number }) => {
     isFetched,
     hasNextPage,
     isLoading,
+    isFetching,
     isRefetching,
     fetchNextPage
   };

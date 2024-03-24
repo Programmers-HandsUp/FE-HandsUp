@@ -27,6 +27,7 @@ const ChatRoomContent = ({
     data: chatData,
     isFetched,
     isLoading,
+    isFetching,
     fetchNextPage,
     hasNextPage
   } = useGetChatData({ chatRoomId });
@@ -80,7 +81,7 @@ const ChatRoomContent = ({
     }
   }, [isFetched, messageList]);
 
-  if (isLoading || userLoading) return <Loading />;
+  if (isLoading || userLoading || isFetching) return <Loading />;
 
   if (!currentUser) {
     show("잠시 후 다시 이용해주세요.", "warn-solid");
@@ -109,7 +110,7 @@ const ChatRoomContent = ({
               nickname={receiverNickName}
               message={item.content}
               createdAt={new Date(item.createdAt)}
-              sender={item.senderId === currentUser?.userId ? "me" : "you"}
+              sender={item.senderId === senderId ? "me" : "you"}
               previousSender={
                 idx > 0
                   ? chatData[idx - 1].senderId === item.senderId
@@ -130,7 +131,7 @@ const ChatRoomContent = ({
               sender={item.senderId === currentUser?.userId ? "me" : "you"}
               previousSender={
                 idx > 0
-                  ? chatData[idx - 1].senderId === item.senderId
+                  ? messageList[idx - 1].senderId === item.senderId
                     ? "me"
                     : "you"
                   : null
