@@ -7,7 +7,7 @@ import Icon from "@/app/_component/common/Icon";
 const BookmarkPageHeader = () => {
   const router = useRouter();
   return (
-    <header className="flex gap-[2rem] my-6">
+    <header className="flex gap-[2rem] mt-6 mb-4">
       <button onClick={() => router.back()}>
         <Icon id="arrow-back" />
       </button>

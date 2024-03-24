@@ -21,8 +21,28 @@ const BookMarkPage = () => {
   };
   const { ref } = useInfiniteScroll<HTMLDivElement>(refetch);
 
+  const getBookmarkStatusIcon = (auctionStatus: string) => {
+    switch (auctionStatus) {
+      case "입찰 중":
+        return "진행중";
+        break;
+      case "거래 중":
+        return "대기중";
+        break;
+      case "거래 완료":
+        return "완료됨";
+        break;
+      case "취소":
+        return "취소됨";
+        break;
+      default:
+        return "취소됨";
+        break;
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center gap-3 h-svh m-auto ">
+    <div className="flex flex-col items-center m-auto ">
       {bookmarks.map(
         ({
           auctionId,
@@ -36,17 +56,22 @@ const BookMarkPage = () => {
               className="my-2"
               id={auctionId}>
               <ProductCard.CardImage
-                className="mr-4"
+                className="mr-4 ml-1"
                 titleImage={imageUrl ? imageUrl : tempLogoImage.src}
-                width={104}
-                height={104}
+                width={100}
+                height={100}
               />
               <ProductCard.CardTitle width={200}>
-                <div className="text-2xl">{title}</div>
-                <div className="flex gap-4 text-[0.85rem]">
+                <div className="text-lg text-ellipsis overflow-hidden">
+                  {title}
+                </div>
+                <div className="flex gap-4 text-[0.8rem] mx-1">
                   <span>{getPastTime(createdDate)}</span>
                 </div>
-                <div className="flex justify-between"></div>
+                <ProductCard.CardTag
+                  tradeState={getBookmarkStatusIcon(auctionStatus)}
+                  className="w-[2rem] text-[0.7rem] mx-1"
+                />
               </ProductCard.CardTitle>
             </ProductCard>
             <hr />

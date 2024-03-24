@@ -21,9 +21,11 @@ export default async function UserPageLayout({
   const user = queryClient.getQueryData<CheckLoginUserResponse>(["user"]);
 
   return (
-    <section className="w-[92%] mx-auto">
-      <BookmarkPageHeader />
-      {children}
+    <section>
+      <div className="w-[95%] mx-auto">
+        <BookmarkPageHeader />
+        {children}
+      </div>
       <nav className="fixed w-full bottom-0 max-w-[360px] h-[56px]">
         <Navigation user={user} />
       </nav>
