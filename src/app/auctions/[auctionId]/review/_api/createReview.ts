@@ -1,12 +1,18 @@
 import { authCheck } from "@/utils/function/authCheck";
-import { AuctionReviewEnrollRequest } from "@/utils/types/auction/auctionReivewEnroll";
+import {
+  AuctionReviewEnrollRequest,
+  ReviewComplete
+} from "@/utils/types/auction/auctionReivewEnroll";
 
 interface createReviewParams {
   auctionId: number;
   data: AuctionReviewEnrollRequest;
 }
 
-export const createReview = async ({ auctionId, data }: createReviewParams) => {
+export const createReview = async ({
+  auctionId,
+  data
+}: createReviewParams): Promise<ReviewComplete | null> => {
   const isTokenValid = authCheck();
 
   if (!isTokenValid) return null;
@@ -25,4 +31,6 @@ export const createReview = async ({ auctionId, data }: createReviewParams) => {
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
+
+  return response.json();
 };
