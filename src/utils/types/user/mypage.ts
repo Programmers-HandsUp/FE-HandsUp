@@ -36,7 +36,7 @@ export interface ReviewLabel {
 }
 
 export interface LabelContent {
-  label:
+  reviewLabelValue:
     | "응답이 빨라요"
     | "시간 약속을 잘 지켜요"
     | "제가 있는 곳 까지 와서 거래했어요"
