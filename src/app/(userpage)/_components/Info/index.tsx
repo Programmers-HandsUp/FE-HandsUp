@@ -40,11 +40,11 @@ function Info({
           {reviewLabelList.length === 0 ? (
             <div>받은 거래 후기가 아직 없어요. </div>
           ) : (
-            reviewLabelList.map(({ label, count }, index) => (
+            reviewLabelList.map(({ reviewLabelValue, count }, index) => (
               <span
                 key={index}
                 className="rounded-3xl px-2 border border-[#96E4FF] ">
-                {label} {count}
+                {reviewLabelValue} {count}
               </span>
             ))
           )}
