@@ -13,7 +13,8 @@ const useNotificationList = () => {
       return lastPageParam + 1;
     },
     select: (data) => data.pages.map((item) => item.content).flat(),
-    retry: 0
+    retry: 0,
+    staleTime: 0
   });
 };
 

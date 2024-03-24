@@ -5,7 +5,8 @@ import { notificationBadge } from "../../_api/notification";
 const useNotificationBadge = () => {
   return useSuspenseQuery({
     queryKey: ["notificationBadge"],
-    queryFn: notificationBadge
+    queryFn: notificationBadge,
+    staleTime: 0
   });
 };
 
