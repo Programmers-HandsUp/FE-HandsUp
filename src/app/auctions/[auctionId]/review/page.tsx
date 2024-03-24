@@ -2,13 +2,16 @@
 
 import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import Button from "@/app/_component/common/Button";
 import Icon from "@/app/_component/common/Icon";
+import Modal from "@/app/_component/common/Modal";
 import ProductCard from "@/app/_component/common/ProductCard";
 import useSession from "@/app/_hooks/queries/useSession";
+import useModalState from "@/app/_hooks/useModalState";
 import formatReadableDate from "@/utils/function/formatReadableDate";
 import {
   AuctionReviewEnrollRequest,
@@ -19,10 +22,6 @@ import SelectRange from "./_component/SelectRange";
 import SelectReview from "./_component/SelectReview";
 import { useGetAuctionInfo } from "./_hooks/useGetAuctionInfo";
 import { usePostReview } from "./_hooks/useProduct";
-import useModalState from "@/app/_hooks/useModalState";
-import Modal from "@/app/_component/common/Modal";
-
-import { useEffect, useState } from "react";
 import ReviewReceipt from "./ReviewReceipt";
 
 interface ReviewPageProps {

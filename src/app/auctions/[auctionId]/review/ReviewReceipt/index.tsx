@@ -5,8 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRef } from "react";
-import { ReviewComplete } from "@/utils/types/auction/auctionReivewEnroll";
+
 import Icon from "@/app/_component/common/Icon";
+import { ReviewComplete } from "@/utils/types/auction/auctionReivewEnroll";
+
 import dateFormat from "./_utils/formatDate";
 
 function ReviewReceipt({ review }: { review: ReviewComplete }) {
