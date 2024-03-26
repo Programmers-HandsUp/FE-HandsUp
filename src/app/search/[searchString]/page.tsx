@@ -57,7 +57,7 @@ const SearchResultPage = () => {
                   <ProductCard.CardTitle width={200}>
                     <div className="text-2xl">{title}</div>
                     <div className="flex gap-4 text-[0.85rem]">
-                      <span>{dong}</span>
+                      <span>{dong ? dong : "택배"}</span>
                       <span>{getPastTime(createdAt)}</span>
                     </div>
                     <div className="flex justify-between">
