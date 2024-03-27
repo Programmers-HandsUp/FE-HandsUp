@@ -51,17 +51,19 @@ const SearchResultPage = () => {
                   <ProductCard.CardImage
                     className="mr-4"
                     titleImage={imageUrl ? imageUrl : tempLogoImage.src}
-                    width={104}
-                    height={104}
+                    width={100}
+                    height={100}
                   />
                   <ProductCard.CardTitle width={200}>
-                    <div className="text-2xl">{title}</div>
-                    <div className="flex gap-4 text-[0.85rem]">
-                      <span>{dong}</span>
+                    <div className="text-lg text-ellipsis overflow-hidden">
+                      {title}
+                    </div>
+                    <div className="flex gap-4 text-[0.7rem]">
+                      <span>{dong ? dong : "택배"}</span>
                       <span>{getPastTime(createdAt)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="font-bold text-[1.1rem]">
+                      <span className="font-bold text-[0.9rem]">
                         {currentBiddingPrice}
                       </span>
                       <div className="flex mt-1">
@@ -69,7 +71,7 @@ const SearchResultPage = () => {
                           className="h-fit mr-1 mt-1"
                           id="bookmark-fill"
                         />
-                        <span className="text-[1rem]">{bookmarkCount}</span>
+                        <span className="text-[0.9rem]">{bookmarkCount}</span>
                       </div>
                     </div>
                   </ProductCard.CardTitle>

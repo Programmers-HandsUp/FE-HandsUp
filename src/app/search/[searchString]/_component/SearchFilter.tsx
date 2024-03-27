@@ -72,7 +72,7 @@ const SearchFilterModal = ({
             className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="direct"
             type="radio"
-            value="meet"
+            value="직거래"
             {...register("tradeMethod")}
           />
           <label>직거래</label>
@@ -82,7 +82,7 @@ const SearchFilterModal = ({
             className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             id="delivery"
             type="radio"
-            value="delivery"
+            value="택배"
             {...register("tradeMethod")}
           />
           <label>택배</label>
