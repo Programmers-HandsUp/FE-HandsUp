@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 
+import ClearButton from "./ClearButton";
 import InputForm from "./InputForm";
 import InputInnerBox from "./InputInnerBox";
 import SubmitButton from "./SubmitButton";
@@ -9,7 +10,7 @@ interface InputContextType {
   setInputText: (text: string) => void;
 }
 
-const InputContext = createContext<InputContextType>({
+export const InputContext = createContext<InputContextType>({
   inputText: "",
   setInputText: () => {}
 });
@@ -35,7 +36,8 @@ const InputWrapper = ({
 const Input = Object.assign(InputWrapper, {
   InputInnerBox,
   SubmitButton,
-  InputForm
+  InputForm,
+  ClearButton
 });
 
 export default Input;
