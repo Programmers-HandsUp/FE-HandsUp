@@ -30,32 +30,26 @@ const EmailLoginForm = ({ setHansHandsAnimate }: EmailLoginForm) => {
   return (
     <div className="mx-auto w-fit mt-[6rem]">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input>
-          <Input.InputInnerBox className="w-[15rem] h-[2.6rem] text-black">
-            <label className="my-auto w-[4rem] text-center ml-1">이메일</label>
+        <Input className="w-[15rem] h-[2.6rem] text-black">
+          <label className="my-auto w-[4rem] text-center ml-1">이메일</label>
 
-            <Input.InputForm
-              className="my-1 w-[10rem] pt-1 text-[0.9rem]"
-              {...register("email", { required: true })}
-            />
-          </Input.InputInnerBox>
+          <Input.InputForm
+            className="my-1 w-[10rem] pt-1 text-[0.9rem]"
+            {...register("email", { required: true })}
+          />
         </Input>
-        <Input>
-          <Input.InputInnerBox className="w-[15rem] h-[2.6rem] my-1 text-black">
-            <label className="my-auto w-[4rem] ml-1 text-center">
-              비밀번호
-            </label>
-            <Input.InputForm
-              {...passwordRegister}
-              type="password"
-              className="my-1 pl-[0.1rem] w-[10rem] text-2xl"
-              onBlur={(e) => {
-                setHansHandsAnimate("raiseDownHands");
-                passwordRegister.onBlur(e);
-              }}
-              onFocus={() => setHansHandsAnimate("raiseUpHands")}
-            />
-          </Input.InputInnerBox>
+        <Input className="w-[15rem] h-[2.6rem] my-1 text-black">
+          <label className="my-auto w-[4rem] ml-1 text-center">비밀번호</label>
+          <Input.InputForm
+            {...passwordRegister}
+            type="password"
+            className="my-1 pl-[0.1rem] w-[10rem] text-2xl"
+            onBlur={(e) => {
+              setHansHandsAnimate("raiseDownHands");
+              passwordRegister.onBlur(e);
+            }}
+            onFocus={() => setHansHandsAnimate("raiseUpHands")}
+          />
         </Input>
         <div className="flex flex-col mt-[2.3rem] text-lg">
           <button
