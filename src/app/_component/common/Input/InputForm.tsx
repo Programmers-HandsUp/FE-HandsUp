@@ -5,9 +5,15 @@ import { InputContext } from ".";
 interface InputFormProps {
   className?: string;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  type?: string;
 }
 
-const InputForm = ({ onKeyDown, className, ...props }: InputFormProps) => {
+const InputForm = ({
+  type,
+  onKeyDown,
+  className,
+  ...props
+}: InputFormProps) => {
   const { inputText, setInputText } = useContext(InputContext);
 
   return (

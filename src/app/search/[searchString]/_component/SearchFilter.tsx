@@ -108,9 +108,9 @@ const SearchFilterModal = ({
       </div>
       <h2 className="mt-4 text-xl">금액</h2>
       <div className="px-3">
-        <Input className="my-1">
+        <div className="flex">
           <label className="my-auto mr-4 text-lg">이상</label>
-          <Input.InputInnerBox className="w-[14rem] h-[2.8rem]">
+          <Input className="w-[14rem] h-[2.8rem]">
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
@@ -119,11 +119,12 @@ const SearchFilterModal = ({
               })}
             />
             <label className="text-black my-auto text-2xl">원</label>
-          </Input.InputInnerBox>
-        </Input>
-        <Input>
+          </Input>
+        </div>
+
+        <div className="flex">
           <label className="my-auto mr-4 text-lg">이하</label>
-          <Input.InputInnerBox className="w-[14rem] h-[2.8rem]">
+          <Input className="w-[14rem] h-[2.8rem]">
             <Input.InputForm
               className="w-[11.5rem] text-2xl py-2 px-1 text-end"
               type="number"
@@ -132,8 +133,8 @@ const SearchFilterModal = ({
               })}
             />
             <label className="text-black my-auto text-2xl">원</label>
-          </Input.InputInnerBox>
-        </Input>
+          </Input>
+        </div>
       </div>
       <div className="flex w-[60%] mx-auto justify-between my-6 gap-2 text-xl">
         <button
