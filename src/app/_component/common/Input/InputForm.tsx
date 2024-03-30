@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { InputContext } from ".";
 
-interface InputFormProps {
+interface InputFormProps extends React.HTMLProps<HTMLInputElement> {
   className?: string;
   onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type?: string;

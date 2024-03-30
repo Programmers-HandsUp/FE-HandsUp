@@ -58,23 +58,25 @@ const SignupForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="ml-4">
           <label>이메일</label>
-          <Input
-            className={cn(
-              getInputBorderColor(),
-              "w-[13rem] h-[2.6rem] text-black "
-            )}>
-            <Input.InputForm
-              type="email"
-              placeholder="사용하실 아이디를 입력해주세요."
-              className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
-              {...register("email", { required: true })}
-            />
+          <div className="flex">
+            <Input
+              className={cn(
+                getInputBorderColor(),
+                "w-[13rem] h-[2.6rem] text-black "
+              )}>
+              <Input.InputForm
+                type="email"
+                placeholder="사용하실 아이디를 입력해주세요."
+                className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
+                {...register("email", { required: true })}
+              />
+            </Input>
             <Input.SubmitButton
               className="mx-2 px-1 py-[0.3rem] h-fit my-auto text-[0.75rem] bg-blue-300 rounded-md"
-              onClick={() => idDuplicateCheck.mutate(email)}>
+              onButtonClick={() => idDuplicateCheck.mutate(email)}>
               중복검사
             </Input.SubmitButton>
-          </Input>
+          </div>
           <h2 className="mt-[2rem]">비밀번호</h2>
           <Input className="w-[13rem] h-[2.6rem] my-1 text-black">
             <Input.InputForm
@@ -90,7 +92,7 @@ const SignupForm = () => {
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요."
               className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
-              onChange={(event) => setCheckPassWord(event.target.value)}
+              onChange={(event) => setCheckPassWord(event.currentTarget.value)}
             />
           </Input>
         </div>
