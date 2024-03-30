@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 
-export const InputInnerBoxVariants = cva(
+export const InputWrapperVariants = cva(
   "gap-1 px-1 flex bg-slate-100 my-auto w-fit h-fit",
   {
     variants: {

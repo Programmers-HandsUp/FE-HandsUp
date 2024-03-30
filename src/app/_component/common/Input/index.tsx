@@ -1,8 +1,11 @@
+import { VariantProps } from "class-variance-authority";
 import { createContext, useState } from "react";
+
+import { cn } from "@/utils/function/cn";
 
 import ClearButton from "./ClearButton";
 import InputForm from "./InputForm";
-import InputInnerBox from "./InputInnerBox";
+import { InputWrapperVariants } from "./InputWrapper.variants";
 import SubmitButton from "./SubmitButton";
 
 interface InputContextType {
@@ -15,26 +18,31 @@ export const InputContext = createContext<InputContextType>({
   setInputText: () => {}
 });
 
-interface InputWrapperProps {
+interface InputInnerBoxProps extends VariantProps<typeof InputWrapperVariants> {
   className?: string;
 }
 
 const InputWrapper = ({
   className,
-  children
-}: React.PropsWithChildren<InputWrapperProps>) => {
+  children,
+  fontSize,
+  rounded
+}: React.PropsWithChildren<InputInnerBoxProps>) => {
   const [inputText, setInputText] = useState("");
 
   const providerValue = { inputText, setInputText };
+
   return (
     <InputContext.Provider value={providerValue}>
-      <div className={`${className} flex`}>{children}</div>
+      <div
+        className={cn(InputWrapperVariants({ fontSize, rounded }), className)}>
+        {children}
+      </div>
     </InputContext.Provider>
   );
 };
 
 const Input = Object.assign(InputWrapper, {
-  InputInnerBox,
   SubmitButton,
   InputForm,
   ClearButton
