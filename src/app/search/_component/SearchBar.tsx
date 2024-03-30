@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { KeyboardEvent, useState } from "react";
+import { KeyboardEvent } from "react";
 
 import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
@@ -12,10 +12,10 @@ import setSearchRecordInLocalStorage from "../_utils/setSearchRecordInLocalStora
 const SearchBar = () => {
   const router = useRouter();
   const { show } = Toast();
-  const [searchKeyword, setSearchKeyword] = useState("");
 
   const onKeyDownSearchButton = (event: KeyboardEvent<HTMLInputElement>) => {
     event.stopPropagation();
+    const searchKeyword = event.currentTarget.value;
 
     if (event.key === "Enter") {
       event.preventDefault();
@@ -28,10 +28,6 @@ const SearchBar = () => {
     }
   };
 
-  const onClickClearButton = () => {
-    setSearchKeyword("");
-  };
-
   return (
     <div className="flex gap-2 my-4">
       <button onClick={() => router.back()}>
@@ -40,20 +36,12 @@ const SearchBar = () => {
           id="arrow-back"
         />
       </button>
-      <Input>
-        <Input.InputInnerBox className="py-[0.1rem] gap-2">
-          <Input.InputForm
-            value={searchKeyword}
-            onKeyPress={onKeyDownSearchButton}
-            className="w-[16rem]"
-            onChange={(event) => setSearchKeyword(event.target.value)}
-          />
-          <button
-            onClick={onClickClearButton}
-            className="bg-gray-300 rounded-full w-fit h-fit px-1 mx-1 text-sm text-center my-auto">
-            X
-          </button>
-        </Input.InputInnerBox>
+      <Input className="py-[0.1rem] gap-2">
+        <Input.InputForm
+          onKeyDown={onKeyDownSearchButton}
+          className="w-[16rem]"
+        />
+        <Input.ClearButton />
       </Input>
     </div>
   );

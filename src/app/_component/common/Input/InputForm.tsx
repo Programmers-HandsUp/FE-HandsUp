@@ -4,14 +4,16 @@ import { InputContext } from ".";
 
 interface InputFormProps {
   className?: string;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const InputForm = ({ className, ...props }: InputFormProps) => {
+const InputForm = ({ onKeyDown, className, ...props }: InputFormProps) => {
   const { inputText, setInputText } = useContext(InputContext);
 
   return (
     <input
       value={inputText}
+      onKeyDown={onKeyDown}
       onChange={(event) => setInputText(event.target.value)}
       className={className}
       {...props}
