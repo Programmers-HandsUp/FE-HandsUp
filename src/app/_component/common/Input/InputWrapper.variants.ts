@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const InputWrapperVariants = cva(
-  "gap-1 px-1 flex bg-slate-100 my-auto w-fit h-fit",
+  "gap-1 px-1 flex bg-white my-auto w-fit h-fit",
   {
     variants: {
       fontSize: {

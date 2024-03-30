@@ -22,24 +22,26 @@ const EmailLoginForm = ({ setHansHandsAnimate }: EmailLoginForm) => {
 
   const { register, handleSubmit } = useForm<LoginFormValues>();
   const onSubmit = async (authForm: LoginFormValues) => {
+    console.log("*");
     signInMutation.mutate(authForm);
   };
 
+  const emailRegister = register("email", { required: true });
   const passwordRegister = register("password", { required: true });
 
   return (
-    <div className="mx-auto w-fit mt-[6rem]">
+    <div className="mx-auto w-fit mt-[25%]">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input className="w-[15rem] h-[2.6rem] text-black">
-          <label className="my-auto w-[4rem] text-center ml-1">이메일</label>
-
+          <label className="my-auto w-[4rem] text-left ml-2">이메일</label>
           <Input.InputForm
+            {...emailRegister}
             className="my-1 w-[10rem] pt-1 text-[0.9rem]"
-            {...register("email", { required: true })}
+            type="email"
           />
         </Input>
         <Input className="w-[15rem] h-[2.6rem] my-1 text-black">
-          <label className="my-auto w-[4rem] ml-1 text-center">비밀번호</label>
+          <label className="my-auto w-[4rem] ml-1 text-left">비밀번호</label>
           <Input.InputForm
             {...passwordRegister}
             type="password"
