@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const ClearButtonVariants = cva(
-  "my-auto flex items-center justify-center ",
+  "my-auto flex items-center justify-center text-center",
   {
     variants: {
       color: {
@@ -41,7 +41,7 @@ export const ClearButtonVariants = cva(
     },
     defaultVariants: {
       size: "fit",
-      fontSize: "lg",
+      fontSize: "sm",
       rounded: "full",
       color: "gray"
     }

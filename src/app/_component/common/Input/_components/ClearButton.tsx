@@ -36,7 +36,7 @@ const ClearButton = ({
       onClick={() => setInputText("")}
       {...props}
       className={cn(ClearButtonVariants({ color, size, fontSize }), className)}>
-      {buttonText ? buttonText : "x"}
+      {buttonText ? buttonText : "X"}
     </button>
   );
 };
