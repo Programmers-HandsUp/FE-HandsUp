@@ -4,6 +4,18 @@ export const InputWrapperVariants = cva(
   "gap-1 px-1 flex bg-white my-auto w-fit h-fit",
   {
     variants: {
+      variant: {
+        underLine: "border-b-2",
+        box: "border-2",
+        none: ""
+      },
+      borderColor: {
+        gray: "border-gray-200",
+        white: "border-white",
+        black: "border-black",
+        full: "border-transparent"
+      },
+
       fontSize: {
         sm: "text-sm",
         md: "text-md",
@@ -21,8 +33,10 @@ export const InputWrapperVariants = cva(
     },
 
     defaultVariants: {
+      variant: "box",
       rounded: "little",
-      fontSize: "lg"
+      fontSize: "lg",
+      borderColor: "gray"
     }
   }
 );
