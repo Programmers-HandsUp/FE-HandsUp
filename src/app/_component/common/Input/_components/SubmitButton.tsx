@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { useContext } from "react";
 
-import { InputContext } from ".";
+import { InputContext } from "..";
 
 interface SubmitButtonProps {
   onButtonClick: (inputText: string) => void;

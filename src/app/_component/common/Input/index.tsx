@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 
 import { cn } from "@/utils/function/cn";
 
-import ClearButton from "./ClearButton";
-import InputForm from "./InputForm";
+import ClearButton from "./_components/ClearButton";
+import InputForm from "./_components/InputForm";
+import SubmitButton from "./_components/SubmitButton";
 import { InputWrapperVariants } from "./InputWrapper.variants";
-import SubmitButton from "./SubmitButton";
 
 interface InputContextType {
   inputText: string;

@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import { cn } from "@/utils/function/cn";
 
-import { InputContext } from ".";
+import { InputContext } from "..";
 import { ClearButtonVariants } from "./ClearButton.variants";
 
 interface ClearButtonProps

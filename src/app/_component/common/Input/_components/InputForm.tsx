@@ -2,7 +2,7 @@ import { forwardRef, useContext } from "react";
 
 import { cn } from "@/utils/function/cn";
 
-import { InputContext } from ".";
+import { InputContext } from "..";
 
 interface InputFormProps extends React.HTMLProps<HTMLInputElement> {
   className?: string;
