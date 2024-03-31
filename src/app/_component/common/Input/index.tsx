@@ -27,7 +27,9 @@ const InputWrapper = ({
   children,
   fontSize,
   rounded,
-  variant
+  variant,
+  backgroundColor,
+  borderColor
 }: React.PropsWithChildren<InputInnerBoxProps>) => {
   const [inputText, setInputText] = useState("");
 
@@ -37,7 +39,13 @@ const InputWrapper = ({
     <InputContext.Provider value={providerValue}>
       <div
         className={cn(
-          InputWrapperVariants({ variant, fontSize, rounded }),
+          InputWrapperVariants({
+            backgroundColor,
+            borderColor,
+            variant,
+            fontSize,
+            rounded
+          }),
           className
         )}>
         {children}

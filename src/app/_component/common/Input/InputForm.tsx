@@ -1,5 +1,7 @@
 import { forwardRef, useContext } from "react";
 
+import { cn } from "@/utils/function/cn";
+
 import { InputContext } from ".";
 
 interface InputFormProps extends React.HTMLProps<HTMLInputElement> {
@@ -18,7 +20,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
         value={inputText}
         onKeyDown={onKeyDown}
         onChange={(event) => setInputText(event.target.value)}
-        className={className}
+        className={cn(className, "bg-transparent")}
       />
     );
   }
