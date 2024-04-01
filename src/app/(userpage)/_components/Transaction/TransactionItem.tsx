@@ -38,7 +38,7 @@ export function TransactionPrice({ children }: { children: number | string }) {
 export function TransactionDate({
   children,
   date
-}: PropsWithChildren<{ date?: Date | string }>) {
+}: PropsWithChildren<{ date?: Date }>) {
   return (
     <div className="text-sm text-[#ABABAB] text-right">
       {formatDate(date)}
