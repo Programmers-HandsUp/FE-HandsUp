@@ -1,17 +1,14 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { getLoginUserInfo } from "./app/_api/user";
-
-// This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
-  const auth = await getLoginUserInfo();
-  if (!auth) {
+  const cookie = request.cookies.get("accessToken");
+
+  if (!cookie) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 }
 
-// See "Matching Paths" below to learn more
 export const config = {
   matcher: [
     "/notification",
