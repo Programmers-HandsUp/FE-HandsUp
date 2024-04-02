@@ -1,9 +1,8 @@
-import Link from "next/link";
-
 import BoxLayout from "@/app/(userpage)/_components/BoxLayout";
 import Info from "@/app/(userpage)/_components/Info";
 import Profile from "@/app/(userpage)/_components/Profile";
 import TransactionStatus from "@/app/(userpage)/_components/TransactionStatus";
+import { useLogout } from "@/app/(userpage)/_hooks/mutations/useLogout";
 import useMyInfo from "@/app/(userpage)/_hooks/queries/useMyInfo";
 import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
@@ -15,6 +14,8 @@ function MyInfo({ user }: { user: CheckLoginUserResponse }) {
     reviews: reviewList
   } = useMyInfo(user.userId);
 
+  const { mutateLogout } = useLogout();
+
   return (
     <>
       <Info
@@ -23,13 +24,12 @@ function MyInfo({ user }: { user: CheckLoginUserResponse }) {
         reviewList={reviewList}>
         <Profile user={user}>
           <p className="text-sm">{user.address.dong}</p>
-          <Link href="/my/profile-edit">
-            <button
-              type="button"
-              className="border py-1 px-3 rounded-lg text-sm mt-2">
-              프로필 관리
-            </button>
-          </Link>
+          <button
+            type="button"
+            onClick={() => mutateLogout()}
+            className="border py-1 px-3 rounded-lg text-sm mt-2">
+            로그아웃
+          </button>
         </Profile>
         <BoxLayout
           title="구매 내역"
