@@ -57,7 +57,7 @@ const Navigation = ({ user }: NavigationProps) => {
 
       <LoginLink
         userId={userData?.userId}
-        href="auctions/new">
+        href="/auctions/new">
         <div
           className={cn(
             "flex flex-col items-center",
