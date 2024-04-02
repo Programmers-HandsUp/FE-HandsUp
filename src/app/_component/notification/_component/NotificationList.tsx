@@ -10,12 +10,10 @@ function NotificationList() {
     data: notifications,
     fetchNextPage,
     hasNextPage,
-    isError,
-
     isFetched
   } = useNotificationList();
 
-  const { data: isRead, isError: badgeError } = useNotificationBadge();
+  const { data: isRead } = useNotificationBadge();
 
   const refetch = () => {
     if (hasNextPage && isFetched) fetchNextPage();
@@ -26,8 +24,6 @@ function NotificationList() {
   if (notifications.length === 0) {
     return <EmptyNotification />;
   }
-
-  if (isError || badgeError) return <div>에러</div>;
 
   return (
     <>
