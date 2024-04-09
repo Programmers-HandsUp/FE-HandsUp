@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 import Toast from "@/app/_component/common/Toast";
 
-import { userLogout } from "../../_api/mypage";
+import { logoutUser } from "../../_api/mypage";
 import { deleteCookie } from "../../_utils/deleteCookie";
 
 export const useLogout = () => {
@@ -11,7 +11,7 @@ export const useLogout = () => {
   const router = useRouter();
 
   const logoutMutation = useMutation({
-    mutationFn: userLogout,
+    mutationFn: logoutUser,
     onSuccess() {
       show("로그아웃", "check-solid");
       deleteCookie();
