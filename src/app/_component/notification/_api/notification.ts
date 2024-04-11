@@ -22,8 +22,6 @@ export const sendFCMToken = async (fcmToken: string) => {
     const errData = await res.json();
     throw new Error(errData.message);
   }
-
-  return res.json();
 };
 
 export const notificationList = async ({
