@@ -44,7 +44,8 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
 
         <label className="mt-8 text-lg">닉네임</label>
         <input
-          className="border-b-2 border-black mt-4 h-10 px-2"
+          placeholder="사용하실 닉네임을 2글자 ~ 8글자 사이로 적어주세요."
+          className="border-b-2 border-black mt-4 h-10 px-2 text-sm"
           onChange={(event) => setNickName(event.target.value)}
         />
       </form>
