@@ -50,7 +50,7 @@ const OnBoarding = () => {
       router.push("/signin");
     }
   }, [id, passWord, router]);
-  
+
   useEffect(() => {
     if (address.dong) {
       pushFunnel();
@@ -61,12 +61,14 @@ const OnBoarding = () => {
   const onClickNextButton = () => {
     switch (topFunnelPage) {
       case 0:
-        if (profileImage && nickName.length > 1) {
+        if (profileImage && nickName.length > 1 && nickName.length <= 8) {
           pushFunnel();
         } else if (!profileImage) {
           show("프로필 사진을 등록해주세요!", "warn-solid", 3000);
         } else if (nickName.length < 2) {
-          show("닉네임을 입력해주세요!", "warn-solid", 3000);
+          show("닉네임을 2글자 이상 입력해주세요!", "warn-solid", 3000);
+        } else if (nickName.length > 8) {
+          show("닉네임을 8글자 이하로 입력해주세요!", "warn-solid", 3000);
         }
         break;
       case 1:

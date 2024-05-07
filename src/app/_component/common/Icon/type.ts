@@ -50,4 +50,5 @@ export type IconName =
   | "dot"
   | "completed_purchase_trading"
   | "bookmark-fill-none"
-  | "addImage";
+  | "addImage"
+  | "people";
