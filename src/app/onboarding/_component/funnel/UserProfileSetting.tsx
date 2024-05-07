@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 
+import Icon from "@/app/_component/common/Icon";
 import onGetImageFile from "@/utils/function/onGetImageFile";
 
 import useOnboardingStore from "../store/store";
@@ -21,7 +22,7 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
       <form className="w-[290px] mx-auto flex flex-col">
         <label className="mb-4 text-lg">프로필 사진 등록</label>
         <button
-          className="rounded-full w-[7rem] h-[7rem] bg-slate-400"
+          className="rounded-full w-[7rem] h-[7rem] bg-slate-400 relative"
           onClick={(event) => {
             event.preventDefault();
             onGetImageFile((newImage) => setProfileImage(newImage));
@@ -35,6 +36,10 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
               alt="img"
             />
           ) : null}
+          <Icon
+            id="addImage"
+            className="absolute bottom-0 right-1 rounded-full w-8 h-8 pl-[0.2rem] py-[0.2rem] bg-[#96E4FF] border-blue-600 border-[0.05rem]"
+          />
         </button>
 
         <label className="mt-8 text-lg">닉네임</label>

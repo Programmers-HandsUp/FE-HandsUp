@@ -49,4 +49,5 @@ export type IconName =
   | "circle"
   | "dot"
   | "completed_purchase_trading"
-  | "bookmark-fill-none";
+  | "bookmark-fill-none"
+  | "addImage";
