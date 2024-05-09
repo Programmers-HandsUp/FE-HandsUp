@@ -18,6 +18,7 @@ interface ChipsProps<T extends string | string[]>
   setItems: React.Dispatch<React.SetStateAction<T>> | ((items: T) => void);
   multiple?: boolean;
   size?: number;
+  limit?: number;
   className?: string;
 }
 
@@ -25,6 +26,7 @@ export const Chips = <T extends string | string[]>({
   children,
   spacing,
   rounded,
+  limit,
   size,
   Items,
   setItems,
@@ -36,6 +38,7 @@ export const Chips = <T extends string | string[]>({
       const updatedSelection = Items.includes(value)
         ? Items.filter((item) => item !== value)
         : [...Items, value];
+      if (!(limit && updatedSelection.length <= limit)) return;
       setItems(updatedSelection as T);
     } else {
       setItems(value as T);
