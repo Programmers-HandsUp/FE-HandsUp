@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldErrors, useForm } from "react-hook-form";
 
 import Input from "@/app/_component/common/Input";
 import { cn } from "@/utils/function/cn";
@@ -33,8 +33,6 @@ const SignupForm = () => {
   const onSubmit = async (userAuthData: LoginFormValues) => {
     if (idStatus === "None") {
       show("이메일 중복검사를 해주세요", "info-solid", 3000);
-    } else if (email.length < 6) {
-      show("이메일을 입력해주세요.", "info-solid", 3000);
     } else if (passWord !== checkPassWord) {
       show("비밀번호가 일치하지 않습니다", "info-solid", 3000);
     } else if (idStatus === "Ok") {
@@ -44,6 +42,14 @@ const SignupForm = () => {
       );
     }
   };
+
+  const onFormInValid = (error: FieldErrors) => {
+    const errorMessage = error[Object.keys(error)[0]]?.message;
+    if (errorMessage && typeof errorMessage === "string") {
+      show(errorMessage, "warn-solid", 3000);
+    }
+  };
+
   const getInputBorderColor = () => {
     if (idStatus === "None") {
       return "border-red-600 border-4";
@@ -55,7 +61,7 @@ const SignupForm = () => {
 
   return (
     <div className="mx-auto w-fit mt-[8rem]">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit, onFormInValid)}>
         <div className="ml-4">
           <label>이메일</label>
           <Input className="gap-1">
@@ -66,9 +72,15 @@ const SignupForm = () => {
               )}>
               <Input.InputForm
                 type="email"
-                placeholder="사용하실 아이디를 입력해주세요."
+                placeholder="사용하실 이메일을 입력해주세요."
                 className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
-                {...register("email", { required: true })}
+                {...register("email", {
+                  required: "사용하실 이메일을 입력해주세요.",
+                  minLength: {
+                    value: 9,
+                    message: "올바른 이메일 형식을 넣어주세요"
+                  }
+                })}
               />
             </Input.InputInnerBox>
             <Input.SubmitButton
@@ -84,7 +96,17 @@ const SignupForm = () => {
                 type="password"
                 placeholder="사용하실 비밀번호를 입력해주세요."
                 className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: "사용하실 비밀번호를 입력해주세요.",
+                  minLength: {
+                    value: 8,
+                    message: "최소 8글자 이상 입력해주세요."
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "최대 20글자 이하로 입력해주세요."
+                  }
+                })}
               />
             </Input.InputInnerBox>
           </Input>
