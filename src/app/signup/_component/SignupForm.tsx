@@ -31,16 +31,10 @@ const SignupForm = () => {
   }, [email]);
 
   const onSubmit = async (userAuthData: LoginFormValues) => {
-    if (idStatus === "None") {
-      show("이메일 중복검사를 해주세요", "info-solid", 3000);
-    } else if (passWord !== checkPassWord) {
-      show("비밀번호가 일치하지 않습니다", "info-solid", 3000);
-    } else if (idStatus === "Ok") {
-      // signUpMutation.mutate(data);     @notice : 현재 회원가입 & 온보딩 api가 통합되어있어 분리되기전까지 회원가입 폼 전부 입력시 온보딩 페이지로 이동
-      router.push(
-        `/onboarding?id=${userAuthData.email}&password=${userAuthData.password}`
-      );
-    }
+    // signUpMutation.mutate(data);     @notice : 현재 회원가입 & 온보딩 api가 통합되어있어 분리되기전까지 회원가입 폼 전부 입력시 온보딩 페이지로 이동
+    router.push(
+      `/onboarding?id=${userAuthData.email}&password=${userAuthData.password}`
+    );
   };
 
   const onFormInValid = (error: FieldErrors) => {
@@ -76,6 +70,10 @@ const SignupForm = () => {
                 className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
                 {...register("email", {
                   required: "사용하실 이메일을 입력해주세요.",
+                  validate: {
+                    notDuplicateCheck: () =>
+                      idStatus === "Ok" || "이메일 중복검사를 해주세요."
+                  },
                   minLength: {
                     value: 9,
                     message: "올바른 이메일 형식을 넣어주세요"
@@ -85,7 +83,11 @@ const SignupForm = () => {
             </Input.InputInnerBox>
             <Input.SubmitButton
               className="mx-2 px-1 py-[0.3rem] h-fit my-auto text-[0.75rem] bg-blue-300 rounded-md"
-              onClick={() => idDuplicateCheck.mutate(email)}>
+              onClick={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                idDuplicateCheck.mutate(email);
+              }}>
               중복검사
             </Input.SubmitButton>
           </Input>
@@ -105,6 +107,11 @@ const SignupForm = () => {
                   maxLength: {
                     value: 20,
                     message: "최대 20글자 이하로 입력해주세요."
+                  },
+                  validate: {
+                    passNotSame: () =>
+                      passWord === checkPassWord ||
+                      "비밀번호가 일치하지 않습니다"
                   }
                 })}
               />
