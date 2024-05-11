@@ -70,7 +70,9 @@ const FinishFunnel = ({
 
   return (
     <div>
-      {isSignUpSuccess === "success" && <OnBoardingSuccess />}
+      {isSignUpSuccess === "success" && (
+        <OnBoardingSuccess userNickName={nickName} />
+      )}
       {isSignUpSuccess === "fail" && <OnBoardingFail />}
       {isSignUpSuccess === "none" && <Loading className="pb-[10rem]" />}
     </div>
