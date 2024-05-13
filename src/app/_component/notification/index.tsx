@@ -2,6 +2,8 @@
 
 import { Suspense } from "react";
 
+import { authCheck } from "@/utils/function/authCheck";
+
 import Header from "../common/Header";
 import Icon from "../common/Icon";
 import Loading from "../common/Loading";
@@ -13,6 +15,8 @@ interface NotificationProps {
 }
 
 function Notification({ close }: NotificationProps) {
+  const auth = authCheck();
+
   return (
     <>
       <Header
@@ -25,15 +29,17 @@ function Notification({ close }: NotificationProps) {
           </div>
         }
       />
+      {auth && (
+        <>
+          <CheckPermission />
 
-      <CheckPermission />
- 
-        <Suspense fallback={<Loading />}>
-          <div className="px-2 w-full max-w-screen mx-auto mt-4">
-            <NotificationList />
-          </div>
-        </Suspense>
-
+          <Suspense fallback={<Loading />}>
+            <div className="px-2 w-full max-w-screen mx-auto mt-4">
+              <NotificationList />
+            </div>
+          </Suspense>
+        </>
+      )}
     </>
   );
 }

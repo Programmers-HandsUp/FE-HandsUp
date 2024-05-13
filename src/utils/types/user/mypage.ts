@@ -6,8 +6,8 @@ export interface Transaction {
   auctionTitle: string;
   auctionImageUrl: ImageUrl;
   auctionStatus: Status;
-  auctionEndDateTime: string | Date;
-  auctionCreatedAt: string | Date;
+  auctionEndDateTime: Date;
+  auctionCreatedAt: Date;
   winningPrice: number;
 }
 

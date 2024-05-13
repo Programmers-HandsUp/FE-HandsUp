@@ -4,8 +4,6 @@ import { Notifications } from "@/utils/types/notification";
 export const sendFCMToken = async (fcmToken: string) => {
   const isTokenValid = authCheck();
 
-  if (!isTokenValid) return "";
-
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/fcm-tokens`,
     {
@@ -24,8 +22,6 @@ export const sendFCMToken = async (fcmToken: string) => {
     const errData = await res.json();
     throw new Error(errData.message);
   }
-
-  return res.json();
 };
 
 export const notificationList = async ({
@@ -34,8 +30,6 @@ export const notificationList = async ({
   pageParam: number;
 }): Promise<Notifications> => {
   const isTokenValid = authCheck();
-
-  if (!isTokenValid) return { content: [], size: 0, hasNext: false };
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications?page=${pageParam}&size=10`,
@@ -56,7 +50,6 @@ export const notificationList = async ({
 export const notificationBadge = async (): Promise<{ count: number }> => {
   const isTokenValid = authCheck();
 
-  if (!isTokenValid) return { count: 0 };
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/notifications/count`,
     {
