@@ -5,7 +5,7 @@ export default function TradeMethodSelection() {
 
   return (
     <div className="bg-white mb-4 ml-4">
-      <h2 className="text-2xl mt-4 mb-2">거래 방식</h2>
+      <h2 className="text-xl mt-4 mb-3">거래 방식</h2>
       <div className="flex gap-2 mx-4">
         <label>
           <input
