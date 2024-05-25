@@ -5,28 +5,58 @@ export default function TradeMethodSelection() {
 
   return (
     <div className="bg-white mb-4 ml-4">
-      <h2 className="text-2xl mt-4">거래 방식</h2>
-      <div className="flex gap-[6.7rem] my-3 px-3">
-        <div>
+      <h2 className="text-2xl mt-4 mb-2">거래 방식</h2>
+      <div className="flex gap-2 mx-2">
+        <label>
           <input
-            className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            type="radio"
             id="direct"
-            type="radio"
             value="직거래"
+            className="peer hidden"
             {...register("tradeMethod")}
           />
-          <label>직거래</label>
-        </div>
-        <div>
+          <div className="hover:bg-gray-50 flex items-center justify-between w-[9rem] px-4 py-2 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
+            <h2 className="font-medium text-gray-700">직거래</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </label>
+        <label>
           <input
-            className="mr-2 w-4 h-4 text-[#96E4FF] bg-gray-100 border-gray-300 focus:ring-[#96E4FF] dark:focus:text-[#96E4FF] dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-            id="delivery"
             type="radio"
-            value="택배"
+            id="direct"
+            value="직거래"
+            className="peer hidden"
             {...register("tradeMethod")}
           />
-          <label>택배</label>
-        </div>
+          <div className="hover:bg-gray-50 flex items-center justify-between px-4 py-2 w-[9rem] border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
+            <h2 className="font-medium text-gray-700">택배</h2>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </label>
       </div>
       <div className="flex gap-[5rem] px-3">
         <div>
