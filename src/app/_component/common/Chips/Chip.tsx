@@ -9,12 +9,14 @@ interface ChipProps extends VariantProps<typeof chipVariants> {
   value: string;
   isSelected?: boolean;
   onChange?: () => void;
+  style?: string;
   type?: string;
   children: ReactNode;
   size?: number;
   selectedStyle?: string;
   className?: string;
 }
+
 
 export const Chip = ({
   value,
@@ -24,6 +26,7 @@ export const Chip = ({
   rounded,
   size,
   children,
+  style = "noneBorder",
   selectedStyle = "bg-[#96E4FF]",
   className,
   ...props

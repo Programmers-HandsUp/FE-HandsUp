@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Modal from "@/app/_component/common/Modal";
 import useModalState from "@/app/_hooks/useModalState";
 
-import SearchFilterModal from "./_component/SearchFilter";
+import SearchFilterModal from "./_component/searchFilter";
 import SearchHeader from "./_component/SearchHeader";
 
 export const SearchOptionContext = React.createContext({

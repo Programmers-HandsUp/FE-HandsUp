@@ -3,68 +3,26 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Chip, Chips } from "@/app/_component/common/Chips";
-import Icon from "@/app/_component/common/Icon";
 import Input from "@/app/_component/common/Input";
+
+import SearchCategories from "./SearchCategories";
 
 interface SearchFilterModal {
   closeModal: () => void;
   setFilterOption: (filterOption: Record<string, string | number>) => void;
 }
-
-const CATEGORY_LIST = [
-  "디지털 기기",
-  "가구/인테리어",
-  "패션/잡화",
-  "생활가전",
-  "생활/주방",
-  "스포츠/레저",
-  "취미/게임/음반",
-  "뷰티/미용",
-  "반려동물용품",
-  "티켓/교환권",
-  "도서",
-  "유아도서",
-  "기타중고물품"
-] as const;
-
 const SearchFilterModal = ({
   closeModal,
   setFilterOption
 }: SearchFilterModal) => {
-  const { register, getValues, setValue } = useForm();
-  const [isShowCategory, setIsShowCategory] = useState(true);
+  const { register, getValues } = useForm();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
     <div className="pl-2">
-      <button
-        className="flex text-2xl my-1"
-        onClick={() => setIsShowCategory((isShow) => !isShow)}>
-        카테고리
-        <Icon
-          className={`${isShowCategory ? "-rotate-90" : "rotate-90"} ml-1 my-auto`}
-          id="arrow-back"
-          size={16}
-        />
-      </button>
-      {isShowCategory && (
-        <Chips
-          className="grid grid-cols-2 px-3"
-          Items={selectedCategory}
-          setItems={(items: string[]) => {
-            setSelectedCategory(items);
-            setValue("productCategory", items);
-          }}>
-          {CATEGORY_LIST.map((value) => (
-            <Chip
-              className="border-0 w-[7rem] h-[1.5rem] my-0 text-start"
-              key={value}
-              value={value}>
-              {value}
-            </Chip>
-          ))}
-        </Chips>
-      )}
+      <SearchCategories
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      />
       <h2 className="text-2xl mt-4">거래 방식</h2>
       <div className="flex gap-[6.7rem] my-3 px-3">
         <div>
@@ -121,7 +79,6 @@ const SearchFilterModal = ({
             <label className="text-black my-auto text-2xl">원</label>
           </Input>
         </div>
-
         <div className="flex">
           <label className="my-auto mr-4 text-lg">이하</label>
           <Input className="w-[14rem] h-[2.8rem]">
