@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 
 import PriceRangeSelection from "./PriceRangeSelection";
 import SearchCategories from "./SearchCategories";
+import SearchOptionSelection from "./SearchOptionSelection";
 import TradeMethodSelection from "./TradeMethodSelection";
 
 interface SearchFilterModal {
@@ -23,6 +24,8 @@ const SearchFilterModal = ({
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
       />
+      <hr className="w-full h-1 bg-slate-200" />
+      <SearchOptionSelection />
       <hr className="w-full h-1 bg-slate-200" />
       <TradeMethodSelection />
       <hr className="w-full h-1 bg-slate-200" />
