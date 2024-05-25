@@ -29,10 +29,10 @@ export default function SearchCategories({
 }: SearchCategoriesProps) {
   const { setValue } = useForm();
   return (
-    <>
-      <h1 className="flex text-2xl my-1">카테고리</h1>
+    <div className="pl-4 pr-2">
+      <h1 className="flex text-2xl my-2">카테고리</h1>
       <Chips
-        className="grid grid-cols-2 px-3"
+        className="grid grid-cols-2 gap-1 px-2 mb-4"
         Items={selectedCategory}
         setItems={(items: string[]) => {
           setSelectedCategory(items);
@@ -40,13 +40,15 @@ export default function SearchCategories({
         }}>
         {CATEGORY_LIST.map((value) => (
           <Chip
-            className="border-0 w-[7rem] h-[1.5rem] my-0 text-center"
+            className="border-2 rounded-md text-slate-500 py-[0.4rem] my-[0.2rem] text-sm"
+            selectedStyle="border-[#96E4FF] border-[3px] text-black"
+            rounded={"none"}
             key={value}
             value={value}>
             {value}
           </Chip>
         ))}
       </Chips>
-    </>
+    </div>
   );
 }

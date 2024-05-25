@@ -6,7 +6,7 @@ export default function PriceRangeSelection() {
   const { register } = useForm();
 
   return (
-    <>
+    <div className="ml-4">
       <h2 className="mt-4 text-xl">금액</h2>
       <div className="px-3">
         <div className="flex">
@@ -36,6 +36,6 @@ export default function PriceRangeSelection() {
           </Input>
         </div>
       </div>
-    </>
+    </div>
   );
 }

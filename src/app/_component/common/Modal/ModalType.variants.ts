@@ -1,7 +1,7 @@
 import { cva } from "class-variance-authority";
 
 export const modalTypeVariants = cva(
-  "p-[8px] bg-white shadow-lg box-border z-40 overflow-scroll scrollbar-hide transition-transform duration-500",
+  "bg-white shadow-lg box-border z-40 overflow-scroll scrollbar-hide transition-transform duration-500",
   {
     variants: {
       modalType: {

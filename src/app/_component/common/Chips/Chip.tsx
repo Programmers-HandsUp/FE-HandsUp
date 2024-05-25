@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 import { cn } from "@/utils/function/cn";
 
+import Icon from "../Icon";
 import { chipVariants } from "./Chip.variants";
 
 interface ChipProps extends VariantProps<typeof chipVariants> {
@@ -16,7 +17,6 @@ interface ChipProps extends VariantProps<typeof chipVariants> {
   selectedStyle?: string;
   className?: string;
 }
-
 
 export const Chip = ({
   value,
@@ -49,8 +49,8 @@ export const Chip = ({
         htmlFor={value}
         className={cn(
           chipVariants({ rounded }),
-          isSelected ? `${selectedStyle}` : "",
-          className
+          className,
+          isSelected ? `${selectedStyle}` : ""
         )}
         {...props}>
         {children}

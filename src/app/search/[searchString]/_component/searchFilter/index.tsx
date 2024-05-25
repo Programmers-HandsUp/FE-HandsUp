@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import PriceRangeSelection from "./PriceRangeSelection";
 import SearchCategories from "./SearchCategories";
 import TradeMethodSelection from "./TradeMethodSelection";
+
 interface SearchFilterModal {
   closeModal: () => void;
   setFilterOption: (filterOption: Record<string, string | number>) => void;
@@ -17,12 +18,14 @@ const SearchFilterModal = ({
   const { getValues } = useForm();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
-    <div className="pl-2">
+    <div className="">
       <SearchCategories
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
       />
+      <hr className="w-full h-1 bg-slate-200" />
       <TradeMethodSelection />
+      <hr className="w-full h-1 bg-slate-200" />
       <PriceRangeSelection />
       <div className="flex w-[60%] mx-auto justify-between my-6 gap-2 text-xl">
         <button

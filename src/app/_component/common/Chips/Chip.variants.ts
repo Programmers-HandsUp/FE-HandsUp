@@ -5,6 +5,7 @@ export const chipVariants = cva(
   {
     variants: {
       rounded: {
+        none: "",
         xsmall: "rounded-md",
         small: "rounded-lg",
         medium: "rounded-xl",
