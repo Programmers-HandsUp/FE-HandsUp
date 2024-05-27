@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import { Chips } from "@/app/_component/common/Chips";
 import { Chip } from "@/app/_component/common/Chips";
@@ -27,7 +27,7 @@ export default function SearchCategories({
   selectedCategory,
   setSelectedCategory
 }: SearchCategoriesProps) {
-  const { setValue } = useForm();
+  const { setValue } = useFormContext();
   return (
     <div className="pl-4 pr-2">
       <h1 className="flex text-2xl my-2">카테고리</h1>

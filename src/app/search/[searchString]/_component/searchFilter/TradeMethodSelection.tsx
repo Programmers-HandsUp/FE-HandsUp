@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 export default function TradeMethodSelection() {
-  const { register } = useForm();
+  const { register } = useFormContext();
 
   return (
     <div className="bg-white mb-4 ml-4">
       <h2 className="text-xl mt-4 mb-3">거래 방식</h2>
-      <div className="flex gap-2 mx-4">
+      <div className="flex gap-4 mx-3">
         <label>
           <input
             type="radio"

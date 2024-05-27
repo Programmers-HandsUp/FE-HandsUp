@@ -1,7 +1,7 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 export default function SearchOptionSelection() {
-  const { register } = useForm();
+  const { register } = useFormContext();
   return (
     <div className="px-3 mt-3 mb-4">
       <h1 className="text-xl mx-2">기타 조건</h1>

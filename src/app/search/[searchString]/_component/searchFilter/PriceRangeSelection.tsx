@@ -1,10 +1,9 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 
 import Input from "@/app/_component/common/Input";
 
 export default function PriceRangeSelection() {
-  const { register } = useForm();
-
+  const { register } = useFormContext();
   return (
     <div className="ml-4">
       <h2 className="ml-1 mt-4 text-xl">희망 가격</h2>

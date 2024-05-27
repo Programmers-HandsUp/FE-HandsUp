@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 
 import PriceRangeSelection from "./PriceRangeSelection";
 import SearchCategories from "./SearchCategories";
@@ -16,10 +16,10 @@ const SearchFilterModal = ({
   closeModal,
   setFilterOption
 }: SearchFilterModal) => {
-  const { getValues } = useForm();
+  const methods = useForm();
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
   return (
-    <div className="">
+    <FormProvider {...methods}>
       <SearchCategories
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
@@ -34,7 +34,7 @@ const SearchFilterModal = ({
         <button
           className="w-[8rem] h-[2.3rem] bg-blue-300 rounded-md"
           onClick={() => {
-            const filterOptions = getValues();
+            const filterOptions = methods.getValues();
             closeModal();
             setFilterOption(filterOptions);
           }}>
@@ -46,7 +46,7 @@ const SearchFilterModal = ({
           취소
         </button>
       </div>
-    </div>
+    </FormProvider>
   );
 };
 
