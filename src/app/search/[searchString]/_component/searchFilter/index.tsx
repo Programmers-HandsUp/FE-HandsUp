@@ -1,9 +1,10 @@
 "use client";
-import { ErrorMessage } from "@hookform/error-message";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
+
+import FormErrorsMessage from "@/app/_component/common/FormErrorMessage";
 
 import { searchFilterSchema } from "../../utils/validation";
 import PriceRangeSelection from "./PriceRangeSelection";
@@ -29,9 +30,6 @@ const SearchFilterModal = ({
       maxPrice: 0
     }
   });
-  useEffect(() => {
-    console.log(methods.formState.errors);
-  }, [methods.formState]);
 
   const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
 
@@ -47,19 +45,20 @@ const SearchFilterModal = ({
       <TradeMethodSelection />
       <hr className="w-full h-1 bg-slate-200" />
       <PriceRangeSelection />
-      <ErrorMessage
+      <FormErrorsMessage
         errors={methods.formState.errors}
-        name={"minPrice" || "maxPrice"}
-        render={({ message }) => (
-          <p className="text-red-600 px-6 mx-auto mt-2">{message}</p>
+        render={(errorMessageList: (string | undefined)[]) => (
+          <p className="text-red-600 px-6 mx-auto mt-2">
+            {errorMessageList[0]}
+          </p>
         )}
       />
+
       <div className="flex w-[60%] mx-auto justify-between my-6 gap-2 text-xl">
         <button
           className="w-[8rem] h-[2.3rem] bg-blue-300 rounded-md"
           onClick={() => {
             const filterOptions = methods.getValues();
-            console.log(methods.formState.errors);
             if (
               !methods.formState.errors.maxPrice &&
               !methods.formState.errors.minPrice

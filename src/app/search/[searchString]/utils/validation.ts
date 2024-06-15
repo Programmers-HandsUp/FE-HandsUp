@@ -35,11 +35,12 @@ export const searchFilterSchema = z
   })
   .refine(
     ({ minPrice, maxPrice }) => {
-      if (minPrice && maxPrice && maxPrice < minPrice) return false;
+      if (minPrice != null && maxPrice != null && maxPrice < minPrice)
+        return false;
       return true;
     },
     {
       message: ERRORS.MINPRICE_OVERTHEN_MAXPRICE,
-      path: ["maxPrice"]
+      path: ["minPrice"]
     }
   );
