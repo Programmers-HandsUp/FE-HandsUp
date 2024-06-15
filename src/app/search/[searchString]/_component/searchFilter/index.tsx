@@ -13,7 +13,9 @@ import TradeMethodSelection from "./TradeMethodSelection";
 
 interface SearchFilterModal {
   closeModal: () => void;
-  setFilterOption: (filterOption: Record<string, string | number>) => void;
+  setFilterOption: (
+    filterOption: Record<string, string | number | null | undefined>
+  ) => void;
 }
 const SearchFilterModal = ({
   closeModal,
@@ -47,7 +49,7 @@ const SearchFilterModal = ({
       <PriceRangeSelection />
       <ErrorMessage
         errors={methods.formState.errors}
-        name="maxPrice"
+        name={"minPrice" || "maxPrice"}
         render={({ message }) => (
           <p className="text-red-600 px-6 mx-auto mt-2">{message}</p>
         )}
@@ -57,6 +59,7 @@ const SearchFilterModal = ({
           className="w-[8rem] h-[2.3rem] bg-blue-300 rounded-md"
           onClick={() => {
             const filterOptions = methods.getValues();
+            console.log(methods.formState.errors);
             if (
               !methods.formState.errors.maxPrice &&
               !methods.formState.errors.minPrice
