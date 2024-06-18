@@ -39,11 +39,8 @@ const SearchFilterModal = ({
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
       />
-      <hr className="w-full h-1 bg-slate-200" />
       <SearchOptionSelection />
-      <hr className="w-full h-1 bg-slate-200" />
       <TradeMethodSelection />
-      <hr className="w-full h-1 bg-slate-200" />
       <PriceRangeSelection />
       <FormErrorsMessage
         errors={methods.formState.errors}
