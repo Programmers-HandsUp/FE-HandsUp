@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 
 import { cn } from "@/utils/function/cn";
 
-import Icon from "../Icon";
 import { chipVariants } from "./Chip.variants";
 
 interface ChipProps extends VariantProps<typeof chipVariants> {

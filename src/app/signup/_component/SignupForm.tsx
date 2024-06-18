@@ -83,7 +83,7 @@ const SignupForm = () => {
             </Input>
             <Input.SubmitButton
               className="mx-2 px-1 py-[0.3rem] h-fit my-auto text-[0.75rem] bg-blue-300 rounded-md"
-              onClick={(event) => {
+              onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
                 event.stopPropagation();
                 event.preventDefault();
                 idDuplicateCheck.mutate(email);
@@ -93,7 +93,6 @@ const SignupForm = () => {
           </div>
           <h2 className="mt-[2rem]">비밀번호</h2>
           <Input>
-            <Input.InputInnerBox className="w-[13rem] h-[2.6rem] my-1 text-black">
               <Input.InputForm
                 type="password"
                 placeholder="사용하실 비밀번호를 입력해주세요."
@@ -115,7 +114,6 @@ const SignupForm = () => {
                   }
                 })}
               />
-            </Input.InputInnerBox>
           </Input>
           <h2>비밀번호 확인</h2>
           <Input className="w-[13rem] h-[2.6rem] my-1 text-black">

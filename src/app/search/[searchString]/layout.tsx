@@ -9,7 +9,7 @@ import SearchHeader from "./_component/SearchHeader";
 
 export const SearchOptionContext = React.createContext({
   alignOption: "",
-  filterOptions: {} as Record<string, string | number> | undefined
+  filterOptions: {} as Record<string, string | number | null> | undefined
 });
 
 export default function MainPageLayout({
@@ -18,7 +18,7 @@ export default function MainPageLayout({
   children: React.ReactElement;
 }) {
   const [filterOptions, setFilterOptions] =
-    useState<Record<string, string | number>>();
+    useState<Record<string, string | number | null>>();
   const [alignOption, setAlignOption] = useState("마감 임박 순");
   const { open, isOpen, close } = useModalState();
 
@@ -45,9 +45,9 @@ export default function MainPageLayout({
           isOpen={isOpen}
           close={close}>
           <SearchFilterModal
-            setFilterOption={(newFilterOptions) =>
-              setFilterOptions(newFilterOptions)
-            }
+            setFilterOption={(
+              newFilterOptions?: Record<string, string | number | null>
+            ) => setFilterOptions(newFilterOptions)}
             closeModal={close}
           />
         </Modal>

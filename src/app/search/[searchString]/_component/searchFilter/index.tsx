@@ -15,7 +15,7 @@ import TradeMethodSelection from "./TradeMethodSelection";
 interface SearchFilterModal {
   closeModal: () => void;
   setFilterOption: (
-    filterOption: Record<string, string | number | null | undefined>
+    filterOption: Record<string, string | number | null>
   ) => void;
 }
 const SearchFilterModal = ({

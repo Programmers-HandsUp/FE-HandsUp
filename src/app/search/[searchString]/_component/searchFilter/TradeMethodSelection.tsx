@@ -17,6 +17,9 @@ export default function TradeMethodSelection() {
           />
           <div className="hover:bg-gray-50 flex items-center justify-between w-[9rem] px-4 py-1 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
             <h2 className="font-medium text-gray-700">직거래</h2>
+            <button >
+              
+            </button>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -1,23 +1,18 @@
 import { PropsWithChildren } from "react";
-import { useContext } from "react";
 
-import { InputContext } from "..";
-
-interface SubmitButtonProps {
-  onButtonClick: (inputText: string) => void;
+interface SubmitButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
   className?: string;
 }
 
 const SubmitButton = ({
   className,
   children,
-  onButtonClick,
   ...props
 }: PropsWithChildren<SubmitButtonProps>) => {
-  const { inputText } = useContext(InputContext);
   return (
     <button
-      onClick={() => onButtonClick(inputText)}
       {...props}
       className={className}>
       {children}

@@ -11,7 +11,7 @@ import { getSearchResults } from "../../_api/getSearchResults";
 const useGetSearchResult = (
   keyword: string,
   sortOption: string,
-  searchFilterRecord?: Record<string, string | number>
+  searchFilterRecord?: Record<string, string | number | null>
 ) => {
   const {
     data,

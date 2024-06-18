@@ -11,7 +11,7 @@ export const getSearchResults = async (
   pageParam: number,
   keyword: string,
   sortOption: string,
-  searchRecord?: Record<string, string | number>
+  searchRecord?: Record<string, string | number | null>
 ): Promise<AuctionSearchResultResponse> => {
   const newRecord = searchRecord ? { ...searchRecord } : {};
   newRecord["keyword"] = keyword.slice(8);
