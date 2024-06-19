@@ -52,4 +52,5 @@ export type IconName =
   | "bookmark-fill-none"
   | "addImage"
   | "people"
+  | "check-rounded_border"
   | "sport";

@@ -1,5 +1,7 @@
 import { useFormContext } from "react-hook-form";
 
+import Icon from "@/app/_component/common/Icon";
+
 export default function TradeMethodSelection() {
   const { register } = useFormContext();
 
@@ -17,22 +19,10 @@ export default function TradeMethodSelection() {
           />
           <div className="hover:bg-gray-50 flex items-center justify-between w-[9rem] px-4 py-1 border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
             <h2 className="font-medium text-gray-700">직거래</h2>
-            <button >
-              
-            </button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <Icon
+              id="check-rounded_border"
+              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible"
+            />
           </div>
         </label>
         <label>
@@ -45,19 +35,10 @@ export default function TradeMethodSelection() {
           />
           <div className="hover:bg-gray-50 flex items-center justify-between px-4 py-1 w-[9rem] border-2 rounded-lg cursor-pointer text-sm border-gray-200 group peer-checked:border-blue-500">
             <h2 className="font-medium text-gray-700">택배</h2>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <Icon
+              id="check-rounded_border"
+              className="w-9 h-9 text-blue-600 invisible group-[.peer:checked+&]:visible"
+            />
           </div>
         </label>
       </div>
