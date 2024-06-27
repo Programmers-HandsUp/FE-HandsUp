@@ -4,15 +4,19 @@ import { popularSearchData } from "./data/popularSearchData";
 import { postListData } from "./data/postListData";
 
 const handler = [
-  http.get("/api/search/popularkeyword", async () => {
-    try {
-      return new HttpResponse(JSON.stringify(popularSearchData), {
-        status: 200
-      });
-    } catch (error) {
-      throw new Error(`${error}`);
+  http.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions/search/popular`,
+    async () => {
+      try {
+        return new HttpResponse(JSON.stringify(popularSearchData), {
+          status: 200
+        });
+      } catch (error) {
+        throw new Error(`${error}`);
+      }
     }
-  }),
+  ),
+
   http.get("/api/search/:id", async ({ params, request }) => {
     const { searchParams } = new URL(request.url);
     const { id } = params;
