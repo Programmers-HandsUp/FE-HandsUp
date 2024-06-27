@@ -5,7 +5,11 @@ export const MSWComponent = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-        require("@/utils/mocks/browser");
+        const init = async () => {
+          const { worker } = await import("@/utils/mocks/browser");
+          worker.start();
+        };
+        init();
       }
     }
   }, []);
