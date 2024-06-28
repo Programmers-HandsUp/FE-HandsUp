@@ -33,7 +33,7 @@ const SearchResultPage = () => {
   return (
     <main className="w-[90%] mx-auto bg-blue">
       <div className="pb-6">
-        {searchResults.length ? (
+        {searchResults !== null && searchResults?.length > 0 ? (
           searchResults.map(
             ({
               title,
