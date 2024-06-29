@@ -12,6 +12,66 @@ const delay = (ms: number) =>
   });
 
 const handlers = [
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend`,
+    async ({ request }) => {
+      const { searchParams } = new URL(request.url);
+      // const apiDong = searchParams.get("dong");
+      const page = Number(searchParams.get("page") || 0);
+      const size = Number(searchParams.get("size") || 0);
+
+      const result = auctionDetail.map(
+        ({
+          auctionId,
+          title,
+          currentBiddingPrice,
+          bookmarkCount,
+          biddingCount,
+          dong,
+          endDate,
+          createdAt
+        }) => {
+          {
+            return {
+              auctionId,
+              title,
+              currentBiddingPrice,
+              imgUrl: null,
+              endDate,
+              bookmarkCount,
+              dong,
+              biddingCount,
+              createdAt
+            };
+          }
+        }
+      );
+
+      const totalCount = result.length;
+      const totalPages = Math.ceil(totalCount / size);
+
+      const hasNext = page < totalPages - 1 ? true : false;
+
+      if (!result.length) {
+        return new HttpResponse(
+          JSON.stringify({
+            content: null,
+            pageSize: size,
+            hasNext: false
+          }),
+          { status: 200 }
+        );
+      }
+      return new HttpResponse(
+        JSON.stringify({
+          content: result.slice(page * 5, page * 5 + size),
+          pageSize: size,
+          hasNext
+        }),
+        { status: 200 }
+      );
+    }
+  ),
   http.get("/api/auctionList", async () => {
     await delay(1000);
     return HttpResponse.json(auctionHotList);

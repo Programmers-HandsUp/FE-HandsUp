@@ -1,4 +1,3 @@
-import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
 
 import { CommentType } from "../types";
@@ -23,6 +22,8 @@ export const postListData = [
       { bidderName: "jjg", bidderId: "id1", biddingPrice: 400, id: "123fdsf1" }
     ],
     dong: "항동",
+    si: "서울",
+    gu: "구로",
     createdAt: "2024.05.06"
   }
 ];
@@ -46,38 +47,41 @@ export const auctionHotList: RecommendAuctionsResponse = {
   hasNext: false
 };
 
-export const auctionDetail: AuctionDetailResponse = {
-  auctionId: 353256236,
-  title: "나이키 덩크 로우 팔아영",
-  productCategory: "신발",
-  initPrice: 5000,
-  currentBiddingPrice: 12000,
-  endDate: "2024-03-12",
-  productStatus: "깨끗해요",
-  purchaseTime: "3개월 이하",
-  auctionStatus: "입찰 중",
-  description:
-    "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
-  tradeMethod: "직접 만나서",
-  imageUrls: [
-    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
-    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
-    "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp"
-  ],
-  sellerInfo: {
-    userId: 123,
-    nickname: "안뇽",
-    profileImageUrl:
+export const auctionDetail = [
+  {
+    biddingCount: 0,
+    auctionId: 353256236,
+    title: "나이키 덩크 로우 팔아영",
+    productCategory: "신발",
+    initPrice: 5000,
+    currentBiddingPrice: 12000,
+    endDate: "2024-03-12",
+    productStatus: "깨끗해요",
+    purchaseTime: "3개월 이하",
+    auctionStatus: "입찰 중",
+    description:
+      "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
+    tradeMethod: "직접 만나서",
+    imageUrls: [
       "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
-    dong: "강남동",
-    score: 150
-  },
-  tradeSi: "서울시",
-  tradeGu: "강남구",
-  tradeDong: "논현동",
-  bookmarkCount: 0,
-  createdAt: "2024-02-12"
-};
+      "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
+      "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp"
+    ],
+    sellerInfo: {
+      userId: 123,
+      nickname: "안뇽",
+      profileImageUrl:
+        "https://static.shoeprize.com/uploads/2022-12-30/defc77d1-320d-46ff-b29c-617cde450d3b.webp",
+      dong: "강남동",
+      score: 150
+    },
+    si: "서울시",
+    gu: "강남구",
+    dong: "논현동",
+    bookmarkCount: 0,
+    createdAt: "2024-02-12"
+  }
+];
 
 export const commentData: CommentType[] = [
   {
