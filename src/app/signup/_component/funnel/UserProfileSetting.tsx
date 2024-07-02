@@ -5,7 +5,7 @@ import Image from "next/image";
 import Icon from "@/app/_component/common/Icon";
 import onGetImageFile from "@/utils/function/onGetImageFile";
 
-import useOnboardingStore from "../store/store";
+import useOnboardingStore from "../../store/store";
 
 interface UserProfileSettingProps {
   setNickName: React.Dispatch<React.SetStateAction<string>>;

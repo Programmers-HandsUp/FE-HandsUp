@@ -42,12 +42,17 @@ export const CardImage = ({
     <div
       className={cn("relative", className)}
       style={{ width: `${width}px`, height: `${height}px` }}>
-      <Image
-        src={titleImage}
-        className="bg-slate-100 object-cover group-hover:scale-125 transition-transform"
-        alt="titleImage"
-        fill
-      />
+      {titleImage ? (
+        <Image
+          src={titleImage}
+          className="bg-slate-100 object-cover group-hover:scale-125 transition-transform"
+          alt="titleImage"
+          fill
+        />
+      ) : (
+        <span
+          className={`border-[0.05rem] border-black rounded-sm bg-slate-200 w-[${width}px] h-[${height}px]`}></span>
+      )}
       {children}
     </div>
   );
