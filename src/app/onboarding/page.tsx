@@ -15,7 +15,12 @@ const OnBoarding = () => {
         <Funnel.Step name="a2">
           <p>ㅁ2</p>
           <input />
-          <button onClick={() => setFunnel("a1")}>a2</button>
+          <button onClick={() => setFunnel("a3")}>a2</button>
+        </Funnel.Step>
+        <Funnel.Step name="a3">
+          <p>ㅁ3</p>
+          <input />
+          <button onClick={() => setFunnel("a1")}>a3</button>
         </Funnel.Step>
       </Funnel>
     </div>
