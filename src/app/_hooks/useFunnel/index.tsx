@@ -1,22 +1,11 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  Children,
-  ReactElement,
-  ReactNode,
-  useLayoutEffect,
-  useState
-} from "react";
+import { useLayoutEffect, useState } from "react";
 
-export interface StepProps {
-  name: string;
-  children: ReactNode;
-}
-
-export interface FunnelProps {
-  children: Array<ReactElement<StepProps>>;
-}
+import Funnel from "./_component/Funnel";
+import Step from "./_component/Step";
+import { FunnelProps } from "./types";
 
 export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
   const [step, setStep] = useState(defaultStep);
@@ -48,21 +37,9 @@ export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
     setStep(nextFunnel);
   };
 
-  const Funnel = ({ children }: FunnelProps) => {
-    const targetStep = Children.toArray(children).find(
-      (childStep) => (childStep as ReactElement<StepProps>).props.name === step
-    ) as ReactElement<StepProps> | undefined;
-
-    return targetStep ? <>{targetStep.props.children}</> : null;
-  };
-
-  const Step = ({ children }: StepProps): ReactElement => {
-    return <>{children}</>;
-  };
-
   const FunnelComponent = Object.assign(
-    function RouteFunnel(props: FunnelProps) {
-      return <Funnel {...props} />;
+    function RouteFunnel({ children }: FunnelProps) {
+      return <Funnel step={step}>{children}</Funnel>;
     },
     { Step }
   );
