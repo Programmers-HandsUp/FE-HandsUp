@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation";
 import { Children, ReactElement, ReactNode, useState } from "react";
 
 export interface StepProps {
@@ -11,6 +12,17 @@ export interface FunnelProps {
 
 export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
   const [step, setStep] = useState(defaultStep);
+
+  const pathName = usePathname();
+
+  const shallowRoute = (nextFunnel: string) => {
+    history.replaceState(null, "", `${pathName}?step=${nextFunnel}`);
+  };
+
+  const setFunnel = (nextFunnel: string) => {
+    shallowRoute(nextFunnel);
+    setStep(nextFunnel);
+  };
 
   const Funnel = ({ children }: FunnelProps) => {
     const targetStep = Children.toArray(children).find(
@@ -31,5 +43,5 @@ export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
     { Step }
   );
 
-  return [FunnelComponent, setStep] as const;
+  return [FunnelComponent, setFunnel] as const;
 };
