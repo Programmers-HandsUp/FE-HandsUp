@@ -4,9 +4,6 @@ const withPWA = require("next-pwa")({
 
 const nextConfig = withPWA({
   reactStrictMode: false,
-  experimental: {
-    windowHistorySupport: true
-  },
   swcMinify: true,
   images: {
     domains: ["static.shoeprize.com"],

@@ -1,7 +1,7 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLayoutEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import Funnel from "./_component/Funnel";
 import Step from "./_component/Step";
@@ -10,21 +10,33 @@ import { FunnelProps } from "./types";
 export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
   const [step, setStep] = useState(defaultStep);
 
-  const router = useRouter();
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const stepName = searchParams.get("step");
 
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      if (!stepName || !steps.includes(stepName)) {
-        router.replace(`${pathName}?step=${defaultStep}`);
-      } else {
-        setStep(stepName);
-        router.replace(`${pathName}?step=${stepName}`);
-      }
+  useEffect(() => {
+    if (!stepName || !steps.includes(stepName)) {
+      setStep(defaultStep);
+    } else {
+      setStep(stepName);
     }
-  }, []);
+  }, [stepName, steps, defaultStep]);
+  
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const newStep = params.get("step");
+      if (newStep && steps.includes(newStep)) {
+        setStep(newStep);
+      } else {
+        setStep(defaultStep);
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [steps, defaultStep]);
 
   const shallowRoute = (nextFunnel: string) => {
     if (pathName) {
@@ -38,7 +50,7 @@ export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
   };
 
   const FunnelComponent = Object.assign(
-    function RouteFunnel({ children }: FunnelProps) {
+    function RouteFunnel({ children }: Omit<FunnelProps, "step">) {
       return <Funnel step={step}>{children}</Funnel>;
     },
     { Step }
