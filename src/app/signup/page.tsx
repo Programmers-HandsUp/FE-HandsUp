@@ -1,6 +1,8 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { useFunnel } from "../_hooks/useFunnel";
 import EmailForm from "./_component/funnel/EmailForm";
@@ -8,10 +10,12 @@ import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
 import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
 import SignUpFinishPage from "./_component/funnel/SignUpFinishPage";
 import UserProfileForm from "./_component/funnel/UserProfileForm";
-
+import { SignUpFormSchema } from "./utils/validation";
 
 const SignUp = () => {
-  const formMethods = useForm<SignUpFormProps>();
+  const formMethods = useForm<z.infer<typeof SignUpFormSchema>>({
+    resolver: zodResolver(SignUpFormSchema)
+  });
 
   const [Funnel, setStep] = useFunnel(
     [
