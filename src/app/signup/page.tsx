@@ -33,7 +33,7 @@ const SignUp = () => {
       <FormProvider {...formMethods}>
         <Funnel>
           <Funnel.Step name="emailForm">
-            <EmailForm />
+            <EmailForm setStep={() => setStep("UserProfileForm")} />
           </Funnel.Step>
           <Funnel.Step name="UserProfileForm">
             <UserProfileForm />

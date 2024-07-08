@@ -5,7 +5,7 @@ import Toast from "@/app/_component/common/Toast";
 import { idDuplicateCheck } from "../../_api/idDuplicateCheck";
 
 export const useIdDuplicateCheck = (
-  setIdStatus: (status: "None" | "Change" | "Ok") => void
+  setIdStatus: (status: "Empty" | "Change" | "Ok" | "Warn") => void
 ) => {
   const { show } = Toast();
 
@@ -15,12 +15,12 @@ export const useIdDuplicateCheck = (
       if (data.isAvailable) {
         setIdStatus("Ok");
       } else {
-        setIdStatus("None");
+        setIdStatus("Warn");
         show("해당 이메일은 사용이 불가능합니다", "warn-solid", 3000);
       }
     },
-    onError: (error: Error) => {
-      setIdStatus("None");
+    onError: () => {
+      setIdStatus("Warn");
     }
   });
 };
