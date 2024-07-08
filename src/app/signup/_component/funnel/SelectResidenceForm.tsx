@@ -2,13 +2,8 @@
 
 import { SearchAddress } from "@/app/_component/common/searchAddress";
 
-interface SelectResidenceProps {
-  setAddress: React.Dispatch<
-    React.SetStateAction<{ si: string; gu: string; dong: string }>
-  >;
-}
 
-const SelectResidence = ({ setAddress }: SelectResidenceProps) => {
+const SelectResidenceForm = () => {
   return (
     <div className="animate-slideInFromRight">
       <main className="w-[300px] mx-auto">
@@ -21,4 +16,4 @@ const SelectResidence = ({ setAddress }: SelectResidenceProps) => {
   );
 };
 
-export default SelectResidence;
+export default SelectResidenceForm;

@@ -4,7 +4,7 @@ import { useFunnel } from "../_hooks/useFunnel";
 import EmailForm from "./_component/funnel/EmailForm";
 import FinishFunnel from "./_component/funnel/FinishFunnel";
 import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
-import SelectResidence from "./_component/funnel/SelectResidence";
+import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
 import UserProfileSetting from "./_component/funnel/UserProfileSetting";
 
 const OnBoarding = () => {
@@ -12,7 +12,7 @@ const OnBoarding = () => {
     [
       "emailForm",
       "userProfileSetting",
-      "selectResidence",
+      "SelectResidenceForm",
       "SelectCategoryForm",
       "Finish"
     ],
@@ -28,8 +28,8 @@ const OnBoarding = () => {
         <Funnel.Step name="userProfileSetting">
           <UserProfileSetting />
         </Funnel.Step>
-        <Funnel.Step name="selectResidence">
-          <SelectResidence />
+        <Funnel.Step name="SelectResidenceForm">
+          <SelectResidenceForm />
         </Funnel.Step>
         <Funnel.Step name="SelectCategoryForm">
           <SelectCategoryForm />
