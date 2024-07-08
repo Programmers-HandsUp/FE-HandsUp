@@ -7,11 +7,7 @@ import onGetImageFile from "@/utils/function/onGetImageFile";
 
 import useOnboardingStore from "../../store/store";
 
-interface UserProfileSettingProps {
-  setNickName: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
+const UserProfileForm = () => {
   const profileImage = useOnboardingStore((state) => state.profileImage);
   const setProfileImage = useOnboardingStore((state) => state.setProfileImage);
 
@@ -58,4 +54,4 @@ const UserProfileSetting = ({ setNickName }: UserProfileSettingProps) => {
   );
 };
 
-export default UserProfileSetting;
+export default UserProfileForm;

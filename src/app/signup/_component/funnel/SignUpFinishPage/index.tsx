@@ -7,23 +7,7 @@ import { useSignUp } from "@/app/signup/_hooks/mutations/useSignup";
 import OnBoardingFail from "./_component/OnBoardingFail";
 import OnBoardingSuccess from "./_component/OnBoardingSuccess";
 
-interface FinishFunnelProps {
-  profileImage: File | undefined;
-  category: string[];
-  address: { si: string; dong: string; gu: string };
-  nickName: string;
-  id: string | null;
-  passWord: string | null;
-}
-
-const FinishFunnel = ({
-  id,
-  passWord,
-  profileImage,
-  category,
-  address,
-  nickName
-}: FinishFunnelProps) => {
+const SignUpFinishPage = () => {
   const { mutateImageUpload } = useImageUpload();
   const { isSignUpSuccess, mutate } = useSignUp();
 
@@ -79,4 +63,4 @@ const FinishFunnel = ({
   );
 };
 
-export default FinishFunnel;
+export default SignUpFinishPage;
