@@ -5,7 +5,7 @@ import { Chip } from "@/app/_component/common/Chips";
 
 import useOnboardingStore from "../../store/store";
 
-const SelectCategory = () => {
+const SelectCategoryForm = () => {
   const category = useOnboardingStore((state) => state.category);
   const setCategory = useOnboardingStore((state) => state.setCategory);
 
@@ -37,4 +37,4 @@ const SelectCategory = () => {
   );
 };
 
-export default SelectCategory;
+export default SelectCategoryForm;
