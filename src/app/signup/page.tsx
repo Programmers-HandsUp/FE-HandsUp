@@ -1,11 +1,11 @@
 "use client";
 
 import { useFunnel } from "../_hooks/useFunnel";
+import EmailForm from "./_component/funnel/EmailForm";
 import FinishFunnel from "./_component/funnel/FinishFunnel";
 import SelectCategory from "./_component/funnel/SelectCategory";
 import SelectResidence from "./_component/funnel/SelectResidence";
 import UserProfileSetting from "./_component/funnel/UserProfileSetting";
-import SignUpForm from "./_component/SignupForm";
 
 const OnBoarding = () => {
   const [Funnel, setStep] = useFunnel(
@@ -23,7 +23,7 @@ const OnBoarding = () => {
     <div className="">
       <Funnel>
         <Funnel.Step name="emailForm">
-          <SignUpForm />
+          <EmailForm />
         </Funnel.Step>
         <Funnel.Step name="userProfileSetting">
           <UserProfileSetting />

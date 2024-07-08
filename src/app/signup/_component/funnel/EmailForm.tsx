@@ -14,12 +14,7 @@ type LoginFormValues = {
   popFunnel: () => void;
 };
 
-interface SignUpFormProps {
-  setId: (newId: string) => void;
-  setPassWord: (newPw: string) => void;
-}
-
-const SignUpForm = ({ setId, setPassWord }: SignUpFormProps) => {
+const EmailForm = () => {
   const { show } = Toast();
   const { register, handleSubmit, watch } = useForm<LoginFormValues>();
   const [idStatus, setIdStatus] = useState<"None" | "Change" | "Ok">("None");
@@ -34,10 +29,7 @@ const SignUpForm = ({ setId, setPassWord }: SignUpFormProps) => {
     setIdStatus("Change");
   }, [email]);
 
-  const onSubmit = async (userAuthData: LoginFormValues) => {
-    setId(userAuthData.email);
-    setPassWord(userAuthData.password);
-  };
+  const onSubmit = async (userAuthData: LoginFormValues) => {};
 
   const onFormInValid = (error: FieldErrors) => {
     const errorMessage = error[Object.keys(error)[0]]?.message;
@@ -137,4 +129,4 @@ const SignUpForm = ({ setId, setPassWord }: SignUpFormProps) => {
     </div>
   );
 };
-export default SignUpForm;
+export default EmailForm;
