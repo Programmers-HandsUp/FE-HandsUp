@@ -22,7 +22,7 @@ export const SignUpFormSchema = z
     si: z.string(),
     gu: z.string(),
     dong: z.string(),
-    productCategoryIds: z.array(z.string())
+    selectedCategories: z.array(z.string())
   })
   .refine(({ password, checkPassword }) => password !== checkPassword, {
     message: "입력하신 두 비밀번호가 서로 다릅니다."

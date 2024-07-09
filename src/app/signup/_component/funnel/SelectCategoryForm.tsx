@@ -1,13 +1,17 @@
 "use client";
 
+import { useFormContext, useWatch } from "react-hook-form";
+
 import { Chips } from "@/app/_component/common/Chips";
 import { Chip } from "@/app/_component/common/Chips";
 
-import useOnboardingStore from "../../store/store";
+interface SelectCategoryFormProps {
+  setStep: () => void;
+}
 
-const SelectCategoryForm = () => {
-  const category = useOnboardingStore((state) => state.category);
-  const setCategory = useOnboardingStore((state) => state.setCategory);
+const SelectCategoryForm = ({ setStep }: SelectCategoryFormProps) => {
+  const { setValue } = useFormContext();
+  const selectedCategories = useWatch({ name: "selectedCategories" }) || [];
 
   return (
     <main className="w-[300px] mx-auto mt-5 animate-slideInFromRight">
@@ -15,8 +19,10 @@ const SelectCategoryForm = () => {
       <h2 className="text-md text-gray-300 mb-4">최대 5가지 선택 가능</h2>
       <Chips
         limit={5}
-        Items={category}
-        setItems={setCategory}
+        Items={selectedCategories}
+        setItems={(newSelectedItems: string[]) => {
+          setValue("selectedCategories", newSelectedItems);
+        }}
         multiple>
         <Chip value="1">디지털 기기</Chip>
         <Chip value="2">가구/인테리어</Chip>
@@ -33,6 +39,13 @@ const SelectCategoryForm = () => {
         <Chip value="13">기타중고물품</Chip>
       </Chips>
       <br />
+      <div className="text-center">
+        <button
+          onClick={setStep}
+          className="w-fit mx-auto  bg-blue-200 px-2  py-1 rounded-md">
+          다음으로
+        </button>
+      </div>
     </main>
   );
 };
