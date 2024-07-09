@@ -21,7 +21,7 @@ export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
       setStep(stepName);
     }
   }, [stepName, steps, defaultStep]);
-  
+
   useEffect(() => {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
