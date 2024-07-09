@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import Input from "@/app/_component/common/Input";
 import Toast from "@/app/_component/common/Toast";
@@ -13,16 +13,28 @@ interface EmailFormProps {
 }
 
 const EmailForm = ({ setStep }: EmailFormProps) => {
+  console.log("*");
   const { show } = Toast();
-  const { register, watch } = useFormContext();
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext();
   const [emailValueStatus, setEmailValueStatus] = useState<
     "Empty" | "Change" | "Ok" | "Warn"
-  >("Empty");
-  const [checkPassWord, setCheckPassWord] = useState("");
+  >("Ok");
+  const email = useWatch({
+    name: "email"
+  });
+  const password = useWatch({
+    name: "password"
+  });
+  const checkPassword = useWatch({
+    name: "checkPassword"
+  });
 
-  const email = watch("email");
-  const passWord = watch("password");
-
+  useEffect(() => {
+    console.log(email);
+  }, [email]);
   const idDuplicateCheck = useIdDuplicateCheck(setEmailValueStatus);
 
   useEffect(() => {
@@ -38,13 +50,13 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
     return "border-slate-300 border-[0.15px]";
   };
 
-  const checkValiation = () => {
-    if (emailValueStatus === "Empty") {
-      show("사용하실 이메일을 입력해주세요.", "info-solid", 3000);
+  const checkValidation = () => {
+    if (!email.length || !password.length || !checkPassword.length) {
+      show("빈 칸이 있습니다.", "warn-solid", 3000);
+    } else if (errors) {
+      console.log(errors);
     } else if (emailValueStatus === "Change" || emailValueStatus === "Warn") {
       show("이메일 중복검사를 완료해주세요.", "info-solid", 3000);
-    } else if (passWord !== checkPassWord) {
-      show("두 비밀번호가 서로 다릅니다.", "info-solid", 3000);
     } else {
       return true;
     }
@@ -65,17 +77,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
               type="email"
               placeholder="사용하실 이메일을 입력해주세요."
               className="px-1 my-1 mr-1 w-[12.5rem] text-[0.85rem]"
-              {...register("email", {
-                required: "사용하실 이메일을 입력해주세요.",
-                validate: {
-                  notDuplicateCheck: () =>
-                    emailValueStatus === "Ok" || "이메일 중복검사를 해주세요."
-                },
-                minLength: {
-                  value: 9,
-                  message: "올바른 이메일 형식을 넣어주세요"
-                }
-              })}
+              {...register("email")}
             />
           </Input>
           <Input.SubmitButton
@@ -92,21 +94,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
             type="password"
             placeholder="사용하실 비밀번호를 입력해주세요."
             className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
-            {...register("password", {
-              required: "사용하실 비밀번호를 입력해주세요.",
-              minLength: {
-                value: 8,
-                message: "최소 8글자 이상 입력해주세요."
-              },
-              maxLength: {
-                value: 20,
-                message: "최대 20글자 이하로 입력해주세요."
-              },
-              validate: {
-                passNotSame: () =>
-                  passWord === checkPassWord || "비밀번호가 일치하지 않습니다"
-              }
-            })}
+            {...register("password")}
           />
         </Input>
         <h2>비밀번호 확인</h2>
@@ -115,14 +103,14 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
             type="password"
             placeholder="비밀번호를 다시 한번 입력해주세요."
             className="px-1 my-1 w-[12.5rem] text-[0.85rem]"
-            onChange={(event) => setCheckPassWord(event.currentTarget.value)}
+            {...register("checkPassword")}
           />
         </Input>
       </div>
       <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
         <button
           onClick={function onClickNextStepButton() {
-            if (checkValiation()) {
+            if (checkValidation()) {
               setStep();
             }
           }}

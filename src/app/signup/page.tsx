@@ -14,7 +14,8 @@ import { SignUpFormSchema } from "./utils/validation";
 
 const SignUp = () => {
   const formMethods = useForm<z.infer<typeof SignUpFormSchema>>({
-    resolver: zodResolver(SignUpFormSchema)
+    resolver: zodResolver(SignUpFormSchema),
+    mode: "onBlur"
   });
 
   const [Funnel, setStep] = useFunnel(

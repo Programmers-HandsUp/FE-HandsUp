@@ -10,7 +10,7 @@ interface InputFormProps extends React.HTMLProps<HTMLInputElement> {
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
-  ({ onKeyDown, className, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     const { inputText, setInputText } = useContext(InputContext);
 
     return (
@@ -18,7 +18,6 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
         {...props}
         ref={ref}
         value={inputText}
-        onKeyDown={onKeyDown}
         onChange={(event) => setInputText(event.target.value)}
         className={cn(className, "bg-transparent")}
       />
