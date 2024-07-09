@@ -14,8 +14,11 @@ export const SignUpFormSchema = z
       .string()
       .min(8, { message: "최소 8글자 이상 입력해주세요" })
       .max(20, { message: "20글자 이하로 입력해주세요" }),
-    nickname: z.string(),
-    profileImageUrl: z.string(),
+    nickname: z
+      .string()
+      .min(2, { message: "닉네임은 최소 2글자 이상 입력해주세요" })
+      .max(12, { message: "닉네임은 최대 12글자 이하로 입력해주세요" }),
+    profileImageUrl: z.string().optional(),
     si: z.string(),
     gu: z.string(),
     dong: z.string(),

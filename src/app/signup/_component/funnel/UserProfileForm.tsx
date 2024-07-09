@@ -1,27 +1,51 @@
 "use client";
 
 import Image from "next/image";
+import { useFormContext, useWatch } from "react-hook-form";
 
 import Icon from "@/app/_component/common/Icon";
+import Toast from "@/app/_component/common/Toast";
 import onGetImageFile from "@/utils/function/onGetImageFile";
 
-import useOnboardingStore from "../../store/store";
+interface UserProfileFormProps {
+  setStep: () => void;
+}
 
-const UserProfileForm = () => {
-  const profileImage = useOnboardingStore((state) => state.profileImage);
-  const setProfileImage = useOnboardingStore((state) => state.setProfileImage);
+const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
+  const { show: showToastMessage } = Toast();
+  const {
+    register,
+    setValue,
+    formState: { errors }
+  } = useFormContext();
+
+  const profileImage = useWatch({ name: "profileImageUrl" });
+  const nickName = useWatch({ name: "nickname" });
+  console.log(nickName);
+  const checkValidation = () => {
+    const errorArray = Object.values(errors);
+    if (nickName.length < 1) {
+      showToastMessage("닉네임을 입력해주세요.", "info-solid", 3000);
+    } else if (
+      (errorArray.length > 0 && errorArray[0], errorArray[0]?.message)
+    ) {
+      showToastMessage(errorArray[0].message as string, "info-solid", 3000);
+    } else {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <div className="w-[320px] mx-auto">
       <h1 className="text-xl font-semibold mt-2 mb-6">유저 정보 등록</h1>
-
-      <form className="w-[290px] mx-auto flex flex-col">
+      <div className="w-[290px] mx-auto flex flex-col">
         <label className="mb-4 text-lg">프로필 사진 등록</label>
         <button
           className="rounded-full w-[7rem] h-[7rem] bg-slate-200 border-[0.1rem] border-slate-200  drop-shadow-lg relative mx-auto"
-          onClick={(event) => {
+          onClick={function onClickProfileImageEnrollButton(event) {
             event.preventDefault();
-            onGetImageFile((newImage) => setProfileImage(newImage));
+            onGetImageFile((newImage) => setValue("profileImageUrl", newImage));
           }}>
           {profileImage ? (
             <Image
@@ -47,9 +71,17 @@ const UserProfileForm = () => {
         <input
           placeholder="사용하실 닉네임을 2글자 ~ 8글자 사이로 적어주세요."
           className="border-b-2 border-black mt-4 h-10 px-2 text-sm"
-          onChange={(event) => setNickName(event.target.value)}
+          {...register("nickname")}
         />
-      </form>
+        <button
+          onClick={() => {
+            if (checkValidation()) {
+              setStep();
+            }
+          }}>
+          다음으로
+        </button>
+      </div>
     </div>
   );
 };

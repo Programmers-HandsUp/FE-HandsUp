@@ -26,7 +26,7 @@ const SignUp = () => {
       "SelectCategoryForm",
       "SignUpFinish"
     ],
-    "emailForm"
+    "UserProfileForm"
   );
 
   return (
@@ -37,7 +37,7 @@ const SignUp = () => {
             <EmailForm setStep={() => setStep("UserProfileForm")} />
           </Funnel.Step>
           <Funnel.Step name="UserProfileForm">
-            <UserProfileForm />
+            <UserProfileForm setStep={() => setStep("SelectResidenceForm")} />
           </Funnel.Step>
           <Funnel.Step name="SelectResidenceForm">
             <SelectResidenceForm />
