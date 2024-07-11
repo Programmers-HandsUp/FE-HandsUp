@@ -43,7 +43,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
   };
 
   useEffect(() => {
-    setEmailValueStatus("Ok");
+    setEmailValueStatus("Change");
   }, [email]);
 
   const checkValidation = () => {

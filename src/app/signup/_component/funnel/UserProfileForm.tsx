@@ -21,10 +21,10 @@ const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
 
   const profileImage = useWatch({ name: "profileImageUrl" });
   const nickName = useWatch({ name: "nickname" });
-  console.log(nickName);
+
   const checkValidation = () => {
     const errorArray = Object.values(errors);
-    if (nickName.length < 1) {
+    if (nickName && nickName.length < 1) {
       showToastMessage("닉네임을 입력해주세요.", "info-solid", 3000);
     } else if (
       (errorArray.length > 0 && errorArray[0], errorArray[0]?.message)

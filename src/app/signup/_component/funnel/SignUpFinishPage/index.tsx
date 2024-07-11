@@ -31,7 +31,6 @@ const SignUpFinishPage = () => {
     });
 
     const imgUrl = await UploadImageToS3();
-    console.log(getValues("email"), getValues("nickname"));
     mutate({
       email: getValues("email"),
       password: getValues("password"),
@@ -45,7 +44,7 @@ const SignUpFinishPage = () => {
   };
 
   useEffect(() => {
-    setOnboardingPost;
+    setOnboardingPost();
   }, []);
 
   return (
