@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
+import { useFormContext } from "react-hook-form";
 
 import Loading from "@/app/_component/common/Loading";
 import { useImageUpload } from "@/app/_hooks/mutations/useImageUpload";
@@ -8,59 +9,53 @@ import OnBoardingFail from "./_component/OnBoardingFail";
 import OnBoardingSuccess from "./_component/OnBoardingSuccess";
 
 const SignUpFinishPage = () => {
+  const { getValues } = useFormContext();
   const { mutateImageUpload } = useImageUpload();
   const { isSignUpSuccess, mutate } = useSignUp();
 
-  const setOnboardingPost = useCallback(async () => {
-    if (id && passWord) {
-      try {
-        const newImgForm = new FormData();
-        if (profileImage) {
-          newImgForm.append("images", profileImage);
-        }
-        const imgUrl = await mutateImageUpload(newImgForm);
-        const newArr: number[] = [];
-        category.map((item) => {
-          newArr.push(parseInt(item));
-        });
-        mutate({
-          email: id,
-          password: passWord,
-          nickname: nickName,
-          profileImageUrl: imgUrl[0],
-          si: address.si,
-          gu: address.gu,
-          dong: address.dong,
-          productCategoryIds: [...newArr]
-        });
-      } catch (e) {
-        console.log(e);
-      }
+  const UploadImageToS3 = async () => {
+    const newImgForm = new FormData();
+    const profileImage = getValues("profileImageUrl");
+    if (!profileImage) {
+      return "";
     }
-  }, [
-    id,
-    passWord,
-    profileImage,
-    category,
-    address,
-    nickName,
-    mutateImageUpload,
-    mutate
-  ]);
+    newImgForm.append("images", profileImage);
+    const imgUrl = await mutateImageUpload(newImgForm);
+    return imgUrl[0];
+  };
+
+  const setOnboardingPost = async () => {
+    let category = getValues("selectedCategories");
+    category = category.map((categoryItem: string) => {
+      return parseInt(categoryItem);
+    });
+
+    const imgUrl = await UploadImageToS3();
+    console.log(getValues("email"), getValues("nickname"));
+    mutate({
+      email: getValues("email"),
+      password: getValues("password"),
+      nickname: getValues("nickname"),
+      profileImageUrl: imgUrl,
+      si: getValues("si"),
+      gu: getValues("gu"),
+      dong: getValues("dong"),
+      productCategoryIds: [...category]
+    });
+  };
 
   useEffect(() => {
-    setOnboardingPost();
-  }, [setOnboardingPost]);
+    setOnboardingPost;
+  }, []);
 
   return (
     <div>
       {isSignUpSuccess === "success" && (
-        <OnBoardingSuccess userNickName={nickName} />
+        <OnBoardingSuccess userNickName={getValues("nickname")} />
       )}
       {isSignUpSuccess === "fail" && <OnBoardingFail />}
       {isSignUpSuccess === "none" && <Loading className="pb-[10rem]" />}
     </div>
   );
 };
-
 export default SignUpFinishPage;

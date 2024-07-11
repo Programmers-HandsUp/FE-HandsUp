@@ -26,7 +26,7 @@ const SignUp = () => {
       "SelectCategoryForm",
       "SignUpFinish"
     ],
-    "SelectCategoryForm"
+    "emailForm"
   );
 
   return (

@@ -22,7 +22,6 @@ const EmailLoginForm = ({ setHansHandsAnimate }: EmailLoginForm) => {
 
   const { register, handleSubmit } = useForm<LoginFormValues>();
   const onSubmit = async (authForm: LoginFormValues) => {
-    console.log("*");
     signInMutation.mutate(authForm);
   };
 
