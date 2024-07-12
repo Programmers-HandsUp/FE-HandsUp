@@ -7,7 +7,7 @@ interface EmailFormProps {
   setStep: () => void;
 }
 
-const EmailForm = ({ setStep }: EmailFormProps) => {
+const PassWordForm = ({ setStep }: EmailFormProps) => {
   const { show } = Toast();
   const {
     register,
@@ -65,4 +65,4 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
     </div>
   );
 };
-export default EmailForm;
+export default PassWordForm;
