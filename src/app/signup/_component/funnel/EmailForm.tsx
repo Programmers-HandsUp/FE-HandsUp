@@ -68,13 +68,6 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
             placeholder="사용하실 이메일을 입력해주세요."
             {...register("email")}
           />
-          <button
-            className="mx-2 px-1 py-[0.3rem] h-fit my-auto text-[0.75rem] bg-blue-300 rounded-md"
-            onClick={function onClickEmailDuplicateButton() {
-              idDuplicateCheck.mutate(email);
-            }}>
-            중복검사
-          </button>
         </div>
       </div>
       <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
