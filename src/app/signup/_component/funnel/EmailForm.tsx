@@ -24,12 +24,6 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
   const email = useWatch({
     name: "email"
   });
-  const password = useWatch({
-    name: "password"
-  });
-  const checkPassword = useWatch({
-    name: "checkPassword"
-  });
 
   const idDuplicateCheck = useIdDuplicateCheck(setEmailValueStatus);
 
@@ -48,7 +42,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
 
   const checkValidation = () => {
     const errorList = Object.values(errors);
-    if (!email.length || !password.length || !checkPassword.length) {
+    if (!email.length) {
       show("빈 칸이 있습니다.", "warn-solid", 3000);
     } else if (errorList.length > 0 && errorList[0] && errorList[0].message) {
       show(errorList[0].message as string, "warn-solid", 3000);
@@ -82,20 +76,6 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
             중복검사
           </button>
         </div>
-        <h2 className="mt-[2rem]">비밀번호</h2>
-        <input
-          type="password"
-          placeholder="사용하실 비밀번호를 입력해주세요."
-          className=" w-[13rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md border-slate-300 border-[0.9px]"
-          {...register("password")}
-        />
-        <h2>비밀번호 확인</h2>
-        <input
-          type="password"
-          placeholder="비밀번호를 다시 한번 입력해주세요."
-          className=" w-[13rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md border-slate-300 border-[0.9px]"
-          {...register("checkPassword")}
-        />
       </div>
       <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
         <button
