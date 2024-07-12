@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 
 import Toast from "@/app/_component/common/Toast";
+import useDebounce from "@/app/_hooks/useDebounce";
 import { cn } from "@/utils/function/cn";
 
 import { useIdDuplicateCheck } from "../../_hooks/mutations/useIdDuplicateCheck";
@@ -21,9 +22,11 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
     "Empty" | "Change" | "Ok" | "Warn"
   >("Empty");
 
-  const email = useWatch({
-    name: "email"
-  });
+  const email = useDebounce(
+    useWatch({
+      name: "email"
+    })
+  );
 
   const idDuplicateCheck = useIdDuplicateCheck(setEmailValueStatus);
 
@@ -33,10 +36,13 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
     } else if (emailValueStatus === "Ok") {
       return "border-green-200 border-4";
     }
-    return "border-slate-300 border-[0.9px]";
+    return "border-slate-300 border-b-[0.9px]";
   };
 
   useEffect(() => {
+    if (emailValueStatus !== "Empty") {
+      idDuplicateCheck.mutate(email);
+    }
     setEmailValueStatus("Change");
   }, [email]);
 
@@ -46,7 +52,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
       show("빈 칸이 있습니다.", "warn-solid", 3000);
     } else if (errorList.length > 0 && errorList[0] && errorList[0].message) {
       show(errorList[0].message as string, "warn-solid", 3000);
-    } else if (emailValueStatus === "Change" || emailValueStatus === "Warn") {
+    } else if (emailValueStatus === "Change") {
       show("이메일 중복검사를 완료해주세요.", "info-solid", 3000);
     } else {
       return true;
@@ -63,24 +69,27 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
             type="email"
             className={cn(
               getEmailInputBorderColor(),
-              "w-[13rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md "
+              "w-[14rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md "
             )}
             placeholder="사용하실 이메일을 입력해주세요."
             {...register("email")}
           />
         </div>
+        {emailValueStatus === "Warn" && <p>이미 사용중인 이메일입니다.!</p>}
       </div>
-      <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
-        <button
-          onClick={function onClickNextStepButton() {
-            if (checkValidation()) {
-              setStep();
-            }
-          }}
-          className="bg-blue-200 px-2 py-1 rounded-md">
-          다음으로
-        </button>
-      </div>
+      {emailValueStatus === "Ok" && (
+        <div className="flex gap-4 w-fit mx-auto mt-6 mb-2 ">
+          <button
+            onClick={function onClickNextStepButton() {
+              if (checkValidation()) {
+                setStep();
+              }
+            }}
+            className="bg-blue-200 px-2 py-1 rounded-md">
+            다음으로
+          </button>
+        </div>
+      )}
     </div>
   );
 };
