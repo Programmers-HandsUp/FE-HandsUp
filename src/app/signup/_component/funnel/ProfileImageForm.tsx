@@ -38,7 +38,7 @@ const ProfileImageForm = ({ setStep }: ProfileImageFormProps) => {
   return (
     <div className="w-[320px] mx-auto">
       <div className="w-[290px] mx-auto flex flex-col">
-        <h1 className="text-lg text-center mt-[4rem]">
+        <h1 className="text-lg text-center mt-[2rem]">
           회원님의 멋진 프로필 사진을 등록 해주세요
         </h1>
         <p className="text-[0.65em] font-light mx-auto mt-[0.2rem]">
