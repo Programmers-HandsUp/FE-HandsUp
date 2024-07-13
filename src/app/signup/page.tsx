@@ -24,14 +24,14 @@ const SignUp = () => {
   const [Funnel, setStep, step] = useFunnel(
     [
       "emailForm",
-      "NickNameForm",
       "PassWordForm",
+      "NickNameForm",
       "ProfileImageForm",
       "SelectResidenceForm",
       "SelectCategoryForm",
       "SignUpFinish"
     ],
-    "ProfileImageForm"
+    "emailForm"
   );
 
   return (

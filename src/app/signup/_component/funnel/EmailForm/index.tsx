@@ -34,10 +34,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
   const idDuplicateCheck = useIdDuplicateCheck(setEmailValueStatus);
 
   useEffect(() => {
-    if (emailValueStatus !== "Empty") {
-      idDuplicateCheck.mutate(email);
-    }
-    setEmailValueStatus("Change");
+    setEmailValueStatus("Ok");
   }, [email]);
 
   const checkValidation = () => {
