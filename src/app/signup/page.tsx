@@ -22,13 +22,14 @@ const SignUp = () => {
   const [Funnel, setStep] = useFunnel(
     [
       "emailForm",
+      "NickNameForm",
       "UserProfileForm",
       "PassWordForm",
       "SelectResidenceForm",
       "SelectCategoryForm",
       "SignUpFinish"
     ],
-    "PassWordForm"
+    "NickNameForm"
   );
 
   return (
@@ -39,7 +40,10 @@ const SignUp = () => {
             <EmailForm setStep={() => setStep("PassWordForm")} />
           </Funnel.Step>
           <Funnel.Step name="PassWordForm">
-            <PassWordForm setStep={() => setStep("UserProfileForm")} />
+            <PassWordForm setStep={() => setStep("NickNameForm")} />
+          </Funnel.Step>
+          <Funnel.Step name="NickNameForm">
+            <UserProfileForm setStep={() => setStep("UserProfileForm")} />
           </Funnel.Step>
           <Funnel.Step name="UserProfileForm">
             <UserProfileForm setStep={() => setStep("SelectResidenceForm")} />
