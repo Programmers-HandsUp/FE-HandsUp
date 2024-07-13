@@ -47,7 +47,7 @@ const PassWordForm = ({ setStep }: EmailFormProps) => {
       <div className="w-full">
         <div className="text-[1.3rem] flex gap-1">
           <h1 className="text-blue-400"> {"Hands UP"}</h1>
-          <h1 className="text-blue-400"> {"에서"}</h1>
+          <h1> {"에서"}</h1>
         </div>
         <div className="text-[1.3rem] flex gap-1">
           <h1>{"사용하실"}</h1>

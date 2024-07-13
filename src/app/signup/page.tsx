@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import { useFunnel } from "../_hooks/useFunnel";
 import EmailForm from "./_component/funnel/EmailForm";
+import NickNameForm from "./_component/funnel/NickNameForm";
 import PassWordForm from "./_component/funnel/PasswordForm";
 import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
 import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
@@ -43,7 +44,7 @@ const SignUp = () => {
             <PassWordForm setStep={() => setStep("NickNameForm")} />
           </Funnel.Step>
           <Funnel.Step name="NickNameForm">
-            <UserProfileForm setStep={() => setStep("UserProfileForm")} />
+            <NickNameForm setStep={() => setStep("UserProfileForm")} />
           </Funnel.Step>
           <Funnel.Step name="UserProfileForm">
             <UserProfileForm setStep={() => setStep("SelectResidenceForm")} />

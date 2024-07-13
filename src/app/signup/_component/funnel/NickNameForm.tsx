@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useFormContext, useWatch } from "react-hook-form";
 
-import Icon from "@/app/_component/common/Icon";
 import Toast from "@/app/_component/common/Toast";
-import onGetImageFile from "@/utils/function/onGetImageFile";
 
 interface NickNameForm {
   setStep: () => void;
@@ -15,11 +12,9 @@ const NickNameForm = ({ setStep }: NickNameForm) => {
   const { show: showToastMessage } = Toast();
   const {
     register,
-    setValue,
     formState: { errors }
   } = useFormContext();
 
-  const profileImage = useWatch({ name: "profileImageUrl" });
   const nickName = useWatch({ name: "nickname" });
 
   const checkValidation = () => {
@@ -38,42 +33,29 @@ const NickNameForm = ({ setStep }: NickNameForm) => {
 
   return (
     <div className="w-[320px] mx-auto">
-      <h1 className="text-xl font-semibold mt-2 mb-6">유저 정보 등록</h1>
-      <div className="w-[290px] mx-auto flex flex-col">
-        <label className="mb-4 text-lg">프로필 사진 등록</label>
-        <button
-          className="rounded-full w-[7rem] h-[7rem] bg-slate-200 border-[0.1rem] border-slate-200  drop-shadow-lg relative mx-auto"
-          onClick={function onClickProfileImageEnrollButton(event) {
-            event.preventDefault();
-            onGetImageFile((newImage) => setValue("profileImageUrl", newImage));
-          }}>
-          {profileImage ? (
-            <Image
-              className="w-[7rem] h-[7rem] bg-white rounded-full "
-              width={0}
-              height={0}
-              src={URL.createObjectURL(profileImage)}
-              alt="img"
-            />
-          ) : (
-            <Icon
-              id="people"
-              size={60}
-              className="mx-auto"
-            />
-          )}
-          <Icon
-            id="addImage"
-            className="absolute bottom-0 right-1 rounded-full w-8 h-8 pl-[0.2rem] py-[0.2rem] bg-[#96E4FF] border-blue-600 border-[0.05rem] drop-shadow-2xl"
-          />
-        </button>
-        <label className="mt-8 text-lg">닉네임</label>
+      <div className="mt-[5rem] ml-4">
+        <div className="text-[1.3rem] flex gap-1">
+          <h1 className="text-blue-400"> {"Hands UP"}</h1>
+          <h1> {"에서"}</h1>
+        </div>
+        <div className="text-[1.3rem] flex gap-1">
+          <h1>{"사용하실"}</h1>
+          <h1 className="text-purple-500">닉네임</h1>
+          <h1> {"을 입력해주세요."}</h1>
+        </div>
+      </div>
+      <div className="w-[270px] mx-auto flex flex-col mt-[4rem]">
         <input
-          placeholder="사용하실 닉네임을 2글자 ~ 8글자 사이로 적어주세요."
-          className="border-b-2 border-black mt-4 h-10 px-2 text-sm"
+          placeholder="사용하실 닉네임을 2글자 ~ 12글자 사이로 적어주세요."
+          className="border-b-2 border-black mt-4 h-10  text-sm text-center"
           {...register("nickname")}
         />
+        <p className="text-[0.7rem] text-gray-500 text-center mt-1">
+          * 다른 사람들에게 보일 멋진 닉네임을 적어주세요
+        </p>
+
         <button
+          className="w-[12.5rem] h-[2.5rem] mt-[3rem] mx-auto text-white bg-blue-300 px-2 py-1 rounded-md"
           onClick={() => {
             if (checkValidation()) {
               setStep();
