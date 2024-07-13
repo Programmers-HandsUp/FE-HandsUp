@@ -4,16 +4,22 @@ import { useRouter } from "next/navigation";
 
 import Icon from "@/app/_component/common/Icon";
 
-const SignUpHeader = ({}) => {
+interface SignUpHeaderProps {
+  step: string;
+}
+
+const SignUpHeader = ({ step }: SignUpHeaderProps) => {
   const router = useRouter();
   return (
     <header className="w-[325px] h-[4rem] flex mx-[1.5rem] mr-[2rem] justify-between ">
-      <button onClick={() => router.push("/signin")}>
-        <Icon
-          id="arrow-back"
-          size={20}
-        />
-      </button>
+      {step !== "emailForm" && step !== "SignUpFinish" && (
+        <button onClick={() => history.back()}>
+          <Icon
+            id="arrow-back"
+            size={20}
+          />
+        </button>
+      )}
       <button
         className="text-2xl"
         onClick={() => router.push("/signin")}>

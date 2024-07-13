@@ -21,7 +21,7 @@ const SignUp = () => {
     mode: "onBlur"
   });
 
-  const [Funnel, setStep] = useFunnel(
+  const [Funnel, setStep, step] = useFunnel(
     [
       "emailForm",
       "NickNameForm",
@@ -36,7 +36,7 @@ const SignUp = () => {
 
   return (
     <div className="">
-      <SignUpHeader />
+      <SignUpHeader step={step} />
       <FormProvider {...formMethods}>
         <Funnel>
           <Funnel.Step name="emailForm">
