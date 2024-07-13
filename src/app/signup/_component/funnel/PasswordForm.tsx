@@ -36,18 +36,27 @@ const PassWordForm = ({ setStep }: EmailFormProps) => {
   return (
     <div className="mx-auto w-fit mt-[8rem]">
       <div className="ml-4">
-        <h2 className="mt-[2rem]">비밀번호</h2>
+        <div className="text-[1.3rem] flex gap-1">
+          <h1 className="text-blue-400"> {"Hands UP"}</h1>
+          <h1 className="text-blue-400"> {"에서"}</h1>
+        </div>
+        <div className="text-[1.3rem] flex gap-1">
+          <h1>{"사용하실"}</h1>
+          <h1 className="text-green-500">비밀번호</h1>
+          <h1> {"을 입력해주세요"}</h1>
+        </div>
+        <h2 className="mt-[2rem] text-[0.75rem] text-gray-500">비밀번호</h2>
         <input
           type="password"
           placeholder="사용하실 비밀번호를 입력해주세요."
-          className=" w-[13rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md border-slate-300 border-[0.9px]"
+          className=" w-[13.5rem] h-[2.6rem] text-black px-4 my-1 mr-1 text-[0.9rem] border-slate-300 border-b-[0.9px]"
           {...register("password")}
         />
-        <h2>비밀번호 확인</h2>
+        <h2 className="mt-1 text-[0.75rem] text-gray-500">비밀번호 확인</h2>
         <input
           type="password"
           placeholder="비밀번호를 다시 한번 입력해주세요."
-          className=" w-[13rem] h-[2.6rem] text-black px-2 my-1 mr-1 text-[0.85rem] rounded-md border-slate-300 border-[0.9px]"
+          className=" w-[13.5rem] h-[2.6rem] text-black px-4 mr-1 text-[0.9rem]  border-slate-300 border-b-[0.9px]"
           {...register("checkPassword")}
         />
       </div>
@@ -58,7 +67,7 @@ const PassWordForm = ({ setStep }: EmailFormProps) => {
               setStep();
             }
           }}
-          className="bg-blue-200 px-2 py-1 rounded-md">
+          className="w-[12.5rem] h-[2.5rem] mt-2 text-white bg-blue-300 px-2 py-1 rounded-md">
           다음으로
         </button>
       </div>
