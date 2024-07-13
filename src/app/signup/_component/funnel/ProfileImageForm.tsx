@@ -7,14 +7,13 @@ import Icon from "@/app/_component/common/Icon";
 import Toast from "@/app/_component/common/Toast";
 import onGetImageFile from "@/utils/function/onGetImageFile";
 
-interface UserProfileFormProps {
+interface ProfileImageFormProps {
   setStep: () => void;
 }
 
-const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
+const ProfileImageForm = ({ setStep }: ProfileImageFormProps) => {
   const { show: showToastMessage } = Toast();
   const {
-    register,
     setValue,
     formState: { errors }
   } = useFormContext();
@@ -38,11 +37,15 @@ const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
 
   return (
     <div className="w-[320px] mx-auto">
-      <h1 className="text-xl font-semibold mt-2 mb-6">유저 정보 등록</h1>
       <div className="w-[290px] mx-auto flex flex-col">
-        <label className="mb-4 text-lg">프로필 사진 등록</label>
+        <h1 className="text-lg text-center mt-[4rem]">
+          회원님의 멋진 프로필 사진을 등록 해주세요
+        </h1>
+        <p className="text-[0.65em] font-light mx-auto mt-[0.2rem]">
+          * 프로필 사진 등록을 원하지 않으시다면 다음버튼을 눌러주세요
+        </p>
         <button
-          className="rounded-full w-[7rem] h-[7rem] bg-slate-200 border-[0.1rem] border-slate-200  drop-shadow-lg relative mx-auto"
+          className="rounded-full w-[7rem] h-[7rem] bg-slate-200 border-[0.1rem] border-slate-200  drop-shadow-lg relative mx-auto mt-[4rem]"
           onClick={function onClickProfileImageEnrollButton(event) {
             event.preventDefault();
             onGetImageFile((newImage) => setValue("profileImageUrl", newImage));
@@ -67,13 +70,9 @@ const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
             className="absolute bottom-0 right-1 rounded-full w-8 h-8 pl-[0.2rem] py-[0.2rem] bg-[#96E4FF] border-blue-600 border-[0.05rem] drop-shadow-2xl"
           />
         </button>
-        <label className="mt-8 text-lg">닉네임</label>
-        <input
-          placeholder="사용하실 닉네임을 2글자 ~ 8글자 사이로 적어주세요."
-          className="border-b-2 border-black mt-4 h-10 px-2 text-sm"
-          {...register("nickname")}
-        />
+
         <button
+          className="w-[12.5rem] h-[2.5rem] mt-[4rem] text-white bg-blue-300 px-2 py-1 mx-auto rounded-md"
           onClick={() => {
             if (checkValidation()) {
               setStep();
@@ -86,4 +85,4 @@ const UserProfileForm = ({ setStep }: UserProfileFormProps) => {
   );
 };
 
-export default UserProfileForm;
+export default ProfileImageForm;
