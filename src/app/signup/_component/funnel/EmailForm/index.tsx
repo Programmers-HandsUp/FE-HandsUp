@@ -24,7 +24,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
     "Empty" | "Change" | "Ok" | "Warn"
   >("Empty");
 
-  const email = useDebounce(
+  const email: string = useDebounce(
     useWatch({
       name: "email"
     }),
@@ -38,6 +38,7 @@ const EmailForm = ({ setStep }: EmailFormProps) => {
       idDuplicateCheck.mutate(email);
     }
     setEmailValueStatus("Change");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 
   const checkValidation = () => {
