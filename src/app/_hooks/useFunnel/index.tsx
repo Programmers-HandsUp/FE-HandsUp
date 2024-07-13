@@ -56,5 +56,5 @@ export const useFunnel = (steps: string[], defaultStep: string = steps[0]) => {
     { Step }
   );
 
-  return [FunnelComponent, setFunnel] as const;
+  return [FunnelComponent, setFunnel, step] as const;
 };
