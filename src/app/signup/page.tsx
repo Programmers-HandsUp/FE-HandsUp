@@ -6,10 +6,13 @@ import { z } from "zod";
 
 import { useFunnel } from "../_hooks/useFunnel";
 import EmailForm from "./_component/funnel/EmailForm";
+import NickNameForm from "./_component/funnel/NickNameForm";
+import PassWordForm from "./_component/funnel/PasswordForm";
+import ProfileImageForm from "./_component/funnel/ProfileImageForm";
 import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
 import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
 import SignUpFinishPage from "./_component/funnel/SignUpFinishPage";
-import UserProfileForm from "./_component/funnel/UserProfileForm";
+import SignUpHeader from "./_component/SignUpHeader";
 import { SignUpFormSchema } from "./utils/validation";
 
 const SignUp = () => {
@@ -18,10 +21,12 @@ const SignUp = () => {
     mode: "onBlur"
   });
 
-  const [Funnel, setStep] = useFunnel(
+  const [Funnel, setStep, step] = useFunnel(
     [
       "emailForm",
-      "UserProfileForm",
+      "PassWordForm",
+      "NickNameForm",
+      "ProfileImageForm",
       "SelectResidenceForm",
       "SelectCategoryForm",
       "SignUpFinish"
@@ -31,13 +36,20 @@ const SignUp = () => {
 
   return (
     <div className="">
+      <SignUpHeader step={step} />
       <FormProvider {...formMethods}>
         <Funnel>
           <Funnel.Step name="emailForm">
-            <EmailForm setStep={() => setStep("UserProfileForm")} />
+            <EmailForm setStep={() => setStep("PassWordForm")} />
           </Funnel.Step>
-          <Funnel.Step name="UserProfileForm">
-            <UserProfileForm setStep={() => setStep("SelectResidenceForm")} />
+          <Funnel.Step name="PassWordForm">
+            <PassWordForm setStep={() => setStep("NickNameForm")} />
+          </Funnel.Step>
+          <Funnel.Step name="NickNameForm">
+            <NickNameForm setStep={() => setStep("ProfileImageForm")} />
+          </Funnel.Step>
+          <Funnel.Step name="ProfileImageForm">
+            <ProfileImageForm setStep={() => setStep("SelectResidenceForm")} />
           </Funnel.Step>
           <Funnel.Step name="SelectResidenceForm">
             <SelectResidenceForm

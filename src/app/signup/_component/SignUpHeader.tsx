@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useRouter } from "next/navigation";
 
 import Icon from "@/app/_component/common/Icon";
@@ -33,3 +32,11 @@ const SignUpHeader = ({ step }: SignUpHeaderProps) => {
 };
 
 export default SignUpHeader;
+
+// <ProgressBar
+//         className="mt-6"
+//         round={"little"}
+//         width={300}
+//         height={18}
+//         percent={PAGE_PERCENTAGES[nowPage]}
+//       />

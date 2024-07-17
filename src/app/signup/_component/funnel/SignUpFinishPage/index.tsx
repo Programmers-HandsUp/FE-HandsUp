@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+
 import { useFormContext } from "react-hook-form";
 
 import Loading from "@/app/_component/common/Loading";
@@ -13,7 +14,7 @@ const SignUpFinishPage = () => {
   const { mutateImageUpload } = useImageUpload();
   const { isSignUpSuccess, mutate } = useSignUp();
 
-  const UploadImageToS3 = async () => {
+  const UploadImageToS3 = useCallback(async () => {
     const newImgForm = new FormData();
     const profileImage = getValues("profileImageUrl");
     if (!profileImage) {
@@ -22,13 +23,11 @@ const SignUpFinishPage = () => {
     newImgForm.append("images", profileImage);
     const imgUrl = await mutateImageUpload(newImgForm);
     return imgUrl[0];
-  };
+  }, [getValues, mutateImageUpload]);
 
-  const setOnboardingPost = async () => {
+  const setOnboardingPost = useCallback(async () => {
     let category = getValues("selectedCategories");
-    category = category.map((categoryItem: string) => {
-      return parseInt(categoryItem);
-    });
+    category = category.map((categoryItem: string) => parseInt(categoryItem));
 
     const imgUrl = await UploadImageToS3();
     mutate({
@@ -41,11 +40,11 @@ const SignUpFinishPage = () => {
       dong: getValues("dong"),
       productCategoryIds: [...category]
     });
-  };
+  }, [getValues, UploadImageToS3, mutate]);
 
   useEffect(() => {
     setOnboardingPost();
-  }, []);
+  }, [setOnboardingPost]);
 
   return (
     <div>
@@ -57,4 +56,5 @@ const SignUpFinishPage = () => {
     </div>
   );
 };
+
 export default SignUpFinishPage;
