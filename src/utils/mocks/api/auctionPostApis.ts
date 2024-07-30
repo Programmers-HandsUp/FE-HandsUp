@@ -1,10 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-import {
-  auctionDetail,
-  auctionHotList,
-  commentData
-} from "./data/postListData";
+import { auctionDetail, commentData } from "./data/postListData";
 
 const delay = (ms: number) =>
   new Promise((res) => {
@@ -73,10 +69,6 @@ const handlers = [
       );
     }
   ),
-  http.get("/api/auctionList", async () => {
-    await delay(1000);
-    return HttpResponse.json(auctionHotList);
-  }),
   http.post("/api/comment/create", async ({ request }) => {
     await delay(1000);
     return HttpResponse.text(JSON.stringify("ok"));
