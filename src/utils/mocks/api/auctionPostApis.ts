@@ -29,6 +29,7 @@ const handlers = [
           biddingCount,
           dong,
           endDate,
+          imageUrls,
           createdAt
         }) => {
           {
@@ -36,8 +37,8 @@ const handlers = [
               auctionId,
               title,
               currentBiddingPrice,
-              imgUrl: null,
               endDate,
+              imgUrl: imageUrls[0],
               bookmarkCount,
               dong,
               biddingCount,

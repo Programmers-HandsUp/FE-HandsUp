@@ -1,4 +1,6 @@
 import { RecommendAuctionsResponse } from "@/utils/types/auction/recommendAuction";
+import mockingTempImage1 from "~/images/devil.webp";
+import mockingTempImage2 from "~/images/soso.webp";
 
 import { CommentType } from "../types";
 
@@ -62,11 +64,7 @@ export const auctionDetail = [
     description:
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
-    imageUrls: [
-      "~/images/angel.webp",
-      "~/images/angel.webp",
-      "~/images/angel.webp"
-    ],
+    imageUrls: [mockingTempImage1, mockingTempImage2],
     sellerInfo: {
       userId: 123,
       nickname: "안뇽",
@@ -82,7 +80,7 @@ export const auctionDetail = [
   },
   {
     biddingCount: 1,
-    auctionId: 353256236,
+    auctionId: 3532562326,
     title: "(mock)모킹2",
     productCategory: "신발",
     initPrice: 5000,
@@ -94,11 +92,7 @@ export const auctionDetail = [
     description:
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
-    imageUrls: [
-      "~/images/angel.webp",
-      "~/images/angel.webp",
-      "~/images/angel.webp"
-    ],
+    imageUrls: [mockingTempImage2, mockingTempImage1],
     sellerInfo: {
       userId: 123,
       nickname: "김김",
