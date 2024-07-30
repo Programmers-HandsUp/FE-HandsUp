@@ -1,38 +1,12 @@
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 import mockingTempImage1 from "~/images/devil.webp";
 import mockingTempImage2 from "~/images/soso.webp";
 
 import { CommentType } from "../types";
 import { sellerInfoMockData } from "./sellerData";
 
-export const postListData = [
+export const auctionDetail: AuctionDetailResponse[] = [
   {
-    auctionId: 1,
-    authorId: "id1",
-    authorName: "경매왕",
-    title: "아주 많이 비싼 옷",
-    endtime: "2024.03.04",
-    startPrice: 300,
-    tradePlace: "서울 어딘가",
-    currentBiddingPrice: 400,
-    imageUrl: null,
-    bookmarkCount: 5,
-    postDetail: "아주 비싸고 많이 비싸고 좋고 몰라 그냥 좋고 사지마 그냥아아아",
-    comments: [
-      { authorId: "1", authorName: "jjg", detail: "안삼ㅋ", id: "fakfsdkke1" }
-    ],
-    bidRecord: [
-      { bidderName: "jjg", bidderId: "id1", biddingPrice: 400, id: "123fdsf1" }
-    ],
-    dong: "항동",
-    si: "서울",
-    gu: "구로",
-    createdAt: "2024.05.06"
-  }
-];
-
-export const auctionDetail = [
-  {
-    biddingCount: 1,
     auctionId: 353256236,
     title: "(mock)모킹1",
     productCategory: "신발",
@@ -45,8 +19,8 @@ export const auctionDetail = [
     description:
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
-    sellerInfo: sellerInfoMockData,
-    imageUrls: [mockingTempImage1, mockingTempImage2],
+    sellerInfo: sellerInfoMockData[0],
+    imageUrls: [mockingTempImage1.src, mockingTempImage2.src],
     si: "서울시",
     gu: "강남구",
     dong: "논현동",
@@ -54,8 +28,7 @@ export const auctionDetail = [
     createdAt: "2024-02-12"
   },
   {
-    biddingCount: 1,
-    auctionId: 353256236,
+    auctionId: 353256237,
     title: "(mock)모킹2",
     productCategory: "신발",
     initPrice: 5000,
@@ -67,8 +40,8 @@ export const auctionDetail = [
     description:
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
-    imageUrls: [mockingTempImage2, mockingTempImage1],
-    sellerInfo: sellerInfoMockData,
+    imageUrls: [mockingTempImage2.src, mockingTempImage1.src],
+    sellerInfo: sellerInfoMockData[0],
     si: "서울시",
     gu: "강남구",
     dong: "논현동",

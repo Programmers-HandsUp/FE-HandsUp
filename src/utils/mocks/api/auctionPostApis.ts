@@ -22,7 +22,6 @@ const handlers = [
           title,
           currentBiddingPrice,
           bookmarkCount,
-          biddingCount,
           dong,
           endDate,
           imageUrls,
@@ -37,7 +36,6 @@ const handlers = [
               imgUrl: imageUrls[0],
               bookmarkCount,
               dong,
-              biddingCount,
               createdAt
             };
           }

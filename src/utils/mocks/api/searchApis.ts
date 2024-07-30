@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 import { popularSearchData } from "./data/popularSearchData";
-import { postListData } from "./data/postListData";
+import { auctionDetail } from "./data/postListData";
 
 const handler = [
   http.get(
@@ -35,12 +35,12 @@ const handler = [
       }
       const { keyword } = body;
 
-      const result = postListData.map(
+      const result = auctionDetail.map(
         ({
           auctionId,
           title,
           currentBiddingPrice,
-          imageUrl,
+          imageUrls,
           bookmarkCount,
           dong,
           createdAt
@@ -50,7 +50,7 @@ const handler = [
               auctionId,
               title,
               currentBiddingPrice,
-              imageUrl,
+              imageUrls,
               bookmarkCount,
               dong,
               createdAt
