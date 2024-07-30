@@ -2,6 +2,7 @@ import mockingTempImage1 from "~/images/devil.webp";
 import mockingTempImage2 from "~/images/soso.webp";
 
 import { CommentType } from "../types";
+import { sellerInfoMockData } from "./sellerData";
 
 export const postListData = [
   {
@@ -44,14 +45,8 @@ export const auctionDetail = [
     description:
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
+    sellerInfo: sellerInfoMockData,
     imageUrls: [mockingTempImage1, mockingTempImage2],
-    sellerInfo: {
-      userId: 123,
-      nickname: "안뇽",
-      profileImageUrl: "~/images/angel.webp",
-      dong: "강남동",
-      score: 150
-    },
     si: "서울시",
     gu: "강남구",
     dong: "논현동",
@@ -73,13 +68,7 @@ export const auctionDetail = [
       "2개월 정도 신었나? 잘 인신게 돼서 경매에 올려용. 상태는 깨끗합니다!",
     tradeMethod: "직접 만나서",
     imageUrls: [mockingTempImage2, mockingTempImage1],
-    sellerInfo: {
-      userId: 123,
-      nickname: "김김",
-      profileImageUrl: "~/images/angel.webp",
-      dong: "강남동",
-      score: 150
-    },
+    sellerInfo: sellerInfoMockData,
     si: "서울시",
     gu: "강남구",
     dong: "논현동",
