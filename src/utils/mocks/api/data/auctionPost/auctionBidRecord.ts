@@ -1,7 +1,7 @@
 import { BidsData } from "@/utils/types/bid/bids";
 import tempImage from "~/images/angel.webp";
 
-export const commentData: BidsData[] = [
+export const bidMockData: BidsData[] = [
   {
     biddingId: 100001,
     biddingPrice: 2000,

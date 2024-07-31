@@ -4,7 +4,7 @@ import mockingTempImage2 from "~/images/soso.webp";
 
 import { sellerInfoMockData } from "../sellerData";
 
-export const auctionDetail: AuctionDetailResponse[] = [
+export const auctionDetails: AuctionDetailResponse[] = [
   {
     auctionId: 353256236,
     title: "(mock)모킹1",

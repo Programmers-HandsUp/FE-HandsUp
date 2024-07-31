@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 import { commentData } from "./data/auctionPost/auctionComment";
-import { auctionDetail } from "./data/auctionPost/auctionDetail";
+import { auctionDetails } from "./data/auctionPost/auctionDetail";
 
 const delay = (ms: number) =>
   new Promise((res) => {
@@ -17,7 +17,7 @@ const handlers = [
       const page = Number(searchParams.get("page") || 0);
       const size = Number(searchParams.get("size") || 0);
 
-      const result = auctionDetail.map(
+      const result = auctionDetails.map(
         ({
           auctionId,
           title,
@@ -68,32 +68,49 @@ const handlers = [
       );
     }
   ),
-  http.post("/api/comment/create", async ({ request }) => {
+  http.post("/api/comment/create", async () => {
     await delay(1000);
     return HttpResponse.text(JSON.stringify("ok"));
   }),
-  http.get("/api/auctions/:auctionId", async () => {
-    await delay(1000);
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
+    async ({ request }) => {
+      await delay(1000);
 
-    return HttpResponse.json(auctionDetail);
-  }),
-  http.get("/api/auctions/:auctionId/comments", async ({ request }) => {
-    await delay(1000);
+      const { searchParams } = new URL(request.url);
+      const requestAuctionId = searchParams.get("auctionId");
+      if (!requestAuctionId) {
+        throw new Error("옥션 ID가 APi에 기입되어있지 않습니다.");
+      }
+      const newAuctionDetail = auctionDetails.filter(
+        (detail) => detail.auctionId === parseInt(requestAuctionId)
+      );
+      if (!newAuctionDetail.length) {
+        throw new Error("해당 경매 물품이 없습니다.");
+      }
+      return HttpResponse.json(newAuctionDetail[0]);
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
+    async ({ request }) => {
+      await delay(1000);
 
-    const { searchParams } = new URL(request.url);
-    const size = Number(searchParams.get("size"));
-    const page = Number(searchParams.get("page"));
-    const totalCount = commentData.length;
-    const totalPages = Math.ceil(totalCount / size);
+      const { searchParams } = new URL(request.url);
+      const size = Number(searchParams.get("size"));
+      const page = Number(searchParams.get("page"));
+      const totalCount = commentData.length;
+      const totalPages = Math.ceil(totalCount / size);
 
-    const nextPage = page < totalPages - 1 ? true : false;
+      const nextPage = page < totalPages - 1 ? true : false;
 
-    https: return HttpResponse.json({
-      content: commentData.slice(page * 10, page * 10 + size),
-      size: commentData.slice(page * 10, page * 10 + size).length,
-      hasNext: nextPage
-    });
-  })
+      return HttpResponse.json({
+        content: commentData.slice(page * 10, page * 10 + size),
+        size: commentData.slice(page * 10, page * 10 + size).length,
+        hasNext: nextPage
+      });
+    }
+  )
 ];
 
 export default handlers;
