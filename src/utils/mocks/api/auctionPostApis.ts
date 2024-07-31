@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 
-import { auctionDetail, commentData } from "./data/postListData";
+import { commentData } from "./data/auctionPost/auctionComment";
+import { auctionDetail } from "./data/auctionPost/auctionDetail";
 
 const delay = (ms: number) =>
   new Promise((res) => {

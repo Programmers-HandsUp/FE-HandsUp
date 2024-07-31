@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
+import { auctionDetail } from "./data/auctionPost/auctionDetail";
 import { popularSearchData } from "./data/popularSearchData";
-import { auctionDetail } from "./data/postListData";
 
 const handler = [
   http.get(
