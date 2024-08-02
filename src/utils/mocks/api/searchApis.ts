@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
-import { auctionDetail } from "./data/auctionPost/auctionDetail";
-import { popularSearchData } from "./data/popularSearchData";
+import { auctionDetails } from "../mockData/auctionPost/auctionDetail";
+import { popularSearchData } from "../mockData/popularSearchData";
 
 const handler = [
   http.get(
@@ -35,7 +35,7 @@ const handler = [
       }
       const { keyword } = body;
 
-      const result = auctionDetail.map(
+      const result = auctionDetails.map(
         ({
           auctionId,
           title,

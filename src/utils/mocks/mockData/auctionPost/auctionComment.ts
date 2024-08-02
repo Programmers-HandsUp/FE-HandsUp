@@ -1,4 +1,4 @@
-import { CommentType } from "../../types";
+import { CommentType } from "../../api/types";
 
 export const commentData: CommentType[] = [
   {

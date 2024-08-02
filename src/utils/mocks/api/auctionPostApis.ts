@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
-import { bidMockData } from "./data/auctionPost/auctionBidRecord";
-import { auctionDetails } from "./data/auctionPost/auctionDetail";
+import { bidMockData } from "../mockData/auctionPost/auctionBidRecord";
+import { auctionDetails } from "../mockData/auctionPost/auctionDetail";
 
 const delay = (ms: number) =>
   new Promise((res) => {
@@ -13,7 +13,6 @@ const handlers = [
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend`,
     async ({ request }) => {
       const { searchParams } = new URL(request.url);
-      // const apiDong = searchParams.get("dong");
       const page = Number(searchParams.get("page") || 0);
       const size = Number(searchParams.get("size") || 0);
 
@@ -27,40 +26,25 @@ const handlers = [
           endDate,
           imageUrls,
           createdAt
-        }) => {
-          {
-            return {
-              auctionId,
-              title,
-              currentBiddingPrice,
-              endDate,
-              imgUrl: imageUrls[0],
-              bookmarkCount,
-              dong,
-              createdAt
-            };
-          }
-        }
+        }) => ({
+          auctionId,
+          title,
+          currentBiddingPrice,
+          endDate,
+          imgUrl: imageUrls[0],
+          bookmarkCount,
+          dong,
+          createdAt
+        })
       );
 
       const totalCount = result.length;
       const totalPages = Math.ceil(totalCount / size);
+      const hasNext = page < totalPages - 1;
 
-      const hasNext = page < totalPages - 1 ? true : false;
-
-      if (!result.length) {
-        return new HttpResponse(
-          JSON.stringify({
-            content: null,
-            pageSize: size,
-            hasNext: false
-          }),
-          { status: 200 }
-        );
-      }
       return new HttpResponse(
         JSON.stringify({
-          content: result.slice(page * 5, page * 5 + size),
+          content: result.slice(page * size, page * size + size),
           pageSize: size,
           hasNext
         }),
@@ -74,37 +58,54 @@ const handlers = [
   }),
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
-    async ({ request }) => {
+    async ({ params }) => {
       await delay(1000);
 
-      const { searchParams } = new URL(request.url);
-      const requestAuctionId = searchParams.get("auctionId");
-      if (!requestAuctionId) {
-        throw new Error("옥션 ID가 APi에 기입되어있지 않습니다.");
-      }
-      const newAuctionDetail = auctionDetails.filter(
-        (detail) => detail.auctionId === parseInt(requestAuctionId)
+      const requestAuctionId = Number(params.auctionId);
+
+      const newAuctionDetail = auctionDetails.find(
+        (detail) => detail.auctionId === requestAuctionId
       );
-      if (!newAuctionDetail.length) {
-        throw new Error("해당 경매 물품이 없습니다.");
+
+      if (!newAuctionDetail) {
+        return new HttpResponse(
+          JSON.stringify({ error: "해당 경매 물품이 없습니다." }),
+          { status: 404 }
+        );
       }
-      return HttpResponse.json(newAuctionDetail[0]);
+
+      return HttpResponse.json(newAuctionDetail);
     }
   ),
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids/top3`,
-    async ({ request }) => {
+    async ({ params }) => {
       await delay(1000);
 
-      const { searchParams } = new URL(request.url);
-      const requestAuctionId = Number(searchParams.get("auctionId"));
+      const requestAuctionId = Number(params.auctionId);
 
       const requestAuctionTop3Bids = bidMockData
-        .filter((bidRecord) => {
-          bidRecord.auctionId === requestAuctionId;
-        })
+        .filter((bidRecord) => bidRecord.auctionId === requestAuctionId)
         .sort((a, b) => b.biddingPrice - a.biddingPrice)
         .slice(0, 3);
+
+      return HttpResponse.json({
+        content: requestAuctionTop3Bids,
+        size: requestAuctionTop3Bids.length,
+        hasNext: false
+      });
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids`,
+    async ({ params }) => {
+      await delay(1000);
+
+      const requestAuctionId = Number(params.auctionId);
+
+      const requestAuctionTop3Bids = bidMockData
+        .filter((bidRecord) => bidRecord.auctionId === requestAuctionId)
+        .sort((a, b) => b.biddingPrice - a.biddingPrice);
 
       return HttpResponse.json({
         content: requestAuctionTop3Bids,

@@ -1,4 +1,4 @@
-import { userDataType } from "../types";
+import { userDataType } from "../api/types";
 
 export const userData: { [key: string]: userDataType } = {
   abcdefghijk: {
