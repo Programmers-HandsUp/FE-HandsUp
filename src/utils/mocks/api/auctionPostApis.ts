@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-import { commentData } from "./data/auctionPost/auctionComment";
+import { bidMockData } from "./data/auctionPost/auctionBidRecord";
 import { auctionDetails } from "./data/auctionPost/auctionDetail";
 
 const delay = (ms: number) =>
@@ -92,22 +92,24 @@ const handlers = [
     }
   ),
   http.get(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids/top3`,
     async ({ request }) => {
       await delay(1000);
 
       const { searchParams } = new URL(request.url);
-      const size = Number(searchParams.get("size"));
-      const page = Number(searchParams.get("page"));
-      const totalCount = commentData.length;
-      const totalPages = Math.ceil(totalCount / size);
+      const requestAuctionId = Number(searchParams.get("auctionId"));
 
-      const nextPage = page < totalPages - 1 ? true : false;
+      const requestAuctionTop3Bids = bidMockData
+        .filter((bidRecord) => {
+          bidRecord.auctionId === requestAuctionId;
+        })
+        .sort((a, b) => b.biddingPrice - a.biddingPrice)
+        .slice(0, 3);
 
       return HttpResponse.json({
-        content: commentData.slice(page * 10, page * 10 + size),
-        size: commentData.slice(page * 10, page * 10 + size).length,
-        hasNext: nextPage
+        content: requestAuctionTop3Bids,
+        size: requestAuctionTop3Bids.length,
+        hasNext: false
       });
     }
   )
