@@ -1,4 +1,4 @@
-import postApiHandler from "./api/auctionPostApis";
+import postApiHandler from "./api/auctionDetail";
 import authApiHandler from "./api/authApis";
 import mypageHandler from "./api/mypageApis";
 import notificationHandler from "./api/notificationApis";

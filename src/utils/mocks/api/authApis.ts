@@ -1,8 +1,8 @@
 import { http, HttpResponse } from "msw";
 
-import { userAuthData } from "./data/authData";
-import { mockTokens } from "./data/token";
-import { userData } from "./data/userData";
+import { userAuthData } from "../mockData/authData";
+import { mockTokens } from "../mockData/token";
+import { userData } from "../mockData/userData";
 import { userAuthType } from "./types";
 
 const isAuthData = (data: any): data is userAuthType => {

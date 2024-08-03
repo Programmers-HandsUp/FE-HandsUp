@@ -1,6 +1,6 @@
 import { http, HttpResponse } from "msw";
 
-import { notification, notificationBadge } from "./data/notificationData";
+import { notification, notificationBadge } from "../mockData/notificationData";
 
 const handlers = [
   http.get("/api/notifications", () => {

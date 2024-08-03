@@ -1,7 +1,8 @@
 import { http, HttpResponse } from "msw";
 
-import { bidMockData } from "../mockData/auctionPost/auctionBidRecord";
-import { auctionDetails } from "../mockData/auctionPost/auctionDetail";
+import { bidMockData } from "../../mockData/auctionPost/auctionBidRecord";
+import { commentMockData } from "../../mockData/auctionPost/auctionComment";
+import { auctionDetails } from "../../mockData/auctionPost/auctionDetail";
 
 const delay = (ms: number) =>
   new Promise((res) => {
@@ -52,10 +53,29 @@ const handlers = [
       );
     }
   ),
-  http.post("/api/comment/create", async () => {
-    await delay(1000);
-    return HttpResponse.text(JSON.stringify("ok"));
-  }),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/comments`,
+    async ({ request, params }) => {
+      const requestAuctionId = Number(params.auctionId);
+
+      const { searchParams } = new URL(request.url);
+      const commentPage = Number(searchParams.get("page") || 0);
+      const commentNum = Number(searchParams.get("size") || 0);
+
+      const auctionCommentList = commentMockData
+        .filter((commentItem) => commentItem.auctionId === requestAuctionId)
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .slice(commentNum * commentPage, commentNum * commentPage + commentNum);
+
+      return new HttpResponse(
+        JSON.stringify({
+          content: auctionCommentList,
+          size: auctionCommentList.length,
+          hasNext: false
+        })
+      );
+    }
+  ),
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
     async ({ params }) => {

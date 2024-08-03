@@ -7,7 +7,7 @@ import {
   reviewLabelList,
   reviewList,
   saleList
-} from "./data/mypageData";
+} from "../mockData/mypageData";
 
 export const statusMap: Record<StatusEn, Status> = {
   TRADING: "거래 중",

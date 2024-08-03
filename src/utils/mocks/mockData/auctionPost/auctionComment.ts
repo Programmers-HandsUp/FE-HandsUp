@@ -1,6 +1,6 @@
 import { CommentType } from "../../api/types";
 
-export const commentData: CommentType[] = [
+export const commentMockData: CommentType[] = [
   {
     messageId: 1241241,
     content: ".나는 1번째",
