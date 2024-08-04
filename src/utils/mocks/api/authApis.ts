@@ -48,26 +48,32 @@ const handler = [
       return new HttpResponse(null, { status: 401 });
     }
   }),
-  http.post("http://localhost:9090/api/login", async ({ request }) => {
-    const authData = (await request.json()) as any;
-    if (!isAuthData(authData)) {
-      return new HttpResponse("로그인 폼 데이터 에러", { status: 400 });
-    }
-    for (const member of userAuthData) {
-      if (
-        authData.email === member.email &&
-        authData.password === member.password
-      ) {
-        return new HttpResponse(JSON.stringify(mockTokens.accessToken), {
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`,
+    async ({ request }) => {
+      const authRequestInform = (await request.json()) as any;
+      if (!isAuthData(authRequestInform)) {
+        return new HttpResponse("데이터 타입이 틀립니다.", { status: 400 });
+      }
+      const isUser = userAuthData.find(
+        (authItem) =>
+          authItem.email === authRequestInform.email &&
+          authRequestInform.password === authItem.password
+      );
+      if (isUser) {
+        return new HttpResponse(null, {
           headers: {
-            "Set-Cookie": `token=${mockTokens.refreshToken}`
+            "Content-Type": "application/json",
+            "Set-Cookie": `accessToken=${mockTokens.accessToken}`
           },
           status: 200
         });
       }
+      return new HttpResponse(null, {
+        status: 401
+      });
     }
-    return new HttpResponse("에러", { status: 401 });
-  }),
+  ),
   http.get("/api/userinfo", async ({ cookies, request }) => {
     try {
       const authHeader = request.headers.get("Authorization");
