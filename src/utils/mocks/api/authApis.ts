@@ -2,7 +2,6 @@ import { http, HttpResponse } from "msw";
 
 import { userAuthData } from "../mockData/authData";
 import { mockTokens } from "../mockData/token";
-import { userData } from "../mockData/userData";
 import { userAuthType } from "./types";
 
 const isAuthData = (data: any): data is userAuthType => {
@@ -51,7 +50,7 @@ const handler = [
   http.post(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/login`,
     async ({ request }) => {
-      const authRequestInform = (await request.json()) as any;
+      const authRequestInform = await request.json();
       if (!isAuthData(authRequestInform)) {
         return new HttpResponse("데이터 타입이 틀립니다.", { status: 400 });
       }
@@ -74,26 +73,35 @@ const handler = [
       });
     }
   ),
-  http.get("/api/userinfo", async ({ cookies, request }) => {
-    try {
-      const authHeader = request.headers.get("Authorization");
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
+    async ({ request }) => {
+      try {
+        const userToken = request.headers.get("Authorization");
 
-      if (!cookies.token) {
-        return new HttpResponse(null, { status: 403 });
-      }
-      if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        throw new Error("토큰이 없거나 형식이 잘못되었습니다");
-      }
-      const token = authHeader.slice(7);
+        if (!userToken || !userToken.startsWith("Bearer ")) {
+          throw new Error("토큰이 없거나 형식이 잘못되었습니다");
+        }
+        const CheckLoginUserResponse = {
+          email: "a@a.com",
+          password: "abcd",
+          address: {
+            si: "서울",
+            gu: "구로",
+            dong: "항동"
+          },
+          reportCount: 0,
+          readNotificationCount: 0
+        };
 
-      if (!userData[token]) {
-        throw new Error("토큰이 유효하지 않습니다");
+        return new HttpResponse(JSON.stringify(CheckLoginUserResponse), {
+          status: 200
+        });
+      } catch (error) {
+        throw new Error(`${error}`);
       }
-      return new HttpResponse(JSON.stringify(userData[token]), { status: 200 });
-    } catch (error) {
-      throw new Error(`${error}`);
     }
-  })
+  )
 ];
 
 export default handler;
