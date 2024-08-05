@@ -35,16 +35,14 @@ const useRecommendedAuction = ({ address }: { address: AddressState }) => {
       }
     ]
   });
-  console.log(result);
 
-  result.forEach((item, index) => {
+  result.forEach((item) => {
     if (item.data !== null) {
       if (item.data.content[0] === null) {
         item.data.content = [];
       }
     }
   });
-  console.log(result);
   return result;
 };
 

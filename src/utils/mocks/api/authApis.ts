@@ -83,6 +83,7 @@ const handler = [
           throw new Error("토큰이 없거나 형식이 잘못되었습니다");
         }
         const CheckLoginUserResponse = {
+          userId: 123,
           email: "a@a.com",
           password: "abcd",
           address: {
