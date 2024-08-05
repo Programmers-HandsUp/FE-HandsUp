@@ -1,12 +1,13 @@
+import { ImageUrl } from "@/utils/types/image";
 import { Purchase, Review, ReviewLabel, Sale } from "@/utils/types/user/mypage";
+import tempImage from "~/images/angel.webp";
 
 export const purchaseList: Purchase = {
   content: [
     {
       auctionId: 1,
       auctionTitle: "범고래 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-04"),
       auctionStatus: "거래 완료",
       winningPrice: 150000,
@@ -15,8 +16,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 2,
       auctionTitle: "감자깡 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-04"),
       auctionStatus: "거래 완료",
       winningPrice: 15000,
@@ -25,8 +25,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 3,
       auctionTitle: "고구마깡 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-04"),
       auctionStatus: "거래 완료",
       winningPrice: 5000,
@@ -35,8 +34,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 4,
       auctionTitle: "감자칩 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-04"),
       auctionStatus: "거래 중",
       winningPrice: 150000,
@@ -45,8 +43,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 5,
       auctionTitle: "고구마칩 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 중",
       winningPrice: 3000,
@@ -55,8 +52,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 6,
       auctionTitle: "옥수수 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 중",
       winningPrice: 200000,
@@ -65,8 +61,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 7,
       auctionTitle: "삼각김밥 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "입찰 중",
       winningPrice: 1000,
@@ -75,8 +70,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 8,
       auctionTitle: "먹태깡 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "입찰 중",
       winningPrice: 5000000,
@@ -85,8 +79,7 @@ export const purchaseList: Purchase = {
     {
       auctionId: 9,
       auctionTitle: "빼빼로 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "입찰 중",
       winningPrice: 300000,
@@ -137,29 +130,25 @@ export const reviewList: Review = {
     {
       reviewId: 1,
       writerNickName: "세인",
-      writerProfileImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      writerProfileImageUrl: tempImage.src as ImageUrl,
       content: "감사해요 잘 쓸게요!"
     },
     {
       reviewId: 2,
       writerNickName: "준혁",
-      writerProfileImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      writerProfileImageUrl: tempImage.src as ImageUrl,
       content: "아주 좋은 물건이네요!"
     },
     {
       reviewId: 3,
       writerNickName: "지호",
-      writerProfileImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      writerProfileImageUrl: tempImage.src as ImageUrl,
       content: "완전 좋아요"
     },
     {
       reviewId: 3,
       writerNickName: "장권",
-      writerProfileImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      writerProfileImageUrl: tempImage.src as ImageUrl,
       content: "좋은 물건 잘쓸게요~~"
     }
   ],
@@ -172,8 +161,7 @@ export const saleList: Sale = {
     {
       auctionId: 1,
       auctionTitle: "범고래 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 중",
       maxBiddingPrice: 140000,
@@ -183,8 +171,7 @@ export const saleList: Sale = {
     {
       auctionId: 2,
       auctionTitle: "감자깡 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 중",
       maxBiddingPrice: 100000,
@@ -194,8 +181,7 @@ export const saleList: Sale = {
     {
       auctionId: 3,
       auctionTitle: "매직마우스 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 완료",
       maxBiddingPrice: 140000,
@@ -205,8 +191,7 @@ export const saleList: Sale = {
     {
       auctionId: 4,
       auctionTitle: "트랙패드 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "거래 완료",
       maxBiddingPrice: 160000,
@@ -216,8 +201,7 @@ export const saleList: Sale = {
     {
       auctionId: 5,
       auctionTitle: "맥북 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "입찰 중",
       maxBiddingPrice: 1500000,
@@ -227,8 +211,7 @@ export const saleList: Sale = {
     {
       auctionId: 6,
       auctionTitle: "감자 팔아요",
-      auctionImageUrl:
-        "https://s3.ap-northeast-2.amazonaws.com/handsup-bucket/images/09bc80b7-963d-40f5-aa79-4afb5c44a0b1.png",
+      auctionImageUrl: tempImage.src as ImageUrl,
       auctionCreatedAt: new Date("2024-03-20"),
       auctionStatus: "입찰 중",
       maxBiddingPrice: 140000,
