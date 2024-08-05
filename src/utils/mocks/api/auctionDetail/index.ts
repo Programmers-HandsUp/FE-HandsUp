@@ -1,5 +1,7 @@
 import { http, HttpResponse } from "msw";
 
+import tempImage from "~/images/angel.webp";
+
 import { bidMockData } from "../../mockData/auctionPost/auctionBidRecord";
 import { commentMockData } from "../../mockData/auctionPost/auctionComment";
 import { auctionDetails } from "../../mockData/auctionPost/auctionDetail";
@@ -133,7 +135,14 @@ const handlers = [
         hasNext: false
       });
     }
-  )
+  ),
+  http.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/images`, async ({}) => {
+    await delay(1000);
+
+    return HttpResponse.json(JSON.stringify([tempImage.src]), {
+      status: 200
+    });
+  })
 ];
 
 export default handlers;
