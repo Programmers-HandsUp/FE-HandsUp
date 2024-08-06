@@ -9,7 +9,6 @@ export const useImageUpload = () => {
   const { mutateAsync, ...rest } = useMutation({
     mutationFn: imageUpload,
     onSuccess: (data) => {
-      console.log(data);
       return data;
     },
     onError: (err) => {

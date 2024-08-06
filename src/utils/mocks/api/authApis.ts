@@ -9,29 +9,31 @@ const isAuthData = (data: any): data is userAuthType => {
 };
 
 const handler = [
-  http.post("/api/signup", async ({ request }) => {
-    try {
-      const authData = (await request.json()) as any;
-      if (!isAuthData(authData)) {
-        throw new Error("로그인 폼 데이터 에러");
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
+    async ({ request }) => {
+      try {
+        const authData = await request.json();
+        if (!isAuthData(authData)) {
+          throw new Error("로그인 폼 데이터 에러");
+        }
+        if (
+          userAuthData.find((authItem) => authItem.email === authData.email)
+        ) {
+          throw new Error("중복된 아이디가 있음");
+        }
+        userAuthData.push(authData);
+        return new HttpResponse(JSON.stringify({ userId: 3333 }), {
+          headers: {
+            "Set-Cookie": `token=${mockTokens.refreshToken}`
+          },
+          status: 200
+        });
+      } catch (error) {
+        throw new Error(`${error}`);
       }
-      if (
-        userAuthData.filter((authItem) => authItem.email === authData.email)
-          .length
-      ) {
-        throw new Error("중복된 아이디가 있음");
-      }
-      userAuthData.push(authData);
-      return new HttpResponse(JSON.stringify(mockTokens.accessToken), {
-        headers: {
-          "Set-Cookie": `token=${mockTokens.refreshToken}`
-        },
-        status: 200
-      });
-    } catch (error) {
-      throw new Error(`${error}`);
     }
-  }),
+  ),
   http.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/check-email`,
     async ({ request }) => {
