@@ -1,5 +1,7 @@
 import { http, HttpResponse } from "msw";
 
+import TempImage from "~/images/angel.webp";
+
 import { userAuthData } from "../mockData/authData";
 import { mockTokens } from "../mockData/token";
 import { userAuthType } from "./types";
@@ -92,13 +94,18 @@ const handler = [
     async ({ request }) => {
       try {
         const userToken = request.headers.get("Authorization");
-
-        if (!userToken || !userToken.startsWith("Bearer ")) {
-          throw new Error("토큰이 없거나 형식이 잘못되었습니다");
+        if (!userToken) {
+          return new HttpResponse(null, {
+            status: 401
+          });
         }
+
         const CheckLoginUserResponse = {
           userId: 123,
           email: "a@a.com",
+          profileImageUrl: TempImage.src,
+          nickname: "car",
+          score: 110,
           password: "abcd",
           address: {
             si: "서울",
@@ -108,7 +115,6 @@ const handler = [
           reportCount: 0,
           readNotificationCount: 0
         };
-
         return new HttpResponse(JSON.stringify(CheckLoginUserResponse), {
           status: 200
         });
