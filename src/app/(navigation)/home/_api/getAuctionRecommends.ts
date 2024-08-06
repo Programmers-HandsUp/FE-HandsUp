@@ -106,7 +106,6 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
       return null;
     }
 
-    if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
     return res.json();
   } catch (error) {
     console.error("로그인이 되어있지 않아 카테고리별 추천은 제외됩니다.");
