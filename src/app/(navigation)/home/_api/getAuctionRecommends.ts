@@ -21,7 +21,6 @@ export async function getSortedBookMarks({
       cache: "no-store"
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
   return res.json();
 }
@@ -40,7 +39,6 @@ export async function getSortedRecentlyCreated({
       cache: "no-store"
     }
   );
-  if (!res.ok) throw new Error("Failed to fetch data [hotAuctionList] ");
 
   return res.json();
 }
@@ -89,7 +87,6 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
     const accessToken = authCheck();
 
     if (!accessToken) return null;
-
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend/category?&page=0&size=10&sort=북마크수`,
       {
@@ -105,7 +102,6 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
     if (res === null) {
       return null;
     }
-
     return res.json();
   } catch (error) {
     console.error("로그인이 되어있지 않아 카테고리별 추천은 제외됩니다.");
