@@ -50,10 +50,14 @@ const handler = [
             status: 401
           });
         } else {
-          return new HttpResponse(null, { status: 200 });
+          return new HttpResponse(JSON.stringify({ isAvailable: "Ok" }), {
+            status: 200
+          });
         }
       } catch (error) {
-        return new HttpResponse(null, { status: 401 });
+        return new HttpResponse(JSON.stringify({ isAvailable: "Warn" }), {
+          status: 401
+        });
       }
     }
   ),
