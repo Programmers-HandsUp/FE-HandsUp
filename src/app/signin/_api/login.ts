@@ -11,7 +11,6 @@ export const signIn = async (authData: LoginRequest): Promise<boolean> => {
       body: JSON.stringify(authData)
     }
   );
-  console.log(response);
   if (response.ok) {
     return true;
   }

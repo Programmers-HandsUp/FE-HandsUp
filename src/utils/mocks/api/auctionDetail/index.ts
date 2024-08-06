@@ -1,11 +1,12 @@
 import { http, HttpResponse } from "msw";
 
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
 import tempImage from "~/images/angel.webp";
 
 import { bidMockData } from "../../mockData/auctionPost/auctionBidRecord";
 import { commentMockData } from "../../mockData/auctionPost/auctionComment";
 import { auctionDetails } from "../../mockData/auctionPost/auctionDetail";
-
+import { sellerInfoMockData } from "../../mockData/sellerData";
 const delay = (ms: number) =>
   new Promise((res) => {
     setTimeout(res, ms);
@@ -137,12 +138,32 @@ const handlers = [
     }
   ),
   http.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/images`, async ({}) => {
-    await delay(1000);
-
-    return HttpResponse.json(JSON.stringify([tempImage.src]), {
+    return new HttpResponse(JSON.stringify({ images: [tempImage.src] }), {
       status: 200
     });
-  })
+  }),
+
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions`,
+    async ({ request }) => {
+      request.headers.get("Authorization")?.slice(6);
+      const newAuctionDetail = (await request.json()) as AuctionDetailResponse;
+      if (newAuctionDetail) {
+        newAuctionDetail["auctionId"] = 60000;
+        newAuctionDetail["sellerInfo"] = sellerInfoMockData[0];
+        if (!newAuctionDetail.imageUrls) {
+          newAuctionDetail["imageUrls"] = [tempImage.src];
+        }
+        auctionDetails.push(newAuctionDetail);
+
+        return new HttpResponse(JSON.stringify({ auctionId: 60000 }), {
+          status: 200
+        });
+      } else {
+        throw new Error("유효하지않은 데이터가 전송되었습니다.");
+      }
+    }
+  )
 ];
 
 export default handlers;
