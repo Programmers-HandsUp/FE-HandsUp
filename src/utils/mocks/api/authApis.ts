@@ -122,6 +122,21 @@ const handler = [
         throw new Error(`${error}`);
       }
     }
+  ),
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/logout`,
+    async ({ request }) => {
+      try {
+        return new HttpResponse(JSON.stringify({ userId: 3000 }), {
+          headers: {
+            "Set-Cookie": "accessToken="
+          },
+          status: 200
+        });
+      } catch (error) {
+        throw new Error(`${error}`);
+      }
+    }
   )
 ];
 
