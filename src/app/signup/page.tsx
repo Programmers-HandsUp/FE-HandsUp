@@ -12,7 +12,7 @@ import ProfileImageForm from "./_component/funnel/ProfileImageForm";
 import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
 import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
 import SignUpFinishPage from "./_component/funnel/SignUpFinishPage";
-import SignUpHeader from "./_component/SignUpHeader";
+import SignUpHeader from "./_component/SignupHeader";
 import { SignUpFormSchema } from "./utils/validation";
 
 const SignUp = () => {
