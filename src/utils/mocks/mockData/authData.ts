@@ -1,4 +1,4 @@
-import { userAuthType } from "../types";
+import { userAuthType } from "../api/types";
 
 export const userAuthData: userAuthType[] = [
   {

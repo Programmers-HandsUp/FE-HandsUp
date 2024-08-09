@@ -5,7 +5,7 @@ export const getLoginUserInfo =
   async (): Promise<CheckLoginUserResponse | null> => {
     const isTokenValid = authCheck();
     try {
-      if (!isTokenValid) throw new Error("유저 토큰이 비어있습니다.");
+      if (!isTokenValid) return null;
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
@@ -15,13 +15,11 @@ export const getLoginUserInfo =
           }
         }
       );
-
-      if (!res.ok) {
-        throw new Error(`${res.status}`);
-      }
       return res.json();
     } catch (error: any) {
-      console.error(error.message);
+      if (error.status !== 401) {
+        throw new Error(error.message);
+      }
     }
     return null;
   };

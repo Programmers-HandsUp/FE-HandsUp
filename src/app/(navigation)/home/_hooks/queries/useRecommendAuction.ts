@@ -36,6 +36,13 @@ const useRecommendedAuction = ({ address }: { address: AddressState }) => {
     ]
   });
 
+  result.forEach((item) => {
+    if (item.data !== null) {
+      if (item.data.content[0] === null) {
+        item.data.content = [];
+      }
+    }
+  });
   return result;
 };
 

@@ -1,4 +1,4 @@
-import { tokenType } from "../types";
+import { tokenType } from "../api/types";
 
 export const mockTokens: tokenType = {
   accessToken: "abcdefghijk",

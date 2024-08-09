@@ -27,13 +27,15 @@ const DetailAuctionFeed = ({ data }: DetailAuctionFeedProps) => {
             key={auction.auctionId}
             className="group">
             <div className="relative w-full h-full border rounded-lg overflow-hidden">
-              <Image
-                src={auction.imgUrl}
-                width={0}
-                height={0}
-                alt="상품 이미지"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              {auction.imgUrl ? (
+                <Image
+                  src={auction.imgUrl}
+                  width={0}
+                  height={0}
+                  alt="상품 이미지"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              ) : null}
               <div className="absolute flex justify-center flex-col items-center bottom-0 w-full h-[30px] bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-all group-hover:h-[80px]">
                 <div>
                   <Timer

@@ -15,8 +15,8 @@ export const signUp = async (
     }
   );
   if (response.ok) {
-    const token = await response.json();
-    return token;
+    const userId = await response.json();
+    return userId;
   }
   throw new Error(response.status.toString());
 };

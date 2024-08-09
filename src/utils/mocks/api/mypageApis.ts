@@ -7,7 +7,7 @@ import {
   reviewLabelList,
   reviewList,
   saleList
-} from "./data/mypageData";
+} from "../mockData/mypageData";
 
 export const statusMap: Record<StatusEn, Status> = {
   TRADING: "거래 중",
@@ -16,56 +16,68 @@ export const statusMap: Record<StatusEn, Status> = {
 };
 
 const handlers = [
-  http.get("/api/users/buys", ({ request }) => {
-    const url = new URL(request.url);
-    const status = url.searchParams.get("auctionStatus") as StatusEn;
+  http.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/buys`,
+    ({ request }) => {
+      const url = new URL(request.url);
+      const status = url.searchParams.get("auctionStatus") as StatusEn;
 
-    switch (status) {
-      case "TRADING":
-      case "BIDDING":
-      case "COMPLETED":
-        const responseList = purchaseList.content.filter(
-          (item) => item.auctionStatus === statusMap[status]
-        );
+      switch (status) {
+        case "TRADING":
+        case "BIDDING":
+        case "COMPLETED":
+          const responseList = purchaseList.content.filter(
+            (item) => item.auctionStatus === statusMap[status]
+          );
 
-        const result = {
-          content: responseList,
-          size: 10,
-          hasNext: false
-        };
-        return HttpResponse.json(result);
-      default:
-        return HttpResponse.json(purchaseList);
+          const result = {
+            content: responseList,
+            size: 10,
+            hasNext: false
+          };
+          return HttpResponse.json(result);
+        default:
+          return HttpResponse.json(purchaseList);
+      }
     }
-  }),
-  http.get("/api/users/:userId/sales", ({ request }) => {
-    const url = new URL(request.url);
-    const status = url.searchParams.get("auctionStatus") as StatusEn;
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/:userId/sales`,
+    ({ request }) => {
+      const url = new URL(request.url);
+      const status = url.searchParams.get("auctionStatus") as StatusEn;
 
-    switch (status) {
-      case "TRADING":
-      case "BIDDING":
-      case "COMPLETED":
-        const responseList = saleList.content.filter(
-          (item) => item.auctionStatus === statusMap[status]
-        );
+      switch (status) {
+        case "TRADING":
+        case "BIDDING":
+        case "COMPLETED":
+          const responseList = saleList.content.filter(
+            (item) => item.auctionStatus === statusMap[status]
+          );
 
-        const result = {
-          content: responseList,
-          size: 10,
-          hasNext: false
-        };
-        return HttpResponse.json(result);
-      default:
-        return HttpResponse.json(saleList);
+          const result = {
+            content: responseList,
+            size: 10,
+            hasNext: false
+          };
+          return HttpResponse.json(result);
+        default:
+          return HttpResponse.json(saleList);
+      }
     }
-  }),
-  http.get("/api/users/:userId/reviews/labels", () => {
-    return HttpResponse.json(reviewLabelList);
-  }),
-  http.get("/api/users/:userId/reviews", () => {
-    return HttpResponse.json(reviewList);
-  })
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/:userId/reviews/labels`,
+    () => {
+      return HttpResponse.json(reviewLabelList);
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/:userId/reviews`,
+    () => {
+      return HttpResponse.json(reviewList);
+    }
+  )
 ];
 
 export default handlers;

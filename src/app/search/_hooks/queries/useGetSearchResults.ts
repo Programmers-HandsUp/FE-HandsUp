@@ -1,7 +1,7 @@
 import {
   DefaultError,
   InfiniteData,
-  useSuspenseInfiniteQuery
+  useInfiniteQuery
 } from "@tanstack/react-query";
 
 import { AuctionSearchResultResponse } from "@/utils/types/search/search";
@@ -20,7 +20,7 @@ const useGetSearchResult = (
     hasNextPage,
     fetchNextPage,
     isFetched
-  } = useSuspenseInfiniteQuery<
+  } = useInfiniteQuery<
     AuctionSearchResultResponse,
     DefaultError,
     InfiniteData<AuctionSearchResultResponse>,
@@ -45,9 +45,13 @@ const useGetSearchResult = (
       return pageParam + 1;
     }
   });
-
   return {
-    data: data?.pages.map((item) => item.content).flat() || [],
+    data: data?.pages
+      .map((item) => item.content)
+      .flat()
+      .filter((item) => item != null).length
+      ? data?.pages.map((item) => item.content).flat()
+      : [],
     isFetched,
     hasNextPage,
     isLoading,

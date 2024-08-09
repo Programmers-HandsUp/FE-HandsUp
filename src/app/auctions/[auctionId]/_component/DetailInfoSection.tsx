@@ -113,9 +113,9 @@ const DetailInfoSection = ({ auctionId }: DetailInfoSectionProps) => {
           title={auction.title}
           productCategory={auction.productCategory}
           description={auction.description}
-          si={auction.tradeSi}
-          gu={auction.tradeGu}
-          dong={auction.tradeDong}
+          si={auction.si}
+          gu={auction.gu}
+          dong={auction.dong}
           tradeMethod={auction.tradeMethod}
           productStatus={auction.productStatus}
           purchaseTime={auction.purchaseTime}

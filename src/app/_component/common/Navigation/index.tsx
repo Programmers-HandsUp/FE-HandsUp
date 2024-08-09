@@ -96,7 +96,7 @@ const Navigation = ({ user }: NavigationProps) => {
             "flex flex-col items-center",
             `${pathname.includes("account") ? "text-[#96E4FF]" : "text-inherit"}`
           )}>
-          {userData ? (
+          {userData && userData.profileImageUrl ? (
             <div className="w-[25px] h-[25px] relative rounded-full overflow-hidden">
               <Image
                 src={userData.profileImageUrl}

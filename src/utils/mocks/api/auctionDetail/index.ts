@@ -1,0 +1,169 @@
+import { http, HttpResponse } from "msw";
+
+import { AuctionDetailResponse } from "@/utils/types/auction/auctionDetail";
+import tempImage from "~/images/angel.webp";
+
+import { bidMockData } from "../../mockData/auctionPost/auctionBidRecord";
+import { commentMockData } from "../../mockData/auctionPost/auctionComment";
+import { auctionDetails } from "../../mockData/auctionPost/auctionDetail";
+import { sellerInfoMockData } from "../../mockData/sellerData";
+const delay = (ms: number) =>
+  new Promise((res) => {
+    setTimeout(res, ms);
+  });
+
+const handlers = [
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/recommend`,
+    async ({ request }) => {
+      const { searchParams } = new URL(request.url);
+      const page = Number(searchParams.get("page") || 0);
+      const size = Number(searchParams.get("size") || 0);
+
+      const result = auctionDetails.map(
+        ({
+          auctionId,
+          title,
+          currentBiddingPrice,
+          bookmarkCount,
+          dong,
+          endDate,
+          imageUrls,
+          createdAt
+        }) => ({
+          auctionId,
+          title,
+          currentBiddingPrice,
+          endDate,
+          imgUrl: imageUrls[0],
+          bookmarkCount,
+          dong,
+          createdAt
+        })
+      );
+
+      const totalCount = result.length;
+      const totalPages = Math.ceil(totalCount / size);
+      const hasNext = page < totalPages - 1;
+
+      return new HttpResponse(
+        JSON.stringify({
+          content: result.slice(page * size, page * size + size),
+          pageSize: size,
+          hasNext
+        }),
+        { status: 200 }
+      );
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/comments`,
+    async ({ request, params }) => {
+      const requestAuctionId = Number(params.auctionId);
+
+      const { searchParams } = new URL(request.url);
+      const commentPage = Number(searchParams.get("page") || 0);
+      const commentNum = Number(searchParams.get("size") || 0);
+
+      const auctionCommentList = commentMockData
+        .filter((commentItem) => commentItem.auctionId === requestAuctionId)
+        .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .slice(commentNum * commentPage, commentNum * commentPage + commentNum);
+
+      return new HttpResponse(
+        JSON.stringify({
+          content: auctionCommentList,
+          size: auctionCommentList.length,
+          hasNext: false
+        })
+      );
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
+    async ({ params }) => {
+      await delay(1000);
+
+      const requestAuctionId = Number(params.auctionId);
+
+      const newAuctionDetail = auctionDetails.find(
+        (detail) => detail.auctionId === requestAuctionId
+      );
+
+      if (!newAuctionDetail) {
+        return new HttpResponse(
+          JSON.stringify({ error: "해당 경매 물품이 없습니다." }),
+          { status: 404 }
+        );
+      }
+
+      return HttpResponse.json(newAuctionDetail);
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids/top3`,
+    async ({ params }) => {
+      await delay(1000);
+
+      const requestAuctionId = Number(params.auctionId);
+
+      const requestAuctionTop3Bids = bidMockData
+        .filter((bidRecord) => bidRecord.auctionId === requestAuctionId)
+        .sort((a, b) => b.biddingPrice - a.biddingPrice)
+        .slice(0, 3);
+
+      return HttpResponse.json({
+        content: requestAuctionTop3Bids,
+        size: requestAuctionTop3Bids.length,
+        hasNext: false
+      });
+    }
+  ),
+  http.get(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids`,
+    async ({ params }) => {
+      await delay(1000);
+
+      const requestAuctionId = Number(params.auctionId);
+
+      const requestAuctionTop3Bids = bidMockData
+        .filter((bidRecord) => bidRecord.auctionId === requestAuctionId)
+        .sort((a, b) => b.biddingPrice - a.biddingPrice);
+
+      return HttpResponse.json({
+        content: requestAuctionTop3Bids,
+        size: requestAuctionTop3Bids.length,
+        hasNext: false
+      });
+    }
+  ),
+  http.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/images`, async ({}) => {
+    return new HttpResponse(JSON.stringify({ images: [tempImage.src] }), {
+      status: 200
+    });
+  }),
+
+  http.post(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/auctions`,
+    async ({ request }) => {
+      request.headers.get("Authorization")?.slice(6);
+      const newAuctionDetail = (await request.json()) as AuctionDetailResponse;
+      if (newAuctionDetail) {
+        newAuctionDetail["auctionId"] = 60000;
+        newAuctionDetail["sellerInfo"] = sellerInfoMockData[0];
+        if (!newAuctionDetail.imageUrls) {
+          newAuctionDetail["imageUrls"] = [tempImage.src];
+        }
+        auctionDetails.push(newAuctionDetail);
+
+        return new HttpResponse(JSON.stringify({ auctionId: 60000 }), {
+          status: 200
+        });
+      } else {
+        throw new Error("유효하지않은 데이터가 전송되었습니다.");
+      }
+    }
+  )
+];
+
+export default handlers;
