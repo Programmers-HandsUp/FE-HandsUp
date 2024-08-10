@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/temp/page.jsx"
-, "src/utils/mocks/browser.js"  ],
+, "src/utils/mocks/browser.js", "src/app/signup/_component/SignUpHeaderBar"  ],
   "exclude": ["node_modules", ".next", "coverage"]
 }
