@@ -1,18 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 
 import Header from "@/app/_component/common/Header";
-import Icon from "@/app/_component/common/Icon";
-import Modal from "@/app/_component/common/Modal";
-import Notification from "@/app/_component/notification";
-import useModalState from "@/app/_hooks/useModalState";
 
 import useUserInformation from "../../_hooks/queries/useGetUserInformation";
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
 import MainSectionLoading from "./MainSectionLoading";
+import SearchHeaderBarSection from "./SearchHeaderBarSection";
 
 export interface AddressState {
   si: string | null;
@@ -27,8 +23,8 @@ const MainContentSection = () => {
     gu: "",
     dong: ""
   });
-  const { open, close, isOpen } = useModalState();
-  const { data: userInform, isLoading } = useUserInformation();
+  const { data: userInform, isLoading: isUserInformFetchLoading } =
+    useUserInformation();
 
   useEffect(() => {
     const updateAddress = (region: string): AddressState => {
@@ -52,32 +48,6 @@ const MainContentSection = () => {
     setAddress(updateAddress(currentRegion));
   }, [currentRegion]);
 
-  const HeaderRightSection = (
-    <div className="flex items-center justify-end gap-2">
-      <Link href="/search">
-        <Icon
-          id="search"
-          fill="black"
-        />
-      </Link>
-      {userInform && isLoading && (
-        <>
-          <button onClick={open}>
-            <Icon id="bell-fill" />
-          </button>
-          <Modal
-            modalType="fullScreen"
-            isOpen={isOpen}
-            close={close}
-            animate="slide"
-            className="dark:bg-black">
-            <Notification close={close} />
-          </Modal>
-        </>
-      )}
-    </div>
-  );
-
   return (
     <>
       <header>
@@ -91,7 +61,12 @@ const MainContentSection = () => {
               setState={setCurrentRegion}
             />
           }
-          right={HeaderRightSection}
+          right={
+            <SearchHeaderBarSection
+              isUserInformFetchLoading={isUserInformFetchLoading}
+              userInform={userInform}
+            />
+          }
         />
       </header>
       <Suspense fallback={<MainSectionLoading />}>
