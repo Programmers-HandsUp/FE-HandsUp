@@ -6,7 +6,7 @@ export const getLoginUserInfo =
     const isTokenValid = authCheck();
     try {
       if (!isTokenValid) return null;
-
+      console.log(isTokenValid);
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/users`,
         {
@@ -15,7 +15,7 @@ export const getLoginUserInfo =
           }
         }
       );
-      return res.json();
+      return await res.json();
     } catch (error: any) {
       if (error.status !== 401) {
         throw new Error(error.message);

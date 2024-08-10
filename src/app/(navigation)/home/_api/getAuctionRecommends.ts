@@ -102,7 +102,7 @@ export async function getSortedCategory(): Promise<RecommendAuctionsResponse | n
     if (res === null) {
       return null;
     }
-    return res.json();
+    return await res.json();
   } catch (error) {
     console.error("로그인이 되어있지 않아 카테고리별 추천은 제외됩니다.");
   }
