@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 import { getLoginUserInfo } from "@/app/_api/user";
 
 const useUserInformation = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ["userInformation"],
     queryFn: getLoginUserInfo
   });
