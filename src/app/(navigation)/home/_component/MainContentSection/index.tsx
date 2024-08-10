@@ -28,8 +28,8 @@ const MainContentSection = () => {
     dong: ""
   });
   const { open, close, isOpen } = useModalState();
-  const { data: user } = useUserInformation();
-  
+  const { data: userInform, isLoading } = useUserInformation();
+
   useEffect(() => {
     const updateAddress = (region: string): AddressState => {
       if (region === "전국") {
@@ -60,8 +60,7 @@ const MainContentSection = () => {
           fill="black"
         />
       </Link>
-
-      {user && (
+      {userInform && isLoading && (
         <>
           <button onClick={open}>
             <Icon id="bell-fill" />
@@ -85,9 +84,9 @@ const MainContentSection = () => {
         <Header
           left={
             <RegionSelect
-              si={userSi}
-              gu={userGu}
-              dong={userDong}
+              si={userInform?.address.si ? userInform.address.si : ""}
+              gu={userInform?.address.gu ? userInform.address.gu : ""}
+              dong={userInform?.address.dong ? userInform.address.dong : ""}
               currentRegion={currentRegion}
               setState={setCurrentRegion}
             />
