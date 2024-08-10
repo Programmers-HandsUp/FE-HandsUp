@@ -5,21 +5,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import useSession from "@/app/_hooks/queries/useSession";
+import useUserInformation from "@/app/(navigation)/home/_hooks/queries/useGetUserInformation";
 import { cn } from "@/utils/function/cn";
-import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
 import Icon from "../Icon";
 import ThemeButton from "../ThemeButton";
 import LoginLink from "./LoginLink";
 
-interface NavigationProps {
-  user: CheckLoginUserResponse | undefined;
-}
-
-const Navigation = ({ user }: NavigationProps) => {
+const Navigation = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const userData = user || session;
+  const { data: userInform } = useUserInformation();
+  const userData = userInform || session;
 
   return (
     <div className="flex justify-around items-center h-[56px] border-t border-l border-r  bg-white dark:bg-black border-[#96E4FF] rounded-t-2xl">

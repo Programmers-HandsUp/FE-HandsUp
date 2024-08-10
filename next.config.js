@@ -8,6 +8,9 @@ const nextConfig = withPWA({
   images: {
     domains: ["static.shoeprize.com"],
     unoptimized: true
+  },
+  experimental: {
+    instrumentationHook: true
   }
 });
 

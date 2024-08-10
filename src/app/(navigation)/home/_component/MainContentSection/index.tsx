@@ -1,18 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { Suspense, useEffect, useState } from "react";
 
 import Header from "@/app/_component/common/Header";
-import Icon from "@/app/_component/common/Icon";
-import Modal from "@/app/_component/common/Modal";
-import Notification from "@/app/_component/notification";
-import useModalState from "@/app/_hooks/useModalState";
-import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
+import useUserInformation from "../../_hooks/queries/useGetUserInformation";
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
 import MainSectionLoading from "./MainSectionLoading";
+import SearchHeaderBarSection from "./SearchHeaderBarSection";
 
 export interface AddressState {
   si: string | null;
@@ -20,26 +16,15 @@ export interface AddressState {
   dong: string | null;
 }
 
-interface MainContentSectionProps {
-  userSi: string;
-  userGu: string;
-  userDong: string;
-  user: CheckLoginUserResponse | null;
-}
-
-const MainContentSection = ({
-  userSi,
-  userGu,
-  userDong,
-  user
-}: MainContentSectionProps) => {
+const MainContentSection = () => {
   const [currentRegion, setCurrentRegion] = useState("전국");
   const [address, setAddress] = useState<AddressState>({
     si: "",
     gu: "",
     dong: ""
   });
-  const { open, close, isOpen } = useModalState();
+  const { data: userInform, isLoading: isUserInformFetchLoading } =
+    useUserInformation();
 
   useEffect(() => {
     const updateAddress = (region: string): AddressState => {
@@ -63,47 +48,25 @@ const MainContentSection = ({
     setAddress(updateAddress(currentRegion));
   }, [currentRegion]);
 
-  const HeaderRightSection = (
-    <div className="flex items-center justify-end gap-2">
-      <Link href="/search">
-        <Icon
-          id="search"
-          fill="black"
-        />
-      </Link>
-
-      {user && (
-        <>
-          <button onClick={open}>
-            <Icon id="bell-fill" />
-          </button>
-          <Modal
-            modalType="fullScreen"
-            isOpen={isOpen}
-            close={close}
-            animate="slide"
-            className="dark:bg-black">
-            <Notification close={close} />
-          </Modal>
-        </>
-      )}
-    </div>
-  );
-
   return (
     <>
       <header>
         <Header
           left={
             <RegionSelect
-              si={userSi}
-              gu={userGu}
-              dong={userDong}
+              si={userInform?.address.si ? userInform.address.si : ""}
+              gu={userInform?.address.gu ? userInform.address.gu : ""}
+              dong={userInform?.address.dong ? userInform.address.dong : ""}
               currentRegion={currentRegion}
               setState={setCurrentRegion}
             />
           }
-          right={HeaderRightSection}
+          right={
+            <SearchHeaderBarSection
+              isUserInformFetchLoading={isUserInformFetchLoading}
+              userInform={userInform}
+            />
+          }
         />
       </header>
       <Suspense fallback={<MainSectionLoading />}>
