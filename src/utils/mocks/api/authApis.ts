@@ -79,7 +79,7 @@ const handler = [
         return new HttpResponse(null, {
           headers: {
             "Content-Type": "application/json",
-            "Set-Cookie": `accessToken=${mockTokens.accessToken}`
+            "Set-Cookie": `AccessToken=${mockTokens.accessToken}`
           },
           status: 200
         });
@@ -129,7 +129,7 @@ const handler = [
       try {
         return new HttpResponse(JSON.stringify({ userId: 3000 }), {
           headers: {
-            "Set-Cookie": "accessToken="
+            "Set-Cookie": "AccessToken="
           },
           status: 200
         });

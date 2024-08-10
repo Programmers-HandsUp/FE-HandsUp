@@ -11,7 +11,7 @@ const reissueAccessToken = async () => {
     );
     const result = await response.json();
 
-    setCookie({ name: "accessToken", value: result.token });
+    setCookie({ name: "AccessToken", value: result.token });
     return result.token;
   } catch (error) {
     console.log(error);

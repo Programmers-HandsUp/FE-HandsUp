@@ -1,9 +1,6 @@
 import { SignUpRequest } from "@/utils/types/user/signup";
-import { SignUpResponse } from "@/utils/types/user/signup";
 
-export const signUp = async (
-  authData: SignUpRequest
-): Promise<SignUpResponse> => {
+export const signUp = async (authData: SignUpRequest) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`,
     {
@@ -15,8 +12,7 @@ export const signUp = async (
     }
   );
   if (response.ok) {
-    const userId = await response.json();
-    return userId;
+    return true;
   }
   throw new Error(response.status.toString());
 };

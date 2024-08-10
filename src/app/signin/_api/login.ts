@@ -14,7 +14,7 @@ export const signIn = async (authData: LoginRequest): Promise<boolean> => {
   );
   const result = await response.json();
   if (response.ok) {
-    setCookie({ name: "accessToken", value: result.accessToken });
+    setCookie({ name: "AccessToken", value: result.accessToken });
     return true;
   }
   throw new Error(response.status.toString());
