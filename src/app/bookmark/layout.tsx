@@ -1,6 +1,3 @@
-import { QueryClient } from "@tanstack/react-query";
-
-import { getLoginUserInfo } from "../_api/user";
 import Navigation from "../_component/common/Navigation";
 import BookmarkPageHeader from "./_component/header";
 
@@ -9,13 +6,6 @@ export default async function UserPageLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ["user"],
-    queryFn: getLoginUserInfo
-  });
-
   return (
     <section>
       <div className="w-[95%] mx-auto">
@@ -26,5 +16,5 @@ export default async function UserPageLayout({
         <Navigation />
       </nav>
     </section>
-  );
+  );  
 }

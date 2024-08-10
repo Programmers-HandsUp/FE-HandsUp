@@ -21,5 +21,6 @@ export const getLoginUserInfo =
         throw new Error(error.message);
       }
     }
+
     return null;
   };
