@@ -8,8 +8,8 @@ import Icon from "@/app/_component/common/Icon";
 import Modal from "@/app/_component/common/Modal";
 import Notification from "@/app/_component/notification";
 import useModalState from "@/app/_hooks/useModalState";
-import { CheckLoginUserResponse } from "@/utils/types/user/users";
 
+import useUserInformation from "../../_hooks/queries/useGetUserInformation";
 import RegionSelect from "../RegionSelect";
 import AuctionListSection from "./AuctionListSection";
 import MainSectionLoading from "./MainSectionLoading";
@@ -20,19 +20,7 @@ export interface AddressState {
   dong: string | null;
 }
 
-interface MainContentSectionProps {
-  userSi: string;
-  userGu: string;
-  userDong: string;
-  user: CheckLoginUserResponse | null;
-}
-
-const MainContentSection = ({
-  userSi,
-  userGu,
-  userDong,
-  user
-}: MainContentSectionProps) => {
+const MainContentSection = () => {
   const [currentRegion, setCurrentRegion] = useState("전국");
   const [address, setAddress] = useState<AddressState>({
     si: "",
@@ -40,7 +28,8 @@ const MainContentSection = ({
     dong: ""
   });
   const { open, close, isOpen } = useModalState();
-
+  const { data: user } = useUserInformation();
+  
   useEffect(() => {
     const updateAddress = (region: string): AddressState => {
       if (region === "전국") {
