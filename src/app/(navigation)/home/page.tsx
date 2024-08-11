@@ -17,7 +17,6 @@ const MainPage = async () => {
   const queryClient = new QueryClient();
 
   const address = { si: "", gu: "", dong: "" };
-
   await queryClient.prefetchQuery({
     queryKey: ["auction", "bookmark"],
     queryFn: () => getSortedBookMarks({ address })

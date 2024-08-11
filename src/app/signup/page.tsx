@@ -12,7 +12,7 @@ import ProfileImageForm from "./_component/funnel/ProfileImageForm";
 import SelectCategoryForm from "./_component/funnel/SelectCategoryForm";
 import SelectResidenceForm from "./_component/funnel/SelectResidenceForm";
 import SignUpFinishPage from "./_component/funnel/SignUpFinishPage";
-import SignUpHeader from "./_component/SignupHeader";
+import SignUpHeaderBar from "./_component/SignUpHeaderBar";
 import { SignUpFormSchema } from "./utils/validation";
 
 const SignUp = () => {
@@ -36,7 +36,7 @@ const SignUp = () => {
 
   return (
     <div className="">
-      <SignUpHeader step={step} />
+      <SignUpHeaderBar step={step} />
       <FormProvider {...formMethods}>
         <Funnel>
           <Funnel.Step name="emailForm">

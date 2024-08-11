@@ -11,7 +11,7 @@ export const authCheck = (): string | undefined => {
 };
 
 export const getClientSideAuthCheck = (): string | undefined => {
-  const isToken = getCookie({ name: "accessToken" });
+  const isToken = getCookie({ name: "AccessToken" });
   return isToken ? isToken : undefined;
 };
 
@@ -19,8 +19,8 @@ export const getServerSideAuthCheck = (): string | undefined => {
   if (typeof window === "undefined") {
     const { cookies } = require("next/headers");
     const cookieStore = cookies();
-    return cookieStore.get("accessToken")
-      ? cookieStore.get("accessToken").value
+    return cookieStore.get("AccessToken")
+      ? cookieStore.get("AccessToken").value
       : undefined;
   }
 };

@@ -19,7 +19,6 @@ const handlers = [
       const { searchParams } = new URL(request.url);
       const page = Number(searchParams.get("page") || 0);
       const size = Number(searchParams.get("size") || 0);
-
       const result = auctionDetails.map(
         ({
           auctionId,

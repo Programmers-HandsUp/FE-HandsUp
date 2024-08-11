@@ -1,15 +1,14 @@
 "use client";
 
-
 import { useRouter } from "next/navigation";
 
 import Icon from "@/app/_component/common/Icon";
 
-interface SignUpHeaderProps {
+interface SignUpHeaderBarProps {
   step: string;
 }
 
-const SignUpHeader = ({ step }: SignUpHeaderProps) => {
+const SignUpHeaderBar = ({ step }: SignUpHeaderBarProps) => {
   const router = useRouter();
   return (
     <header className="w-[325px] h-[4rem] flex mx-[1.5rem] mr-[2rem] justify-between ">
@@ -32,4 +31,4 @@ const SignUpHeader = ({ step }: SignUpHeaderProps) => {
   );
 };
 
-export default SignUpHeader;
+export default SignUpHeaderBar;

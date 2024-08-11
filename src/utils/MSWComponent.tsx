@@ -14,6 +14,5 @@ export const MSWComponent = () => {
       }
     }
   }, []);
-
   return null;
 };

@@ -8,7 +8,3 @@ export interface SignUpRequest {
   profileImageUrl: string;
   productCategoryIds: number[];
 }
-
-export interface SignUpResponse {
-  userId: number;
-}
