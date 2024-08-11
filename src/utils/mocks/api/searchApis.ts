@@ -23,17 +23,16 @@ const handler = [
       const size = Number(searchParams.get("size") || 5);
       const page = Number(searchParams.get("page") || 0);
 
-      interface RequestBody {
-        keyword: string;
-      }
+      const searchKeyWord: string = await (async () => {
+        try {
+          const { keyword } = (await request.json()) as { keyword: string };
+          return keyword;
+        } catch (error) {
+          return "";
+        }
+      })();
 
-      let body: RequestBody;
-      try {
-        body = (await request.json()) as RequestBody;
-      } catch (error) {
-        body = { keyword: "" };
-      }
-      const { keyword } = body;
+      console.log(searchKeyWord);
 
       const result = auctionDetails.map(
         ({
@@ -45,7 +44,7 @@ const handler = [
           dong,
           createdAt
         }) => {
-          if (title.includes(keyword)) {
+          if (title.includes(searchKeyWord)) {
             return {
               auctionId,
               title,
