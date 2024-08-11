@@ -7,10 +7,6 @@ import { bidMockData } from "../../mockData/auctionPost/auctionBidRecord";
 import { commentMockData } from "../../mockData/auctionPost/auctionComment";
 import { auctionDetails } from "../../mockData/auctionPost/auctionDetail";
 import { sellerInfoMockData } from "../../mockData/sellerData";
-const delay = (ms: number) =>
-  new Promise((res) => {
-    setTimeout(res, ms);
-  });
 
 const handlers = [
   http.get(
@@ -81,8 +77,6 @@ const handlers = [
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId`,
     async ({ params }) => {
-      await delay(1000);
-
       const requestAuctionId = Number(params.auctionId);
 
       const newAuctionDetail = auctionDetails.find(
@@ -102,8 +96,6 @@ const handlers = [
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids/top3`,
     async ({ params }) => {
-      await delay(1000);
-
       const requestAuctionId = Number(params.auctionId);
 
       const requestAuctionTop3Bids = bidMockData
@@ -121,8 +113,6 @@ const handlers = [
   http.get(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auctions/:auctionId/bids`,
     async ({ params }) => {
-      await delay(1000);
-
       const requestAuctionId = Number(params.auctionId);
 
       const requestAuctionTop3Bids = bidMockData
