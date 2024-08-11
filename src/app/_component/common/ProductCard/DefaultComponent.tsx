@@ -48,6 +48,7 @@ export const CardImage = ({
           className="bg-slate-100 object-cover group-hover:scale-125 transition-transform"
           alt="titleImage"
           fill
+          priority
         />
       ) : (
         <span
