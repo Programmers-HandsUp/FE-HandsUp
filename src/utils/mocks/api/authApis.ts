@@ -76,13 +76,16 @@ const handler = [
           authRequestInform.password === authItem.password
       );
       if (isUser) {
-        return new HttpResponse(null, {
-          headers: {
-            "Content-Type": "application/json",
-            "Set-Cookie": `AccessToken=${mockTokens.accessToken}`
-          },
-          status: 200
-        });
+        return new HttpResponse(
+          JSON.stringify({ AccessToken: mockTokens.accessToken }),
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Set-Cookie": `AccessToken=${mockTokens.accessToken}`
+            },
+            status: 200
+          }
+        );
       }
       return new HttpResponse(null, {
         status: 401
