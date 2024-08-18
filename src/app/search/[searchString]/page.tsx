@@ -35,15 +35,18 @@ const SearchResultPage = () => {
       <div className="pb-6">
         {searchResults !== null && searchResults?.length > 0 ? (
           searchResults.map(
-            ({
-              title,
-              auctionId,
-              currentBiddingPrice,
-              dong,
-              imageUrl,
-              createdAt,
-              bookmarkCount
-            }: AuctionSearchResult) => (
+            (
+              {
+                title,
+                auctionId,
+                currentBiddingPrice,
+                dong,
+                imageUrl,
+                createdAt,
+                bookmarkCount
+              }: AuctionSearchResult,
+              index
+            ) => (
               <div key={auctionId}>
                 <ProductCard
                   className="my-2"
@@ -53,7 +56,7 @@ const SearchResultPage = () => {
                     titleImage={imageUrl ? imageUrl : tempLogoImage.src}
                     width={100}
                     height={100}
-                    priorty
+                    priority={index === 0 ? true : false}
                   />
                   <ProductCard.CardTitle width={200}>
                     <div className="text-lg text-ellipsis overflow-hidden">
