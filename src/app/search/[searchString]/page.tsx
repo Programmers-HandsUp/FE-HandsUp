@@ -53,6 +53,7 @@ const SearchResultPage = () => {
                     titleImage={imageUrl ? imageUrl : tempLogoImage.src}
                     width={100}
                     height={100}
+                    priorty
                   />
                   <ProductCard.CardTitle width={200}>
                     <div className="text-lg text-ellipsis overflow-hidden">
