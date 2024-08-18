@@ -9,7 +9,7 @@ import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
 import getPastTime from "@/utils/function/getPastTime";
 import { AuctionSearchResult } from "@/utils/types/search/search";
-import tempLogoImage from "~/images/logoIcon.png";
+import tempLogoImage from "~/images/angel.webp";
 
 import NotSearchResult from "./_component/NotSearchResult";
 import { SearchOptionContext } from "./layout";

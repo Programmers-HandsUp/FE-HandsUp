@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import onGetImageFile from "@/utils/function/onGetImageFile";
-import tempImage from "~/images/tempImage.png";
+import tempImage from "~/images/angel.webp";
 
 import Icon from "../_component/common/Icon";
 import Modal from "../_component/common/Modal";
