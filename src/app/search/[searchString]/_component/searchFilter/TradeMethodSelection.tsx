@@ -28,8 +28,8 @@ export default function TradeMethodSelection() {
         <label>
           <input
             type="radio"
-            id="direct"
-            value="직거래"
+            id="delivery"
+            value="택배"
             className="peer hidden"
             {...register("tradeMethod")}
           />
