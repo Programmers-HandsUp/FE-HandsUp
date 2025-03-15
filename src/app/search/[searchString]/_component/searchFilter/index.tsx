@@ -27,7 +27,7 @@ const SearchFilterModal = ({
     mode: "all",
     defaultValues: {
       minPrice: 0,
-      maxPrice: 0
+      maxPrice: 999999
     }
   });
 
