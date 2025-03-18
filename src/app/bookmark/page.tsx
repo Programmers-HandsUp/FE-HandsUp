@@ -2,7 +2,7 @@
 
 import getPastTime from "@/utils/function/getPastTime";
 import { BookMarkedAllCheckContent } from "@/utils/types/bookmark/allCheck";
-import tempLogoImage from "~/images/logoIcon.png";
+import tempLogoImage from "~/images/angel.webp";
 
 import ProductCard from "../_component/common/ProductCard";
 import useInfiniteScroll from "../_hooks/useInfiniteScroll";

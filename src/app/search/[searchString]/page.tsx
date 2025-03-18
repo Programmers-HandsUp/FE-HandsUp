@@ -9,7 +9,7 @@ import useInfiniteScroll from "@/app/_hooks/useInfiniteScroll";
 import useGetSearchResult from "@/app/search/_hooks/queries/useGetSearchResults";
 import getPastTime from "@/utils/function/getPastTime";
 import { AuctionSearchResult } from "@/utils/types/search/search";
-import tempLogoImage from "~/images/logoIcon.png";
+import tempLogoImage from "~/images/angel.webp";
 
 import NotSearchResult from "./_component/NotSearchResult";
 import { SearchOptionContext } from "./layout";
@@ -35,15 +35,18 @@ const SearchResultPage = () => {
       <div className="pb-6">
         {searchResults !== null && searchResults?.length > 0 ? (
           searchResults.map(
-            ({
-              title,
-              auctionId,
-              currentBiddingPrice,
-              dong,
-              imageUrl,
-              createdAt,
-              bookmarkCount
-            }: AuctionSearchResult) => (
+            (
+              {
+                title,
+                auctionId,
+                currentBiddingPrice,
+                dong,
+                imageUrl,
+                createdAt,
+                bookmarkCount
+              }: AuctionSearchResult,
+              index
+            ) => (
               <div key={auctionId}>
                 <ProductCard
                   className="my-2"
@@ -53,6 +56,7 @@ const SearchResultPage = () => {
                     titleImage={imageUrl ? imageUrl : tempLogoImage.src}
                     width={100}
                     height={100}
+                    priority={index === 0 ? true : false}
                   />
                   <ProductCard.CardTitle width={200}>
                     <div className="text-lg text-ellipsis overflow-hidden">

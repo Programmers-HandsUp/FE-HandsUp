@@ -5,6 +5,7 @@
 @font-face {
   font-family: "Yeongdeok";
   src: url("../../public/assets/font/YeongdeokSea.ttf");
+  font-display: swap;
 }
 
 @layer base {

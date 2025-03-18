@@ -17,6 +17,7 @@ interface CardImageProps extends DefaultProps {
   titleImage: string;
   width: number;
   height: number;
+  priority?: boolean;
 }
 interface CardTitleProps extends DefaultProps {
   width?: number;
@@ -36,7 +37,8 @@ export const CardImage = ({
   width,
   height,
   titleImage,
-  className
+  className,
+  priority = false
 }: CardImageProps) => {
   return (
     <div
@@ -48,6 +50,7 @@ export const CardImage = ({
           className="bg-slate-100 object-cover group-hover:scale-125 transition-transform"
           alt="titleImage"
           fill
+          priority={priority}
         />
       ) : (
         <span

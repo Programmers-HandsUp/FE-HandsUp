@@ -19,6 +19,7 @@ function Loading({ className }: LoadingProps) {
           width={200}
           height={200}
           alt="Hands Up Logo"
+          priority
         />
       </div>
       <p>잠시만 기다려주세요 :)</p>

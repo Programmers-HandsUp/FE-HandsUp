@@ -30,10 +30,10 @@ const DetailAuctionFeed = ({ data }: DetailAuctionFeedProps) => {
               {auction.imgUrl ? (
                 <Image
                   src={auction.imgUrl}
-                  width={0}
-                  height={0}
+                  width={328}
+                  height={360}
                   alt="상품 이미지"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  priority
                 />
               ) : null}
               <div className="absolute flex justify-center flex-col items-center bottom-0 w-full h-[30px] bg-gradient-to-t from-[rgba(0,0,0,0.7)] transition-all group-hover:h-[80px]">

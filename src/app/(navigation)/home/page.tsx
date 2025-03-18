@@ -33,10 +33,8 @@ const MainPage = async () => {
     queryKey: ["auction", "bids"],
     queryFn: () => getSortedBids({ address })
   });
-  await queryClient.prefetchQuery({
-    queryKey: ["auction", "category"],
-    queryFn: getSortedCategory
-  });
+  const categoryData = await getSortedCategory();
+  queryClient.setQueryData(["auction", "category"], categoryData);
   const dehydratedState = dehydrate(queryClient);
 
   return (
