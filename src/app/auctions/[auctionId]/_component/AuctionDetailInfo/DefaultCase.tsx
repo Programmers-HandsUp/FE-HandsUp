@@ -18,9 +18,6 @@ export const DefaultAuctionDetailInfo = ({
   productStatus,
   purchaseTime,
   description,
-  si,
-  gu,
-  dong,
   tradeMethod
 }: DefaultAuctionDetailInfoProps) => {
   return (
@@ -39,7 +36,6 @@ export const DefaultAuctionDetailInfo = ({
       </AuctionDetailInfo.Description>
 
       <AuctionDetailInfo.TradeWrapper>
-        <AuctionDetailInfo.TradeRegion>{dong}</AuctionDetailInfo.TradeRegion>
         <AuctionDetailInfo.TradeMethod>
           {tradeMethod}
         </AuctionDetailInfo.TradeMethod>
