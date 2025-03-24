@@ -4,7 +4,6 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
-import { MSWComponent } from "@/utils/MSWComponent";
 import Providers from "@/utils/provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -41,7 +40,6 @@ export default async function RootLayout({
       lang="en"
       className={initialDarkMode}>
       <body className={inter.className}>
-        <MSWComponent />
         <main
           id="global-modal"
           className="relative mx-auto max-w-[360px] overscroll-y-none px">
